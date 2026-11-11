@@ -309,6 +309,32 @@ summary{cursor:pointer;font-weight:700}
   .modal-bg{position:static;background:none;padding:0}.modal{border:none;box-shadow:none;max-height:none}
   main{display:none}
 }
+
+/* ------------------------------ Study Lab ---------------------------- */
+.studyfeat{display:flex;align-items:center;gap:1rem;width:100%;text-align:left;margin:.6rem 0 1.1rem;border:2px solid var(--primary-100);background:linear-gradient(135deg,#fff 0%,var(--primary-50) 100%);padding:1rem 1.2rem}
+.studyfeat:hover{border-color:var(--primary)} .studyfeat .ico{font-size:2.2rem}
+.pathline{display:flex;flex-wrap:wrap;gap:.4rem}.pathline span{flex:1;min-width:140px;text-align:center;font-size:.82rem;font-weight:700;padding:.5rem;border-radius:9px;background:var(--primary-50);color:var(--primary-600);border:1px solid var(--primary-100)}
+.slstat{display:flex;flex-direction:column;align-items:flex-start;padding:.8rem 1rem}.slstat b{font-size:1.6rem;line-height:1.1}.slstat span{letter-spacing:normal;word-spacing:normal;font-weight:500}
+.bmlist{display:flex;flex-direction:column;gap:.7rem}
+.bmc{border-left:5px solid var(--line2)} .bmc.read,.bmc.prac{border-left-color:var(--primary)} .bmc.mastered{border-left-color:var(--emerald)} .bmc.secured{border-left-color:#B45309} .bmc.due,.bmc.reteach{border-left-color:var(--amber)}
+.st{font-size:.78rem;font-weight:700;padding:.2rem .6rem;border-radius:999px;background:var(--cab2);color:var(--muted)}
+.st.read,.st.prac{background:var(--primary-50);color:var(--primary-600)} .st.mastered{background:var(--ok-50);color:var(--emerald)} .st.secured{background:#FEF3C7;color:#92400E} .st.due,.st.reteach{background:var(--warn-50);color:#92400E}
+.dots{display:inline-flex;gap:.3rem}.dots .d{width:11px;height:11px;border-radius:50%;background:var(--line2);display:inline-block}.dots .d.ok{background:var(--emerald)}
+.lsec{margin:1rem 0;padding:1rem 1.15rem;border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:var(--shadow)}
+.lsec.goal{background:var(--primary-50);border-color:var(--primary-100)} .lsec.explain{border:2px solid var(--primary-100)}
+.lsec p{line-height:1.65}
+.idea{padding:.6rem 0;border-bottom:1px dashed var(--line)}.idea:last-child{border-bottom:0}.idea p{margin:.25rem 0 0}
+.term{background:var(--cab2);border-radius:10px;padding:.7rem .85rem}.term p{margin:.25rem 0 0}
+.passage{background:#FFFDF5;border-left:4px solid var(--amber);border-radius:10px;padding:.75rem .95rem;margin:.6rem 0;line-height:1.65}
+.passage.unit{background:#F8FAFC;border-left-color:var(--sky)} .passage .psrc{margin-bottom:.3rem}
+mark{background:#FEF08A;color:inherit;padding:0 .12em;border-radius:3px}
+details.deep{margin-top:.8rem;border:1px solid var(--primary-100);background:#fff;border-radius:12px;padding:.65rem .95rem;color:var(--ink)}
+details.deep>summary{cursor:pointer;font-weight:700;color:var(--primary-600)}
+details.deep .dsec{margin-top:.7rem} details.deep h4{margin:.2rem 0;font-size:.95rem}
+details.deep p{margin:.25rem 0;line-height:1.6}
+.chkr{margin-top:.7rem;border-left:5px solid var(--emerald)} .chkr.no{border-left-color:var(--crimson)}
+.opt.picked{border-color:var(--primary)!important;background:var(--primary-50)!important;opacity:1!important}
+.covrow{padding:.45rem .6rem;border-radius:8px;margin:.3rem 0;background:var(--warn-50)} .covrow.hit{background:var(--ok-50)}
 </style></head>
 <body><header id="topbar"></header><main id="main"></main>
 <script id="arenaApp">
@@ -1927,7 +1953,7 @@ let SAVE_KEY = 'classroom_arena_v1';
 const DEFAULT_STATE = () => ({
   lang:'en', muted:false, role:'student', view:'hub', unit:'u1',
   student:{ name:'', period:'' }, tokens:3, streak:0, best:0, xp:0, lastBm:'',
-  qstat:{}, loops:0, galleryDone:{}, highs:{},
+  qstat:{}, loops:0, galleryDone:{}, highs:{}, study:{}, srs:{},
   settings:{ timer:'accuracy', threshold:85, lock:5, powerups:true, shuffle:true, claimEvidence:true, god:false },
   custom:[], assets:{}, classrooms:[], activeClass:null, locked:false, welcomed:false
 });
@@ -2030,9 +2056,11 @@ const I18N = {
     locked:'Locked', open:'Open', done:'Done', inspectAll:'Inspect all 3 magnifying-glass hotspots to unlock your Field Log.', fieldLog:'Station Field Log',
     s1:'1 · Source & Context', s2:'2 · Evidence', s3:'3 · Benchmark Synthesis', cite:'Cite this detail', nextDoor:'Next gallery door unlocked!',
     noTokens:'You need an Arcade Token. Earn them with mastery streaks!', play:'Play (1 token)', score:'Score', highScore:'High score',
+    studyLab:'Study Lab — learn it, practice it, prove it', studyLabD:'Go benchmark by benchmark: read thorough explanations (including your teacher\'s notes), practice with full reteaching, then pass a Mastery Check. Missed ideas come back for review.',
     settings:'Game Settings', importer:'Universal File & Quizizz Importer', library:'Custom Library', assetsBtn:'🎨 Gemini Graphic Designer Studio'
   },
   es:{
+    studyLab:'Laboratorio de estudio — apréndelo, practícalo, demuéstralo', studyLabD:'Avanza estándar por estándar: lee explicaciones completas (incluidas las notas de tu maestro), practica con reenseñanza y luego aprueba una prueba de dominio. Las ideas falladas regresan para repasar.',
     rStudent:'🎓 Centro Estudiantil', rHost:'🖥️ Pizarra Interactiva', rStudio:'🛠️ Estudio Docente', rDemo:'🧪 Demo y Estudio',
     student:'Estudiante', period:'Período', benchmark:'Estándar', mastery:'Dominio', streak:'Racha', tokens:'Fichas',
     chooseUnit:'Elige una unidad', chooseMode:'Elige tu modo', back:'← Volver', start:'Comenzar', next:'Siguiente', cont:'Continuar',
@@ -2187,6 +2215,7 @@ function diagnostic(host, item, chosen, opts={}){
       <p>${esc(why)}</p>
       <p class="ok"><b>${t('correctAns')}:</b> ${esc(item.o[0])}</p>
       ${item.r?`<div class="reteach"><h3>📘 Reteach Micro-Lesson: ${esc(item.r[0])}</h3><p>${esc(item.r[1])}</p>${opts.bm?`<p class="small"><span class="tag gold">${esc(opts.bm)}</span> ${esc((typeof BENCHMARK_TEXT!=='undefined'&&BENCHMARK_TEXT[opts.bm])||'')}</p>`:''}</div>`:''}
+      ${opts.unit&&typeof deepHTML==='function'?deepHTML(opts.unit, opts.q||item, null, {open:!!opts.deep, skipCore:true}):''}
       <div class="lockbar"><i style="width:100%"></i><span>${t('readLock')}: ${secs}s…</span></div>
       <button class="btn gold big" style="margin-top:.7rem;width:100%" disabled>${opts.btn||t('toRemed')}</button>`;
     host.appendChild(d); d.scrollIntoView({behavior:'smooth',block:'start'});
@@ -2216,7 +2245,7 @@ async function runItem(host, q, ctx={}){
     const evHost=$('#evh',box);
     const e = await mcStep(evHost, evItem, {timed:false, tags:`<span class="tag em">${t('evidenceQ')}</span>`});
     if(e!==0){ ok=false; evMiss=true; markOpts(evHost, e); SFX.wrong(); onMiss(ctx.inv&&ctx.inv.armed&&ctx.inv.armed.shield);
-      await diagnostic(evHost, {...evItem, r:q.r}, e, {bm:q.bm}); }
+      await diagnostic(evHost, {...evItem, r:q.r}, e, {bm:q.bm, unit, q, deep:ctx.deep}); }
     else markOpts(evHost, 0);
   }
   if(ok){
@@ -2226,7 +2255,7 @@ async function runItem(host, q, ctx={}){
     if(ctx.inv&&ctx.inv.armed){ ctx.inv.armed.bounty=false; ctx.inv.armed.shield=false; }
     onCorrect(true, mult);
     const g=document.createElement('div'); g.className='good';
-    g.innerHTML=`<h3>✅ ${t('nice')} ${mult>1?'⚡×2':''}</h3>${q.r?`<p class="small"><b>${esc(q.r[0])}:</b> ${esc(q.r[1].slice(0,220))}${q.r[1].length>220?'…':''}</p>`:''}<button class="btn em big" style="width:100%">${t('next')} →</button>`;
+    g.innerHTML=`<h3>✅ ${t('nice')} ${mult>1?'⚡×2':''}</h3>${q.r?`<p class="small"><b>${esc(q.r[0])}:</b> ${esc(q.r[1].slice(0,220))}${q.r[1].length>220?'…':''}</p>`:''}${unit&&typeof deepHTML==='function'?deepHTML(unit,q,null,{open:!!ctx.deep,skipCore:!ctx.deep,label:'📖 Why this is right — go deeper'}):''}<button class="btn em big" style="width:100%">${t('next')} →</button>`;
     host.appendChild(g); g.scrollIntoView({behavior:'smooth',block:'nearest'});
     await new Promise(r=>$('button',g).onclick=r);
     return {correct:true, firstTry:true, loops:0};
@@ -2235,7 +2264,7 @@ async function runItem(host, q, ctx={}){
     markOpts(host, chosen); SFX.wrong(); $('.qwrap')?.classList.add('shake');
     const shield = ctx.inv&&ctx.inv.armed&&ctx.inv.armed.shield;
     onMiss(shield); if(shield) toast('🛡️ Historian\'s Shield saved your streak!');
-    await diagnostic(host, q, chosen, {bm:q.bm});
+    await diagnostic(host, q, chosen, {bm:q.bm, unit, q, deep:ctx.deep});
   }
   if(ctx.inv&&ctx.inv.armed){ ctx.inv.armed.bounty=false; ctx.inv.armed.shield=false; }
   // Parallel remediation until passed
@@ -2250,7 +2279,7 @@ async function runItem(host, q, ctx={}){
       return {correct:false, firstTry:false, loops};
     }
     markOpts(wrap, pr); SFX.wrong();
-    await diagnostic(wrap, {...par, r:q.r}, pr, {bm:q.bm, btn:'🔁 Try the remediation check again (reshuffled)'});
+    await diagnostic(wrap, {...par, r:q.r}, pr, {bm:q.bm, unit, q, deep:ctx.deep, btn:'🔁 Try the remediation check again (reshuffled)'});
   }
 }
 function makeParallel(q){
@@ -2285,6 +2314,7 @@ function renderStudentHub(m){
     <div class="card" style="margin-top:1rem">
       <div class="spread"><h2>${u.icon||''} ${esc(u.title)}</h2><span class="tag gold">${esc(u.era||'')}</span></div>
       <div class="timeline">${(u.timeline||[]).map(([y,e])=>`<div class="tl"><b>${esc(y)}</b><br>${esc(e)}</div>`).join('')}</div>
+      <button class="card studyfeat" data-go="study"><span class="ico">📚</span><div><h3 style="margin:0">${t('studyLab')}</h3><span class="small">${t('studyLabD')}</span></div>${typeof studyHubBadge==='function'?studyHubBadge(u):''}</button>
       <h3>${t('chooseMode')}</h3>
       <div class="grid g4">
         <button class="card mode" data-go="gauntlet"><span class="ico">🧭</span><h3>${t('gauntlet')}</h3><span class="small">${t('gauntletD')}</span></button>
@@ -2293,7 +2323,7 @@ function renderStudentHub(m){
         <button class="card mode cab" data-go="arcade"><span class="ico">🕹️</span><h3>${t('arcade')}</h3><span class="small">${t('arcadeD')}</span><span>${coin()} <b>${S.tokens}</b></span></button>
       </div>
       <h3 style="margin-top:1rem">📊 ${t('mastery')} by ${t('benchmark')}</h3>
-      ${[...new Set(u.qs.map(q=>q.bm))].map(bm=>{ const p=bmPct(u,bm)||0; return `<div class="bmbar"><span>${esc(bm)}</span><span class="meter"><i style="width:${p}%"></i></span><b class="${p>=S.settings.threshold?'ok':''}">${p}%</b></div>`; }).join('')}
+      ${[...new Set(u.qs.map(q=>q.bm))].map(bm=>{ const p=bmPct(u,bm)||0; const sm=typeof studyState==='function'?studyState(u.id,bm):{}; return `<div class="bmbar"><span>${sm.secured?'🏆 ':sm.mastered?'🏅 ':''}${esc(bm)}</span><span class="meter"><i style="width:${p}%"></i></span><b class="${p>=S.settings.threshold?'ok':''}">${p}%</b></div>`; }).join('')}
     </div>`;
   bindUnitPicker(m, ()=>render());
   $$('[data-go]',m).forEach(b=>b.onclick=()=>{ SFX.click(); const v=b.dataset.go;
@@ -2914,7 +2944,7 @@ function applyEdits(u, c){
     return {...g, q:Math.max(0,qi)}; }).filter(()=>qs.length);
   let jp=u.jp;
   if(u.jp && (e.jp||e.jpCats||e.fj)) jp={ cats:u.jp.cats.map((x,i)=>(e.jpCats||{})[i]||x), c:u.jp.c.map((col,ci)=>col.map((cl,ri)=>(e.jp||{})[ci+'-'+ri]||cl)), fj:e.fj||u.jp.fj };
-  return {...u, qs, vocab, gallery, jp, bms:[...new Set(qs.map(q=>q.bm))]};
+  return {...u, qs, vocab, gallery, jp, notes:e.notes||[], bms:[...new Set(qs.map(q=>q.bm))]};
 }
 function baseUnit(id){ return FLORIDA_US_HISTORY_DB.find(u=>u.id===id) || (S.custom||[]).find(u=>u.id===id); }
 function editsFor(id){ const c=activeClass(); if(!c) return null; c.edits=c.edits||{}; return c.edits[id]=c.edits[id]||{}; }
@@ -2926,7 +2956,7 @@ function contentEditorCard(){
   return `<div class="card" id="ceCard" style="margin-top:1rem"><div class="spread"><h2>✏️ Content Editor — add or remove items</h2>
     <select id="ceUnit">${allUnits().map(x=>`<option value="${x.id}" ${x.id===S.unit?'selected':''}>${esc(x.title)}</option>`).join('')}</select></div>
     <p class="small">Changes apply only to <b>${esc(c.name)}</b>. Removed built-in items can be restored any time. Your edits travel with your Student Edition and classroom pack.</p>
-    <div class="row" style="margin:.5rem 0">${[['q','❓ Questions'],['v','📇 Vocabulary'],['g','🏛️ Gallery stations'],['j','🏆 Jeopardy']].map(([k,l])=>`<button class="btn ${CE_TAB===k?'gold':''}" data-ce="${k}">${l}</button>`).join('')}</div>
+    <div class="row" style="margin:.5rem 0">${[['n','📚 Study materials'],['q','❓ Questions'],['v','📇 Vocabulary'],['g','🏛️ Gallery stations'],['j','🏆 Jeopardy']].map(([k,l])=>`<button class="btn ${CE_TAB===k?'gold':''}" data-ce="${k}">${l}</button>`).join('')}</div>
     <div id="ceBody"></div></div>`;
 }
 let CE_TAB='q';
@@ -2938,6 +2968,7 @@ function bindContentEditor(m, rerender){
   if(!base){ body.innerHTML='<p class="muted">Pick a unit.</p>'; return; }
   const toggle=(arr,key)=>{ e[arr]=e[arr]||[]; const i=e[arr].indexOf(key); if(i>-1) e[arr].splice(i,1); else e[arr].push(key); commitEdit(); rerender(); };
 
+  if(CE_TAB==='n'){ return notesEditor(body, base, e, rerender); }
   if(CE_TAB==='q'){
     const hidden=new Set(e.hideQ||[]);
     body.innerHTML=`<div class="spread"><p class="small">${eff.qs.length} active questions · ${hidden.size} removed · ${(e.addQ||[]).length} added</p><button class="btn gold" id="ceAddQ">➕ Add question</button></div>
@@ -3465,6 +3496,7 @@ function render(){
   renderHUD();
   if(!S.welcomed && !S.classrooms.length && !S.locked) return renderWelcome(m);
   const v=S.view;
+  if(v==='study') return renderStudy(m);
   if(v==='gauntlet') return renderGauntlet(m);
   if(v==='gallery') return renderGallery(m);
   if(v==='summit') return renderSummit(m,false);
@@ -3629,7 +3661,7 @@ function queueSync(){
   syncTimer=setTimeout(async()=>{
     try{
       if(SESSION.type==='teacher'){ const c=activeClass(); if(c && c.ownerUid) await API.saveClass(c); }
-      else if(SESSION.type==='student' && S.join){ await API.saveStudent(S.join.classId, S.join.sid, { name:S.join.name, period:S.join.period, qstat:S.qstat, tokens:S.tokens, streak:S.streak, best:S.best, xp:S.xp, loops:S.loops, galleryDone:S.galleryDone, highs:S.highs }); }
+      else if(SESSION.type==='student' && S.join){ await API.saveStudent(S.join.classId, S.join.sid, { name:S.join.name, period:S.join.period, qstat:S.qstat, tokens:S.tokens, streak:S.streak, best:S.best, xp:S.xp, loops:S.loops, galleryDone:S.galleryDone, highs:S.highs, study:S.study, srs:S.srs }); }
       setSyncState('saved');
     }catch(e){ console.warn(e); setSyncState('error'); }
   }, 1200);
@@ -3687,7 +3719,7 @@ function renderTop(){
       <button class="iconbtn ${S.lang==='en'?'on':''}" data-lang="en">EN</button><button class="iconbtn ${S.lang==='es'?'on':''}" data-lang="es">ES</button>
       <button class="iconbtn" id="muteBtn" title="Sound">${S.muted?'🔇':'🔊'}</button><span class="sync saved" id="syncDot" title="All changes saved"></span>
       <button class="userbtn" id="userBtn"><span class="avatar">${esc(initials(tname))}</span>${esc(tname.split(' ')[0])}</button></div></div>
-      ${S.role==='student'&&!['livegw','livesetup'].includes(S.view)||['gauntlet','gallery','summit','squad','arcade'].includes(S.view)?'<div class="hud" id="hud"></div>':''}`;
+      ${S.role==='student'&&!['livegw','livesetup'].includes(S.view)||['study','gauntlet','gallery','summit','squad','arcade'].includes(S.view)?'<div class="hud" id="hud"></div>':''}`;
   }
   $$('[data-home]',tb).forEach(b=>b.onclick=()=>{ if(!SESSION.type){ PUB='home'; setHash(''); } else { S.view='hub'; S.role= SESSION.type==='teacher'?'dash':'student'; save(); renderTop(); } render(); scrollTo(0,0); });
   $$('[data-pub]',tb).forEach(b=>b.onclick=()=>{ PUB=b.dataset.pub; AUTH_TAB=b.dataset.tab||AUTH_TAB; setHash(PUB==='home'?'':PUB==='teacher'?'signin':PUB); render(); if(b.dataset.scroll) setTimeout(()=>{ const el=document.getElementById(b.dataset.scroll); el&&el.scrollIntoView({behavior:'smooth'}); },50); else scrollTo(0,0); });
@@ -3886,14 +3918,14 @@ function enterStudent(c, j, prev){
   const base=DEFAULT_STATE();
   S.join={classId:c.id, code:j.code, name:j.name, period:j.period, sid:j.sid};
   S.classrooms=[{...c, settings:Object.assign(base.settings,c.settings||{}), custom:c.custom||[], assets:{}}]; S.activeClass=c.id; linkClass();
-  Object.assign(S, { student:{name:j.name, period:j.period}, qstat:(prev&&prev.qstat)||{}, tokens:prev?prev.tokens||0:3, streak:prev?prev.streak||0:0, best:prev?prev.best||0:0, xp:prev?prev.xp||0:0, loops:prev?prev.loops||0:0, galleryDone:(prev&&prev.galleryDone)||{}, highs:(prev&&prev.highs)||{} });
+  Object.assign(S, { student:{name:j.name, period:j.period}, qstat:(prev&&prev.qstat)||{}, tokens:prev?prev.tokens||0:3, streak:prev?prev.streak||0:0, best:prev?prev.best||0:0, xp:prev?prev.xp||0:0, loops:prev?prev.loops||0:0, galleryDone:(prev&&prev.galleryDone)||{}, highs:(prev&&prev.highs)||{}, study:(prev&&prev.study)||{}, srs:(prev&&prev.srs)||{} });
   S.role='student'; S.view='hub'; S.locked=false; if(!allUnits().some(u=>u.id===S.unit)) S.unit=(allUnits()[0]||{}).id;
   SESSION={type:'student', ready:true}; JOIN_CLASS=null; setHash(''); save(); queueSync(); startStudentLive();
   loadAssets().then(()=>{ renderTop(); render(); });
   renderTop(); render(); toast(prev?`👋 Welcome back, ${esc(j.name)}! Your progress is restored.`:`🎉 You joined ${esc(c.name)}!`);
 }
-async function leaveClass(){ if(STUDENT_LIVE_UNSUB){ try{STUDENT_LIVE_UNSUB();}catch(e){} STUDENT_LIVE_UNSUB=null; } LIVE_S=null; LIVE_ANS=null; save(); clearTimeout(syncTimer); try{ await API.saveStudent(S.join.classId,S.join.sid,{qstat:S.qstat,tokens:S.tokens,streak:S.streak,best:S.best,xp:S.xp,loops:S.loops,galleryDone:S.galleryDone,highs:S.highs,name:S.join.name,period:S.join.period}); }catch(e){}
-  const base=DEFAULT_STATE(); Object.assign(S,{join:null, classrooms:[], activeClass:null, qstat:{}, tokens:3, streak:0, xp:0, loops:0, galleryDone:{}, highs:{}, student:base.student}); linkClass();
+async function leaveClass(){ if(STUDENT_LIVE_UNSUB){ try{STUDENT_LIVE_UNSUB();}catch(e){} STUDENT_LIVE_UNSUB=null; } LIVE_S=null; LIVE_ANS=null; save(); clearTimeout(syncTimer); try{ await API.saveStudent(S.join.classId,S.join.sid,{qstat:S.qstat,tokens:S.tokens,streak:S.streak,best:S.best,xp:S.xp,loops:S.loops,galleryDone:S.galleryDone,highs:S.highs,study:S.study,srs:S.srs,name:S.join.name,period:S.join.period}); }catch(e){}
+  const base=DEFAULT_STATE(); Object.assign(S,{join:null, classrooms:[], activeClass:null, qstat:{}, tokens:3, streak:0, xp:0, loops:0, galleryDone:{}, highs:{}, study:{}, srs:{}, student:base.student}); linkClass();
   await API.signOut().catch(()=>{}); SESSION={type:null, ready:true}; PUB='home'; save(); renderTop(); render(); }
 
 /* -------------------------- CLASS CREATION --------------------------- */
@@ -3996,6 +4028,7 @@ function studentDetail(c,s){
     ${allUnits().map(u=>{ const bms=[...new Set(u.qs.map(x=>x.bm))]; if(!qstatAttempted(q,u)) return `<details><summary>${u.icon||''} ${esc(u.title)} — <span class="muted">not started</span></summary></details>`;
       return `<details open><summary>${u.icon||''} ${esc(u.title)} — ${qstatUnitPct(q,u)}%</summary>${bms.map(b=>{ const it=u.qs.filter(x=>x.bm===b); const p=Math.round(100*it.reduce((a,x)=>a+(q[x.id]==='first'||q[x.id]==='mastered'?1:q[x.id]==='remediated'?.5:0),0)/it.length);
         return `<div class="bmbar"><span title="${esc(BENCHMARK_TEXT[b]||'')}">${esc(b)}</span><span class="meter"><i style="width:${p}%"></i></span><b>${p}%</b></div>`; }).join('')}</details>`; }).join('')}
+    ${typeof studyDetailHTML==='function'?studyDetailHTML(s):''}
     <div class="row" style="margin-top:1rem"><button class="btn cr" id="rmStu">Remove student from class</button></div>`).querySelector('#rmStu').onclick=async function(){ if(!confirmInline(this,'Click again to remove')) return; await API.deleteStudent(c.id,s.id); this.closest('.modal-bg').remove(); await loadDash(true); render(); toast('Student removed'); };
 }
 function confirmInline(btn,msg){ if(btn.dataset.armed) return true; btn.dataset.armed='1'; btn.textContent=msg; setTimeout(()=>{ delete btn.dataset.armed; btn.textContent='Remove student from class'; },3000); return false; }
@@ -4018,6 +4051,7 @@ function render(){
   if(v==='livestu' && SESSION.type==='student') return renderLiveStudent(m);
   if(v==='livesetup' && SESSION.type==='teacher') return renderLiveSetup(m);
   if(v==='livegw' && SESSION.type==='teacher') return renderLiveTeacher(m);
+  if(v==='study') return renderStudy(m);
   if(v==='gauntlet') return renderGauntlet(m);
   if(v==='gallery') return renderGallery(m);
   if(v==='summit') return renderSummit(m,false);
@@ -4201,6 +4235,401 @@ function renderLiveStudent(m){
   if(reveal && !A.awarded){ A.awarded=true; const allRight=A.hipp===0&&A.ev===s.ev[1]&&A.q===0;
     if(q && A.q===0 && !S.qstat[q.id]) S.qstat[q.id]='first';
     if(allRight) award(1,'All three correct'); else save(); }
+}
+
+/* =====================================================================
+   STUDY LAB — independent learning, benchmark by benchmark
+   Learn (thorough lesson built from the teacher's notes + unit content)
+   → Practice (scaffolded by DOK, full reteach on every miss)
+   → Mastery Check (no hints; explanations afterwards; targeted reteach
+     before a retake) → Keep it (spaced review + a retention check).
+   Teachers upload notes, slides or readings per unit (Content Editor →
+   📚 Study materials); passages are matched to each benchmark and to
+   each question, and shown inside lessons and explanations.
+   ===================================================================== */
+const L = (en, es) => S.lang==='es' ? es : en;
+const GEN_BM = 'Core skills';
+let DEEP_MIN = 8;
+const DAY = 86400000, MIN = 60000, RETAIN_DAYS = 2;
+const bmOf = q => q.bm || GEN_BM;
+const bmKey = bm => String(bm||GEN_BM).replace(/[.\/#$\[\]]/g,'_');
+const bmText = bm => (typeof BENCHMARK_TEXT!=='undefined' && BENCHMARK_TEXT[bm]) || '';
+
+/* ------------------------- text matching ---------------------------- */
+const STUDY_STOP = new Set(('a an the and or of to in on for with by as at from that this these those is are was were be been being it its into than then their there they them he she his her we our you your not no but if so such which who whom what when where why how all any each more most other some can could would should may might will shall do does did have has had also about after before over under between during through while because since until upon both either neither only own same very just one two three many much well even still like used use using made make became become new first following best describes statement statements question answer correct explain explains why how').split(' '));
+function stem(w){ if(w.length>5 && /ies$/.test(w)) return w.slice(0,-3)+'y'; if(w.length>5 && /(ing|ed)$/.test(w)) return w.replace(/(ing|ed)$/,''); if(w.length>4 && /[^s]s$/.test(w)) return w.slice(0,-1); return w; }
+function toks(s){ return String(s||'').toLowerCase().replace(/[^a-z0-9áéíóúñü ]/g,' ').split(/\s+/).filter(w=>w.length>2 && !STUDY_STOP.has(w)).map(stem); }
+
+function chunkNote(note){
+  const blocks = String(note.text||'').replace(/\r/g,'').split(/\n\s*\n/).map(b=>b.trim()).filter(Boolean);
+  const out=[]; let head=note.title, cur='';
+  const push=()=>{ if(cur.trim()) out.push({title:head, text:cur.trim(), note:note.title}); cur=''; };
+  const add=body=>{ if(cur && cur.length+body.length>900) push(); cur += (cur?'\n':'') + body; };
+  for(const b of blocks){
+    let body=b; const first=b.split('\n')[0], m=first.match(/^#{1,6}\s+(.+)/);
+    if(m){ push(); head=m[1].trim(); body=b.split('\n').slice(1).join('\n').trim(); if(!body) continue; }
+    if(body.length>1200){ const sents=body.match(/[^.!?]+[.!?]+["')\]]*\s*|[^.!?]+$/g)||[body]; let g=''; sents.forEach(s=>{ if(g.length+s.length>800){ add(g.trim()); push(); g=''; } g+=s; }); if(g.trim()) add(g.trim()); }
+    else add(body);
+  }
+  push(); return out;
+}
+
+const KB_CACHE = {};
+function unitKB(u){
+  const key = u.id+'|'+(typeof EDIT_V!=='undefined'?EDIT_V:0)+'|'+(u.notes||[]).map(n=>n.id+':'+(n.text||'').length).join(',');
+  if(KB_CACHE[u.id] && KB_CACHE[u.id].key===key) return KB_CACHE[u.id];
+  const chunks=[];
+  (u.notes||[]).forEach(n=>chunkNote(n).forEach(c=>chunks.push({...c, src:'teacher'})));
+  if(u.brief) [['causes',L('Causes','Causas')],['course',L('What happened','Lo que pasó')],['consequences',L('Consequences','Consecuencias')],['florida',L('Florida connection','Conexión con Florida')]].forEach(([k,l])=>{ if(u.brief[k]) chunks.push({title:l, text:u.brief[k], src:'unit'}); });
+  chunks.forEach(c=>{ c.tk=toks(c.title+' '+c.text); c.set=new Set(c.tk); });
+  // Document frequencies come from the passages AND every question/term in the unit,
+  // so words that appear everywhere (south, states, war…) carry little weight.
+  const docs=chunks.map(c=>c.set).concat(u.qs.map(q=>new Set(toks(questionQuery(q)))), (u.vocab||[]).map(v=>new Set(toks(v.join(' ')))));
+  const df={}; docs.forEach(st=>st.forEach(w=>df[w]=(df[w]||0)+1));
+  const N=docs.length;
+  const kb={ key, chunks, idf:w=>Math.log((N+1)/((df[w]||0)+.5)) };
+  return KB_CACHE[u.id]=kb;
+}
+function kbSearch(u, text, {src=null, k=3, minHits=2, minScore=0}={}){
+  const kb=unitKB(u); const qt=toks(text); if(!qt.length) return [];
+  const qtf={}; qt.forEach(w=>qtf[w]=(qtf[w]||0)+1);
+  const res=[];
+  kb.chunks.forEach(c=>{ if(src && c.src!==src) return; let sc=0; const hits=new Set();
+    for(const w in qtf){ if(c.set.has(w)){ hits.add(w); sc+=kb.idf(w)*(1+Math.log(qtf[w])); } }
+    if(hits.size>=minHits) res.push({c, score:sc/(1+Math.log(1+c.set.size/60)), raw:sc, hits}); });
+  res.sort((a,b)=>b.score-a.score); const top=res.length?res[0].score:0;
+  return res.filter(r=>r.score>=top*.35 && r.raw>=minScore).slice(0,k);
+}
+function markText(text, hits){
+  const h = esc(text).replace(/\n/g,'<br>');
+  if(!hits || !hits.size) return h;
+  return h.replace(/(?<![&#\w])[A-Za-záéíóúñü][A-Za-záéíóúñü'-]{2,}/g, w=> hits.has(stem(w.toLowerCase())) ? `<mark>${w}</mark>` : w);
+}
+function passageHTML(r, label){
+  const c=r.c, long=c.text.length>900;
+  const src = c.src==='teacher' ? `📒 ${L('From your teacher','De tu maestro')} — <b>${esc(c.note||'')}</b>${c.title&&c.title!==c.note?` · ${esc(c.title)}`:''}` : `📖 ${esc(label||L('Unit background','Contexto de la unidad'))} — <b>${esc(c.title)}</b>`;
+  return `<div class="passage ${c.src}"><div class="small psrc">${src}</div>${long?`<div>${markText(c.text.slice(0,900),r.hits)}…</div><details><summary class="small">${L('Read the whole passage','Leer todo el pasaje')}</summary><div>${markText(c.text,r.hits)}</div></details>`:`<div>${markText(c.text,r.hits)}</div>`}</div>`;
+}
+function questionQuery(q){ const b=q.base||q; return [b.s, b.st, b.o&&b.o[0], b.r&&b.r.join(' '), b.ev&&b.ev[1], q!==b?q.s+' '+q.o[0]:''].filter(Boolean).join(' '); }
+function termsIn(u, text, max=4){
+  const low=String(text||'').toLowerCase(), set=new Set(toks(text));
+  return (u.vocab||[]).filter(v=>{ const tl=v[0].toLowerCase().replace(/\s*\(.*\)$/,''); if(low.includes(tl)) return true; const tt=toks(tl); return tt.length>1 && tt.every(w=>set.has(w)); }).slice(0,max);
+}
+function stationFor(u, q){ const b=q.base||q; return (u.gallery||[]).find(g=>u.qs[g.q]&&u.qs[g.q].id===b.id) || null; }
+
+/* Thorough explanation block used after every question (all modes). */
+function deepHTML(u, q, chosen, opts={}){
+  if(!u || !q) return '';
+  const b=q.base||q, parts=[];
+  if(!opts.skipCore && b.r) parts.push(`<div class="dsec"><h4>🧠 ${L('The key idea','La idea clave')}: ${esc(b.r[0])}</h4><p>${esc(b.r[1])}</p></div>`);
+  if(chosen!=null && typeof chosen==='number' && chosen>0) parts.push(`<div class="dsec"><h4>❌ ${L('Why','Por qué')} “${esc(q.o[chosen])}” ${L('is a trap','es una trampa')}</h4><p>${esc(generic(q,chosen))}</p></div>`);
+  const isPar = q!==b;
+  if(!opts.skipCore){ const why=[]; if(b.ev && !isPar) why.push(`${L('The evidence that proves it','La evidencia que lo prueba')}: <i>${esc(b.ev[1])}</i>`); if(why.length||chosen!=null) parts.push(`<div class="dsec"><h4>✅ ${L('Why','Por qué')} “${esc(q.o[0])}” ${L('is correct','es correcta')}</h4>${why.map(x=>`<p>${x}</p>`).join('')}${!why.length&&b.r?`<p>${esc(b.r[1].split(/(?<=\.)\s/)[0])}</p>`:''}</div>`); }
+  const query=isPar?[q.s,q.st,q.o[0],b.r&&b.r.join(' ')].filter(Boolean).join(' '):questionQuery(q);
+  const tp=kbSearch(u, query, {src:'teacher', k:1, minHits:2, minScore:DEEP_MIN})[0];
+  if(tp) parts.push(passageHTML(tp));
+  else { const up=kbSearch(u, query, {src:'unit', k:1, minHits:3, minScore:DEEP_MIN})[0]; if(up) parts.push(passageHTML(up)); }
+  const terms=termsIn(u, isPar?[q.s,q.st,(q.o||[]).join(' ')].join(' '):[b.s,b.st,(b.o||[]).join(' '),b.r&&b.r[1]].join(' '), 3);
+  if(terms.length) parts.push(`<div class="dsec"><h4>🔑 ${L('Key terms in this question','Términos clave de esta pregunta')}</h4>${terms.map(v=>`<p><b>${esc(v[0])}</b> — ${esc(v[1])}${v[2]?`<br><span class="small">⭐ ${esc(v[2])}</span>`:''}</p>`).join('')}</div>`);
+  const g=stationFor(u,q);
+  if(g && !opts.noSource) parts.push(`<div class="dsec"><h4>📜 ${L('Primary source connection','Conexión con la fuente primaria')}</h4><div class="stim" style="margin:0">${esc(g.ex)}</div><p class="small">${esc(g.t)} — ${esc(g.src)}</p></div>`);
+  if(bmText(b.bm) && !opts.skipCore) parts.push(`<p class="small"><span class="tag gold">${esc(b.bm)}</span> ${esc(bmText(b.bm))}</p>`);
+  if(!parts.length) return '';
+  return `<details class="deep" ${opts.open?'open':''}><summary>${opts.label||('📖 '+L('Go deeper — full explanation','Profundiza — explicación completa'))}</summary>${parts.join('')}</details>`;
+}
+
+/* --------------------------- learner state -------------------------- */
+function studyState(uid, bm, src){ const st=(src||S.study||{})[uid]||{}; return st[bmKey(bm)]||{}; }
+function setStudy(uid, bm, patch){ S.study=S.study||{}; const u=S.study[uid]=S.study[uid]||{}; const k=bmKey(bm); u[k]=Object.assign(u[k]||{}, patch); save(); }
+function statusOf(st){
+  if(st.secured) return ['secured','🏆 '+L('Secured','Asegurado')];
+  if(st.mastered) return Date.now()-st.mastered>RETAIN_DAYS*DAY ? ['due','⏰ '+L('Retention check due','Toca verificar retención')] : ['mastered','🏅 '+L('Mastered','Dominado')];
+  if(st.reteach && st.reteach.length) return ['reteach','🔁 '+L('Reteach before retake','Reenseñanza antes de repetir')];
+  if(st.prac) return ['prac','✏️ '+L('Practicing','Practicando')];
+  if(st.read) return ['read','📖 '+L('Learning','Aprendiendo')];
+  return ['new',L('Not started','Sin empezar')];
+}
+function srsMark(id, ok){ if(!id) return; S.srs=S.srs||{}; const b=(S.srs[id]||{}).b||0; const nb=ok?Math.min(b+1,5):0; S.srs[id]={b:nb, due:Date.now()+(ok?[0,1,2,4,8,16][nb]*DAY:20*MIN)}; save(); }
+function dueReviews(u){ const now=Date.now(); return u.qs.filter(q=>S.srs&&S.srs[q.id]&&S.srs[q.id].due<=now).sort((a,b)=>S.srs[a.id].due-S.srs[b.id].due); }
+const __runItemBase = runItem;
+runItem = async function(host, q, ctx={}){ const r=await __runItemBase(host, q, ctx); if(r && !r.skipped) srsMark(q.id, !!r.firstTry); return r; };
+
+function unitBms(u){ return [...new Set(u.qs.map(bmOf))]; }
+function studyHubBadge(u){ const bms=unitBms(u); if(!bms.length) return ''; const m=bms.filter(b=>studyState(u.id,b).mastered).length, d=dueReviews(u).length;
+  return `<span class="row" style="margin-left:auto;gap:.35rem"><span class="tag em">🏅 ${m}/${bms.length}</span>${d?`<span class="tag cr">🔁 ${d} ${L('review','repaso')}</span>`:''}</span>`; }
+function nextAction(u){
+  const bms=unitBms(u);
+  for(const bm of bms){ const s=studyState(u.id,bm), k=statusOf(s)[0]; if(k==='due') return {bm, step:'check', label:L('Retention check','Verificación de retención')}; }
+  for(const bm of bms){ const s=studyState(u.id,bm), k=statusOf(s)[0];
+    if(k==='new') return {bm, step:'learn', label:L('Learn','Aprender')};
+    if(k==='read') return {bm, step:'practice', label:L('Practice','Practicar')};
+    if(k==='reteach') return {bm, step:'reteach', label:L('Targeted reteach','Reenseñanza dirigida')};
+    if(k==='prac') return {bm, step:'check', label:L('Mastery Check','Prueba de dominio')}; }
+  return dueReviews(u).length ? {step:'review', label:L('Spaced review','Repaso espaciado')} : null;
+}
+
+/* ============================ STUDY LAB UI =========================== */
+function renderStudy(m){
+  const u=curUnit();
+  const shell=inner=>{ m.innerHTML=`${backBtn()}<div class="qwrap" style="max-width:920px">${inner}</div>`; bindBack(m); };
+  const home=()=>{ window.scrollTo(0,0); drawHome(); };
+  const ex=S._extra; S._extra=null;
+  if(ex && ex.bm && ex.step) return route(ex.bm, ex.step);
+  drawHome();
+
+  function route(bm, step){ window.scrollTo(0,0); if(step==='learn') return lesson(bm); if(step==='practice') return practice(bm); if(step==='check') return checkIntro(bm); if(step==='reteach') return reteach(bm); if(step==='review') return review(); drawHome(); }
+
+  function drawHome(){
+    const bms=unitBms(u), nx=nextAction(u), due=dueReviews(u);
+    const mastered=bms.filter(b=>studyState(u.id,b).mastered).length, secured=bms.filter(b=>studyState(u.id,b).secured).length;
+    const hasNotes=(u.notes||[]).length>0;
+    shell(`<div class="spread"><h1>📚 ${L('Study Lab','Laboratorio de estudio')}</h1><span class="tag gold">${esc(u.title)}</span></div>
+      <div class="pathline"><span>1 · 📖 ${L('Learn','Aprende')}</span><span>2 · ✏️ ${L('Practice','Practica')}</span><span>3 · 🎯 ${L('Mastery Check','Prueba de dominio')}</span><span>4 · 🔁 ${L('Keep it','Consérvalo')}</span></div>
+      <div class="grid g3" style="margin:.8rem 0">
+        <div class="card slstat"><b>${mastered}/${bms.length}</b><span class="small">${L('benchmarks mastered','estándares dominados')}</span></div>
+        <div class="card slstat"><b>${secured}</b><span class="small">${L('secured after a retention check','asegurados tras verificar retención')}</span></div>
+        <div class="card slstat"><b>${due.length}</b><span class="small">${L('ideas due for review','ideas para repasar')}</span></div>
+      </div>
+      <div class="row" style="margin-bottom:1rem">
+        ${nx?`<button class="btn gold big" id="go">▶ ${L('Continue','Continuar')}: ${esc(nx.label)}${nx.bm?' · '+esc(nx.bm):''}</button>`:`<span class="tag em">🏆 ${L('Every benchmark in this unit is mastered!','¡Dominaste todos los estándares de esta unidad!')}</span>`}
+        <button class="btn" id="rev" ${u.qs.some(q=>S.srs&&S.srs[q.id])?'':'disabled'}>🔁 ${due.length?L(`Review now (${due.length} due)`,`Repasar ahora (${due.length})`):L('Mixed review','Repaso mixto')}</button>
+      </div>
+      ${hasNotes?`<p class="small">📒 ${L('Your teacher added study materials for this unit — they appear inside each lesson and explanation.','Tu maestro agregó materiales de estudio para esta unidad; aparecen en cada lección y explicación.')}</p>`:''}
+      ${!bms.length?`<div class="card"><p class="muted">${L('This unit has no questions yet.','Esta unidad aún no tiene preguntas.')}</p></div>`:''}
+      <div class="bmlist">${bms.map((bm,i)=>{ const s=studyState(u.id,bm), [k,lab]=statusOf(s), n=u.qs.filter(q=>bmOf(q)===bm).length;
+        const dots=[!!s.read, !!s.prac, !!s.mastered, !!s.secured];
+        return `<div class="card bmc ${k}">
+          <div class="spread"><div><span class="tag gold">${esc(bm)}</span> <span class="small">${n} ${n===1?L('question','pregunta'):L('questions','preguntas')}</span></div><span class="st ${k}">${lab}</span></div>
+          <p style="margin:.45rem 0">${esc(bmText(bm)||L('Skills your teacher assigned for this unit.','Habilidades que tu maestro asignó para esta unidad.'))}</p>
+          <div class="spread"><span class="dots">${dots.map(d=>`<i class="d ${d?'ok':''}"></i>`).join('')}</span>
+          <span class="row">
+            <button class="btn ${!s.read?'gold':''}" data-s="learn" data-b="${i}">📖 ${s.read?L('Review lesson','Repasar lección'):L('Learn','Aprender')}</button>
+            <button class="btn ${s.read&&!s.prac?'gold':''}" data-s="practice" data-b="${i}" ${s.read||S.settings.god?'':'disabled title="Read the lesson first"'}>✏️ ${L('Practice','Practicar')}</button>
+            ${k==='reteach'?`<button class="btn gold" data-s="reteach" data-b="${i}">🔁 ${L('Targeted reteach','Reenseñanza')}</button>`:`<button class="btn ${(k==='prac'||k==='due')?'gold':''}" data-s="check" data-b="${i}" ${s.read||S.settings.god?'':'disabled'}>🎯 ${k==='due'?L('Retention check','Verificar retención'):s.mastered?L('Retake check','Repetir prueba'):L('Mastery Check','Prueba de dominio')}</button>`}
+          </span></div>
+          ${s.checks&&s.checks.length?`<p class="small" style="margin:.4rem 0 0">${L('Last check','Última prueba')}: <b>${s.checks[s.checks.length-1].score}%</b> · ${s.checks.length} ${L('attempt(s)','intento(s)')}</p>`:''}
+        </div>`; }).join('')}</div>`);
+    const g=$('#go',m); if(g) g.onclick=()=>{ SFX.click(); nx.step==='review'?review():route(nx.bm, nx.step); };
+    $('#rev',m).onclick=()=>{ SFX.click(); review(); };
+    $$('[data-s]',m).forEach(btn=>btn.onclick=()=>{ SFX.click(); route(bms[+btn.dataset.b], btn.dataset.s); });
+  }
+
+  /* ---------------- 1 · LEARN: thorough lesson ---------------- */
+  function lesson(bm){
+    const qs=u.qs.filter(q=>bmOf(q)===bm), query=[bmText(bm), ...qs.map(questionQuery)].join(' ');
+    const ideas=[]; const seen=new Set(); qs.forEach(q=>{ if(q.r && !seen.has(q.r[0])){ seen.add(q.r[0]); ideas.push(q.r); } });
+    const teacher=kbSearch(u, query, {src:'teacher', k:3, minHits:3});
+    const bg=kbSearch(u, query, {src:'unit', k:2, minHits:3});
+    const terms=termsIn(u, query, 6);
+    const stations=[...new Set(qs.map(q=>stationFor(u,q)).filter(Boolean))].slice(0,1);
+    const qset=new Set(toks(query)); const tl=(u.timeline||[]).map(([y,e])=>({y,e,s:toks(e).filter(w=>qset.has(w)).length})).filter(x=>x.s>=2).slice(0,5);
+    const st=studyState(u.id,bm);
+    shell(`<div class="spread"><h1>📖 ${L('Lesson','Lección')}</h1><span class="tag gold">${esc(bm)}</span></div>
+      <div class="steps"><div class="step on">1 · ${L('Learn','Aprende')}</div><div class="step">2 · ${L('Practice','Practica')}</div><div class="step">3 · ${L('Mastery Check','Prueba')}</div></div>
+      <div class="lsec goal"><h3>🎯 ${L('What you need to be able to do','Lo que debes poder hacer')}</h3><p>${esc(bmText(bm)||L('Master the skills in this set of questions.','Domina las habilidades de este grupo de preguntas.'))}</p>
+        <p class="small">${L('Read every section. Highlighted words connect directly to the questions you will see.','Lee cada sección. Las palabras resaltadas se conectan con las preguntas que verás.')}</p></div>
+      ${teacher.length?`<div class="lsec"><h3>📒 ${L('From your teacher','De tu maestro')}</h3>${teacher.map(r=>passageHTML(r)).join('')}</div>`:''}
+      ${ideas.length?`<div class="lsec"><h3>🧠 ${L('Key ideas','Ideas clave')}</h3>${ideas.map((r,i)=>`<div class="idea"><b>${i+1}. ${esc(r[0])}</b><p>${esc(r[1])}</p></div>`).join('')}</div>`:''}
+      ${bg.length?`<div class="lsec"><h3>📖 ${L('The bigger picture','El panorama general')}</h3>${bg.map(r=>passageHTML(r)).join('')}</div>`:''}
+      ${terms.length?`<div class="lsec"><h3>🔑 ${L('Key terms','Términos clave')}</h3><div class="grid g2">${terms.map(v=>`<div class="term"><b>${esc(v[0])}</b><p>${esc(v[1])}</p>${v[2]?`<p class="small">⭐ ${L('Why it matters','Por qué importa')}: ${esc(v[2])}</p>`:''}</div>`).join('')}</div></div>`:''}
+      ${stations.map(g=>`<div class="lsec"><h3>📜 ${L('Look at the evidence','Observa la evidencia')}</h3><div class="exhibit"><div class="paper">${esc(g.ex)}</div><div class="plaque"><b>${esc(g.t)}</b> — ${esc(g.src)}</div></div>
+        ${(g.hs||[]).length?`<ul style="margin:.7rem 0 0">${g.hs.map(h=>`<li><b>${esc(h[0])}:</b> ${esc(h[1])}</li>`).join('')}</ul>`:''}</div>`).join('')}
+      ${tl.length?`<div class="lsec"><h3>🗓️ ${L('When it happened','Cuándo sucedió')}</h3><div class="timeline">${tl.map(x=>`<div class="tl"><b>${esc(x.y)}</b><br>${esc(x.e)}</div>`).join('')}</div></div>`:''}
+      ${!teacher.length&&!ideas.length&&!bg.length?`<div class="lsec"><p class="muted">${L('Your teacher has not added notes for this skill yet. Work through the practice — every question comes with a full explanation.','Tu maestro aún no agregó notas para esta habilidad. Haz la práctica: cada pregunta trae una explicación completa.')}</p></div>`:''}
+      <div class="lsec explain"><h3>✍️ ${L('Explain it back','Explícalo con tus palabras')}</h3>
+        <p>${L('Without copying, explain the most important idea from this lesson in your own words. Use at least one key term.','Sin copiar, explica la idea más importante de esta lección con tus propias palabras. Usa al menos un término clave.')}</p>
+        ${terms.length?`<div id="kws">${terms.map(v=>`<span class="kw" data-k="${esc(v[0].replace(/\s*\(.*\)$/,''))}">${esc(v[0])}</span>`).join('')}</div>`:''}
+        <textarea id="xb" placeholder="${L('In my own words…','Con mis propias palabras…')}" style="min-height:110px">${esc(st.explain||'')}</textarea>
+        <div class="spread"><span class="small" id="xc"></span><button class="btn gold" id="xgo" disabled>${L('Save & start practice','Guardar y practicar')} →</button></div></div>`);
+    const ta=$('#xb',m), need=25;
+    const upd=()=>{ const n=words(ta.value), low=ta.value.toLowerCase(); let hit=0; $$('.kw',m).forEach(s=>{ const h=low.includes(s.dataset.k.toLowerCase()); s.classList.toggle('hit',h); if(h) hit++; });
+      const okT=!terms.length||hit>0; $('#xc',m).innerHTML=`<b class="${n>=need?'ok':'bad'}">${n}</b> / ${need} ${L('words','palabras')}${terms.length?` · <b class="${okT?'ok':'bad'}">${hit}</b> ${L('key term(s)','término(s) clave')}`:''}`; $('#xgo',m).disabled=!(n>=need&&okT)&&!S.settings.god; };
+    ta.oninput=upd; upd();
+    $('#xgo',m).onclick=()=>{ SFX.click(); setStudy(u.id,bm,{read:Date.now(), explain:ta.value.trim().slice(0,1500)}); practice(bm); };
+  }
+
+  /* ---------------- 2 · PRACTICE: scaffolded, full reteach -------------- */
+  async function practice(bm, items, label){
+    const qs=items || u.qs.filter(q=>bmOf(q)===bm).slice().sort((a,b)=>(a.dok||2)-(b.dok||2));
+    shell(`<div class="spread"><h1>✏️ ${label||L('Practice','Práctica')}</h1><span class="tag gold">${esc(bm||'')}</span></div>
+      ${bm&&!items?`<div class="steps"><div class="step ok">1 · ${L('Learn','Aprende')}</div><div class="step on">2 · ${L('Practice','Practica')}</div><div class="step">3 · ${L('Mastery Check','Prueba')}</div></div>`:''}
+      <p class="small">${items?'':L('Questions get harder as you go. Every answer — right or wrong — comes with a full explanation.','Las preguntas se vuelven más difíciles. Cada respuesta trae una explicación completa.')}</p>
+      <div class="card"><div class="spread"><b id="pc"></b><span class="small" id="pf"></span></div><div class="progress"><i id="pb" style="width:0%"></i></div><div id="qh"></div></div>`);
+    let first=0;
+    for(let i=0;i<qs.length;i++){
+      $('#pc',m).textContent=`${L('Question','Pregunta')} ${i+1} / ${qs.length}`; $('#pf',m).textContent=`${first} ${L('right on the first try','correctas al primer intento')}`; $('#pb',m).style.width=(100*i/qs.length)+'%';
+      const r=await runItem($('#qh',m), qs[i], {unit:u, deep:true, label:items?'🔁':''});
+      if(!$('#qh',m)) return; // navigated away
+      if(r.firstTry) first++;
+      const prev=S.qstat[qs[i].id]; S.qstat[qs[i].id] = r.firstTry ? (prev==='remediated'?'mastered':(prev||'first')) : (prev==='first'||prev==='mastered'?prev:'remediated'); save(); renderHUD();
+    }
+    if(!items) finishPractice(bm, first, qs.length);
+    return { first, n:qs.length };
+  }
+  function finishPractice(bm, first, n){
+    const st=studyState(u.id,bm); setStudy(u.id,bm,{prac:(st.prac||0)+1, pracFirst:first, pracN:n});
+    const ready = first===n;
+    $('.card',m).innerHTML=`<h2>${ready?'🌟':'💪'} ${L('Practice complete','Práctica terminada')}: ${first}/${n} ${L('right on the first try','al primer intento')}</h2>
+      <p>${ready?L('You are ready. The Mastery Check has no hints — you will see the explanations afterwards.','Estás listo. La prueba de dominio no tiene pistas; verás las explicaciones al final.'):L('Look back at the explanations for the ones you missed, then try the Mastery Check — or run the practice again.','Revisa las explicaciones de las que fallaste y luego intenta la prueba de dominio, o practica otra vez.')}</p>
+      <div class="row"><button class="btn gold big" id="toChk">🎯 ${L('Take the Mastery Check','Hacer la prueba de dominio')}</button><button class="btn" id="again">✏️ ${L('Practice again','Practicar otra vez')}</button><button class="btn" id="les">📖 ${L('Re-read the lesson','Releer la lección')}</button><button class="btn ghost" id="hm">${L('Study Lab home','Inicio')}</button></div>`;
+    $('#toChk',m).onclick=()=>checkIntro(bm); $('#again',m).onclick=()=>practice(bm); $('#les',m).onclick=()=>lesson(bm); $('#hm',m).onclick=home;
+  }
+
+  /* ---------------- 3 · MASTERY CHECK: no hints, fresh wording ---------- */
+  function buildCheck(bm){
+    const qs=shuffle(u.qs.filter(q=>bmOf(q)===bm));
+    let items=qs.map(q=>{ const seen=S.qstat[q.id]; return (seen && q.p) ? {...q.p, id:q.id+'~p', bm:q.bm, base:q} : {...q, base:q}; });
+    if(items.length<3) qs.forEach(q=>{ if(items.length>=3) return; if(q.p && !items.some(x=>x.id===q.id+'~p')) items.push({...q.p, id:q.id+'~p', bm:q.bm, base:q}); else if(!items.some(x=>x.id===q.id)) items.push({...q, base:q}); });
+    return items.slice(0,5);
+  }
+  function checkIntro(bm){
+    const st=studyState(u.id,bm), [k]=statusOf(st);
+    if(k==='reteach') return reteach(bm);
+    const items=buildCheck(bm), need=Math.max(1,Math.round(items.length*S.settings.threshold/100));
+    shell(`<div class="spread"><h1>🎯 ${k==='due'?L('Retention Check','Verificación de retención'):L('Mastery Check','Prueba de dominio')}</h1><span class="tag gold">${esc(bm)}</span></div>
+      <div class="steps"><div class="step ok">1 · ${L('Learn','Aprende')}</div><div class="step ok">2 · ${L('Practice','Practica')}</div><div class="step on">3 · ${L('Mastery Check','Prueba')}</div></div>
+      <div class="card"><p>${esc(bmText(bm))}</p>
+      <ul><li>${items.length} ${L('questions — some are re-worded versions of ones you practiced','preguntas; algunas son versiones nuevas de las que practicaste')}</li>
+      <li>${L('No hints and no feedback until the end','Sin pistas ni retroalimentación hasta el final')}</li>
+      <li>${L('You need','Necesitas')} <b>${need} / ${items.length}</b> ${L('to master this benchmark','para dominar este estándar')}</li>
+      <li>${L('Afterwards you get a full explanation for every question','Al final recibes una explicación completa de cada pregunta')}</li></ul>
+      ${k==='due'?`<p class="note">⏰ ${L('You mastered this a few days ago. Passing again proves you kept it — and secures it.','Lo dominaste hace unos días. Aprobar otra vez demuestra que lo recuerdas y lo asegura.')}</p>`:''}
+      <div class="row"><button class="btn gold big" id="go">${L('Start','Empezar')}</button><button class="btn ghost" id="hm">${L('Not yet','Todavía no')}</button></div></div>`);
+    $('#go',m).onclick=()=>runCheck(bm, items, need, k==='due');
+    $('#hm',m).onclick=home;
+  }
+  async function runCheck(bm, items, need, retention){
+    shell(`<div class="spread"><h1>🎯 ${L('Mastery Check','Prueba de dominio')}</h1><span class="tag gold">${esc(bm)}</span></div><div class="card"><div class="spread"><b id="pc"></b><span class="small">${L('No hints · answers revealed at the end','Sin pistas · respuestas al final')}</span></div><div class="progress"><i id="pb"></i></div><div id="qh"></div></div>`);
+    const res=[];
+    for(let i=0;i<items.length;i++){
+      $('#pc',m).textContent=`${L('Question','Pregunta')} ${i+1} / ${items.length}`; $('#pb',m).style.width=(100*i/items.length)+'%';
+      const host=$('#qh',m); if(!host) return;
+      const c=await mcStep(host, items[i], {timed:false, tags:`<span class="tag gold">${esc(bm)}</span>${items[i].dok?`<span class="tag">DOK ${items[i].dok}</span>`:''}`});
+      res.push({item:items[i], chosen:c, ok:c===0}); SFX.click();
+      $$('.opt',host).forEach(b=>{ b.disabled=true; if(+b.dataset.i===c) b.classList.add('picked'); });
+      await new Promise(r=>setTimeout(r,350));
+    }
+    const right=res.filter(r=>r.ok).length, score=Math.round(100*right/items.length), pass=right>=need;
+    res.forEach(r=>{ srsMark(r.item.base.id, r.ok); if(r.ok && pass){ const p=S.qstat[r.item.base.id]; S.qstat[r.item.base.id] = p==='first'?'first':'mastered'; } });
+    const st=studyState(u.id,bm), checks=(st.checks||[]).concat([{at:Date.now(), score, n:items.length, pass}]).slice(-10);
+    const patch={checks};
+    if(pass){ if(retention) patch.secured=Date.now(); else if(!st.mastered) patch.mastered=Date.now(); patch.reteach=[]; }
+    else { patch.reteach=[...new Set(res.filter(r=>!r.ok).map(r=>r.item.base.id))]; if(retention){ patch.mastered=null; patch.secured=null; } }
+    setStudy(u.id,bm,patch); renderHUD();
+    if(pass){ SFX.fanfare(); award(retention?2:2, retention?L('Benchmark secured','Estándar asegurado'):L('Benchmark mastered','Estándar dominado')); } else SFX.wrong();
+    window.scrollTo(0,0);
+    shell(`<div class="spread"><h1>${pass?(retention?'🏆 '+L('Secured!','¡Asegurado!'):'🏅 '+L('Mastered!','¡Dominado!')):'📘 '+L('Not yet — and that is useful','Todavía no, y eso es útil')}</h1><span class="tag gold">${esc(bm)}</span></div>
+      <div class="card ${pass?'good':'diag'}" style="margin-top:0"><h2 style="margin:0">${right} / ${items.length} · ${score}%</h2>
+        <p style="margin:.4rem 0 0">${pass?(retention?L('You kept it. This benchmark is secured.','Lo recordaste. Este estándar está asegurado.'):L(`This benchmark is mastered. It will come back for a retention check in ${RETAIN_DAYS} days.`,`Este estándar está dominado. Volverá para una verificación de retención en ${RETAIN_DAYS} días.`)):L('Read the explanation for each miss below. Then do the targeted reteach — it unlocks your retake.','Lee la explicación de cada error abajo. Luego haz la reenseñanza dirigida; desbloquea tu nuevo intento.')}</p></div>
+      <h2 style="margin-top:1.2rem">${L('Every question, explained','Cada pregunta, explicada')}</h2>
+      ${res.map((r,i)=>`<div class="card chkr ${r.ok?'ok':'no'}"><div class="spread"><b>${i+1}. ${esc(r.item.s)}</b><span>${r.ok?'✅':'❌'}</span></div>
+        ${r.item.st?`<div class="stim" style="margin:.5rem 0">${esc(r.item.st)}</div>`:''}
+        ${!r.ok?`<p class="bad" style="margin:.4rem 0 0">${L('Your answer','Tu respuesta')}: ${esc(typeof r.chosen==='number'?r.item.o[r.chosen]:'—')}</p>`:''}
+        <p class="ok" style="margin:.2rem 0 0"><b>${L('Correct answer','Respuesta correcta')}:</b> ${esc(r.item.o[0])}</p>
+        ${deepHTML(u, r.item, r.ok?null:r.chosen, {open:!r.ok, label:r.ok?'📖 '+L('Why this is right','Por qué es correcta'):null})}</div>`).join('')}
+      <div class="row" style="margin-top:1rem">${pass?`<button class="btn gold big" id="hm">${L('Back to Study Lab','Volver al laboratorio')}</button>`:`<button class="btn gold big" id="rt">🔁 ${L('Start targeted reteach','Empezar reenseñanza dirigida')}</button><button class="btn ghost" id="hm">${L('Study Lab home','Inicio')}</button>`}</div>`);
+    if(typeof SESSION!=='undefined' && SESSION.type==='student') queueSync();
+    $('#hm',m).onclick=home; const rt=$('#rt',m); if(rt) rt.onclick=()=>reteach(bm);
+  }
+
+  /* ---------------- targeted reteach (unlocks a retake) ---------------- */
+  async function reteach(bm){
+    const st=studyState(u.id,bm), ids=st.reteach||[], qs=u.qs.filter(q=>ids.includes(q.id));
+    if(!qs.length){ setStudy(u.id,bm,{reteach:[]}); return checkIntro(bm); }
+    const r=await practice(bm, qs, L('Targeted reteach','Reenseñanza dirigida'));
+    if(!r || !$('.card',m)) return;
+    setStudy(u.id,bm,{reteach:[]});
+    $('.card',m).innerHTML=`<h2>✅ ${L('Reteach complete','Reenseñanza terminada')}</h2><p>${L('Your retake is unlocked. Take a minute to re-read the lesson first if anything still feels shaky.','Tu nuevo intento está desbloqueado. Relee la lección si algo aún no está claro.')}</p>
+      <div class="row"><button class="btn gold big" id="toChk">🎯 ${L('Retake the Mastery Check','Repetir la prueba de dominio')}</button><button class="btn" id="les">📖 ${L('Re-read the lesson','Releer la lección')}</button><button class="btn ghost" id="hm">${L('Study Lab home','Inicio')}</button></div>`;
+    $('#toChk',m).onclick=()=>checkIntro(bm); $('#les',m).onclick=()=>lesson(bm); $('#hm',m).onclick=home;
+  }
+
+  /* ---------------- 4 · KEEP IT: spaced, interleaved review ------------- */
+  async function review(){
+    let qs=dueReviews(u).slice(0,8), label=L('Spaced review','Repaso espaciado');
+    if(!qs.length){ qs=shuffle(u.qs.filter(q=>S.srs&&S.srs[q.id])).slice(0,6); label=L('Mixed review','Repaso mixto'); }
+    if(!qs.length) return drawHome();
+    const r=await practice('', qs, label);
+    if(!r || !$('.card',m)) return;
+    $('.card',m).innerHTML=`<h2>🔁 ${L('Review complete','Repaso terminado')}: ${r.first}/${r.n} ${L('right on the first try','al primer intento')}</h2>
+      <p>${L('Ideas you got right will come back less often; ideas you missed come back soon. Spacing it out is how it sticks.','Las ideas que acertaste volverán con menos frecuencia; las que fallaste volverán pronto. Espaciar el repaso es lo que hace que se quede.')}</p>
+      <button class="btn gold big" id="hm">${L('Back to Study Lab','Volver al laboratorio')}</button>`;
+    $('#hm',m).onclick=home;
+  }
+}
+
+/* ===================== TEACHER: Study materials ===================== */
+async function zipOpen(buf){
+  const dv=new DataView(buf), u8=new Uint8Array(buf); let eocd=-1;
+  for(let i=u8.length-22;i>=Math.max(0,u8.length-66000);i--){ if(dv.getUint32(i,true)===0x06054b50){ eocd=i; break; } }
+  if(eocd<0) throw new Error('That file could not be opened.');
+  const n=dv.getUint16(eocd+10,true); let p=dv.getUint32(eocd+16,true); const files={};
+  for(let k=0;k<n;k++){ const method=dv.getUint16(p+10,true), csize=dv.getUint32(p+20,true), nl=dv.getUint16(p+28,true), el=dv.getUint16(p+30,true), cl=dv.getUint16(p+32,true), lho=dv.getUint32(p+42,true);
+    files[new TextDecoder().decode(u8.slice(p+46,p+46+nl))]={method,csize,lho}; p+=46+nl+el+cl; }
+  return { names:Object.keys(files), async get(name){ const f=files[name]; if(!f) return null; const lnl=dv.getUint16(f.lho+26,true), lel=dv.getUint16(f.lho+28,true); const data=u8.slice(f.lho+30+lnl+lel, f.lho+30+lnl+lel+f.csize);
+    if(f.method===0) return new TextDecoder().decode(data);
+    if(typeof DecompressionStream==='undefined') throw new Error('This browser cannot open that file — paste the text instead.');
+    return await new Response(new Blob([data]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).text(); } };
+}
+const xmlParas = (xml, tagT) => { const d=new DOMParser().parseFromString(xml,'application/xml'); return [...d.getElementsByTagNameNS('*','p')].map(p=>({p, text:[...p.getElementsByTagNameNS('*',tagT)].map(x=>x.textContent).join('').trim()})); };
+async function extractNoteText(file){
+  const n=file.name.toLowerCase();
+  if(/\.(txt|md|text)$/.test(n)) return await file.text();
+  if(/\.html?$/.test(n)){ const d=new DOMParser().parseFromString(await file.text(),'text/html'); d.querySelectorAll('script,style,nav').forEach(x=>x.remove());
+    return [...d.body.querySelectorAll('h1,h2,h3,h4,p,li,blockquote,td')].map(e=>(/^H\d/.test(e.tagName)?'## ':e.tagName==='LI'?'- ':'')+e.textContent.trim()).filter(x=>x.replace(/[#\- ]/g,'')).join('\n\n'); }
+  if(/\.docx$/.test(n)){ const z=await zipOpen(await file.arrayBuffer()); const xml=await z.get('word/document.xml'); if(!xml) throw new Error('No text found in that Word file.');
+    return xmlParas(xml,'t').filter(x=>x.text).map(({p,text})=>{ const s=p.getElementsByTagNameNS('*','pStyle')[0]; const v=s&&(s.getAttribute('w:val')||'');
+      return (/^(heading|title)/i.test(v)?'## ':p.getElementsByTagNameNS('*','numPr').length?'- ':'')+text; }).join('\n\n'); }
+  if(/\.pptx$/.test(n)){ const z=await zipOpen(await file.arrayBuffer()); const num=s=>+(s.match(/(\d+)\.xml$/)||[0,0])[1];
+    const slides=z.names.filter(x=>/^ppt\/slides\/slide\d+\.xml$/.test(x)).sort((a,b)=>num(a)-num(b)); const out=[];
+    for(const s of slides){ const ps=xmlParas(await z.get(s),'t').map(x=>x.text).filter(Boolean); const nt=await z.get(`ppt/notesSlides/notesSlide${num(s)}.xml`);
+      const notes=nt?xmlParas(nt,'t').map(x=>x.text).filter(x=>x&&!/^\d+$/.test(x)):[];
+      if(!ps.length && !notes.length) continue;
+      out.push(`## Slide ${num(s)}: ${ps[0]||''}\n${ps.slice(1).map(x=>'- '+x).join('\n')}${notes.length?'\n'+notes.join('\n'):''}`); }
+    if(!out.length) throw new Error('No text found in those slides.'); return out.join('\n\n'); }
+  if(/\.pdf$/.test(n)) throw new Error('PDFs can\'t be read here. Open the PDF, press Ctrl+A then Ctrl+C, and paste the text into the box below.');
+  throw new Error('Use a Word (.docx), PowerPoint (.pptx), .txt, .md or .html file — or paste the text.');
+}
+const NOTE_MAX=120000, UNIT_NOTE_MAX=250000;
+function notesEditor(body, base, e, rerender){
+  const u=curUnit(), notes=e.notes=e.notes||[];
+  const total=notes.reduce((a,n)=>a+n.text.length,0);
+  const bms=unitBms(u);
+  const cover=bms.map(bm=>{ const qs=u.qs.filter(q=>bmOf(q)===bm); const r=kbSearch(u,[bmText(bm),...qs.map(questionQuery)].join(' '),{src:'teacher',k:1,minHits:3})[0];
+    const want=termsIn(u,qs.map(questionQuery).join(' '),4).map(v=>v[0]);
+    return {bm, r, want}; });
+  body.innerHTML=`<p>${L('Upload your notes, slides or readings for','Sube tus notas, diapositivas o lecturas para')} <b>${esc(base.title)}</b>. ${L('Study Lab matches each passage to the benchmarks and questions it explains, then shows it to students inside the lesson and in the explanation after every question.','El laboratorio relaciona cada pasaje con los estándares y preguntas que explica y lo muestra en la lección y después de cada pregunta.')}</p>
+    <div class="grid g2">
+      <div class="drop" style="padding:1rem"><p style="margin:0 0 .4rem"><b>📂 ${L('Upload files','Subir archivos')}</b></p><label class="btn">${L('Choose files','Elegir archivos')}<input type="file" id="nfi" multiple accept=".docx,.pptx,.txt,.md,.html,.htm,.pdf" hidden></label>
+        <p class="small" style="margin:.5rem 0 0">Word (.docx) · PowerPoint (.pptx, ${L('speaker notes included','incluye notas del orador')}) · .txt · .md · .html. ${L('For a PDF, copy its text and paste it.','Para un PDF, copia el texto y pégalo.')}</p></div>
+      <div><input id="ntT" placeholder="${L('Title (e.g., Reconstruction notes)','Título')}" style="width:100%;margin-bottom:.4rem"><textarea id="ntX" style="min-height:90px" placeholder="${L('…or paste notes here. Lines starting with # become section headings.','…o pega notas aquí. Las líneas que empiezan con # se vuelven títulos.')}"></textarea><button class="btn gold" id="ntAdd">➕ ${L('Add notes','Agregar notas')}</button></div>
+    </div>
+    <p class="small">${notes.length} ${L('document(s)','documento(s)')} · ${Math.round(total/1000)}k / ${UNIT_NOTE_MAX/1000}k ${L('characters used','caracteres usados')}</p>
+    ${notes.length?`<table><tr><th>${L('Document','Documento')}</th><th>${L('Words','Palabras')}</th><th>${L('Sections','Secciones')}</th><th></th></tr>${notes.map((n,i)=>`<tr><td><b>${esc(n.title)}</b><br><span class="small">${new Date(n.at).toLocaleDateString()}</span></td><td>${words(n.text)}</td><td>${chunkNote(n).length}</td><td class="row"><button class="btn" data-pv="${i}">👁️</button><button class="btn cr" data-dn="${i}">🗑️</button></td></tr>`).join('')}</table>`:''}
+    <h3 style="margin-top:1rem">🎯 ${L('How your materials cover each benchmark','Cómo cubren tus materiales cada estándar')}</h3>
+    ${!bms.length?'<p class="muted">No questions in this unit yet.</p>':cover.map(c=>`<div class="covrow ${c.r?'hit':''}"><span class="tag gold">${esc(c.bm)}</span> ${c.r?`✅ <b>${esc(c.r.c.title)}</b> <span class="small">— ${esc(c.r.c.text.slice(0,140))}…</span>`:`<span class="small">${notes.length?L('No strong match yet. Notes that explain','Sin coincidencia fuerte. Notas que expliquen'):L('Add notes that explain','Agrega notas que expliquen')} ${esc(c.want.join(', ')||bmText(c.bm).slice(0,80))} ${L('will show here.','aparecerán aquí.')}</span>`}</div>`).join('')}
+    <p class="small" style="margin-top:.6rem">${L('Students see these passages with highlighted words that match the question. Built-in explanations always show too.','Los estudiantes ven estos pasajes con palabras resaltadas. Las explicaciones incluidas siempre aparecen también.')}</p>`;
+  const addNote=(title,text)=>{ text=String(text||'').replace(/\u0000/g,'').trim(); if(!text) return false;
+    const room=UNIT_NOTE_MAX-notes.reduce((a,n)=>a+n.text.length,0); if(room<500){ toast(L('This unit is full — remove a document first.','La unidad está llena; elimina un documento.')); return false; }
+    let cut=false; const lim=Math.min(NOTE_MAX,room); if(text.length>lim){ text=text.slice(0,lim); cut=true; }
+    notes.push({id:'n'+Date.now().toString(36)+Math.random().toString(36).slice(2,5), title:(title||'Notes').slice(0,80), text, at:Date.now()});
+    if(cut) toast(L('That document was long — the first part was saved.','El documento era largo; se guardó la primera parte.'),3500); return true; };
+  $('#ntAdd',body).onclick=()=>{ const x=$('#ntX',body).value; if(!x.trim()) return toast(L('Paste some notes first.','Pega notas primero.'));
+    if(addNote($('#ntT',body).value.trim()||L('Pasted notes','Notas pegadas'), x)){ commitEdit(); toast('📒 '+L('Notes added','Notas agregadas')); rerender(); } };
+  $('#nfi',body).onchange=async ev=>{ let ok=0; for(const f of ev.target.files){ try{ if(addNote(f.name.replace(/\.[^.]+$/,''), await extractNoteText(f))) ok++; }catch(err){ toast('⚠️ '+esc(f.name)+': '+esc(err.message),5000); } }
+    if(ok){ commitEdit(); toast(`📒 ${ok} ${L('document(s) added','documento(s) agregado(s)')}`); rerender(); } };
+  $$('[data-dn]',body).forEach(b=>b.onclick=()=>{ notes.splice(+b.dataset.dn,1); commitEdit(); rerender(); });
+  $$('[data-pv]',body).forEach(b=>b.onclick=()=>{ const n=notes[+b.dataset.pv]; modal(`<h2>📒 ${esc(n.title)}</h2><p class="small">${L('How Study Lab splits this document into passages:','Cómo el laboratorio divide este documento en pasajes:')}</p>${chunkNote(n).map(c=>`<div class="passage teacher"><div class="small psrc"><b>${esc(c.title)}</b></div><div>${esc(c.text).replace(/\n/g,'<br>')}</div></div>`).join('')}`); });
+}
+
+/* ===================== TEACHER DASHBOARD: student detail ============= */
+function studyDetailHTML(s){
+  const study=s.study||{}; const units=allUnits().filter(u=>study[u.id]);
+  if(!units.length) return `<h3 style="margin-top:1rem">📚 Study Lab</h3><p class="muted small">Not started yet.</p>`;
+  return `<h3 style="margin-top:1rem">📚 Study Lab</h3>${units.map(u=>{ const bms=unitBms(u);
+    return `<details open><summary>${u.icon||''} ${esc(u.title)} — ${bms.filter(b=>studyState(u.id,b,study).mastered).length}/${bms.length} mastered</summary>
+      <table><tr><th>Benchmark</th><th>Status</th><th>Last check</th><th>Explain-it-back</th></tr>${bms.map(b=>{ const st=studyState(u.id,b,study), [,lab]=statusOf(st), c=(st.checks||[]).slice(-1)[0];
+        return `<tr><td class="small">${esc(b)}</td><td class="small">${lab}</td><td class="small">${c?`${c.score}% (${(st.checks||[]).length}×)`:'—'}</td><td class="small" style="max-width:340px">${st.explain?esc(st.explain):'<span class="muted">—</span>'}</td></tr>`; }).join('')}</table></details>`; }).join('')}`;
 }
 
 </script></body></html>

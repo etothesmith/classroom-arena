@@ -1,8 +1,15 @@
 # Classroom Arena
 
-Mastery-based review games, virtual gallery walks and Smartboard Jeopardy, with a Florida U.S. History (SS.912.A) curriculum built in. Every teacher can create their own classroom, import Quizizz/Wayground files and study guides, and export a Student Edition for Canvas.
+Mastery-based review games, primary-source gallery walks, Smartboard Jeopardy and a live mastery dashboard — with a Florida U.S. History (SS.912.A) curriculum built in.
 
-**Live app:** https://etothesmith.github.io/classroom-arena/
+**Live site:** https://etothesmith.github.io/classroom-arena/
 
-- `index.html` — the full app (single file, no external scripts)
-- `gallery_gemini_prompt_pack.md` — gallery walk sources (Library of Congress links) and Gemini art prompts
+- **Teachers** create an account, build classrooms, customize content, import Quizizz/Wayground sets and track mastery by benchmark.
+- **Students** join with a 6-character class code and their first name — no email or password.
+- **Schools & districts** can request a pilot from the For Schools page.
+
+Files:
+- `index.html` — the complete app (single file; Firebase SDK bundled, no third-party script CDNs)
+- `firestore.rules` — Firestore security rules
+- `SETUP.md` — how to connect a Firebase project for real accounts
+- `gallery_gemini_prompt_pack.md` — gallery walk sources and Gemini art prompts

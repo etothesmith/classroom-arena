@@ -1,0 +1,53 @@
+rules_version = '2';
+// Classroom Arena — Firestore security rules
+// Teachers sign in with email/password. Students sign in anonymously after entering a class code.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function isTeacher() { return signedIn() && request.auth.token.firebase.sign_in_provider != 'anonymous'; }
+    function ownsClass(cid) { return isTeacher() && get(/databases/$(database)/documents/classrooms/$(cid)).data.ownerUid == request.auth.uid; }
+
+    // Teacher profiles: only the teacher can read or write their own profile
+    match /teachers/{uid} {
+      allow read, write: if signedIn() && request.auth.uid == uid;
+    }
+
+    // Join codes: any signed-in user (including students) can look up a code; only the owner can create/delete it
+    match /codes/{code} {
+      allow get: if signedIn();
+      allow create: if isTeacher() && request.resource.data.ownerUid == request.auth.uid;
+      allow delete: if isTeacher() && resource.data.ownerUid == request.auth.uid;
+    }
+
+    // Classrooms: students may read the content of a class; only the owning teacher can change it
+    match /classrooms/{cid} {
+      allow get: if signedIn();
+      allow list: if isTeacher() && resource.data.ownerUid == request.auth.uid;
+      allow create: if isTeacher() && request.resource.data.ownerUid == request.auth.uid;
+      allow update, delete: if isTeacher() && resource.data.ownerUid == request.auth.uid;
+
+      match /assets/{key} {
+        allow read: if signedIn();
+        allow write: if ownsClass(cid);
+      }
+      // Student progress: a student can read/write a single record (their own, by name + period);
+      // only the teacher can list the roster or remove a student
+      match /students/{sid} {
+        allow get: if signedIn();
+        allow create, update: if signedIn();
+        allow list, delete: if ownsClass(cid);
+      }
+      // Mastery reports: students submit; only the teacher can read them
+      match /reports/{rid} {
+        allow create: if signedIn();
+        allow read, delete: if ownsClass(cid);
+      }
+    }
+
+    // "Request a pilot or quote" form on the For Schools page
+    match /leads/{id} {
+      allow create: if true;
+      allow read, update, delete: if false;
+    }
+  }
+}

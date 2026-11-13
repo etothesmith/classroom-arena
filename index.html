@@ -647,7 +647,7 @@ img.lv-arti.ped{opacity:.55;filter:grayscale(.4) drop-shadow(0 4px 8px rgba(0,0,
 .esc-obj.solved{filter:saturate(.6)}.esc-obj.solved .esc-tag{background:#059669}
 .esc-obj:not(.solved) .esc-em,.esc-obj:not(.solved) img{animation:escPulse 2.4s ease-in-out infinite}
 @keyframes escPulse{0%,100%{filter:drop-shadow(0 8px 10px rgba(0,0,0,.5))}50%{filter:drop-shadow(0 0 18px rgba(252,211,77,.85))}}
-.esc-you{position:absolute;left:24%;bottom:2%;pointer-events:none}
+.esc-you{position:absolute;left:47%;bottom:2%;pointer-events:none}
 .esc-notes{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin-top:.6rem}
 .esc-note{padding:.3rem .7rem;border-radius:10px;background:var(--cab2);font-weight:700}.esc-note.on{background:#D1FAE5}
 .esc-match{display:grid;grid-template-columns:1fr 2fr;gap:.8rem}.esc-match>div{display:grid;gap:.5rem;align-content:start}
@@ -668,6 +668,12 @@ img.lv-arti.ped{opacity:.55;filter:grayscale(.4) drop-shadow(0 4px 8px rgba(0,0,
 .sh-item .small{color:var(--muted)}
 .bg-vaultbg{background:radial-gradient(circle at 70% 30%,rgba(252,211,77,.35),transparent 45%),linear-gradient(135deg,#1C1917,#3B2412 60%,#0B1220)}
 @media (max-width:700px){.esc-you{left:auto;right:1%;bottom:1%}.esc-you .ava-full{--s:110px!important}.esc-room{height:70vh}}
+.ava-head.has-frart{box-shadow:0 2px 6px rgba(15,23,42,.18)}
+.ava-frart{inset:-21%!important;width:142%!important;height:142%!important}
+.esc-room[style*="background-image"]{background-color:#1C1917}
+@media (max-width:700px){.esc-obj img,.esc-door img{height:auto!important;max-height:18vh!important}}
+.ava-frart{object-fit:contain}
+.ava-frart{max-width:none!important;max-height:none!important}
 </style></head>
 <body><header id="topbar"></header><main id="main"></main>
 <script id="arenaApp">
@@ -5888,7 +5894,7 @@ function lvDetailHTML(s){ const v=s.vault; if(!v||!v.arts) return `<h3 style="ma
    ===================================================================== */
 const ARENA_DIR = 'arena/';
 const ARENA_SYNC = ['avatar','look','owned','daily','esc','alive'];
-const ARENA_ART_HAVE = new Set([]);           // e.g. 'comp/c_eagle' once arena/comp/c_eagle.webp is uploaded
+const ARENA_ART_HAVE = new Set(['badge/b_avatar','badge/b_day3','badge/b_day7','badge/b_escape','badge/b_gallery','badge/b_live','badge/b_lvl5','badge/b_q25','badge/b_shop','badge/b_unit','badge/b_vault','badge/b_vault3','bg/b_archive','bg/b_capitol','bg/b_classic','bg/b_everglades','bg/b_launch','bg/b_newsroom','bg/b_vault','comp/c_bison','comp/c_bulldog','comp/c_cat','comp/c_eagle','comp/c_gator','comp/c_ghost','comp/c_manatee','comp/c_owl','comp/c_pigeon','comp/c_rover','escape/obj_cab','escape/obj_clk','escape/obj_door','escape/obj_let','escape/obj_map','escape/room','frame/f_gold','frame/f_neon','frame/f_parch','frame/f_space','frame/f_stars','frame/f_vault','stage/live']);           // e.g. 'comp/c_eagle' once arena/comp/c_eagle.webp is uploaded
 const arenaArt = k => ARENA_ART_HAVE.has(k) ? ARENA_DIR+k+'.webp' : '';
 
 function arenaInitState(){
@@ -5992,7 +5998,7 @@ function compHTML(id, size){ const c=SHOP_BY[id]; if(!c||c.kind!=='comp') return
 function avaHTML(spec, o={}){
   const look=o.look||{}, kind=o.kind||'head', size=o.size||56, fr=SHOP_BY[look.frame];
   const frArt=fr&&arenaArt('frame/'+fr.id);
-  return `<span class="ava ava-${kind} ${kind==='head'&&fr?fr.css:''} ${o.cls||''}" style="--s:${size}px" data-ava="${esc(JSON.stringify(spec||null))}" ${o.name?`title="${esc(o.name)}"`:''}>${kind==='head'&&frArt?`<img class="ava-frart" src="${frArt}" alt="">`:''}${o.comp!==false&&look.comp?compHTML(look.comp,size):''}</span>`;
+  return `<span class="ava ava-${kind} ${kind==='head'&&fr?fr.css:''} ${kind==='head'&&frArt?'has-frart':''} ${o.cls||''}" style="--s:${size}px" data-ava="${esc(JSON.stringify(spec||null))}" ${o.name?`title="${esc(o.name)}"`:''}>${kind==='head'&&frArt?`<img class="ava-frart" src="${frArt}" alt="">`:''}${o.comp!==false&&look.comp?compHTML(look.comp,size):''}</span>`;
 }
 const myAva = (o={}) => avaHTML(S.avatar||seededAvatar((S.join&&S.join.sid)||S.student.name||'me'), {look:S.look, ...o});
 async function hydrateAva(el){
@@ -6417,10 +6423,10 @@ function renderArenaLiveStudent(m){
    ===================================================================== */
 const ESC_SYM=['▲','◆','●','■'];
 const ESC_OBJ=[
-  {k:'cab',  name:'Filing Cabinet', emoji:'🗄️', x:9,  y:44, title:'Answer 3 questions correctly'},
-  {k:'let',  name:'Sealed Letter',  emoji:'✉️', x:33, y:62, title:'Read the source and find the evidence'},
-  {k:'map',  name:'Wall Map',       emoji:'🗺️', x:47, y:18, title:'Match each term to its meaning'},
-  {k:'clk',  name:'Grandfather Clock', emoji:'🕰️', x:70, y:36, title:'Put the events in time order'} ];
+  {k:'cab',  name:'Filing Cabinet', emoji:'🗄️', x:12, y:40, h:30, title:'Answer 3 questions correctly'},
+  {k:'let',  name:'Sealed Letter',  emoji:'✉️', x:34, y:58, h:22, title:'Read the source and find the evidence'},
+  {k:'map',  name:'Wall Map',       emoji:'🗺️', x:52, y:10, h:22, title:'Match each term to its meaning'},
+  {k:'clk',  name:'Grandfather Clock', emoji:'🕰️', x:70, y:22, h:44, title:'Put the events in time order'} ];
 let ESC=null;
 function escNew(u){
   const order=shuffle([0,1,2,3]);
@@ -6448,8 +6454,8 @@ function renderEscape(m){
     const art=arenaArt('escape/room');
     m.innerHTML=`<div class="spread"><button class="back" id="escBack">${t('back')}</button><div class="row"><span class="chip big">⏱️ <b id="escT">${mmss(escTime())}</b></span><span class="chip">🔓 ${ESC.solved.filter(Boolean).length}/4</span></div></div>
       <div class="esc-room" ${art?`style="background-image:url(${art})"`:''}>
-        ${ESC_OBJ.map((o,i)=>{ const oa=arenaArt('escape/obj_'+o.k); return `<button class="esc-obj ${ESC.solved[i]?'solved':''}" data-o="${i}" style="left:clamp(64px,${o.x}%,calc(100% - 64px));top:${o.y}%">${oa?`<img src="${oa}" alt="">`:`<span class="esc-em">${o.emoji}</span>`}<span class="esc-tag">${ESC_SYM[i]} ${esc(o.name)}${ESC.solved[i]?` · <b>${ESC.digits[i]}</b>`:''}</span></button>`; }).join('')}
-        <button class="esc-door" id="escDoor" style="left:min(86%,calc(100% - 56px));top:22%">${arenaArt('escape/obj_door')?`<img src="${arenaArt('escape/obj_door')}" alt="">`:'<span class="esc-em">🚪</span>'}<span class="esc-tag">🔐 ${ESC.order.map(i=>ESC_SYM[i]).join(' ')}</span></button>
+        ${ESC_OBJ.map((o,i)=>{ const oa=arenaArt('escape/obj_'+o.k); return `<button class="esc-obj ${ESC.solved[i]?'solved':''}" data-o="${i}" style="left:clamp(64px,${o.x}%,calc(100% - 64px));top:${o.y}%">${oa?`<img src="${oa}" alt="" style="height:${o.h}vh;max-height:none">`:`<span class="esc-em">${o.emoji}</span>`}<span class="esc-tag">${ESC_SYM[i]} ${esc(o.name)}${ESC.solved[i]?` · <b>${ESC.digits[i]}</b>`:''}</span></button>`; }).join('')}
+        <button class="esc-door" id="escDoor" style="left:min(88%,calc(100% - 56px));top:16%">${arenaArt('escape/obj_door')?`<img src="${arenaArt('escape/obj_door')}" alt="" style="height:42vh;max-height:none">`:'<span class="esc-em">🚪</span>'}<span class="esc-tag">🔐 ${ESC.order.map(i=>ESC_SYM[i]).join(' ')}</span></button>
         <div class="esc-you">${myAva({kind:'full', size:150})}</div>
       </div>
       <div class="esc-notes">${ESC_OBJ.map((o,i)=>`<span class="esc-note ${ESC.solved[i]?'on':''}">${ESC_SYM[i]} = <b>${ESC.solved[i]?ESC.digits[i]:'?'}</b></span>`).join('')}<span class="small">Door code order: <b>${ESC.order.map(i=>ESC_SYM[i]).join(' ')}</b></span></div>`;

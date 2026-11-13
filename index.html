@@ -2773,7 +2773,7 @@ function renderArcade(m){
     <p>${coin()} <b>${S.tokens}</b> ${t('tokens')} · Earn tokens with every 3-answer mastery streak, basecamps, gallery walks and completed gauntlets.</p>
     <div class="grid g2">
       <div class="card cab"><h3>🏃 Historian's Sprint</h3><p class="small">Jump over historical MYTHS, grab primary-source scrolls 📜. Space / tap to jump. 60 seconds.</p><p>${t('highScore')}: <b>${S.highs.sprint||0}</b></p><button class="btn gold" data-g="sprint">${t('play')}</button></div>
-      <div class="card cab"><h3>🔨 Whack-a-Fallacy</h3><p class="small">Bop the misconceptions — but spare the verified facts! Read fast, think faster. 60 seconds.</p><p>${t('highScore')}: <b>${S.highs.whack||0}</b></p><button class="btn gold" data-g="whack">${t('play')}</button></div>
+      <div class="card cab"><h3>🔨 Whack-a-Fallacy</h3><p class="small">Read each sign, bop the myths and let the facts go. 60 seconds.</p><p>${t('highScore')}: <b>${S.highs.whack||0}</b></p><button class="btn gold" data-g="whack">${t('play')}</button></div>
     </div>`;
   bindBack(m);
   $$('[data-g]',m).forEach(b=>b.onclick=()=>{ if(S.tokens<1 && !S.settings.god) return toast('🔒 '+t('noTokens'),3000); if(!S.settings.god) S.tokens--; save(); renderHUD(); SFX.coin(); (b.dataset.g==='sprint'?sprint:whack)(); });
@@ -2818,23 +2818,105 @@ function sprint(){
   });
 }
 function whack(){
-  const g=gameShell('🔨 Whack-a-Fallacy',900,540), {ctx,cv}=g; const W=900,H=540, cols=3, rows=3, cw=W/cols, ch=H/rows;
-  let holes=Array.from({length:9},()=>null), time=60, score=0, spawn=.4, fx=[];
-  cv.addEventListener('pointerdown',e=>{ e.preventDefault(); const [x,y]=g.pos(e); const i=Math.floor(y/ch)*cols+Math.floor(x/cw); const h=holes[i]; if(!h||h.hit) return; h.hit=true; h.ttl=.45;
-    if(h.fact){ score-=15; SFX.wrong(); fx.push({x:(i%cols+.5)*cw,y:(Math.floor(i/cols)+.5)*ch,txt:'✋ That was a FACT! −15',c:'#FF4D9D',t:1.1}); }
-    else { score+=10; SFX.right(); fx.push({x:(i%cols+.5)*cw,y:(Math.floor(i/cols)+.5)*ch,txt:'💥 Myth busted! +10',c:'#4DE0B1',t:1}); } });
-  g.loop(dt=>{
-    time-=dt; if(time<=0) return g.end(Math.max(0,score),'whack');
-    spawn-=dt; if(spawn<=0){ const free=holes.map((h,i)=>h?null:i).filter(i=>i!==null); if(free.length){ const c=pick(HISTORY_CLAIMS); holes[pick(free)]={txt:c[0],fact:c[1],ttl:2.6+Math.max(0,time/60)*1.4,max:0}; } spawn=.55+Math.random()*.6; }
-    holes=holes.map(h=>{ if(!h) return null; h.ttl-=dt; return h.ttl>0?h:null; });
-    fx.forEach(f=>{ f.t-=dt; f.y-=30*dt; }); fx=fx.filter(f=>f.t>0);
-    ctx.fillStyle='#F1F5F9'; ctx.fillRect(0,0,W,H);
-    for(let i=0;i<9;i++){ const x=(i%cols)*cw, y=Math.floor(i/cols)*ch; ctx.fillStyle='#FFFFFF'; ctx.fillRect(x+6,y+6,cw-12,ch-12); ctx.fillStyle='#CBD5E1'; ctx.beginPath(); ctx.ellipse(x+cw/2,y+ch-26,cw/2-30,16,0,0,7); ctx.fill();
-      const h=holes[i]; if(h){ ctx.fillStyle=h.hit?(h.fact?'#DC2626':'#059669'):'#EFF4FF'; ctx.strokeStyle='#1D4ED8'; ctx.lineWidth=3; ctx.beginPath(); ctx.roundRect? ctx.roundRect(x+16,y+14,cw-32,ch-44,10) : ctx.rect(x+16,y+14,cw-32,ch-44); ctx.fill(); ctx.stroke();
-        ctx.fillStyle=h.hit?'#fff':'#0F172A'; ctx.font='bold 17px system-ui, sans-serif'; ctx.textAlign='center'; wrapText(ctx,h.txt,x+cw/2,y+14+(ch-44)/2+5,cw-56,21); } }
-    fx.forEach(f=>{ ctx.globalAlpha=Math.min(1,f.t*1.5); ctx.fillStyle=f.c==='#4DE0B1'?'#059669':f.c; ctx.font='bold 20px sans-serif'; ctx.textAlign='center'; ctx.fillText(f.txt,f.x,f.y); ctx.globalAlpha=1; });
-    $('#gt',g.mm).textContent=Math.ceil(time); $('#gs',g.mm).textContent=score;
+  /* Whack-a-Fallacy v2 — readable pace: 6 signs, 1 at a time (max 2 later), reading time scales with
+     sentence length, smooth rise/sink animation, rewards for sparing facts, end-of-game review.
+     Optional art (ART.wf_*) drops in automatically; otherwise everything is drawn. */
+  const g=gameShell('🔨 Whack-a-Fallacy',900,540), {ctx,cv}=g; const W=900,H=540, cols=3, rows=2, cw=W/cols, ch=H/rows;
+  const A={}; ['wf_bg','wf_hole','wf_sign','wf_critter','wf_mallet','wf_stamp_myth','wf_stamp_fact'].forEach(k=>{ if(typeof ART!=='undefined' && ART[k]){ const im=new Image(); im.src=ART[k]; A[k]=im; } });
+  const ok=k=>A[k] && A[k].complete && A[k].naturalWidth;
+  const ease=t=>1-Math.pow(1-Math.min(1,Math.max(0,t)),3);
+  const deck=shuffle(HISTORY_CLAIMS.slice()); let di=0; const nextClaim=()=>{ if(di>=deck.length){ shuffle(deck); di=0; } return deck[di++]; };
+  let holes=Array(6).fill(null), time=60, score=0, phase='intro', count=3, cool=.8, fx=[], mallet=null;
+  const stats={busted:0, spared:0, wrong:[], missed:[]};
+  const center=i=>({x:(i%cols+.5)*cw, holeY:Math.floor(i/cols)*ch+ch-42});
+  const readTime=txt=>Math.min(8.5, Math.max(5, 3.2+txt.split(/\s+/).length*.32)) * (time<25?.85:1);
+  const maxUp=()=>time>45?1:2;
+
+  cv.style.cursor='pointer';
+  cv.addEventListener('pointerdown',e=>{ e.preventDefault(); const [x,y]=g.pos(e);
+    if(phase==='intro'){ phase='count'; count=3; SFX.click(); return; }
+    if(phase!=='play') return;
+    mallet={x,y,t:.22};
+    const i=Math.floor(y/ch)*cols+Math.floor(x/cw); const h=holes[i]; if(!h || h.state!=='up') return;
+    h.state='hit'; h.st=0; const c=center(i);
+    if(h.fact){ score-=10; stats.wrong.push(h.txt); h.hold=1.8; SFX.wrong(); fx.push({x:c.x,y:c.holeY-236,txt:'That was a FACT  −10',c:'#DC2626',t:1.6}); }
+    else { score+=10; stats.busted++; h.hold=1.1; SFX.right(); fx.push({x:c.x,y:c.holeY-236,txt:'Myth busted!  +10',c:'#047857',t:1.2}); }
   });
+
+  function spawn(){ const up=holes.filter(Boolean).length; if(up>=maxUp()) return;
+    const free=holes.map((h,i)=>h?null:i).filter(i=>i!==null); if(!free.length) return;
+    const [txt,fact]=nextClaim(); holes[pick(free)]={txt,fact,state:'rise',st:0,ttl:readTime(txt),life:0}; cool=time>45?1.1:.8; }
+
+  function update(dt){
+    if(phase==='count'){ count-=dt; if(count<=0){ phase='play'; SFX.coin(); } return; }
+    if(phase!=='play') return;
+    time-=dt; if(time<=0){ finish(); return; }
+    cool-=dt; if(cool<=0) spawn();
+    holes=holes.map((h,i)=>{ if(!h) return null; h.st+=dt;
+      if(h.state==='rise' && h.st>=.35){ h.state='up'; h.st=0; }
+      else if(h.state==='up'){ h.life+=dt; if(h.life>=h.ttl){ h.state='sink'; h.st=0; const c=center(i);
+        if(h.fact){ score+=5; stats.spared++; fx.push({x:c.x,y:c.holeY+30,txt:'Fact spared ✓  +5',c:'#1D4ED8',t:1.1}); }
+        else { stats.missed.push(h.txt); fx.push({x:c.x,y:c.holeY+30,txt:'A myth got away',c:'#B45309',t:1.1}); } } }
+      else if(h.state==='hit' && h.st>=h.hold){ h.state='sink'; h.st=0; }
+      else if(h.state==='sink' && h.st>=.3) return null;
+      return h; });
+    fx.forEach(f=>{ f.t-=dt; f.y-=22*dt; }); fx=fx.filter(f=>f.t>0);
+    if(mallet){ mallet.t-=dt; if(mallet.t<=0) mallet=null; }
+  }
+
+  function drawBg(){
+    if(ok('wf_bg')) ctx.drawImage(A.wf_bg,0,0,W,H);
+    else { const gr=ctx.createLinearGradient(0,0,0,H); gr.addColorStop(0,'#E0F2FE'); gr.addColorStop(1,'#BAE6FD'); ctx.fillStyle=gr; ctx.fillRect(0,0,W,H);
+      ctx.fillStyle='#86EFAC'; for(let r=0;r<rows;r++){ ctx.fillRect(0,r*ch+ch-70,W,70); } ctx.fillStyle='#4ADE80'; for(let r=0;r<rows;r++) ctx.fillRect(0,r*ch+ch-70,W,5); }
+  }
+  function drawHole(i){ const c=center(i);
+    if(ok('wf_hole')) ctx.drawImage(A.wf_hole,c.x-120,c.holeY-34,240,72);
+    else { ctx.fillStyle='#78350F'; ctx.beginPath(); ctx.ellipse(c.x,c.holeY+4,118,30,0,0,7); ctx.fill(); ctx.fillStyle='#1C1917'; ctx.beginPath(); ctx.ellipse(c.x,c.holeY,104,22,0,0,7); ctx.fill(); }
+  }
+  function drawSign(i,h){ const c=center(i), sw=268, sh=176;
+    let p=1; if(h.state==='rise') p=ease(h.st/.35); else if(h.state==='sink') p=1-ease(h.st/.3);
+    const top=c.holeY-p*(sh+18);
+    ctx.save(); ctx.beginPath(); ctx.rect(c.x-cw/2,c.holeY-sh-80,cw,sh+80); ctx.clip();
+    const x=c.x-sw/2, y=top;
+    if(ok('wf_critter')) ctx.drawImage(A.wf_critter,c.x-46,y+sh-30,92,92);
+    if(ok('wf_sign')) ctx.drawImage(A.wf_sign,x-10,y-10,sw+20,sh+20);
+    else { ctx.fillStyle='rgba(15,23,42,.18)'; ctx.beginPath(); ctx.roundRect(x+4,y+6,sw,sh,14); ctx.fill();
+      ctx.fillStyle=h.state==='hit'?(h.fact?'#FEE2E2':'#DCFCE7'):'#FFFBEB'; ctx.strokeStyle='#92400E'; ctx.lineWidth=4; ctx.beginPath(); ctx.roundRect(x,y,sw,sh,14); ctx.fill(); ctx.stroke();
+      ctx.fillStyle='#92400E'; ctx.fillRect(c.x-6,y+sh,12,30); }
+    ctx.fillStyle='#0F172A'; ctx.font='600 19px system-ui, sans-serif'; ctx.textAlign='center'; wrapText(ctx,h.txt,c.x,y+sh/2-4,sw-36,24);
+    if(h.state==='up' || h.state==='rise'){ const left=h.state==='rise'?1:Math.max(0,1-h.life/h.ttl);
+      ctx.fillStyle='#E2E8F0'; ctx.fillRect(x+18,y+sh-16,sw-36,6); ctx.fillStyle=left>.35?'#1D4ED8':'#F59E0B'; ctx.fillRect(x+18,y+sh-16,(sw-36)*left,6); }
+    if(h.state==='hit' || (h.state==='sink' && h.hold)){ const key=h.fact?'wf_stamp_fact':'wf_stamp_myth';
+      ctx.save(); ctx.translate(c.x,y+4); ctx.rotate(-.06); const s=.82*Math.min(1,.6+h.st*3);
+      if(ok(key)){ ctx.drawImage(A[key],-110*s,-55*s,220*s,110*s); }
+      else { ctx.scale(s,s); ctx.strokeStyle=h.fact?'#DC2626':'#047857'; ctx.fillStyle=h.fact?'rgba(254,226,226,.9)':'rgba(220,252,231,.9)'; ctx.lineWidth=5; ctx.beginPath(); ctx.roundRect(-112,-30,224,60,10); ctx.fill(); ctx.stroke();
+        ctx.fillStyle=h.fact?'#DC2626':'#047857'; ctx.font='800 24px system-ui, sans-serif'; ctx.textAlign='center'; ctx.fillText(h.fact?"THAT'S A FACT":'MYTH BUSTED',0,9); }
+      ctx.restore(); }
+    ctx.restore();
+  }
+  function drawMallet(){ if(!mallet) return; const k=mallet.t/.22, ang=-1.1+1.4*(1-k);
+    ctx.save(); ctx.translate(mallet.x+34,mallet.y+10); ctx.rotate(ang);
+    if(ok('wf_mallet')) ctx.drawImage(A.wf_mallet,-20,-110,90,120);
+    else { ctx.fillStyle='#92400E'; ctx.fillRect(-5,-90,10,90); ctx.fillStyle='#1D4ED8'; ctx.beginPath(); ctx.roundRect(-30,-118,60,34,8); ctx.fill(); }
+    ctx.restore(); }
+  function overlay(lines, big){ ctx.fillStyle='rgba(11,31,75,.82)'; ctx.fillRect(0,0,W,H); ctx.textAlign='center';
+    if(big){ ctx.fillStyle='#FCD34D'; ctx.font='800 120px system-ui, sans-serif'; ctx.fillText(big,W/2,H/2+40); return; }
+    lines.forEach(([t,f,c],k)=>{ ctx.fillStyle=c; ctx.font=f; ctx.fillText(t,W/2,150+k*48); }); }
+
+  function draw(){
+    drawBg();
+    for(let i=0;i<6;i++){ const h=holes[i]; if(h) drawSign(i,h); drawHole(i); }
+    fx.forEach(f=>{ ctx.globalAlpha=Math.min(1,f.t*1.4); ctx.fillStyle='#fff'; ctx.font='800 22px system-ui, sans-serif'; ctx.textAlign='center'; ctx.lineWidth=5; ctx.strokeStyle='#fff'; ctx.strokeText(f.txt,f.x,f.y); ctx.fillStyle=f.c; ctx.fillText(f.txt,f.x,f.y); ctx.globalAlpha=1; });
+    drawMallet();
+    if(phase==='intro') overlay([['🔨 Whack-a-Fallacy','800 40px system-ui, sans-serif','#FCD34D'],['Read each sign.','600 24px system-ui, sans-serif','#fff'],['Tap the MYTHS  (+10)','600 24px system-ui, sans-serif','#86EFAC'],['Let the FACTS go  (+5)   ·   Tapping a fact  (−10)','600 22px system-ui, sans-serif','#FECACA'],['Tap anywhere to start','700 22px system-ui, sans-serif','#93C5FD']]);
+    if(phase==='count') overlay(null, String(Math.ceil(count)));
+  }
+  function finish(){ phase='done'; g.end(Math.max(0,score),'whack');
+    const rv=[...stats.wrong.map(t=>`<li><b class="bad">You tapped a fact:</b> ${esc(t)}</li>`), ...stats.missed.slice(0,4).map(t=>`<li><b style="color:#B45309">Myth that got away:</b> ${esc(t)}</li>`)];
+    $('#gmsg',g.mm).innerHTML=`<b>Myths busted:</b> ${stats.busted} · <b>Facts spared:</b> ${stats.spared} · <b>Mistakes:</b> ${stats.wrong.length}${rv.length?`<br><b>Review these:</b><ul style="margin:.3rem 0 0;text-align:left">${rv.join('')}</ul>`:'<br>🌟 Perfect reading — no mistakes!'}`;
+  }
+  g.loop(dt=>{ if(phase==='done') return; update(dt); if(phase!=='done') draw();
+    $('#gt',g.mm).textContent=Math.ceil(Math.max(0,time)); $('#gs',g.mm).textContent=score; });
 }
 
 /* =====================================================================

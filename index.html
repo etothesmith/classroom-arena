@@ -556,7 +556,7 @@ img.lv-arti.ped{opacity:.55;filter:grayscale(.4) drop-shadow(0 4px 8px rgba(0,0,
 .seg button{border:0;background:none;padding:.5rem .9rem;border-radius:9px;font:inherit;font-weight:700;color:var(--muted);cursor:pointer}
 .seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}.seg button:disabled{opacity:.45;cursor:not-allowed}
 
-/* ====================== JEOPARDY 2.0 ====================== */
+/* ====================== CATEGORY CLASH ====================== */
 .jp-teamset{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.7rem}
 .jp-col{border:2px solid var(--tc);border-radius:14px;padding:.6rem;background:color-mix(in srgb,var(--tc) 6%,#fff);cursor:pointer;min-height:120px}
 .jp-tn{width:100%;font-weight:800;color:var(--tc);border:0;background:transparent;font-size:1.05rem;padding:.2rem 0;margin-bottom:.3rem}
@@ -705,7 +705,7 @@ img.lv-arti.ped{opacity:.55;filter:grayscale(.4) drop-shadow(0 4px 8px rgba(0,0,
 .gb-x{display:flex;flex-wrap:wrap;justify-content:center;gap:.15rem;max-width:180px}.gb-x i{font-style:normal;font-weight:900;font-size:1.35rem;color:#E5E7EB;line-height:1}.gb-x i.on{color:var(--tc)}
 .gb-n{position:absolute;top:.4rem;right:.6rem;font-weight:900;font-size:1.4rem;color:var(--tc)}
 .gb-ctl{margin-top:1rem}.tc-gold{font-weight:900;font-size:1.6rem;color:#B45309}
-/* Grudgeball shot */
+/* Rival Rebound shot */
 .sh-court{position:relative;height:260px;max-width:700px;margin:0 auto;border-radius:16px;background:linear-gradient(180deg,#1E3A8A,#0B1F4B);overflow:hidden}
 .sh-hoop{position:absolute;top:24px;right:16%;font-size:0}.sh-rim{width:90px;height:12px;border-radius:6px;background:#EA580C;box-shadow:0 30px 0 -4px rgba(255,255,255,.12)}
 .sh-hoop::before{content:"";position:absolute;right:-14px;top:-56px;width:14px;height:90px;background:#E5E7EB;border-radius:3px}
@@ -722,7 +722,7 @@ img.lv-arti.ped{opacity:.55;filter:grayscale(.4) drop-shadow(0 4px 8px rgba(0,0,
 .tc-chest:hover:not(:disabled){transform:translateY(-6px) rotate(-2deg)}.tc-chest img{max-width:150px;max-height:130px}
 .tc-chest b{font-size:1.4rem}.tc-ico{font-size:4rem}.tc-chest.open{border-color:#6EE7B7;box-shadow:0 0 26px #6EE7B7;animation:popIn .4s}.tc-chest.other{opacity:.5}
 .tc-chest .small{color:#E2E8F0;text-align:center;padding:0 .4rem}
-/* The Floor */
+/* Territory Takeover */
 .fl-wrap{display:grid;grid-template-columns:1fr 260px;gap:1rem;align-items:start}
 .fl-grid{display:grid;grid-template-columns:repeat(var(--c),1fr);gap:4px;padding:6px;border-radius:16px;background:#0F172A}
 .fl-tile{aspect-ratio:1.15;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;border:0;border-radius:8px;background:var(--pc);color:#fff;font:inherit;font-weight:800;font-size:.8rem;cursor:pointer;position:relative;transition:transform .12s,filter .12s;min-height:70px}
@@ -741,7 +741,7 @@ img.lv-arti.ped{opacity:.55;filter:grayscale(.4) drop-shadow(0 4px 8px rgba(0,0,
 .fd-pl.on .fd-clock{box-shadow:0 0 18px var(--pc);color:#FCD34D}
 .fd-mid{display:flex;flex-direction:column;gap:.4rem}.fd-mid .tag{align-self:center}.fd-msg{text-align:center;font-weight:900;font-size:1.6rem;color:#FCD34D;min-height:2rem}
 @media (max-width:1000px){.fl-wrap{grid-template-columns:1fr}.fd-stage{grid-template-columns:1fr 1fr}.fd-mid{grid-column:1/-1;grid-row:2}}
-/* Hot Seat */
+/* Prize Ladder */
 .hs-lobby{display:grid;grid-template-columns:2fr 1fr;gap:1rem}
 .hs-wrap{display:grid;grid-template-columns:1fr 240px;gap:1rem;align-items:stretch}
 .hs-seat{border-radius:20px;padding:1rem;text-align:center;color:#fff;background:radial-gradient(circle at 50% 30%,#6D28D9,#1E1B4B 75%);display:flex;flex-direction:column;align-items:center;gap:.4rem}
@@ -752,7 +752,7 @@ img.lv-arti.ped{opacity:.55;filter:grayscale(.4) drop-shadow(0 4px 8px rgba(0,0,
 .hs-ladder li.on{background:#FCD34D;color:#422006;box-shadow:0 0 14px #FCD34D}
 .hs-poll{margin:.8rem auto;max-width:800px}.hs-pc{display:flex;flex-direction:column;align-items:center;gap:.2rem;padding:.4rem .8rem;border-radius:12px;background:rgba(255,255,255,.1);color:#fff}.hs-pc span{font-size:1.6rem;font-weight:900}
 @media (max-width:800px){.hs-lobby,.hs-wrap{grid-template-columns:1fr}}
-/* Review Four */
+/* Four in a Row */
 .r4-wrap{display:grid;grid-template-columns:200px auto 200px;gap:1rem;justify-content:center;align-items:center}
 .r4-side{display:flex;flex-direction:column;align-items:center;gap:.3rem;padding:.8rem;border-radius:16px;border:3px solid var(--tc);opacity:.6;transition:opacity .2s}
 .r4-side.on{opacity:1;box-shadow:0 0 0 5px color-mix(in srgb,var(--tc) 35%,transparent)}
@@ -1894,7 +1894,7 @@ FLORIDA_US_HISTORY_DB.push({
         k:['NAACP','Brown','boycott','sit-in','nonviolent','Civil Rights Act','Voting Rights Act','Tallahassee','Moore','St. Augustine'] }
 });
 
-/* Statements for Whack-a-Fallacy & Historian's Sprint: [text, isFact] */
+/* Statements for Fallacy Smash & Historian's Sprint: [text, isFact] */
 const HISTORY_CLAIMS = [
   ['The Emancipation Proclamation freed every enslaved person in the U.S.', false],
   ['The 13th Amendment abolished slavery in 1865.', true],
@@ -2538,7 +2538,7 @@ const I18N = {
     gallery:'Virtual Gallery Walk', galleryD:'Inspect primary sources, use the magnifying glass, and complete a 3-step field log at every station.',
     summit:'Summit of Mastery', summitD:'Climb 5 basecamps. Missed items come back — you only climb on verified mastery.',
     arcade:'Classroom Arcade Pit-Stop', arcadeD:'Spend earned tokens on 60-second history mini-games.',
-    jeopardy:'Classroom Jeopardy', jeopardyD:'5×5 board, up to 6 teams, Daily Doubles, steals and Final Jeopardy.',
+    jeopardy:'Category Clash', jeopardyD:'5×5 board, up to 6 teams, Double Downs, steals and Final Wager.',
     live:'Live Question: Freeze & Debrief', liveD:'Project one question, tally the room, then freeze and break down every distractor.',
     squad:'Summit Squad (Co-op)', squadD:'Hot-seat class squads climb together. Rockslides block progress until a Medkit check clears them.',
     readLock:'Reading Diagnostic Breakdown', toRemed:'Continue → Remediation Check', whyWrong:'Why that answer is a trap', youChose:'You chose', correctAns:'Correct answer',
@@ -2563,7 +2563,7 @@ const I18N = {
     gallery:'Recorrido Virtual de Galería', galleryD:'Examina fuentes primarias con la lupa y completa un registro de 3 pasos en cada estación.',
     summit:'Cumbre del Dominio', summitD:'Escala 5 campamentos. Las preguntas falladas regresan — solo subes con dominio verificado.',
     arcade:'Parada en el Arcade', arcadeD:'Usa tus fichas en minijuegos de historia de 60 segundos.',
-    jeopardy:'Jeopardy de la Clase', jeopardyD:'Tablero 5×5, hasta 6 equipos, Doble Diario, robos y Jeopardy Final.',
+    jeopardy:'Choque de Categorías', jeopardyD:'Tablero 5×5, hasta 6 equipos, apuestas dobles, robos y la Apuesta Final.',
     live:'Pregunta en Vivo: Congelar y Analizar', liveD:'Proyecta una pregunta, cuenta las respuestas y analiza cada distractor.',
     squad:'Escuadrón de la Cumbre (Cooperativo)', squadD:'Los equipos se turnan para escalar juntos. Los derrumbes bloquean hasta que un Botiquín los despeje.',
     readLock:'Leyendo el diagnóstico', toRemed:'Continuar → Prueba de Recuperación', whyWrong:'Por qué esa respuesta es una trampa', youChose:'Elegiste', correctAns:'Respuesta correcta',
@@ -2844,7 +2844,7 @@ function renderStudentHub(m){
     ${(u.timeline||[]).length?`<details class="card fold"><summary>🗓️ ${es?'Línea de tiempo de la unidad':'Unit timeline'}</summary><div class="timeline">${u.timeline.map(([y,e])=>`<div class="tl"><b>${esc(y)}</b><br>${esc(e)}</div>`).join('')}</div></details>`:''}`;
   bindUnitBar(m, ()=>render()); if(typeof bindLocker==='function') bindLocker(m);
   $$('[data-go]',m).forEach(b=>b.onclick=()=>{ SFX.click(); const v=b.dataset.go;
-    if(v==='gallery' && !(u.gallery&&u.gallery.length)) return toast('This imported set has no gallery stations — try the Gauntlet, Summit or Jeopardy.');
+    if(v==='gallery' && !(u.gallery&&u.gallery.length)) return toast('This imported set has no gallery stations — try the Gauntlet, Summit or Category Clash.');
     if(v==='arcade') return go('arcade');
     needProfile(()=>go(v)); });
 }
@@ -3071,7 +3071,7 @@ function renderSummit(m, squadMode){
   }
 }
 
-/* Classroom Jeopardy lives in arena.js (avatars, teams from the roster, podium). */
+/* Classroom Category Clash lives in arena.js (avatars, teams from the roster, podium). */
 function buildJeopardy(u){
   const pool=[...(u.vocab||[]).map(v=>[v[1],v[0]]), ...u.qs.map(q=>[q.s,q.o[0]])];
   const cats=(u.heads&&u.heads.length>=5?u.heads.slice(0,5):['Set A','Set B','Set C','Set D','Set E']);
@@ -3121,7 +3121,7 @@ function renderArcade(m){
     <p>${coin()} <b>${S.tokens}</b> ${t('tokens')} · Earn tokens with every 3-answer mastery streak, basecamps, gallery walks and completed gauntlets.</p>
     <div class="grid g2">
       <div class="card cab"><h3>🏃 Historian's Sprint</h3><p class="small">Read each statement: jump the myths, run through the facts. Space / tap to jump. 60 seconds.</p><p>${t('highScore')}: <b>${S.highs.sprint||0}</b></p><button class="btn gold" data-g="sprint">${t('play')}</button></div>
-      <div class="card cab"><h3>🔨 Whack-a-Fallacy</h3><p class="small">Read each sign, bop the myths and let the facts go. 60 seconds.</p><p>${t('highScore')}: <b>${S.highs.whack||0}</b></p><button class="btn gold" data-g="whack">${t('play')}</button></div>
+      <div class="card cab"><h3>🔨 Fallacy Smash</h3><p class="small">Read each sign, bop the myths and let the facts go. 60 seconds.</p><p>${t('highScore')}: <b>${S.highs.whack||0}</b></p><button class="btn gold" data-g="whack">${t('play')}</button></div>
     </div>`;
   bindBack(m);
   $$('[data-g]',m).forEach(b=>b.onclick=()=>{ if(S.tokens<1 && !S.settings.god) return toast('🔒 '+t('noTokens'),3000); if(!S.settings.god) S.tokens--; save(); renderHUD(); SFX.coin(); (b.dataset.g==='sprint'?sprint:whack)(); });
@@ -3203,10 +3203,10 @@ function sprint(){
     $('#gt',g.mm).textContent=Math.ceil(Math.max(0,time)); $('#gs',g.mm).textContent=score; });
 }
 function whack(){
-  /* Whack-a-Fallacy v2 — readable pace: 6 signs, 1 at a time (max 2 later), reading time scales with
+  /* Fallacy Smash v2 — readable pace: 6 signs, 1 at a time (max 2 later), reading time scales with
      sentence length, smooth rise/sink animation, rewards for sparing facts, end-of-game review.
      Optional art (ART.wf_*) drops in automatically; otherwise everything is drawn. */
-  const g=gameShell('🔨 Whack-a-Fallacy',900,540), {ctx,cv}=g; const W=900,H=540, cols=3, rows=2, cw=W/cols, ch=H/rows;
+  const g=gameShell('🔨 Fallacy Smash',900,540), {ctx,cv}=g; const W=900,H=540, cols=3, rows=2, cw=W/cols, ch=H/rows;
   const A={}; ['wf_bg','wf_hole','wf_sign','wf_critter','wf_mallet','wf_stamp_myth','wf_stamp_fact'].forEach(k=>{ if(typeof ART!=='undefined' && ART[k]){ const im=new Image(); im.src=ART[k]; A[k]=im; } });
   const ok=k=>A[k] && A[k].complete && A[k].naturalWidth;
   const ease=t=>1-Math.pow(1-Math.min(1,Math.max(0,t)),3);
@@ -3293,7 +3293,7 @@ function whack(){
     for(let i=0;i<6;i++){ const h=holes[i]; if(h) drawSign(i,h); drawHole(i); }
     fx.forEach(f=>{ ctx.globalAlpha=Math.min(1,f.t*1.4); ctx.fillStyle='#fff'; ctx.font='800 22px system-ui, sans-serif'; ctx.textAlign='center'; ctx.lineWidth=5; ctx.strokeStyle='#fff'; ctx.strokeText(f.txt,f.x,f.y); ctx.fillStyle=f.c; ctx.fillText(f.txt,f.x,f.y); ctx.globalAlpha=1; });
     drawMallet();
-    if(phase==='intro') overlay([['🔨 Whack-a-Fallacy','800 40px system-ui, sans-serif','#FCD34D'],['Read each sign.','600 24px system-ui, sans-serif','#fff'],['Tap the MYTHS  (+10)','600 24px system-ui, sans-serif','#86EFAC'],['Let the FACTS go  (+5)   ·   Tapping a fact  (−10)','600 22px system-ui, sans-serif','#FECACA'],['Tap anywhere to start','700 22px system-ui, sans-serif','#93C5FD']]);
+    if(phase==='intro') overlay([['🔨 Fallacy Smash','800 40px system-ui, sans-serif','#FCD34D'],['Read each sign.','600 24px system-ui, sans-serif','#fff'],['Tap the MYTHS  (+10)','600 24px system-ui, sans-serif','#86EFAC'],['Let the FACTS go  (+5)   ·   Tapping a fact  (−10)','600 22px system-ui, sans-serif','#FECACA'],['Tap anywhere to start','700 22px system-ui, sans-serif','#93C5FD']]);
     if(phase==='count') overlay(null, String(Math.ceil(count)));
   }
   function finish(){ phase='done'; g.end(Math.max(0,score),'whack');
@@ -3331,7 +3331,7 @@ function renderWelcome(m){
   m.innerHTML=`<div style="max-width:880px;margin:2rem auto;text-align:center">
     <div style="width:96px;height:96px;margin:0 auto 1rem;border-radius:20px;overflow:hidden;border:3px solid var(--gold)">${asset('coach_host_avatar')}</div>
     <h1 style="font-size:2rem">CLASSROOM ARENA</h1>
-    <p>Mastery-based review games, gallery walks and Smartboard Jeopardy — with a Florida U.S. History curriculum built in. Every teacher builds their own classroom.</p>
+    <p>Mastery-based review games, gallery walks and Smartboard Category Clash — with a Florida U.S. History curriculum built in. Every teacher builds their own classroom.</p>
     <div class="grid g3" style="margin-top:1.5rem;text-align:left">
       <button class="card mode" id="wNew"><span class="ico">🏫</span><h3>Create my classroom</h3><span class="small">Name it, pick your units and periods, then import your own Quizizz files and study guides.</span></button>
       <button class="card mode" id="wImp"><span class="ico">📦</span><h3>Open a classroom pack</h3><span class="small">Load a .json classroom pack a colleague shared with you.</span><input type="file" id="wFile" accept=".json" hidden></button>
@@ -3494,7 +3494,7 @@ function stationBuilder(u, done){
 
 /* =====================================================================
    CONTENT EDITOR — each classroom can hide/restore built-in items and add
-   its own questions, vocabulary, gallery stations and Jeopardy clues.
+   its own questions, vocabulary, gallery stations and Category Clash clues.
    Edits live in classroom.edits[unitId] and are applied on the fly, so
    the built-in Florida database is never altered.
    ===================================================================== */
@@ -3519,11 +3519,11 @@ function commitEdit(){ EDIT_V++; save(); renderHUD(); }
 
 function contentEditorCard(){
   const c=activeClass();
-  if(!c) return `<div class="card" id="ceCard" style="margin-top:1rem"><h2>✏️ Content Editor</h2><p class="muted">Create a classroom (My Classrooms, above) to add or remove questions, vocabulary, gallery stations and Jeopardy clues.</p></div>`;
+  if(!c) return `<div class="card" id="ceCard" style="margin-top:1rem"><h2>✏️ Content Editor</h2><p class="muted">Create a classroom (My Classrooms, above) to add or remove questions, vocabulary, gallery stations and Category Clash clues.</p></div>`;
   return `<div class="card" id="ceCard" style="margin-top:1rem"><div class="spread"><h2>✏️ Content Editor — add or remove items</h2>
     <select id="ceUnit">${allUnits().map(x=>`<option value="${x.id}" ${x.id===S.unit?'selected':''}>${esc(x.title)}</option>`).join('')}</select></div>
     <p class="small">Changes apply only to <b>${esc(c.name)}</b>. Removed built-in items can be restored any time. Your edits travel with your Student Edition and classroom pack.</p>
-    <div class="row" style="margin:.5rem 0">${[['n','📚 Study materials'],['q','❓ Questions'],['v','📇 Vocabulary'],['g','🏛️ Gallery stations'],['j','🏆 Jeopardy']].map(([k,l])=>`<button class="btn ${CE_TAB===k?'gold':''}" data-ce="${k}">${l}</button>`).join('')}</div>
+    <div class="row" style="margin:.5rem 0">${[['n','📚 Study materials'],['q','❓ Questions'],['v','📇 Vocabulary'],['g','🏛️ Gallery stations'],['j','🏆 Category Clash']].map(([k,l])=>`<button class="btn ${CE_TAB===k?'gold':''}" data-ce="${k}">${l}</button>`).join('')}</div>
     <div id="ceBody"></div></div>`;
 }
 let CE_TAB='q';
@@ -3704,10 +3704,10 @@ const TOUR = [
   { sel:'#main .grid.g3', title:'Six Florida U.S. History units', body:'Every question is tagged to an SS.912.A benchmark. Sets you import or create show up here too.', go:()=>{ S.role='student'; S.view='hub'; if(!S.student.name) S.student.name=(SESSION.teacher||{}).name||'Teacher'; } },
   { sel:'[data-go="gauntlet"]', card:true, title:'Reteach-until-mastery', body:'Choices shuffle every time. A wrong answer locks the screen for a reteach card, then students must pass a <b>parallel question</b> on the same benchmark. Missed items come back later.' },
   { sel:'[data-go="gallery"]', card:true, title:'Primary-source gallery walks', body:'Real documents and political cartoons with magnifying-glass hotspots and a 3-step field log: sourcing → evidence → benchmark question.' },
-  { sel:'[data-go="jeopardy"]', card:true, title:'Smartboard Jeopardy', body:'Up to 6 teams, Daily Doubles, steals, a debrief after every clue and Final Jeopardy with secret wagers.', go:()=>{ S.role='host'; S.view='hub'; } },
+  { sel:'[data-go="jeopardy"]', card:true, title:'Smartboard Category Clash', body:'Up to 6 teams, Double Downs, steals, a debrief after every clue and Final Wager with secret wagers.', go:()=>{ S.role='host'; S.view='hub'; } },
   { sel:'[data-go="live"]', card:true, title:'Freeze & Debrief', body:'Project one question, tally the room, then freeze to show the distractor breakdown and reteach card.' },
-  { sel:'#ceCard', title:'Make it yours', body:'Remove built-in questions, vocabulary or gallery stations (restore any time), add your own, and rewrite Jeopardy clues.', go:()=>{ S.role='studio'; S.view='hub'; } },
-  { sel:'#drop', card:true, title:'Import what you already have', body:'Drop in a Quizizz/Wayground spreadsheet, a session-results export or any study guide — it becomes a quiz, flashcards and a Jeopardy board.' },
+  { sel:'#ceCard', title:'Make it yours', body:'Remove built-in questions, vocabulary or gallery stations (restore any time), add your own, and rewrite Category Clash clues.', go:()=>{ S.role='studio'; S.view='hub'; } },
+  { sel:'#drop', card:true, title:'Import what you already have', body:'Drop in a Quizizz/Wayground spreadsheet, a session-results export or any study guide — it becomes a quiz, flashcards and a Category Clash board.' },
   { sel:'#gmWrap', title:'Gallery Walk Manager', body:'Each station links to the original on the Library of Congress. Upload the scan, or use the image prompt to create a teaching illustration.' },
   { sel:'#sTimer', card:true, title:'Game settings', body:'Accuracy-only scoring, mastery threshold, read-lock length, power-ups, shuffling and claim + evidence locks.' },
   { sel:'#userBtn', title:'Your account', body:'Create more classrooms, change your password, replay this tour or sign out.', go:()=>{ S.role='dash'; S.view='hub'; } },
@@ -3754,12 +3754,12 @@ function renderHostHub(m){
     </div>
     <h3 class="sect">🎲 Game Night: whole-class games on the board <span class="small" style="font-weight:500">No devices needed. Teams come from your roster with avatars.</span></h3>
     <div class="gn-grid">
-      ${[['jeopardy','🏆','Jeopardy','Classic board, Daily Doubles, steals and Final Jeopardy. Teams or individual players.','#1D4ED8'],
-         ['floor','🟦','The Floor','Every student owns a square. Chess-clock duels to take over the floor. Last one standing wins.','#2563EB'],
-         ['grudge','🏀','Grudgeball','Answer, shoot, and erase rivals\' ✕s. Big comebacks; nobody is ever out for good.','#EA580C'],
+      ${[['jeopardy','🏆','Category Clash','Classic board, Double Downs, steals and Final Wager. Teams or individual players.','#1D4ED8'],
+         ['floor','🗺️','Territory Takeover','Every student owns a square. Chess-clock duels to take over the map. Last one standing wins.','#2563EB'],
+         ['grudge','🏀','Rival Rebound','Answer, shoot, and erase rivals\' ✕s. Big comebacks; nobody is ever out for good.','#EA580C'],
          ['chests','🧰','Treasure Chests','Right answers open chests: gold, double, steal, swap… or a trapdoor.','#B45309'],
-         ['hotseat','💺','Hot Seat','One student climbs the money ladder with 50:50, Ask the Class and Phone a Classmate.','#7C3AED'],
-         ['four','🔴','Review Four','Connect Four where every disc has to be earned. Wrong answers open a steal.','#DC2626'],
+         ['hotseat','🪜','Prize Ladder','One student climbs the money ladder with Cut Two, Ask the Class and Huddle with a Classmate.','#7C3AED'],
+         ['four','🔴','Four in a Row','Four discs in a row, and every disc has to be earned. Wrong answers open a steal.','#DC2626'],
          ['squad','🏔️','Summit Squad','Teams race up the mountain. Rockslides, rope rescues and streak bonuses.','#0E7490'],
          ['live','❄️','Live Question','Hands-up vote, then freeze and knock out each trap answer one by one.','#0369A1']
         ].map(([k,ic,n,d,c])=>`<button class="gn-card" data-go="${k}" style="--gc:${c}"><span class="gn-ico">${ic}</span><h3>${n}</h3><span class="small">${d}</span></button>`).join('')}
@@ -3801,7 +3801,7 @@ function renderStudio(m){
    <div class="card"><h2>📥 ${t('importer')}</h2>
     <div class="drop" id="drop"><p style="font-size:2rem;margin:0">📂</p><p><b>Drag & drop</b> or <label class="btn" style="display:inline-block">choose a file<input type="file" id="fi" accept=".csv,.xlsx,.txt,.md,.json" hidden></label></p>
      <p class="small">Quizizz/Wayground 11-column template (.csv/.xlsx) · Wayground session results (.csv/.xlsx) · study guides & notes (.txt/.md/.json). No character limit.</p></div>
-    <details><summary>…or paste a study guide / review packet</summary><input id="pTitle" placeholder="Set title (e.g., Unit 3 Review)" style="width:100%;margin:.4rem 0"><textarea id="paste" placeholder="Term: definition&#10;1. Question?&#10;A) choice&#10;*B) correct choice&#10;# Section heading"></textarea><button class="btn gold" id="pgo" style="margin-top:.4rem">Build Quiz + Jeopardy + Flashcards</button></details>
+    <details><summary>…or paste a study guide / review packet</summary><input id="pTitle" placeholder="Set title (e.g., Unit 3 Review)" style="width:100%;margin:.4rem 0"><textarea id="paste" placeholder="Term: definition&#10;1. Question?&#10;A) choice&#10;*B) correct choice&#10;# Section heading"></textarea><button class="btn gold" id="pgo" style="margin-top:.4rem">Build Quiz + Category Clash + Flashcards</button></details>
     <div class="row" style="margin-top:.6rem"><button class="btn" id="tplD">⬇️ Download Sample Quizizz Import Template (.CSV)</button><button class="btn ghost" id="tplC">📋 Copy template</button></div>
     <div id="impOut"></div></div>
   </div>
@@ -3854,7 +3854,7 @@ function renderStudio(m){
     const out=$('#impOut',m);
     if(!res || res.error){ out.innerHTML=`<p class="bad">⚠️ ${esc(res?res.error:'Nothing found to import.')}</p>`; return; }
     if(res.unit){ S.custom.push(res.unit); save(); drawLib(); }
-    out.innerHTML=`<div class="good"><h3>✅ ${esc(res.msg)}</h3>${res.detail||''}${res.unit?`<div class="row" style="margin-top:.5rem"><button class="btn gold" id="playNow">▶ Play it now (Student Hub)</button><button class="btn" id="jpNow">🏆 Open Jeopardy board</button></div>`:''}</div>`;
+    out.innerHTML=`<div class="good"><h3>✅ ${esc(res.msg)}</h3>${res.detail||''}${res.unit?`<div class="row" style="margin-top:.5rem"><button class="btn gold" id="playNow">▶ Play it now (Student Hub)</button><button class="btn" id="jpNow">🏆 Open Category Clash board</button></div>`:''}</div>`;
     if(res.unit){ $('#playNow',out).onclick=()=>{ S.unit=res.unit.id; S.role='student'; S.view='hub'; save(); renderTop(); render(); };
       $('#jpNow',out).onclick=()=>{ S.unit=res.unit.id; S.role='host'; save(); renderTop(); go('jeopardy'); }; }
   }
@@ -3919,7 +3919,7 @@ function fromSheets(sheets, base){
     if(!u.qs.length) return {error:'Found the Quizizz header row but no usable multiple-choice rows.'};
     u.bms=[u.qs[0].bm]; u.vocab=u.qs.slice(0,12).map(q=>[q.o[0], q.s, q.r[1]]);
     u.sr={p: openEnded[0] || `Explain the most important ideas from "${base}" using specific evidence.`, k: u.qs.slice(0,8).map(q=>q.o[0].split(' ').slice(0,3).join(' '))};
-    return {unit:u, msg:`Imported ${u.qs.length} questions from "${base}".`, detail:`<p class="small">${conv?conv+' checkbox/fill-in items converted to multiple choice. ':''}${skipped?skipped+' rows skipped (no answer key). ':''}${openEnded.length?openEnded.length+' open-ended prompts saved as the Historian Response prompt.':''} Jeopardy board and flashcards were auto-built.</p>`};
+    return {unit:u, msg:`Imported ${u.qs.length} questions from "${base}".`, detail:`<p class="small">${conv?conv+' checkbox/fill-in items converted to multiple choice. ':''}${skipped?skipped+' rows skipped (no answer key). ':''}${openEnded.length?openEnded.length+' open-ended prompts saved as the Historian Response prompt.':''} Category Clash board and flashcards were auto-built.</p>`};
   }
   // 2) Session results export (find question + accuracy columns on any sheet)
   for(const sh of sheets){ for(let hi=0;hi<Math.min(10,sh.rows.length);hi++){ const H=sh.rows[hi].map(norm);
@@ -3979,7 +3979,7 @@ function parseNotes(text, title){
   if(!u.qs.length) return {error:'No vocabulary ("Term: definition") or multiple-choice questions (numbered, with A–D choices and a * or "Answer: B") were found.'};
   u.bms=codes.length?codes:[u.qs[0].bm];
   u.sr={ p: open[0] || `Using the key terms from "${title}", explain how these ideas connect. Use at least three terms as evidence.`, k: V.slice(0,10).map(v=>v[0]) };
-  return {unit:u, msg:`Built "${title}": ${u.qs.length} quiz items, ${V.length} flashcards, and a 25-clue Jeopardy board.`, detail:`<p class="small">${mcs.length} numbered questions, ${V.length} terms, ${u.heads.length} headings (used as Jeopardy categories)${open.length?', '+open.length+' open review questions (first one used as the written-response prompt)':''}.</p>`};
+  return {unit:u, msg:`Built "${title}": ${u.qs.length} quiz items, ${V.length} flashcards, and a 25-clue Category Clash board.`, detail:`<p class="small">${mcs.length} numbered questions, ${V.length} terms, ${u.heads.length} headings (used as Category Clash categories)${open.length?', '+open.length+' open review questions (first one used as the written-response prompt)':''}.</p>`};
 }
 
 
@@ -3991,7 +3991,7 @@ function renderDemo(m){
     <p class="small">God Mode removes read-locks, unlocks every gallery door, adds deck skips and makes arcade runs free — for rehearsing on the Smartboard. Turn it off before students play.</p>
     ${unitPicker()}
     <div class="card" style="margin-top:1rem"><div class="spread"><h2>${u.icon||''} ${esc(u.title)}</h2>
-      <div class="row"><button class="btn" data-pv="gauntlet">▶ Gauntlet</button><button class="btn" data-pv="gallery">▶ Gallery</button><button class="btn" data-pv="summit">▶ Summit</button><button class="btn" data-pv="jeopardy">▶ Jeopardy</button><button class="btn" data-pv="live">▶ Live Q</button><button class="btn" data-pv="squad">▶ Squad</button></div></div>
+      <div class="row"><button class="btn" data-pv="gauntlet">▶ Gauntlet</button><button class="btn" data-pv="gallery">▶ Gallery</button><button class="btn" data-pv="summit">▶ Summit</button><button class="btn" data-pv="jeopardy">▶ Category Clash</button><button class="btn" data-pv="live">▶ Live Q</button><button class="btn" data-pv="squad">▶ Squad</button></div></div>
       <div class="row" style="margin:.6rem 0"><button class="btn gold" data-tab="ex">📖 Curriculum Explorer</button><button class="btn" data-tab="sim">👥 Simulate Live Class (25 AI students)</button></div>
       <div id="dz"></div></div>`;
   bindUnitPicker(m, ()=>render());
@@ -4016,7 +4016,7 @@ function renderDemo(m){
           ${q.p?`<p class="small" style="margin-top:.6rem"><b>🔁 Parallel:</b> ${esc(q.p.s)}<br><span class="ok">✔ ${esc(q.p.o[0])}</span></p>`:''}</div></div></div>`).join('')}</details>
       ${(u.gallery||[]).length?`<details><summary>🏛️ Gallery Walk Stations (${u.gallery.length})</summary>${u.gallery.map((g,i)=>`<div class="card" style="margin:.5rem 0"><b>Station ${i+1}: ${esc(g.t)}</b> <span class="small">— ${esc(g.src)}</span><div class="stim" style="margin-top:.4rem">${esc(g.ex)}</div>
         <ul class="small">${g.hs.map((h,k)=>`<li><b>🔍 ${esc(h[0])}</b>${k===g.ev[1]?' ⭐ (evidence answer)':''}: ${esc(h[1])}</li>`).join('')}</ul><p class="small"><b>HIPP:</b> ${esc(g.hp[0])} → <span class="ok">${esc(g.hp[1])}</span><br><b>Synthesis item:</b> #${g.q+1}</p></div>`).join('')}</details>`:''}
-      <details><summary>🏆 Jeopardy Answer Key</summary>${(()=>{ const jp=u.jp||buildJeopardy(u); return `<table><tr><th>$</th>${jp.cats.map(c=>`<th>${esc(c)}</th>`).join('')}</tr>${[0,1,2,3,4].map(r=>`<tr><td>$${(r+1)*100}</td>${jp.c.map(col=>`<td class="small">${esc(col[r][0])}<br><b class="ok">${esc(col[r][1])}</b></td>`).join('')}</tr>`).join('')}</table><p><b>Final Jeopardy (${esc(jp.fj[0])}):</b> ${esc(jp.fj[1])} → <b class="ok">${esc(jp.fj[2])}</b></p>`; })()}</details>
+      <details><summary>🏆 Category Clash Answer Key</summary>${(()=>{ const jp=u.jp||buildJeopardy(u); return `<table><tr><th>$</th>${jp.cats.map(c=>`<th>${esc(c)}</th>`).join('')}</tr>${[0,1,2,3,4].map(r=>`<tr><td>$${(r+1)*100}</td>${jp.c.map(col=>`<td class="small">${esc(col[r][0])}<br><b class="ok">${esc(col[r][1])}</b></td>`).join('')}</tr>`).join('')}</table><p><b>Final Wager (${esc(jp.fj[0])}):</b> ${esc(jp.fj[1])} → <b class="ok">${esc(jp.fj[2])}</b></p>`; })()}</details>
       ${u.sr?`<details><summary>✍️ Historian Response Prompt</summary><p>${esc(u.sr.p)}</p><p class="small">Keywords: ${esc(u.sr.k.join(', '))}</p></details>`:''}`;
   }
 
@@ -4360,7 +4360,7 @@ function renderHome(m){
   <section class="section" id="features"><h2 class="big">Everything review day needs — in one place</h2><p class="sub">Built by a Florida classroom teacher to replace the review tools that reward speed and guessing.</p>
     <div class="grid g3">${[
       ['🔁','Reteach-until-mastery','A wrong answer locks the screen for a short reteach card, then students must pass a parallel question on the same benchmark.'],
-      ['🏆','Smartboard Jeopardy','5×5 boards for every unit with teams, Daily Doubles, steals, teacher debriefs and Final Jeopardy.'],
+      ['🏆','Smartboard Category Clash','5×5 boards for every unit with teams, Double Downs, steals, teacher debriefs and Final Wager.'],
       ['🏛️','Primary-source gallery walks','Real documents and political cartoons with hotspots and a sourcing → evidence → benchmark field log.'],
       ['📊','Live mastery dashboard','See every student\'s mastery by unit and benchmark, the most-missed questions and submitted reports.'],
       ['📥','Bring your own content','Import Quizizz/Wayground spreadsheets, results exports and study guides — or add and remove items yourself.'],
@@ -6025,7 +6025,7 @@ function lvDetailHTML(s){ const v=s.vault; if(!v||!v.arts) return `<h3 style="ma
 /* =====================================================================
    ARENA IDENTITY — one avatar that follows each student everywhere
    Locker (level, streak, tokens, badges), pick-and-buy shop (no random
-   packs), Class Quest, avatars on the smartboard (Jeopardy, live lobby,
+   packs), Class Quest, avatars on the smartboard (Category Clash, live lobby,
    podiums). Art drops into arena/… — listed in ARENA_ART_HAVE once it exists.
    ===================================================================== */
 const ARENA_DIR = 'arena/';
@@ -6243,7 +6243,7 @@ function bindQuestCard(m,c){ const b=$('#qEdit',m); if(!b) return; b.onclick=()=
   $('#qSave',mm).onclick=()=>{ c.settings.quest={goal:Math.max(100,+$('#qG',mm).value||0), name:$('#qN',mm).value.trim().slice(0,40), reward:$('#qR',mm).value.trim().slice(0,60)}; questSync(c); save(); mm.close(); render(); toast('Class Quest saved'); };
   const off=$('#qOff',mm); if(off) off.onclick=()=>{ c.settings.quest={}; save(); mm.close(); render(); }; }; }
 
-/* ===================== SMARTBOARD JEOPARDY 2.0 ====================== */
+/* ===================== SMARTBOARD CATEGORY CLASH ====================== */
 const TEAM_NAMES=['Team Liberty','Team Frontier','Team Gator','Team Apollo','Team Suffrage','Team Rough Riders'];
 const TEAM_MASCOT=['🦅','🐂','🐊','🚀','🎗️','🐎'];
 const TEAM_COL=['#2563EB','#DC2626','#059669','#7C3AED','#D97706','#DB2777'];
@@ -6280,7 +6280,7 @@ async function renderJeopardy(m){
         ${J.mode==='quick'?`<div class="field" style="margin-top:.6rem"><label>Team names (2–6, one per line)</label><textarea id="tm" style="min-height:120px">${J.roster.length?'':'Team 1\nTeam 2\nTeam 3\nTeam 4'}${J.roster.length?'Team 1\nTeam 2\nTeam 3\nTeam 4':''}</textarea>${!J.roster.length?'<p class="small">Once students join your class, you can build teams from your roster and their avatars will appear on the board.</p>':''}</div>`:''}
         ${J.absent.size?`<div class="small" style="margin-top:.6rem">Absent today: ${[...J.absent].map(byId).filter(Boolean).map(s=>`<button class="jp-chip ghost" data-back="${esc(s.id)}">↩ ${esc(first(s.name))}</button>`).join(' ')}</div>`:''}
         <div class="grid g3" style="margin-top:.8rem">
-          <div class="field"><label>Daily Doubles</label><select id="dd">${[0,1,2,3].map(n=>`<option ${n===J.dd?'selected':''}>${n}</option>`).join('')}</select></div>
+          <div class="field"><label>Double Downs</label><select id="dd">${[0,1,2,3].map(n=>`<option ${n===J.dd?'selected':''}>${n}</option>`).join('')}</select></div>
           <div class="field"><label>Clue timer</label><select id="jt">${[[0,'No timer'],[15,'15s'],[30,'30s'],[45,'45s']].map(([v,l])=>`<option value="${v}" ${v===J.secs?'selected':''}>${l}</option>`).join('')}</select></div>
           <div class="field"><label>Who picks next?</label><select id="jturn"><option value="rotate" ${J.turn==='rotate'?'selected':''}>Rotate every clue (fair for class)</option><option value="winner" ${J.turn==='winner'?'selected':''}>Whoever answers right (TV rules)</option></select></div></div>
         <button class="btn gold big" id="go" style="margin-top:.8rem">${t('start')}</button></div>`;
@@ -6320,7 +6320,7 @@ async function renderJeopardy(m){
     board();
     function board(){
       const lead=Math.max(...teams.map(x=>x.s)), s=who(cur), tm=teams[cur];
-      m.innerHTML=`<div class="spread"><button class="back" data-back>${t('back')}</button><div class="row"><button class="btn" id="fj">🎯 Final Jeopardy</button></div></div>
+      m.innerHTML=`<div class="spread"><button class="back" data-back>${t('back')}</button><div class="row"><button class="btn" id="fj">🎯 Final Wager</button></div></div>
         <div class="jp-wrap"><div class="jboard">${jp.cats.map(c=>`<div class="jcat">${esc(c)}</div>`).join('')}
           ${[0,1,2,3,4].map(r=>[0,1,2,3,4].map(c=>{ const k=c+'-'+r; return `<button class="jtile ${used.has(k)?'used':''}" data-k="${k}" ${used.has(k)?'disabled':''}>$${(r+1)*100}</button>`; }).join('')).join('')}</div>
           <aside class="jp-spot" style="--tc:${tm.col}"><div class="jp-up">UP NOW</div>${faceOf(cur,170,s?'full':'head')}<div class="jp-who">${esc(s?s.name:tm.n)}</div>${s&&!tm.solo?`<div class="jp-tm">${esc(tm.n)}</div>`:''}
@@ -6344,13 +6344,13 @@ async function renderJeopardy(m){
       mm.classList.add('jblue'); const z=$('#cz',mm);
       const upBar=()=>{ const s=who(cur); return `<div class="jp-upbar">${faceOf(cur,64)}<div><div class="small" style="color:#FCD34D;font-weight:800;letter-spacing:.08em">ON THE PODIUM</div><b>${esc(s?s.name:teams[cur].n)}</b>${s&&!teams[cur].solo?` · ${esc(teams[cur].n)}`:''}</div></div>`; };
       if(isDD){ SFX.fanfare();
-        z.innerHTML=`${upBar()}<div class="clue" style="color:#FCD34D">⭐ DAILY DOUBLE! ⭐</div><p style="text-align:center">${esc(teams[cur].solo?first(teams[cur].n):teams[cur].n)}, how much will you wager? (up to $${Math.max(teams[cur].s,500)})</p>
+        z.innerHTML=`${upBar()}<div class="clue" style="color:#FCD34D">⭐ DOUBLE DOWN! ⭐</div><p style="text-align:center">${esc(teams[cur].solo?first(teams[cur].n):teams[cur].n)}, how much will you wager? (up to $${Math.max(teams[cur].s,500)})</p>
           <div class="row" style="justify-content:center"><input id="ddw" type="number" min="5" value="${Math.max(100,Math.min(500,teams[cur].s))}" style="width:160px;font-size:1.4rem"><button class="btn gold big" id="ddgo">Lock wager</button></div>`;
         $('#ddgo',z).onclick=()=>{ const max=Math.max(teams[cur].s,500); const w=clamp(+$('#ddw',z).value||0,5,max); show(w,[cur]); };
       } else show(val, teams.map((_,i)=>i));
       function show(v, eligible){
         let left=secs;
-        z.innerHTML=`${upBar()}<div class="spread" style="padding-right:3rem"><span class="tag gold">${esc(jp.cats[c])} · $${v}${isDD?' · Daily Double':''}</span>${secs?`<span class="chip">⏱️ <b id="tl">${left}</b>s</span>`:''}</div>
+        z.innerHTML=`${upBar()}<div class="spread" style="padding-right:3rem"><span class="tag gold">${esc(jp.cats[c])} · $${v}${isDD?' · Double Down':''}</span>${secs?`<span class="chip">⏱️ <b id="tl">${left}</b>s</span>`:''}</div>
           <div class="clue">${esc(q)}</div><div style="text-align:center"><button class="btn gold big" id="rv">Reveal Answer</button></div><div id="ans"></div>`;
         if(secs){ iv=setInterval(()=>{ left--; const e=$('#tl',z); if(e) e.textContent=left; if(left<=5&&left>0) SFX.tick(); if(left<=0){ clearInterval(iv); SFX.buzz(); } },1000); }
         $('#rv',z).onclick=()=>{ clearInterval(iv); SFX.right(); $('#rv',z).remove();
@@ -6372,7 +6372,7 @@ async function renderJeopardy(m){
     }
     function final(){
       const [cat, q, a]=jp.fj; const mm=modal('<div id="fz"></div>',{full:true,onClose:board}); mm.classList.add('jblue'); const z=$('#fz',mm);
-      z.innerHTML=`<div class="clue" style="color:#FCD34D">🎯 FINAL JEOPARDY</div><div class="clue" style="font-size:1.6rem">Category: ${esc(cat)}</div>
+      z.innerHTML=`<div class="clue" style="color:#FCD34D">🎯 FINAL WAGER</div><div class="clue" style="font-size:1.6rem">Category: ${esc(cat)}</div>
         <p style="text-align:center">Each ${teams[0].solo?'player':'team'} secretly locks in a wager (up to its score; at $0 or below, wager $0).</p>
         <div class="teams">${teams.map((x,i)=>`<div class="team" style="--tc:${x.col}">${faceOf(i,40)}<b>${esc(x.solo?first(x.n):x.n)}</b> · $${x.s}<input type="password" inputmode="numeric" data-w="${i}" placeholder="wager" style="width:100%;margin-top:.3rem"><button class="btn" data-lock="${i}" style="margin-top:.3rem;width:100%">Lock</button></div>`).join('')}</div>
         <p style="text-align:center"><button class="btn gold big" id="fgo" disabled>Reveal Final Clue</button></p>`;
@@ -6404,7 +6404,7 @@ async function renderJeopardy(m){
 }
 
 /* =====================================================================
-   ARENA LIVE — Kahoot-style live quiz with avatars
+   ARENA LIVE — game-show-style live quiz with avatars
    Lobby (avatars pop in) → question → reveal + chart → leaderboard → podium.
    Accuracy mode (default): full points for every correct answer, no speed pressure.
    Speed mode: up to +500 for fast correct answers. Answer streaks add a bonus.
@@ -6551,7 +6551,7 @@ function renderArenaLiveStudent(m){
 }
 
 /* =====================================================================
-   ESCAPE ROOM — Genially-style breakout for any unit (solo, self-paced)
+   ESCAPE ROOM — interactive breakout for any unit (solo, self-paced)
    Four locked objects in an archive room. Each puzzle earns a digit:
    ▲ Filing cabinet: 3 questions right · ◆ Sealed letter: primary source evidence
    ● Wall map: vocabulary match · ■ Grandfather clock: put events in order.
@@ -6704,8 +6704,8 @@ function renderEscape(m){
 /* =====================================================================
    GAME NIGHT — smartboard games for the whole class (no devices needed)
    Shared: roster teams/players with avatars, question flow (teacher taps
-   the answer the team says), podium. Games: The Floor, Grudgeball,
-   Treasure Chests, Hot Seat, Review Four, Summit Squad (race).
+   the answer the team says), podium. Games: Territory Takeover, Rival Rebound,
+   Treasure Chests, Prize Ladder, Four in a Row, Summit Squad (race).
    Same unit questions, different "wrapper" every day.
    ===================================================================== */
 const GN = {roster:null, rosterFor:null, period:'all', absent:new Set(), names:''};
@@ -6825,10 +6825,10 @@ function gnPodium(cons, score, title, onClose){
 }
 const gnTopBar = (title, extra='') => `<div class="spread gn-top"><button class="back" data-back>${t('back')}</button><b class="gn-title">${title}</b><div class="row">${extra}<button class="btn" id="gEnd">🏁 End game</button></div></div>`;
 
-/* =============================== THE FLOOR =============================== */
+/* ======================== TERRITORY TAKEOVER ======================== */
 function renderFloor(m){
-  gnSetup(m,{ key:'floor', title:'The Floor', icon:'🟦', color:'#1D4ED8', kind:'players', minPlayers:4,
-    blurb:'Every student owns a square of the floor. Win head-to-head duels to take over your opponent\'s territory. The last one standing owns the floor.',
+  gnSetup(m,{ key:'floor', title:'Territory Takeover', icon:'🗺️', color:'#1D4ED8', kind:'players', minPlayers:4,
+    blurb:'Every student owns a square of the map. Win head-to-head duels to take over your opponent\'s territory. The last one standing takes over the map.',
     rules:['The <b>Randomizer</b> picks a challenger, who picks a neighbor to duel.','Each duelist has a <b>chess clock</b>. Answer right and the clock switches to your opponent.','Wrong answers can try again. <b>Pass</b> costs 3 seconds.','Run out of time and you lose all your squares to the winner.'],
     defaults:{secs:30},
     optsHTML:o=>`<div class="field"><label>Clock per player</label><select data-opt="secs">${[20,30,45,60].map(s=>`<option value="${s}" ${s===o.secs?'selected':''}>${s} seconds</option>`).join('')}</select></div>`,
@@ -6845,7 +6845,7 @@ function floorGame(m, P, o){
   board();
   function board(msg){
     const A=alive(), ch=chal!=null&&A.includes(chal)?chal:null, targets=ch!=null?adj(ch):new Set();
-    m.innerHTML=`${gnTopBar('🟦 The Floor',`<button class="btn gold" id="fRand">🎲 Randomizer</button>`)}
+    m.innerHTML=`${gnTopBar('🗺️ Territory Takeover',`<button class="btn gold" id="fRand">🎲 Randomizer</button>`)}
       <div class="fl-wrap"><div class="fl-grid" style="--c:${cols}">${tiles.map((p,i)=>{ const s=P[p].members[0], isC=p===ch, isT=targets.has(p);
         return `<button class="fl-tile ${isC?'chal':''} ${isT?'target':''}" data-tile="${i}" style="--pc:${P[p].col}" ${isT?'':'tabindex="-1"'}>${avaHTML(avaSpec(s),{size:46, look:{frame:s.look.frame}, comp:false})}<span>${esc(gnFirst(s.name))}</span></button>`; }).join('')}</div>
       <aside class="fl-side">${ch!=null?`<div class="jp-up">CHALLENGER</div>${avaHTML(avaSpec(P[ch].members[0]),{kind:'full', size:170, look:P[ch].members[0].look})}<div class="jp-who">${esc(gnFirst(P[ch].n))}</div><p class="small">${targets.size?'Tap a glowing neighbor to duel.':'No neighbors left!'}</p><button class="btn ghost" id="fClr">Choose someone else</button>`
@@ -6879,14 +6879,14 @@ function floorGame(m, P, o){
       setTimeout(()=>{ frozen=false; last=performance.now(); q=next(); wrong=new Set(); if(clock[act]<=0){ running=false; return end(act===a?b:a, act); } draw(); },1100); }
     async function end(w, l){ cancelAnimationFrame(raf); SFX.buzz(); for(let i=0;i<N;i++) if(tiles[i]===l) tiles[i]=w; mm.close();
       const s=P[w].members[0]; await celebrate(avaSpec(s), s.look, `${gnFirst(s.name)} wins the duel!`, `${gnFirst(P[l].n)}'s squares are taken over`);
-      chal=alive().length>1?w:null; board(chal!=null?'':`${gnFirst(P[w].n)} owns the floor!`); }
+      chal=alive().length>1?w:null; board(chal!=null?'':`${gnFirst(P[w].n)} takes over the map!`); }
   }
-  function finish(){ const counts=P.map((_,i)=>count(i)); gnPodium(P.map((x,i)=>({...x, s:counts[i], scLabel:()=>`${counts[i]} squares`})), x=>x.s, 'owns the floor!', ()=>board()); }
+  function finish(){ const counts=P.map((_,i)=>count(i)); gnPodium(P.map((x,i)=>({...x, s:counts[i], scLabel:()=>`${counts[i]} squares`})), x=>x.s, 'takes over the map!', ()=>board()); }
 }
 
-/* =============================== GRUDGEBALL =============================== */
+/* =============================== RIVAL REBOUND =============================== */
 function renderGrudge(m){
-  gnSetup(m,{ key:'grudge', title:'Grudgeball', icon:'🏀', color:'#EA580C', kind:'teams', minTeams:2, maxTeams:6,
+  gnSetup(m,{ key:'grudge', title:'Rival Rebound', icon:'🏀', color:'#EA580C', kind:'teams', minTeams:2, maxTeams:6,
     blurb:'Every team starts with ✕s on the board. Answer right, take a shot, and erase ✕s from your rivals. The last team with ✕s standing wins.',
     rules:['A right answer erases <b>1 ✕</b> from any rival.','Then shoot: the <b>2-pointer</b> is easier, the <b>3-pointer</b> erases more.','A team at zero is never out: a right answer <b>revives</b> it with 2 ✕s.','You can take at most 3 ✕s from one team per turn.'],
     defaults:{start:10},
@@ -6898,7 +6898,7 @@ function grudgeGame(m, T, o){
   board();
   function board(){
     const live=T.filter(x=>x.s>0).length;
-    m.innerHTML=`${gnTopBar('🏀 Grudgeball')}
+    m.innerHTML=`${gnTopBar('🏀 Rival Rebound')}
       <div class="gb-teams">${T.map((x,i)=>`<button class="gb-team ${i===cur?'cur':''} ${x.s<=0?'out':''} ${phase==='erase'&&i!==cur&&x.s>0&&(taken[i]||0)<3?'target':''}" data-t="${i}" style="--tc:${x.col}">
         <div class="row" style="justify-content:center">${gnHeads(x,30)}</div><b>${esc(gnLabel(x))}</b>
         <div class="gb-x">${Array.from({length:Math.max(o.start,x.s)},(_,k)=>`<i class="${k<x.s?'on':''}">✕</i>`).join('')}</div><span class="gb-n">${x.s}</span></button>`).join('')}</div>
@@ -6936,7 +6936,7 @@ function grudgeGame(m, T, o){
     }
   }); }
   function endTurn(){ phase='ask'; pts=0; taken={}; T[cur].up++; cur=(cur+1)%T.length; board(); }
-  function finish(){ gnPodium(T.map(x=>({...x, scLabel:y=>`${y.s} ✕ left`})), x=>x.s, 'wins Grudgeball!', ()=>board()); }
+  function finish(){ gnPodium(T.map(x=>({...x, scLabel:y=>`${y.s} ✕ left`})), x=>x.s, 'wins Rival Rebound!', ()=>board()); }
 }
 
 /* ============================ TREASURE CHESTS ============================ */
@@ -6966,7 +6966,7 @@ function chestGame(m, T, o){
     const lead=Math.max(...T.map(x=>x.s));
     m.innerHTML=`${gnTopBar('🧰 Treasure Chests',`<span class="chip">Turn <b>${Math.min(turn+1,total)}</b>/${total}</span>`)}
       ${note?`<div class="gn-banner">${note}</div>`:''}
-      <div class="gb-teams">${T.map((x,i)=>`<button class="gb-team ${i===cur&&!pending?'cur':''} ${pending&&i!==cur?'target':''} ${x.s===lead&&lead>0?'lead':''}" data-t="${i}" style="--tc:${x.col}"><div class="row" style="justify-content:center">${gnHeads(x,30)}</div><b>${esc(gnLabel(x))}</b><span class="tc-gold">🪙 ${x.s}</span></button>`).join('')}</div>
+      <div class="gb-teams">${T.map((x,i)=>`<button class="gb-team ${i===cur&&!pending?'cur':''} ${pending&&i!==cur&&(pending.c.k!=='steal'||x.s>0)?'target':''} ${x.s===lead&&lead>0?'lead':''}" data-t="${i}" style="--tc:${x.col}"><div class="row" style="justify-content:center">${gnHeads(x,30)}</div><b>${esc(gnLabel(x))}</b><span class="tc-gold">🪙 ${x.s}</span></button>`).join('')}</div>
       <div class="gb-ctl">${pending?`<div class="gn-banner">${pending.c.icon} ${esc(pending.c.t)}: tap the team to target.</div>`
         : turn>=total?`<p style="text-align:center"><button class="btn gold big" id="tcFin">🏆 Final results</button></p>`
         : `<div class="row" style="justify-content:center;gap:1rem">${gnFace(T[cur],64)}<div><div class="jp-up" style="color:#B45309">UP NOW</div><b style="font-size:1.3rem">${esc(gnWho(T[cur])?gnFirst(gnWho(T[cur]).name)+' · ':'')}${esc(gnLabel(T[cur]))}</b></div><button class="btn gold big" id="tcAsk">❓ Ask a question</button></div>`}</div>`;
@@ -6984,18 +6984,18 @@ function chestGame(m, T, o){
       const good=!['lose','dust'].includes(c.k); good?(SFX.fanfare(),confetti(40)):SFX.buzz();
       const others=T.some((y,j)=>j!==cur&&(c.k!=='steal'||y.s>0));
       $('#tcR',z).innerHTML=`<div class="gn-verdict ${good?'ok':'no'}">${c.icon} ${esc(c.t)}</div><p style="text-align:center"><button class="btn gold big" id="tcOk">${c.target&&others?'Choose a team ▶':'Continue'}</button></p>`;
-      $('#tcOk',z).onclick=()=>{ mm.close(); if(c.target&&others){ pending={c}; board(); } else { c.f(T,cur); endTurn(`${c.icon} ${esc(gnLabel(x))}: ${esc(c.t)}`); } }; });
+      $('#tcOk',z).onclick=()=>{ mm.close(); if(c.target&&others){ pending={c}; board(); } else if(c.target){ T[cur].s+=5; endTurn(`${c.icon} Nobody has gold to take yet, so ${esc(gnLabel(x))} gets +5 instead.`); } else { c.f(T,cur); endTurn(`${c.icon} ${esc(gnLabel(x))}: ${esc(c.t)}`); } }; });
   }
   function endTurn(note){ T[cur].up++; turn++; cur=(cur+1)%T.length; board(note); }
   function finish(){ gnPodium(T.map(x=>({...x, scLabel:y=>`🪙 ${y.s}`})), x=>x.s, 'strikes gold!', ()=>board()); }
 }
 
-/* =============================== HOT SEAT =============================== */
+/* ============================== PRIZE LADDER ============================== */
 const HS_LADDER=[100,200,300,500,1000,2000,4000,8000,16000,32000], HS_SAFE=4;
 function renderHotSeat(m){
-  gnSetup(m,{ key:'hotseat', title:'Hot Seat', icon:'💺', color:'#7C3AED', kind:'players', minPlayers:2,
-    blurb:'One student takes the hot seat and climbs the money ladder, one question at a time, with three lifelines. Walk away with the money or risk it all.',
-    rules:['10 questions, from $100 to <b>$32,000</b>. $1,000 is a <b>safe haven</b>.','Lifelines: <b>50:50</b>, <b>Ask the Class</b> (hands up), <b>Phone a Classmate</b> (30 seconds).','A wrong answer drops you to the last safe haven. Or <b>walk away</b> with what you have.','The top 3 earners finish on the podium.'],
+  gnSetup(m,{ key:'hotseat', title:'Prize Ladder', icon:'🪜', color:'#7C3AED', kind:'players', minPlayers:2,
+    blurb:'One student steps up to the ladder and climbs the money ladder, one question at a time, with three lifelines. Walk away with the money or risk it all.',
+    rules:['10 questions, from $100 to <b>$32,000</b>. $1,000 is a <b>safe haven</b>.','Lifelines: <b>Cut Two</b>, <b>Ask the Class</b> (hands up), <b>Huddle with a Classmate</b> (30 seconds).','A wrong answer drops you to the last safe haven. Or <b>walk away</b> with what you have.','The top 3 earners finish on the podium.'],
     start:(cons)=>hotGame(m,cons) });
 }
 function hotGame(m, P){
@@ -7003,8 +7003,8 @@ function hotGame(m, P){
   lobby();
   function lobby(note){
     const rest=P.filter((_,i)=>!played.has(i)), top=[...P.keys()].filter(i=>played.has(i)).sort((a,b)=>P[b].s-P[a].s).slice(0,5);
-    m.innerHTML=`${gnTopBar('💺 Hot Seat')}${note?`<div class="gn-banner">${note}</div>`:''}
-      <div class="hs-lobby"><div class="card hs-pick"><h2>Who's in the hot seat?</h2><button class="btn gold big" id="hsRand" ${rest.length?'':'disabled'}>🎲 Random contestant</button>
+    m.innerHTML=`${gnTopBar('🪜 Prize Ladder')}${note?`<div class="gn-banner">${note}</div>`:''}
+      <div class="hs-lobby"><div class="card hs-pick"><h2>Who's climbing the ladder?</h2><button class="btn gold big" id="hsRand" ${rest.length?'':'disabled'}>🎲 Random contestant</button>
         <div class="jp-pool" style="margin-top:.8rem">${P.map((x,i)=>`<button class="jp-chip ${played.has(i)?'ghost':''}" data-p="${i}" ${played.has(i)?'disabled':''}>${avaHTML(avaSpec(x.members[0]),{size:28,look:{frame:x.members[0].look.frame},comp:false})}<span>${esc(gnFirst(x.n))}</span></button>`).join('')}</div></div>
       <div class="card"><h2>🏆 Leaderboard</h2>${top.length?top.map((i,k)=>`<div class="row" style="margin:.3rem 0">${k+1}. ${avaHTML(avaSpec(P[i].members[0]),{size:30,look:P[i].members[0].look,comp:false})}<b style="flex:1">${esc(gnFirst(P[i].n))}</b><span>$${P[i].s.toLocaleString()}</span></div>`).join(''):'<p class="muted">No one has played yet.</p>'}</div></div>`;
     bindBack(m); $('#gEnd',m).onclick=finish;
@@ -7014,40 +7014,40 @@ function hotGame(m, P){
   function start(i){ seat=i; step=0; life={f:1,a:1,p:1}; played.add(i); SFX.fanfare(); ladder(); }
   function ladder(msg){
     const x=P[seat], s=x.members[0];
-    m.innerHTML=`${gnTopBar('💺 Hot Seat')}<div class="hs-wrap"><div class="hs-seat">${avaHTML(avaSpec(s),{kind:'full', size:230, look:s.look})}<div class="jp-who">${esc(s.name)}</div>
+    m.innerHTML=`${gnTopBar('🪜 Prize Ladder')}<div class="hs-wrap"><div class="hs-seat">${avaHTML(avaSpec(s),{kind:'full', size:230, look:s.look})}<div class="jp-who">${esc(s.name)}</div>
         <div class="hs-bank">Banked: <b>$${(step?HS_LADDER[step-1]:0).toLocaleString()}</b></div>${msg?`<p>${msg}</p>`:''}
         <div class="row" style="justify-content:center"><button class="btn gold big" id="hsQ">❓ Question ${step+1} for $${HS_LADDER[step].toLocaleString()}</button>${step?`<button class="btn" id="hsWalk">🚶 Walk away</button>`:''}</div>
-        <div class="hs-life">${[['f','50:50'],['a','👥 Ask the Class'],['p','📞 Phone a Classmate']].map(([k,l])=>`<span class="hs-ll ${life[k]?'':'used'}">${l}</span>`).join('')}</div></div>
+        <div class="hs-life">${[['f','Cut Two'],['a','👥 Ask the Class'],['p','🤝 Huddle with a Classmate']].map(([k,l])=>`<span class="hs-ll ${life[k]?'':'used'}">${l}</span>`).join('')}</div></div>
       <ol class="hs-ladder" reversed>${HS_LADDER.map((v,k)=>`<li class="${k===step?'on':''} ${k<step?'done':''} ${k===HS_SAFE?'safe':''}">$${v.toLocaleString()}</li>`).reverse().join('')}</ol></div>`;
     bindBack(m); $('#gEnd',m).onclick=finish;
     $('#hsQ',m).onclick=askQ; const w=$('#hsWalk',m); if(w) w.onclick=()=>out(HS_LADDER[step-1], `${esc(gnFirst(s.name))} walks away with $${HS_LADDER[step-1].toLocaleString()}!`);
   }
   async function askQ(){
     const x=P[seat], s=x.members[0];
-    const lls=`${life.f?'<button class="btn" id="ll5">50:50</button>':''}${life.a?'<button class="btn" id="llA">👥 Ask the Class</button>':''}${life.p?'<button class="btn" id="llP">📞 Phone a Classmate</button>':''}`;
+    const lls=`${life.f?'<button class="btn" id="ll5">Cut Two</button>':''}${life.a?'<button class="btn" id="llA">👥 Ask the Class</button>':''}${life.p?'<button class="btn" id="llP">🤝 Huddle with a Classmate</button>':''}`;
     const r=await gnAsk(u, next(), {title:`$${HS_LADDER[step].toLocaleString()}`, solo:true, suspense:1600, lifelines:lls,
-      who:`${avaHTML(avaSpec(s),{size:56,look:s.look})}<div><div class="small" style="color:#FCD34D;font-weight:800;letter-spacing:.08em">IN THE HOT SEAT</div><b>${esc(s.name)}</b></div>`,
+      who:`${avaHTML(avaSpec(s),{size:56,look:s.look})}<div><div class="small" style="color:#FCD34D;font-weight:800;letter-spacing:.08em">ON THE LADDER</div><b>${esc(s.name)}</b></div>`,
       onReady:(z,api)=>{
         const f=$('#ll5',z); if(f) f.onclick=()=>{ life.f=0; f.remove(); shuffle(api.order.filter(k=>k!==0)).slice(0,2).forEach(api.eliminate); SFX.click(); };
         const a=$('#llA',z); if(a) a.onclick=()=>{ life.a=0; a.remove(); const box=document.createElement('div'); box.className='hs-poll';
           box.innerHTML=`<p class="small" style="color:#E2E8F0">Class, raise your hand for each letter. Tap + to count hands.</p><div class="row" style="justify-content:center">${api.order.map((oi,k)=>`<div class="hs-pc"><b>${LETTERS[k]}</b><span id="pc${k}">0</span><button class="iconbtn" data-pc="${k}">＋</button></div>`).join('')}</div>`;
           $('#gFb',z).before(box); const cnt=api.order.map(()=>0); $$('[data-pc]',box).forEach(b=>b.onclick=()=>{ const k=+b.dataset.pc; cnt[k]++; $('#pc'+k,box).textContent=cnt[k]; SFX.click(); }); };
         const p=$('#llP',z); if(p) p.onclick=()=>{ life.p=0; p.remove(); const others=P.filter((_,i)=>i!==seat); const box=document.createElement('div'); box.className='hs-poll';
-          box.innerHTML=`<p class="small" style="color:#E2E8F0">Pick a classmate to phone. They get 30 seconds to help.</p><div class="row" style="justify-content:center;flex-wrap:wrap">${others.slice(0,30).map(o=>`<button class="jp-chip" data-ph="${esc(o.n)}">${avaHTML(avaSpec(o.members[0]),{size:26,comp:false})}<span>${esc(gnFirst(o.n))}</span></button>`).join('')}</div>`;
-          $('#gFb',z).before(box); $$('[data-ph]',box).forEach(b=>b.onclick=()=>{ let t2=30; box.innerHTML=`<div class="gn-verdict ok">📞 Calling ${esc(gnFirst(b.dataset.ph))}… <span id="phT">30</span>s</div>`; const iv=setInterval(()=>{ t2--; const e=$('#phT',box); if(!e) return clearInterval(iv); e.textContent=t2; if(t2<=5) SFX.tick(); if(t2<=0){ clearInterval(iv); SFX.buzz(); e.parentNode.textContent='📞 Time\'s up!'; } },1000); }); };
+          box.innerHTML=`<p class="small" style="color:#E2E8F0">Pick a classmate to huddle with. They get 30 seconds to help.</p><div class="row" style="justify-content:center;flex-wrap:wrap">${others.slice(0,30).map(o=>`<button class="jp-chip" data-ph="${esc(o.n)}">${avaHTML(avaSpec(o.members[0]),{size:26,comp:false})}<span>${esc(gnFirst(o.n))}</span></button>`).join('')}</div>`;
+          $('#gFb',z).before(box); $$('[data-ph]',box).forEach(b=>b.onclick=()=>{ let t2=30; box.innerHTML=`<div class="gn-verdict ok">🤝 Huddling with ${esc(gnFirst(b.dataset.ph))}… <span id="phT">30</span>s</div>`; const iv=setInterval(()=>{ t2--; const e=$('#phT',box); if(!e) return clearInterval(iv); e.textContent=t2; if(t2<=5) SFX.tick(); if(t2<=0){ clearInterval(iv); SFX.buzz(); e.parentNode.textContent='🤝 Time\'s up!'; } },1000); }); };
       }});
     if(r.skipped) return ladder();
     if(r.ok){ step++; if(step>=HS_LADDER.length) return out(HS_LADDER[HS_LADDER.length-1], `🏆 ${esc(gnFirst(s.name))} reached the top: $${HS_LADDER[HS_LADDER.length-1].toLocaleString()}!`, true); SFX.coin(); if(step===HS_SAFE+1) toast('🛟 Safe haven reached: $1,000 is locked in!'); ladder(); }
     else out(step>HS_SAFE?HS_LADDER[HS_SAFE]:0, `${esc(gnFirst(s.name))} leaves with $${(step>HS_SAFE?HS_LADDER[HS_SAFE]:0).toLocaleString()}.`);
   }
   async function out(amount, note, big){ const x=P[seat], s=x.members[0]; x.s=Math.max(x.s,amount); if(amount>=1000||big) await celebrate(avaSpec(s), s.look, `$${amount.toLocaleString()}!`, gnFirst(s.name)); seat=null; lobby(note); }
-  function finish(){ gnPodium(P.filter((_,i)=>played.has(i)).map(x=>({...x, scLabel:y=>`$${y.s.toLocaleString()}`})).concat(played.size?[]:P.slice(0,1)), x=>x.s, 'tops the Hot Seat!', ()=>seat==null?lobby():ladder()); }
+  function finish(){ gnPodium(P.filter((_,i)=>played.has(i)).map(x=>({...x, scLabel:y=>`$${y.s.toLocaleString()}`})).concat(played.size?[]:P.slice(0,1)), x=>x.s, 'tops the Prize Ladder!', ()=>seat==null?lobby():ladder()); }
 }
 
-/* =============================== REVIEW FOUR =============================== */
+/* ============================== FOUR IN A ROW ============================== */
 function renderFour(m){
-  gnSetup(m,{ key:'four', title:'Review Four', icon:'🔴', color:'#DC2626', kind:'teams', minTeams:2, maxTeams:2, defTeams:2,
-    blurb:'Connect Four, where every move has to be earned. Answer right to drop a disc. Strategy matters as much as knowing your history.',
+  gnSetup(m,{ key:'four', title:'Four in a Row', icon:'🔴', color:'#DC2626', kind:'teams', minTeams:2, maxTeams:2, defTeams:2,
+    blurb:'four-in-a-row, where every move has to be earned. Answer right to drop a disc. Strategy matters as much as knowing your history.',
     rules:['Teams take turns answering.','A right answer lets you <b>drop a disc</b> in any column.','A wrong answer gives the other team a <b>steal</b>: answer the same question to drop a bonus disc.','Four in a row wins the round. Play best of 3.'],
     start:(cons)=>fourGame(m,cons) });
 }
@@ -7059,7 +7059,7 @@ function fourGame(m, T){
   function board(note){
     const cells=Array.from({length:C},(_,c)=>`<button class="r4-col" data-col="${c}" ${phase==='drop'&&grid[0][c]===-1?'':'disabled'}>${Array.from({length:R},(_,r)=>{ const v=grid[r][c], win=line&&line.some(([a,b])=>a===r&&b===c); return `<span class="r4-cell ${v>=0?'p'+v:''} ${win?'win':''}"></span>`; }).join('')}</button>`).join('');
     const side=i=>`<div class="r4-side ${i===cur&&!line?'on':''}" style="--tc:${T[i].col}">${gnHeads(T[i],34,5)}<b>${esc(gnLabel(T[i]))}</b><span class="r4-disc"></span><span class="small">${wins[i]} round${wins[i]===1?'':'s'}</span></div>`;
-    m.innerHTML=`${gnTopBar('🔴 Review Four',`<span class="chip">Rounds: <b>${wins[0]}</b> – <b>${wins[1]}</b></span>`)}${note?`<div class="gn-banner">${note}</div>`:''}
+    m.innerHTML=`${gnTopBar('🔴 Four in a Row',`<span class="chip">Rounds: <b>${wins[0]}</b> – <b>${wins[1]}</b></span>`)}${note?`<div class="gn-banner">${note}</div>`:''}
       <div class="r4-wrap">${side(0)}<div class="r4-board ${phase==='drop'?'drop':''}">${cells}</div>${side(1)}</div>
       <div class="gb-ctl">${line?`<p style="text-align:center"><button class="btn gold big" id="r4Next">${Math.max(...wins)>=2?'🏆 Final results':'▶ Next round'}</button></p>`
       : phase==='drop'?`<div class="gn-banner">${esc(gnLabel(T[cur]))}: tap a column to drop your disc${steal?' (steal!)':''}.</div>`
@@ -7088,7 +7088,7 @@ function fourGame(m, T){
   function check(r,c,p){ for(const [dr,dc] of [[0,1],[1,0],[1,1],[1,-1]]){ const cells=[[r,c]];
       for(const s of [1,-1]){ let rr=r+dr*s, cc=c+dc*s; while(rr>=0&&rr<R&&cc>=0&&cc<C&&grid[rr][cc]===p){ cells.push([rr,cc]); rr+=dr*s; cc+=dc*s; } }
       if(cells.length>=4) return cells; } return null; }
-  function finish(){ T[0].s=wins[0]; T[1].s=wins[1]; gnPodium(T.map(x=>({...x, scLabel:y=>`${y.s} round${y.s===1?'':'s'}`})), x=>x.s, 'wins Review Four!', ()=>board()); }
+  function finish(){ T[0].s=wins[0]; T[1].s=wins[1]; gnPodium(T.map(x=>({...x, scLabel:y=>`${y.s} round${y.s===1?'':'s'}`})), x=>x.s, 'wins Four in a Row!', ()=>board()); }
 }
 
 /* ===================== SUMMIT SQUAD (team race, revamped) ===================== */

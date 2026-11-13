@@ -1,6 +1,6 @@
 # Classroom Arena
 
-Mastery-based review games, primary-source gallery walks, Smartboard Jeopardy and a live mastery dashboard — with a Florida U.S. History (SS.912.A) curriculum built in.
+Mastery-based review games, primary-source gallery walks, Smartboard Category Clash and a live mastery dashboard — with a Florida U.S. History (SS.912.A) curriculum built in.
 
 **Live site:** https://etothesmith.github.io/classroom-arena/
 

@@ -59,7 +59,7 @@ Image 1: a sheet of 8 app icons arranged in a 4-by-2 grid with wide, even white 
 3) a gold picture frame holding a tiny parchment document (Gallery Walk)
 4) a rounded mountain with a small amber flag on the peak (Summit)
 5) a game controller with royal-blue buttons (Arcade)
-6) a 3-by-3 grid of royal-blue game-show tiles, one tile glowing amber (Jeopardy)
+6) a 3-by-3 grid of royal-blue game-show tiles, one tile glowing amber (Category Clash)
 7) a classroom smartboard with a speech bubble beside it (Live Question)
 8) a picture frame with three small circles below it, like viewers watching together (Live Gallery Walk)
 Landscape 2:1. Icons must not touch each other.

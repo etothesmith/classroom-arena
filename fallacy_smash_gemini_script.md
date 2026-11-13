@@ -1,4 +1,4 @@
-# Whack-a-Fallacy — Gemini Art Script
+# Fallacy Smash — Gemini Art Script
 
 **Total: 2 Gemini generations** (3 if you also want the optional mascot pose). Do it all in **one new Gemini chat**, then send Claude the images in one zip.
 
@@ -9,7 +9,7 @@
 ## Step 0: Paste once at the start of a new Gemini chat
 
 ```
-You are the game artist for "Whack-a-Fallacy," a U.S. History classroom game for high school students. Students read statements on wooden signs that pop out of burrows, then bop the MYTHS and let the FACTS go.
+You are the game artist for "Fallacy Smash," a U.S. History classroom game for high school students. Students read statements on wooden signs that pop out of burrows, then bop the MYTHS and let the FACTS go.
 
 STYLE for every image in this chat:
 - Bright, friendly 2D game art: clean vector shapes, soft shading, rounded corners, no harsh outlines.

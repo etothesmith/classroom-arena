@@ -789,6 +789,63 @@ img.lv-arti.ped{opacity:.55;filter:grayscale(.4) drop-shadow(0 4px 8px rgba(0,0,
 @media (max-width:700px){.lq-opt{grid-template-columns:36px 1fr}.lq-tally,.lq-bar{grid-column:1/-1}}
 .r4-col:disabled{opacity:1}
 .gn-card h3{color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.25)}
+
+/* ====================== GAME NIGHT ART ====================== */
+main.gn-scene::before{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(rgba(2,6,23,.5),rgba(2,6,23,.72)),var(--gnbg) center/cover no-repeat;filter:blur(2px) saturate(1.1);transform:scale(1.03)}
+main.gn-scene>.spread .back,main.gn-scene>.back,main.gn-scene .gn-title,main.gn-scene>.spread h1,main.gn-scene>h1{color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.5)}
+main.gn-scene>.spread .back,main.gn-scene>.back{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.3)}
+main.gn-scene .gn-top .chip{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.3);color:#fff}
+main.gn-scene .gn-top .chip b{color:#FCD34D}
+main.gn-scene .gb-team{background:color-mix(in srgb,var(--tc) 10%,rgba(255,255,255,.94));backdrop-filter:blur(4px)}
+main.gn-scene .gb-ctl>.row{background:rgba(255,255,255,.92);border-radius:18px;padding:.6rem 1rem;max-width:900px;margin:0 auto}
+.gn-ico img{width:64px;height:64px;object-fit:contain;filter:drop-shadow(0 4px 6px rgba(0,0,0,.35))}
+.gn-card .gn-ico{display:block;height:64px}
+/* rival rebound */
+.gb-x i img{width:22px;height:22px;object-fit:contain;filter:drop-shadow(0 1px 1px rgba(0,0,0,.4)) hue-rotate(0deg)}
+.gb-x i.on img{filter:drop-shadow(0 1px 2px rgba(0,0,0,.6)) brightness(.35) sepia(1) saturate(4) hue-rotate(var(--hr,0deg))}
+.sh-hoopart{position:absolute;top:10px;right:10%;width:170px}.sh-hoopart img{width:100%}
+.sh-swish{position:absolute;top:0;right:9%;width:180px;opacity:0;transform:scale(.4);transition:all .35s cubic-bezier(.2,1.6,.4,1);pointer-events:none}.sh-swish.on{opacity:1;transform:scale(1.1)}.sh-swish img{width:100%}
+.sh-ball img{width:64px;height:64px;filter:drop-shadow(0 6px 6px rgba(0,0,0,.4))}
+@keyframes swish{50%{left:52%;bottom:220px}100%{left:calc(90% - 120px);bottom:140px;transform:scale(.75) rotate(300deg)}}
+/* four in a row discs */
+.r4-cell.p0{background:url(arena/gn/disc_red.webp) center/112% no-repeat,#DC2626}
+.r4-cell.p1{background:url(arena/gn/disc_gold.webp) center/112% no-repeat,#F59E0B}
+.r4-side:nth-child(1) .r4-disc{background:url(arena/gn/disc_red.webp) center/112% no-repeat}
+.r4-side:last-child .r4-disc{background:url(arena/gn/disc_gold.webp) center/112% no-repeat}
+.r4-board{box-shadow:inset 0 -8px 0 rgba(0,0,0,.25),0 14px 30px rgba(0,0,0,.45)}
+/* chests */
+.tc-chest img{max-width:160px;max-height:140px;filter:drop-shadow(0 8px 10px rgba(0,0,0,.5))}
+.tc-chest:not(:disabled) img{animation:chestBob 1.6s ease-in-out infinite}.tc-chest:nth-child(2) img{animation-delay:.25s}.tc-chest:nth-child(3) img{animation-delay:.5s}
+@keyframes chestBob{50%{transform:translateY(-8px) rotate(-2deg)}}
+.tc-img{width:110px;height:110px;object-fit:contain;filter:drop-shadow(0 6px 8px rgba(0,0,0,.45))}
+.tc-chest.open .tc-img{animation:popIn .45s cubic-bezier(.2,1.6,.4,1)}
+.tc-coin{width:34px;height:34px;object-fit:contain;vertical-align:middle}
+/* summit */
+.sq-mtn{background:url(arena/gn/bg_squad.webp) center/cover}
+.sq-mtn::before,.sq-mtn::after{display:none}
+.sq-rock img{width:44px;height:44px;object-fit:contain}.sq-rock{top:-26px}
+.sq-flag{width:28px;height:28px;object-fit:contain;vertical-align:-8px;margin-right:.2rem}
+.btn-ico{width:22px;height:22px;object-fit:contain;vertical-align:-5px}
+/* prize ladder */
+.hs-ladder{position:relative;overflow:hidden}.hs-ladart{position:absolute;right:-30px;top:4%;height:92%;opacity:.18;pointer-events:none}
+.hs-ladder li{position:relative}
+.ll-btn{display:inline-flex;align-items:center;gap:.4rem}.ll-btn img{width:34px;height:34px;object-fit:contain}
+/* territory duel */
+.fd-vs{width:110px;align-self:center;margin:-.6rem 0 -.2rem;filter:drop-shadow(0 6px 10px rgba(0,0,0,.5));animation:vsPulse 1.2s ease-in-out infinite}
+@keyframes vsPulse{50%{transform:scale(1.08) rotate(-3deg)}}
+.fd-clk{width:70px;margin-bottom:-.4rem}
+/* effects */
+.gn-fx{width:72px;height:72px;object-fit:contain;vertical-align:middle;margin-right:.4rem;animation:popIn .45s cubic-bezier(.2,1.6,.4,1)}
+.pod-trophy{width:64px;height:64px;object-fit:contain;vertical-align:middle}
+.podium-wrap{position:relative}.pod-fw{position:absolute;top:-10px;width:200px;opacity:.9;animation:fwPop 1.8s ease-out infinite;pointer-events:none}
+.pod-fw.l{left:2%}.pod-fw.r{right:2%;animation-delay:.9s}
+@keyframes fwPop{0%{transform:scale(.2);opacity:0}25%{opacity:1}100%{transform:scale(1.15);opacity:0}}
+main.gn-scene{background:transparent!important;min-height:calc(100vh - 120px)}
+html:has(main.gn-scene){background:#0B1220}
+body:has(main.gn-scene){background:transparent!important}
+main.gn-scene .r4-side{background:rgba(255,255,255,.94)}
+.gb-x i.cx{display:inline-block;width:24px;height:24px;background:#D1D5DB;-webkit-mask:url(arena/gn/chalk_x.webp) center/contain no-repeat;mask:url(arena/gn/chalk_x.webp) center/contain no-repeat}
+.gb-x i.cx.on{background:var(--tc)}
 </style></head>
 <body><header id="topbar"></header><main id="main"></main>
 <script id="arenaApp">
@@ -3101,7 +3158,7 @@ function renderLive(m){
           <div class="row" style="margin-top:1rem;justify-content:center">${stage==='poll'?`<button class="btn" id="sim">🎲 Simulate 25 votes</button><button class="btn gold big" id="lock">🔒 Lock in the votes</button>`
             : !done?`<button class="btn gold big" id="frz">❄️ ${shown?'Eliminate the next trap':'Freeze: eliminate the traps'}</button>`
             : `<button class="btn" id="again">↺ Re-vote</button>${par?'':'<button class="btn" id="pc">🔁 Parallel Check</button>'}<button class="btn gold big" id="nx2" ${i<u.qs.length-1?'':'disabled'}>Next question ▶</button>`}</div>
-          ${done?`<div class="gn-verdict ok" style="margin-top:.8rem">✅ ${pct(0)}% of the class chose the correct answer</div>${q.r?`<div class="reteach" style="margin-top:.6rem"><h3>📘 ${esc(q.r[0])}</h3><p>${esc(q.r[1])}</p></div>`:''}`:''}</div>`;
+          ${done?`<div class="gn-verdict ok" style="margin-top:.8rem">${typeof gnImg==='function'?gnImg('fx_ice','gn-fx'):''}${pct(0)}% of the class chose the correct answer</div>${q.r?`<div class="reteach" style="margin-top:.6rem"><h3>📘 ${esc(q.r[0])}</h3><p>${esc(q.r[1])}</p></div>`:''}`:''}</div>`;
       bindBack(m);
       $$('[data-t]',m).forEach(b=>b.onclick=()=>{ const k=+b.dataset.t; tally[k]=Math.max(0,tally[k]+ +b.dataset.d); SFX.click(); $(`[data-c="${k}"]`,m).textContent=tally[k]; });
       const sim=$('#sim',m); if(sim) sim.onclick=()=>{ tally.fill(0); for(let s=0;s<25;s++){ const r=Math.random(); tally[r<.5?0:r<.75?1:r<.9?2:3]++; } paint(); };
@@ -3762,7 +3819,7 @@ function renderHostHub(m){
          ['four','🔴','Four in a Row','Four discs in a row, and every disc has to be earned. Wrong answers open a steal.','#DC2626'],
          ['squad','🏔️','Summit Squad','Teams race up the mountain. Rockslides, rope rescues and streak bonuses.','#0E7490'],
          ['live','❄️','Live Question','Hands-up vote, then freeze and knock out each trap answer one by one.','#0369A1']
-        ].map(([k,ic,n,d,c])=>`<button class="gn-card" data-go="${k}" style="--gc:${c}"><span class="gn-ico">${ic}</span><h3>${n}</h3><span class="small">${d}</span></button>`).join('')}
+        ].map(([k,ic,n,d,c])=>`<button class="gn-card" data-go="${k}" style="--gc:${c}"><span class="gn-ico">${arenaArt('gn/icon_'+k)?`<img src="${arenaArt('gn/icon_'+k)}" alt="">`:ic}</span><h3>${n}</h3><span class="small">${d}</span></button>`).join('')}
     </div>
     <h3 class="sect">More on the board</h3>
     <div class="grid g3">
@@ -4621,7 +4678,7 @@ function render(){
   if(!SESSION.ready){ m.innerHTML=`<div style="display:grid;place-items:center;height:60vh">${LOGO_SVG.replace('class="mark"','class="mark" style="width:56px;height:56px;opacity:.8"')}<p class="muted">Loading Classroom Arena…</p></div>`; return; }
   if(!SESSION.type) return renderPublic(m);
   renderHUD();
-  const v=S.view;
+  const v=S.view; if(typeof gnBgFor==='function') gnBgFor(m,v);
   if(SESSION.type==='teacher' && !S.classrooms.length) return renderOnboard(m);
   if(v==='livestu' && SESSION.type==='student') return renderLiveStudent(m);
   if(v==='livesetup' && SESSION.type==='teacher') return renderLiveSetup(m);
@@ -6030,7 +6087,7 @@ function lvDetailHTML(s){ const v=s.vault; if(!v||!v.arts) return `<h3 style="ma
    ===================================================================== */
 const ARENA_DIR = 'arena/';
 const ARENA_SYNC = ['avatar','look','owned','daily','esc','alive'];
-const ARENA_ART_HAVE = new Set(['badge/b_avatar','badge/b_day3','badge/b_day7','badge/b_escape','badge/b_gallery','badge/b_live','badge/b_lvl5','badge/b_q25','badge/b_shop','badge/b_unit','badge/b_vault','badge/b_vault3','bg/b_archive','bg/b_capitol','bg/b_classic','bg/b_everglades','bg/b_launch','bg/b_newsroom','bg/b_vault','comp/c_bison','comp/c_bulldog','comp/c_cat','comp/c_eagle','comp/c_gator','comp/c_ghost','comp/c_manatee','comp/c_owl','comp/c_pigeon','comp/c_rover','escape/obj_cab','escape/obj_chest','escape/obj_clk','escape/obj_door','escape/obj_let','escape/obj_map','escape/room','frame/f_gold','frame/f_neon','frame/f_parch','frame/f_space','frame/f_stars','frame/f_vault','stage/live']);           // e.g. 'comp/c_eagle' once arena/comp/c_eagle.webp is uploaded
+const ARENA_ART_HAVE = new Set(['gn/ball','gn/bg_chests','gn/bg_floor','gn/bg_four','gn/bg_grudge','gn/bg_hotseat','gn/bg_jeopardy','gn/bg_live','gn/bg_squad','gn/boulder','gn/chalk_x','gn/chest_closed','gn/chest_open','gn/clock','gn/cobweb','gn/coins','gn/diamond','gn/disc_gold','gn/disc_red','gn/flag','gn/fx_check','gn/fx_confetti','gn/fx_fireworks','gn/fx_ice','gn/fx_sparkle','gn/fx_wrong','gn/gift','gn/hoop','gn/icon_chests','gn/icon_floor','gn/icon_four','gn/icon_grudge','gn/icon_hotseat','gn/icon_jeopardy','gn/icon_live','gn/icon_squad','gn/ladder','gn/lifelines','gn/ll_ask','gn/ll_cut','gn/ll_huddle','gn/podium','gn/raccoon','gn/rope','gn/swap','gn/swish','gn/trapdoor','gn/trophy','gn/vs','badge/b_avatar','badge/b_day3','badge/b_day7','badge/b_escape','badge/b_gallery','badge/b_live','badge/b_lvl5','badge/b_q25','badge/b_shop','badge/b_unit','badge/b_vault','badge/b_vault3','bg/b_archive','bg/b_capitol','bg/b_classic','bg/b_everglades','bg/b_launch','bg/b_newsroom','bg/b_vault','comp/c_bison','comp/c_bulldog','comp/c_cat','comp/c_eagle','comp/c_gator','comp/c_ghost','comp/c_manatee','comp/c_owl','comp/c_pigeon','comp/c_rover','escape/obj_cab','escape/obj_chest','escape/obj_clk','escape/obj_door','escape/obj_let','escape/obj_map','escape/room','frame/f_gold','frame/f_neon','frame/f_parch','frame/f_space','frame/f_stars','frame/f_vault','stage/live']);           // e.g. 'comp/c_eagle' once arena/comp/c_eagle.webp is uploaded
 const arenaArt = k => ARENA_ART_HAVE.has(k) ? ARENA_DIR+k+'.webp' : '';
 
 function arenaInitState(){
@@ -6708,6 +6765,12 @@ function renderEscape(m){
    Treasure Chests, Prize Ladder, Four in a Row, Summit Squad (race).
    Same unit questions, different "wrapper" every day.
    ===================================================================== */
+const gnImg = (k, cls='', alt='') => arenaArt('gn/'+k) ? `<img class="${cls}" src="${arenaArt('gn/'+k)}" alt="${alt}" draggable="false">` : '';
+const GN_BG_VIEWS = {jeopardy:1, floor:1, grudge:1, chests:1, hotseat:1, four:1, squad:1, live:1};
+function gnBgFor(m, v){
+  const k = GN_BG_VIEWS[v] && SESSION.type==='teacher' ? v : null, a = k && arenaArt('gn/bg_'+k);
+  if(a){ m.classList.add('gn-scene'); m.style.setProperty('--gnbg', `url(${a})`); } else m.style.removeProperty('--gnbg');
+}
 const GN = {roster:null, rosterFor:null, period:'all', absent:new Set(), names:''};
 const GN_HUES = n => `hsl(${(n*137.5)%360} 70% 45%)`;
 const gnFirst = n => { const p=(n||'').trim().split(/\s+/); return p[0]+(p[1]?' '+p[1][0]+'.':''); };
@@ -6803,7 +6866,7 @@ function gnAsk(u, q, o={}){
       const ok=a===0; done=true; $$('[data-a]',z).forEach(x=>{ x.disabled=true; const v=+x.dataset.a; if(v===0) x.classList.add('right'); else if(v===a) x.classList.add('wrong'); });
       ok?SFX.right():SFX.wrong();
       const why=!ok&&q.w&&q.w[a-1]?`<p><b>Why it's tempting:</b> ${esc(q.w[a-1])}</p>`:'';
-      $('#gFb',z).innerHTML=`<div class="gn-verdict ${ok?'ok':'no'}">${ok?'✅ Correct!':'❌ Not quite'}</div>${!ok?`<div class="reteach" style="max-width:860px;margin:.6rem auto">${why}${q.r?`<p><b>${esc(q.r[0])}:</b> ${esc(q.r[1])}</p>`:''}</div>`:''}
+      $('#gFb',z).innerHTML=`<div class="gn-verdict ${ok?'ok':'no'}">${gnImg(ok?'fx_check':'fx_wrong','gn-fx')}${ok?'Correct!':'Not quite'}</div>${!ok?`<div class="reteach" style="max-width:860px;margin:.6rem auto">${why}${q.r?`<p><b>${esc(q.r[0])}:</b> ${esc(q.r[1])}</p>`:''}</div>`:''}
         <p style="text-align:center;margin-top:.6rem"><button class="btn gold big" id="gCont">${ok?(o.okLabel||'Continue'):'Continue'}</button></p>`;
       $('#gSkip',z).remove();
       $('#gCont',z).onclick=()=>{ mm.close(); res({ok, choice:a}); };
@@ -6814,7 +6877,7 @@ function gnAsk(u, q, o={}){
 /* ---------- podium ---------- */
 function gnPodium(cons, score, title, onClose){
   const ranked=cons.map((x,i)=>({...x,i,sc:score(x)})).sort((p,q)=>q.sc-p.sc), top=ranked.slice(0,3), order=[top[1],top[0],top[2]].filter(Boolean);
-  const mm=modal(`<div class="podium-wrap"><h1 class="pod-h">🏆 ${esc(gnLabel(top[0]))} ${title||'wins!'}</h1><div class="podium">${order.map(x=>{ const place=top.indexOf(x)+1;
+  const mm=modal(`<div class="podium-wrap">${gnImg('fx_fireworks','pod-fw l')}${gnImg('fx_fireworks','pod-fw r')}<h1 class="pod-h">${gnImg('trophy','pod-trophy')||'🏆'} ${esc(gnLabel(top[0]))} ${title||'wins!'}</h1><div class="podium">${order.map(x=>{ const place=top.indexOf(x)+1;
       return `<div class="pod p${place}" style="--tc:${x.col}"><div class="pod-avas">${x.members.length?x.members.slice(0,x.solo?1:4).map(s=>avaHTML(avaSpec(s),{kind:'full', size:x.solo?200:(place===1?130:110), look:s.look})).join(''):`<span class="ava-emoji" style="--s:120px;background:${x.col}">${x.mascot||'⭐'}</span>`}</div>
         <div class="pod-step"><span class="pod-n">${place}</span><b>${esc(gnLabel(x))}</b><span>${x.scLabel?x.scLabel(x):x.sc.toLocaleString()}</span></div></div>`; }).join('')}</div>
       ${ranked.length>3?`<div class="small" style="text-align:center;margin-top:1rem;color:#CBD5E1">${ranked.slice(3,12).map((x,k)=>`${k+4}. ${esc(gnLabel(x))}`).join(' · ')}</div>`:''}
@@ -6863,11 +6926,11 @@ function floorGame(m, P, o){
   function duel(a,b){
     const clock={[a]:o.secs*1000,[b]:o.secs*1000}; let act=a, q=next(), last=performance.now(), running=false, raf=0, wrong=new Set(), frozen=false;
     const mm=modal(`<div id="fd"></div>`,{full:true, onClose:()=>{ cancelAnimationFrame(raf); }}); mm.classList.add('jblue'); const z=$('#fd',mm);
-    const side=(p)=>`<div class="fd-pl ${p===act?'on':''}" style="--pc:${P[p].col}">${avaHTML(avaSpec(P[p].members[0]),{kind:'full', size:200, look:P[p].members[0].look})}<b>${esc(gnFirst(P[p].n))}</b><span class="fd-clock" id="ck${p}">${(clock[p]/1000).toFixed(1)}</span></div>`;
+    const side=(p)=>`<div class="fd-pl ${p===act?'on':''}" style="--pc:${P[p].col}">${avaHTML(avaSpec(P[p].members[0]),{kind:'full', size:200, look:P[p].members[0].look})}<b>${esc(gnFirst(P[p].n))}</b>${gnImg('clock','fd-clk')}<span class="fd-clock" id="ck${p}">${(clock[p]/1000).toFixed(1)}</span></div>`;
     draw(); intro();
     function draw(){
       const order=q._ord||(q._ord=shuffle(q.o.map((_,k)=>k)));
-      z.innerHTML=`<div class="fd-stage">${side(a)}<div class="fd-mid"><div class="tag gold">DUEL · ${esc(q.bm)}</div>${q.st?`<div class="stim" style="color:var(--ink);font-size:.9rem;max-height:22vh;overflow:auto">${esc(q.st)}</div>`:''}<div class="clue" style="font-size:clamp(1.1rem,2.2vw,1.8rem)">${esc(q.s)}</div>
+      z.innerHTML=`<div class="fd-stage">${side(a)}<div class="fd-mid">${gnImg('vs','fd-vs')}<div class="tag gold">DUEL · ${esc(q.bm)}</div>${q.st?`<div class="stim" style="color:var(--ink);font-size:.9rem;max-height:22vh;overflow:auto">${esc(q.st)}</div>`:''}<div class="clue" style="font-size:clamp(1.1rem,2.2vw,1.8rem)">${esc(q.s)}</div>
         <div class="gn-opts">${order.map((oi,k)=>`<button class="gn-opt ${wrong.has(oi)?'gone':''}" data-a="${oi}" style="--oc:${AL_COL[k]}" ${wrong.has(oi)||!running?'disabled':''}><span class="al-sh">${LETTERS[k]}</span><span>${esc(q.o[oi])}</span></button>`).join('')}</div>
         <div class="row" style="justify-content:center;margin-top:.5rem"><button class="btn" id="fPass" ${running?'':'disabled'}>⏭ Pass (−3s)</button></div><div id="fMsg" class="fd-msg"></div></div>${side(b)}</div>`;
       $$('[data-a]',z).forEach(btn=>btn.onclick=()=>answer(+btn.dataset.a)); $('#fPass',z).onclick=pass;
@@ -6901,7 +6964,7 @@ function grudgeGame(m, T, o){
     m.innerHTML=`${gnTopBar('🏀 Rival Rebound')}
       <div class="gb-teams">${T.map((x,i)=>`<button class="gb-team ${i===cur?'cur':''} ${x.s<=0?'out':''} ${phase==='erase'&&i!==cur&&x.s>0&&(taken[i]||0)<3?'target':''}" data-t="${i}" style="--tc:${x.col}">
         <div class="row" style="justify-content:center">${gnHeads(x,30)}</div><b>${esc(gnLabel(x))}</b>
-        <div class="gb-x">${Array.from({length:Math.max(o.start,x.s)},(_,k)=>`<i class="${k<x.s?'on':''}">✕</i>`).join('')}</div><span class="gb-n">${x.s}</span></button>`).join('')}</div>
+        <div class="gb-x">${Array.from({length:Math.max(o.start,x.s)},(_,k)=>(arenaArt('gn/chalk_x')?`<i class="cx ${k<x.s?'on':''}"></i>`:`<i class="${k<x.s?'on':''}">✕</i>`)).join('')}</div><span class="gb-n">${x.s}</span></button>`).join('')}</div>
       <div class="gb-ctl">${phase==='ask'?`<div class="row" style="justify-content:center;gap:1rem">${gnFace(T[cur],64)}<div><div class="jp-up" style="color:var(--gold-d,#B45309)">UP NOW</div><b style="font-size:1.3rem">${esc(gnWho(T[cur])?gnFirst(gnWho(T[cur]).name)+' · ':'')}${esc(gnLabel(T[cur]))}</b></div><button class="btn gold big" id="gbAsk">❓ Ask a question</button></div>`
         : phase==='erase'?`<div class="gn-banner">Erase <b>${pts}</b> ✕${pts===1?'':'s'}: tap a rival team${pts>1?' (max 3 from one team)':''}.</div>`:''}</div>`;
     bindBack(m); $('#gEnd',m).onclick=finish;
@@ -6926,12 +6989,12 @@ function grudgeGame(m, T, o){
     $$('[data-line]',z).forEach(b=>b.onclick=()=>go(+b.dataset.line));
     function go(line){
       const zone=line===2?.26:.13, z0=.5-zone/2; let p=0, dir=1, speed=line===2?.9:1.25, last=performance.now(), stopped=false;
-      z.innerHTML=`<h2 style="text-align:center;color:#FCD34D;margin:.2rem 0">${line===2?'2-pointer':'3-pointer'}: stop the needle in the green!</h2><p style="text-align:center;color:#E2E8F0;margin:0 0 .6rem">Tap SHOOT or press the space bar.</p><div class="sh-court"><div class="sh-hoop">🏀<div class="sh-rim"></div></div><div class="sh-ball" id="shB">🏀</div></div>
+      z.innerHTML=`<h2 style="text-align:center;color:#FCD34D;margin:.2rem 0">${line===2?'2-pointer':'3-pointer'}: stop the needle in the green!</h2><p style="text-align:center;color:#E2E8F0;margin:0 0 .6rem">Tap SHOOT or press the space bar.</p><div class="sh-court" ${arenaArt('gn/bg_grudge')?`style="background:linear-gradient(rgba(2,6,23,.25),rgba(2,6,23,.45)),url(${arenaArt('gn/bg_grudge')}) center/cover"`:''}>${arenaArt('gn/hoop')?`<div class="sh-hoopart">${gnImg('hoop')}</div><div class="sh-swish" id="shS">${gnImg('swish')}</div>`:'<div class="sh-hoop">🏀<div class="sh-rim"></div></div>'}<div class="sh-ball" id="shB">${gnImg('ball')||'🏀'}</div></div>
         <div class="sh-meter"><div class="sh-zone" style="left:${z0*100}%;width:${zone*100}%"></div><div class="sh-needle" id="shN"></div></div>
         <p style="text-align:center"><button class="btn gold big" id="shGo" style="font-size:1.6rem;padding:.8rem 2.6rem">SHOOT!</button></p><div id="shR" class="gn-verdict"></div>`;
       const N=$('#shN',z); const loop=t=>{ const dt=(t-last)/1000; last=t; p+=dir*speed*dt; if(p>1){p=1;dir=-1;} if(p<0){p=0;dir=1;} N.style.left=(p*100)+'%'; if(!stopped) raf=requestAnimationFrame(loop); }; raf=requestAnimationFrame(loop);
       const fire=()=>{ if(stopped) return; stopped=true; cancelAnimationFrame(raf); document.removeEventListener('keydown',kd); const made=p>=z0&&p<=z0+zone;
-        const B=$('#shB',z); B.classList.add(made?'swish':'brick'); setTimeout(()=>{ made?(SFX.fanfare(),confetti(50)):SFX.buzz(); $('#shR',z).innerHTML=made?`SWISH! +${line}`:'Clank! Just the 1 ✕'; $('#shR',z).className='gn-verdict '+(made?'ok':'no'); setTimeout(()=>{ mm.close(); res(made?line:0); },1300); },700); };
+        const B=$('#shB',z); B.classList.add(made?'swish':'brick'); if(made) setTimeout(()=>{ const sw=$('#shS',z); if(sw) sw.classList.add('on'); },600); setTimeout(()=>{ made?(SFX.fanfare(),confetti(50)):SFX.buzz(); $('#shR',z).innerHTML=made?`SWISH! +${line}`:'Clank! Just the 1 ✕'; $('#shR',z).className='gn-verdict '+(made?'ok':'no'); setTimeout(()=>{ mm.close(); res(made?line:0); },1300); },700); };
       const kd=e=>{ if(e.code==='Space'){ e.preventDefault(); fire(); } }; document.addEventListener('keydown',kd); $('#shGo',z).onclick=fire;
     }
   }); }
@@ -6941,15 +7004,15 @@ function grudgeGame(m, T, o){
 
 /* ============================ TREASURE CHESTS ============================ */
 const CHESTS=[
-  {k:'g10',  w:22, icon:'🪙', t:'+10 gold',        f:(T,i)=>{ T[i].s+=10; }},
-  {k:'g20',  w:20, icon:'💰', t:'+20 gold',        f:(T,i)=>{ T[i].s+=20; }},
-  {k:'g40',  w:11, icon:'💎', t:'+40 gold',        f:(T,i)=>{ T[i].s+=40; }},
-  {k:'x2',   w:7,  icon:'✨', t:'Double your gold!',f:(T,i)=>{ T[i].s=Math.max(10,T[i].s*2); }},
-  {k:'steal',w:14, icon:'🦝', t:'Steal 25% from a team', target:true, f:(T,i,j)=>{ const g=Math.ceil(T[j].s*.25); T[j].s-=g; T[i].s+=g; return g; }},
-  {k:'swap', w:5,  icon:'🔄', t:'Swap gold with a team', target:true, f:(T,i,j)=>{ const a=T[i].s; T[i].s=T[j].s; T[j].s=a; }},
-  {k:'share',w:6,  icon:'🎁', t:'Gift! +15 to you, +5 to everyone else', f:(T,i)=>{ T.forEach((x,j)=>x.s+=j===i?15:5); }},
-  {k:'lose', w:8,  icon:'🕳️', t:'Trapdoor! Lose 25%', f:(T,i)=>{ T[i].s-=Math.ceil(T[i].s*.25); }},
-  {k:'dust', w:7,  icon:'🕸️', t:'Cobwebs… nothing inside', f:()=>{}} ];
+  {k:'g10', img:'coins',  w:22, icon:'🪙', t:'+10 gold',        f:(T,i)=>{ T[i].s+=10; }},
+  {k:'g20', img:'coins',  w:20, icon:'💰', t:'+20 gold',        f:(T,i)=>{ T[i].s+=20; }},
+  {k:'g40', img:'diamond',  w:11, icon:'💎', t:'+40 gold',        f:(T,i)=>{ T[i].s+=40; }},
+  {k:'x2', img:'fx_sparkle',   w:7,  icon:'✨', t:'Double your gold!',f:(T,i)=>{ T[i].s=Math.max(10,T[i].s*2); }},
+  {k:'steal', img:'raccoon',w:14, icon:'🦝', t:'Steal 25% from a team', target:true, f:(T,i,j)=>{ const g=Math.ceil(T[j].s*.25); T[j].s-=g; T[i].s+=g; return g; }},
+  {k:'swap', img:'swap', w:5,  icon:'🔄', t:'Swap gold with a team', target:true, f:(T,i,j)=>{ const a=T[i].s; T[i].s=T[j].s; T[j].s=a; }},
+  {k:'share', img:'gift',w:6,  icon:'🎁', t:'Gift! +15 to you, +5 to everyone else', f:(T,i)=>{ T.forEach((x,j)=>x.s+=j===i?15:5); }},
+  {k:'lose', img:'trapdoor', w:8,  icon:'🕳️', t:'Trapdoor! Lose 25%', f:(T,i)=>{ T[i].s-=Math.ceil(T[i].s*.25); }},
+  {k:'dust', img:'cobweb', w:7,  icon:'🕸️', t:'Cobwebs… nothing inside', f:()=>{}} ];
 function rollChest(){ const tot=CHESTS.reduce((a,c)=>a+c.w,0); let r=Math.random()*tot; for(const c of CHESTS){ r-=c.w; if(r<=0) return c; } return CHESTS[0]; }
 function renderChests(m){
   gnSetup(m,{ key:'chests', title:'Treasure Chests', icon:'🧰', color:'#B45309', kind:'teams', minTeams:2, maxTeams:6,
@@ -6966,7 +7029,7 @@ function chestGame(m, T, o){
     const lead=Math.max(...T.map(x=>x.s));
     m.innerHTML=`${gnTopBar('🧰 Treasure Chests',`<span class="chip">Turn <b>${Math.min(turn+1,total)}</b>/${total}</span>`)}
       ${note?`<div class="gn-banner">${note}</div>`:''}
-      <div class="gb-teams">${T.map((x,i)=>`<button class="gb-team ${i===cur&&!pending?'cur':''} ${pending&&i!==cur&&(pending.c.k!=='steal'||x.s>0)?'target':''} ${x.s===lead&&lead>0?'lead':''}" data-t="${i}" style="--tc:${x.col}"><div class="row" style="justify-content:center">${gnHeads(x,30)}</div><b>${esc(gnLabel(x))}</b><span class="tc-gold">🪙 ${x.s}</span></button>`).join('')}</div>
+      <div class="gb-teams">${T.map((x,i)=>`<button class="gb-team ${i===cur&&!pending?'cur':''} ${pending&&i!==cur&&(pending.c.k!=='steal'||x.s>0)?'target':''} ${x.s===lead&&lead>0?'lead':''}" data-t="${i}" style="--tc:${x.col}"><div class="row" style="justify-content:center">${gnHeads(x,30)}</div><b>${esc(gnLabel(x))}</b><span class="tc-gold">${gnImg('coins','tc-coin')||'🪙'} ${x.s}</span></button>`).join('')}</div>
       <div class="gb-ctl">${pending?`<div class="gn-banner">${pending.c.icon} ${esc(pending.c.t)}: tap the team to target.</div>`
         : turn>=total?`<p style="text-align:center"><button class="btn gold big" id="tcFin">🏆 Final results</button></p>`
         : `<div class="row" style="justify-content:center;gap:1rem">${gnFace(T[cur],64)}<div><div class="jp-up" style="color:#B45309">UP NOW</div><b style="font-size:1.3rem">${esc(gnWho(T[cur])?gnFirst(gnWho(T[cur]).name)+' · ':'')}${esc(gnLabel(T[cur]))}</b></div><button class="btn gold big" id="tcAsk">❓ Ask a question</button></div>`}</div>`;
@@ -6979,8 +7042,8 @@ function chestGame(m, T, o){
     if(r.skipped) return board(); if(!r.ok) return endTurn(`No chest this time for ${esc(gnLabel(x))}.`);
     const picks=[rollChest(),rollChest(),rollChest()];
     const mm=modal(`<div id="tc"></div>`,{full:true}); mm.classList.add('jblue'); const z=$('#tc',mm);
-    z.innerHTML=`<h2 style="text-align:center;color:#FCD34D">🧰 ${esc(gnLabel(x))}, pick a chest!</h2><div class="tc-row">${picks.map((_,k)=>`<button class="tc-chest" data-c="${k}">${arenaArt('escape/obj_chest')?`<img src="${arenaArt('escape/obj_chest')}" alt="">`:'<span class="tc-ico">🧰</span>'}<b>${k+1}</b></button>`).join('')}</div><div id="tcR"></div>`;
-    $$('[data-c]',z).forEach(b=>b.onclick=()=>{ const k=+b.dataset.c, c=picks[k]; $$('[data-c]',z).forEach((x2,j)=>{ x2.disabled=true; x2.classList.add(j===k?'open':'other'); x2.innerHTML=`<span class="tc-ico">${picks[j].icon}</span><span class="small">${esc(picks[j].t)}</span>`; });
+    z.innerHTML=`<h2 style="text-align:center;color:#FCD34D">🧰 ${esc(gnLabel(x))}, pick a chest!</h2><div class="tc-row">${picks.map((_,k)=>`<button class="tc-chest" data-c="${k}">${gnImg('chest_closed')||(arenaArt('escape/obj_chest')?`<img src="${arenaArt('escape/obj_chest')}" alt="">`:'<span class="tc-ico">🧰</span>')}<b>${k+1}</b></button>`).join('')}</div><div id="tcR"></div>`;
+    $$('[data-c]',z).forEach(b=>b.onclick=()=>{ const k=+b.dataset.c, c=picks[k]; $$('[data-c]',z).forEach((x2,j)=>{ x2.disabled=true; x2.classList.add(j===k?'open':'other'); x2.innerHTML=`${picks[j].img&&arenaArt('gn/'+picks[j].img)?gnImg(picks[j].img,'tc-img'):`<span class="tc-ico">${picks[j].icon}</span>`}<span class="small">${esc(picks[j].t)}</span>`; });
       const good=!['lose','dust'].includes(c.k); good?(SFX.fanfare(),confetti(40)):SFX.buzz();
       const others=T.some((y,j)=>j!==cur&&(c.k!=='steal'||y.s>0));
       $('#tcR',z).innerHTML=`<div class="gn-verdict ${good?'ok':'no'}">${c.icon} ${esc(c.t)}</div><p style="text-align:center"><button class="btn gold big" id="tcOk">${c.target&&others?'Choose a team ▶':'Continue'}</button></p>`;
@@ -7018,13 +7081,13 @@ function hotGame(m, P){
         <div class="hs-bank">Banked: <b>$${(step?HS_LADDER[step-1]:0).toLocaleString()}</b></div>${msg?`<p>${msg}</p>`:''}
         <div class="row" style="justify-content:center"><button class="btn gold big" id="hsQ">❓ Question ${step+1} for $${HS_LADDER[step].toLocaleString()}</button>${step?`<button class="btn" id="hsWalk">🚶 Walk away</button>`:''}</div>
         <div class="hs-life">${[['f','Cut Two'],['a','👥 Ask the Class'],['p','🤝 Huddle with a Classmate']].map(([k,l])=>`<span class="hs-ll ${life[k]?'':'used'}">${l}</span>`).join('')}</div></div>
-      <ol class="hs-ladder" reversed>${HS_LADDER.map((v,k)=>`<li class="${k===step?'on':''} ${k<step?'done':''} ${k===HS_SAFE?'safe':''}">$${v.toLocaleString()}</li>`).reverse().join('')}</ol></div>`;
+      <ol class="hs-ladder" reversed>${gnImg('ladder','hs-ladart')}${HS_LADDER.map((v,k)=>`<li class="${k===step?'on':''} ${k<step?'done':''} ${k===HS_SAFE?'safe':''}">$${v.toLocaleString()}</li>`).reverse().join('')}</ol></div>`;
     bindBack(m); $('#gEnd',m).onclick=finish;
     $('#hsQ',m).onclick=askQ; const w=$('#hsWalk',m); if(w) w.onclick=()=>out(HS_LADDER[step-1], `${esc(gnFirst(s.name))} walks away with $${HS_LADDER[step-1].toLocaleString()}!`);
   }
   async function askQ(){
     const x=P[seat], s=x.members[0];
-    const lls=`${life.f?'<button class="btn" id="ll5">Cut Two</button>':''}${life.a?'<button class="btn" id="llA">👥 Ask the Class</button>':''}${life.p?'<button class="btn" id="llP">🤝 Huddle with a Classmate</button>':''}`;
+    const lls=`${life.f?`<button class="btn ll-btn" id="ll5">${gnImg('ll_cut')}Cut Two</button>`:''}${life.a?`<button class="btn ll-btn" id="llA">${gnImg('ll_ask')||'👥 '}Ask the Class</button>`:''}${life.p?`<button class="btn ll-btn" id="llP">${gnImg('ll_huddle')||'🤝 '}Huddle with a Classmate</button>`:''}`;
     const r=await gnAsk(u, next(), {title:`$${HS_LADDER[step].toLocaleString()}`, solo:true, suspense:1600, lifelines:lls,
       who:`${avaHTML(avaSpec(s),{size:56,look:s.look})}<div><div class="small" style="color:#FCD34D;font-weight:800;letter-spacing:.08em">ON THE LADDER</div><b>${esc(s.name)}</b></div>`,
       onReady:(z,api)=>{
@@ -7105,10 +7168,10 @@ function squadGame(m, T){
   function board(note){
     const stuck=T.map((x,i)=>i).filter(i=>i!==cur&&T[i].stuck);
     m.innerHTML=`${gnTopBar('🏔️ Summit Squad')}${note?`<div class="gn-banner">${note}</div>`:''}
-      <div class="sq-mtn">${SQ_CAMPS.map((c,k)=>`<div class="sq-camp" style="bottom:${k/TOP*84+4}%"><span>${k===TOP?'🚩 ':''}${c}</span></div>`).join('')}
-        <div class="sq-lanes" style="--n:${T.length}">${T.map((x,i)=>`<div class="sq-lane ${i===cur?'cur':''}" style="--tc:${x.col}"><div class="sq-climber ${x.stuck?'stuck':''}" style="bottom:${x.s/TOP*84+2}%">${gnFace(x,54)}${x.stuck?'<span class="sq-rock">🪨</span>':''}${x.streak>=1?'<span class="sq-fire">🔥</span>':''}</div><b class="sq-name">${esc(gnLabel(x))}</b></div>`).join('')}</div></div>
+      <div class="sq-mtn">${SQ_CAMPS.map((c,k)=>`<div class="sq-camp" style="bottom:${k/TOP*84+4}%"><span>${k===TOP?(gnImg('flag','sq-flag')||'🚩 '):''}${c}</span></div>`).join('')}
+        <div class="sq-lanes" style="--n:${T.length}">${T.map((x,i)=>`<div class="sq-lane ${i===cur?'cur':''}" style="--tc:${x.col}"><div class="sq-climber ${x.stuck?'stuck':''}" style="bottom:${x.s/TOP*84+2}%">${gnFace(x,54)}${x.stuck?`<span class="sq-rock">${gnImg('boulder')||'🪨'}</span>`:''}${x.streak>=1?'<span class="sq-fire">🔥</span>':''}</div><b class="sq-name">${esc(gnLabel(x))}</b></div>`).join('')}</div></div>
       <div class="gb-ctl"><div class="row" style="justify-content:center;gap:1rem">${gnFace(T[cur],60)}<b style="font-size:1.2rem">${esc(gnWho(T[cur])?gnFirst(gnWho(T[cur]).name)+' · ':'')}${esc(gnLabel(T[cur]))}${T[cur].stuck?' · 🪨 stuck':''}</b>
-        <button class="btn gold big" id="sqAsk">${T[cur].stuck?'❓ Clear the rockslide':'❓ Climb'}</button>${stuck.length&&!T[cur].stuck?stuck.map(i=>`<button class="btn" data-rope="${i}">🪢 Rope to ${esc(gnLabel(T[i]))}</button>`).join(''):''}</div></div>`;
+        <button class="btn gold big" id="sqAsk">${T[cur].stuck?'❓ Clear the rockslide':'❓ Climb'}</button>${stuck.length&&!T[cur].stuck?stuck.map(i=>`<button class="btn" data-rope="${i}">${gnImg('rope','btn-ico')||'🪢'} Rope to ${esc(gnLabel(T[i]))}</button>`).join(''):''}</div></div>`;
     bindBack(m); $('#gEnd',m).onclick=finish;
     $('#sqAsk',m).onclick=()=>turn(null); $$('[data-rope]',m).forEach(b=>b.onclick=()=>turn(+b.dataset.rope));
   }

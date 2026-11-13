@@ -4945,7 +4945,7 @@ function studyDetailHTML(s){
         return `<tr><td class="small">${esc(b)}</td><td class="small">${lab}</td><td class="small">${c?`${c.score}% (${(st.checks||[]).length}×)`:'—'}</td><td class="small" style="max-width:340px">${st.explain?esc(st.explain):'<span class="muted">—</span>'}</td></tr>`; }).join('')}</table></details>`; }).join('')}`;
 }
 
-/* Avatar 3.0 data ported from Money Moves (same layers, same geometry) so students keep one character across Coach Smith's games. */
+/* Avatar 3.0 data ported from Money Moves (same layers, same geometry) so students keep one character across the games. */
 const AV3={"b":{"slim-0":[71,149,57,120.0],"slim-1":[72,150,57,119.8],"slim-2":[71,149,57,119.7],"slim-3":[71,149,57,119.5],"slim-4":[72,150,57,119.0],"slim-5":[71,149,57,119.5],"slim-6":[72,150,57,119.0],"slim-7":[72,150,57,120.3],"athletic-0":[72,153,57,120.0],"athletic-1":[72,153,57,119.3],"athletic-2":[72,153,57,119.1],"athletic-3":[72,153,57,119.5],"athletic-4":[72,153,57,120.1],"athletic-5":[72,153,57,119.7],"athletic-6":[72,153,57,119.9],"athletic-7":[72,153,57,119.3],"curvy-0":[72,158,63,120.0],"curvy-1":[72,158,63,120.2],"curvy-2":[72,158,63,120.4],"curvy-3":[72,158,63,120.5],"curvy-4":[72,158,63,119.6],"curvy-5":[72,158,63,119.7],"curvy-6":[72,158,63,120.1],"curvy-7":[72,158,63,120.1],"plus-0":[73,162,65,120.0],"plus-1":[73,162,65,119.6],"plus-2":[73,162,65,119.7],"plus-3":[73,162,65,120.2],"plus-4":[74,163,65,119.9],"plus-5":[74,163,65,120.2],"plus-6":[73,162,65,120.6],"plus-7":[73,162,65,120.8]},"i":{"face-0":[-75,129,141,56.0],"face-1":[-73,131,141,57.0],"face-2":[-77,127,141,51.0],"face-3":[-40,164,141,72.0],"face-4":[-70,134,141,69.0],"face-5":[-67,137,141,49.0],"face-6":[-63,141,141,54.0],"face-7":[-78,126,141,69.0],"face-8":[-69,135,141,81.0],"face-9":[-70,134,141,55.0],"face-10":[-64,140,141,51.0],"face-11":[-67,137,141,54.0],"face-12":[-66,138,141,46.0],"face-13":[-73,131,141,54.0],"face-14":[-64,140,141,53.0],"face-15":[-64,140,141,51.0],"hair-0":[3,207,141,89.0],"hair-1":[9,213,141,73.0],"hair-2":[12,216,141,84.0],"hair-3":[3,207,141,76.0],"hair-4":[4,208,141,90.0],"hair-5":[9,213,141,86.0],"hair-6":[5,209,141,76.0],"hair-7":[5,209,141,87.0],"hair-8":[11,215,141,101.0],"hair-9":[3,207,141,79.0],"hair-10":[11,215,141,87.0],"hair-11":[4,208,141,79.0],"hair-12":[8,212,141,88.0],"hair-13":[4,208,141,80.0],"hair-14":[3,207,141,74.0],"hair-15":[12,216,141,79.0],"hair-16":[58,153,92,94.5],"hair-17":[50,145,92,89.0],"hair-18":[39,134,92,65.5],"hair-19":[25,120,92,71.5],"hair-20":[59,154,92,54.5],"hair-21":[22,117,92,55.5],"hair-22":[26,121,92,71.5],"hair-23":[70,165,92,59.0],"hair-24":[44,153,90,79.5],"hair-25":[55,164,90,94.5],"hair-26":[44,153,90,82.5],"hair-27":[43,152,90,71.5],"hair-28":[53,162,90,55.5],"hair-29":[45,154,90,63.0],"hair-30":[35,144,90,68.0],"hair-31":[87,196,90,84.0],"acch-0":[-79,125,141,67.0],"acch-1":[-89,115,141,91.0],"acch-2":[-79,125,141,74.0],"acch-3":[-82,122,141,88.0],"acch-4":[-131,73,141,79.0],"acch-5":[-132,72,141,85.0],"acch-6":[-127,77,141,86.0],"acch-7":[-179,25,141,53.0],"acch-8":[-180,24,141,50.0],"acch-9":[-180,24,141,44.0],"acch-10":[-181,23,141,37.0],"acch-11":[-156,48,141,76.0],"acch-12":[6,210,141,83.0],"acch-13":[3,207,141,107.0],"acch-14":[15,219,141,80.0],"acch-15":[-25,179,141,77.0]},"dx":{"0":{"slim":11,"athletic":0,"curvy":3,"plus":-12},"1":{"slim":11,"athletic":0,"curvy":3,"plus":-12},"2":{"slim":11,"athletic":0,"curvy":3,"plus":-12},"3":{"slim":15,"athletic":0,"curvy":9,"plus":-4},"4":{"slim":-8,"athletic":0,"curvy":0,"plus":15},"5":{"slim":8,"athletic":0,"curvy":-1,"plus":-17},"6":{"slim":0,"athletic":0,"curvy":0,"plus":0},"7":{"slim":15,"athletic":0,"curvy":7,"plus":-10}}};
 const TOPS=[{id:'top_00_tank',slot:'top',name:'Starter Gray Tank',price:0,bonus:0,col:null},{id:'top_01_graphic_tee',slot:'top',name:'White Graphic Tee',price:0,bonus:2,col:0},{id:'top_07_crewneck',slot:'top',name:'Gray Crewneck Sweatshirt',price:120,bonus:3,col:5},{id:'top_02_varsity_hoodie',slot:'top',name:'Emerald Money Moves Hoodie',price:250,bonus:5,col:1},{id:'top_03_oxford_shirt',slot:'top',name:'Light-Blue Oxford Shirt',price:400,bonus:6,col:2},{id:'top_08_varsity_jacket',slot:'top',name:'Red Varsity Jacket',price:600,bonus:8,col:6},{id:'top_05_puffer_jacket',slot:'top',name:'Black & Gold Puffer',price:850,bonus:10,col:4},{id:'top_04_wallstreet_blazer',slot:'top',name:'Navy Wall Street Blazer',price:950,bonus:12,col:3},{id:'top_06_grad_robe',slot:'top',name:'Graduation Robe',price:1200,bonus:15,col:7}];
 const BOTTOMS=[{id:'bot_01_athletic_shorts',slot:'bottom',name:'Starter Gray Shorts (barefoot)',price:0,col:null},{id:'bot_02_jeans_canvas',slot:'bottom',name:'Blue Jeans & Red Canvas Sneakers',price:0,col:0},{id:'bot_11_sweatpants',slot:'bottom',name:'Gray Sweats & Chunky Sneakers',price:150,col:7},{id:'bot_03_cargo_canvas',slot:'bottom',name:'Khaki Cargo Joggers & White Sneakers',price:180,col:1},{id:'bot_09_denim_shorts',slot:'bottom',name:'Denim Shorts & High-Tops',price:220,col:5},{id:'bot_05_track_pants',slot:'bottom',name:'Track Pants & Slides',price:250,col:2},{id:'bot_10_maxi_skirt',slot:'bottom',name:'Maxi Skirt & Sandals',price:300,col:6},{id:'bot_08_plaid_skirt',slot:'bottom',name:'Plaid Skirt, Tights & Loafers',price:400,col:4},{id:'bot_07_dress_trousers',slot:'bottom',name:'Charcoal Trousers & Loafers',price:600,col:3}];
@@ -4967,7 +4967,7 @@ const LV_ERAS = [
   blurb:'Civil War & Reconstruction, westward expansion, the second Industrial Revolution and the Gilded Age.',
   artifacts:[
   { id:'a1', name:'The 14th Amendment Broadside', year:'1868', icon:'📜', bm:['SS.912.A.2.4','SS.912.A.2.2'],
-    brief:[['smith','point','Archivist, we have a breach in the Reconstruction wing. The Revisionists took a printed broadside of the 14th Amendment.'],
+    brief:[['ctrl','point','Archivist, we have a breach in the Reconstruction wing. The Revisionists took a printed broadside of the 14th Amendment.'],
            ['mentor','neutral','They left a cipher scratched on the empty case: “BORN HERE, PROTECTED EQUALLY.” Read the source closely and it will tell us which vault they used.'],
            ['rev','','Citizenship… protection… such big promises. History will be so much tidier without them.']],
     stim:{ kind:'Primary source excerpt', title:'U.S. Constitution, Amendment XIV, Section 1 (ratified 1868)',
@@ -4994,7 +4994,7 @@ const LV_ERAS = [
     takeaway:'13th = ends slavery · 14th = citizenship, due process, equal protection · 15th = voting regardless of race. After 1877, Jim Crow laws undercut these promises until the Civil Rights Movement.' },
 
   { id:'a2', name:'The Golden Spike', year:'1869', icon:'🚂', bm:['SS.912.A.3.4','SS.912.A.2.7'],
-    brief:[['smith','idle','New alarm: the Golden Spike — the last spike of the first transcontinental railroad — is missing from its case.'],
+    brief:[['ctrl','idle','New alarm: the Golden Spike — the last spike of the first transcontinental railroad — is missing from its case.'],
            ['mentor','neutral','The cipher this time: “EAST MEETS WEST AT THE SUMMIT.” The timeline should show us exactly where the rails met.'],
            ['tyler','','Easy. It’s Chicago. Everything meets in Chicago. …Right?']],
     stim:{ kind:'Timeline', title:'Building the First Transcontinental Railroad',
@@ -5021,7 +5021,7 @@ const LV_ERAS = [
     takeaway:'The transcontinental railroad (1869) created national markets and sped settlement, but it was built by exploited immigrant labor and helped destroy the Plains Native American way of life.' },
 
   { id:'a13', name:'Edison’s Menlo Park Light Bulb', year:'1879', icon:'💡', bm:['SS.912.A.3.5','SS.912.A.3.4'],
-    brief:[['smith','idle','The Industry wing is dark — literally. The Revisionists took one of Thomas Edison’s early light bulbs.'],
+    brief:[['ctrl','idle','The Industry wing is dark — literally. The Revisionists took one of Thomas Edison’s early light bulbs.'],
            ['mentor','happy','Their cipher: “THE INVENTION FACTORY LIT A CITY.” The timeline will show us where it came from.'],
            ['rev','','Inventors, inventors. Let’s just say progress… happened on its own.']],
     stim:{ kind:'Timeline', title:'Inventions of the Second Industrial Revolution',
@@ -5048,7 +5048,7 @@ const LV_ERAS = [
     takeaway:'The second Industrial Revolution ran on steel, oil and electricity. Inventors such as Edison, Bell and Lewis Latimer helped make the U.S. the world’s leading industrial power by 1900.' },
 
   { id:'a14', name:'A Farmers’ Alliance Lantern', year:'1892', icon:'🏮', bm:['SS.912.A.3.1','SS.912.A.3.12'],
-    brief:[['smith','point','Last artifact in this era. They took a lantern from a Farmers’ Alliance hall — farmers carried these to night meetings across the Plains.'],
+    brief:[['ctrl','point','Last artifact in this era. They took a lantern from a Farmers’ Alliance hall — farmers carried these to night meetings across the Plains.'],
            ['mentor','neutral','Their cipher: “THE PEOPLE’S PARTY MET IN OMAHA.” Read the platform and it will lead us to the vault.'],
            ['tyler','','Farmers started a political party? I thought they just… farmed.']],
     stim:{ kind:'Primary source excerpt', title:'Omaha Platform of the People’s (Populist) Party, 1892',
@@ -5098,7 +5098,7 @@ const LV_ERAS = [
   blurb:'American imperialism, Progressivism, World War I, the Roaring Twenties, the Great Depression and the New Deal.',
   artifacts:[
   { id:'a15', name:'The USS Maine Telegraph Key', year:'1898', icon:'⚓', bm:['SS.912.A.4.3','SS.912.A.4.1'],
-    brief:[['smith','point','Archivist, new era, new trouble. The Revisionists swiped the telegraph key that sent word of the USS Maine explosion.'],
+    brief:[['ctrl','point','Archivist, new era, new trouble. The Revisionists swiped the telegraph key that sent word of the USS Maine explosion.'],
            ['judge','neutral','Order in the vault. The cipher reads: “REMEMBER THE MAINE — AND THE HEADLINES.” Weigh the facts against what the papers printed.'],
            ['rev','','Facts are dull. Headlines sell. Some things never change.']],
     stim:{ kind:'Timeline', title:'From Havana Harbor to an Overseas Empire, 1895–1898',
@@ -5126,7 +5126,7 @@ const LV_ERAS = [
 
   { id:'a16', name:'The Muckraker’s Printing Plate', year:'1906', icon:'📰', bm:['SS.912.A.3.8','SS.912.A.3.12'],
     brief:[['judge','upset','A printing plate from a 1906 muckraking exposé is gone. The Revisionists would love for this one to stay buried.'],
-           ['smith','hmm','Their cipher: “THE JUNGLE FED A NATION’S ANGER.” The excerpt will tell us which law followed.'],
+           ['ctrl','hmm','Their cipher: “THE JUNGLE FED A NATION’S ANGER.” The excerpt will tell us which law followed.'],
            ['rev','','Muckrakers. Always digging. I prefer my dirt left where it is.']],
     stim:{ kind:'Primary source excerpt', title:'Upton Sinclair, The Jungle (1906)',
       text:'There would be meat that had tumbled out on the floor, in the dirt and sawdust, where the workers had tramped and spit uncounted billions of consumption germs. There would be meat stored in great piles in rooms; and the water from leaky roofs would drip over it, and thousands of rats would race about on it… the packers would put poisoned bread out for them; they would die, and then rats, bread, and meat would go into the hoppers together.',
@@ -5153,7 +5153,7 @@ const LV_ERAS = [
 
   { id:'a6', name:'The Zimmermann Telegram Cipher', year:'1917', icon:'📨', bm:['SS.912.A.4.5'],
     brief:[['judge','shocked','They took the Zimmermann Telegram — the message that helped pull the United States into World War I!'],
-           ['smith','hmm','Their cipher is a nod to the people who first cracked it: “THE CODEBREAKERS OF ROOM 40.”'],
+           ['ctrl','hmm','Their cipher is a nod to the people who first cracked it: “THE CODEBREAKERS OF ROOM 40.”'],
            ['tyler','','Room 40? I can’t even find Room 12 at school.']],
     stim:{ kind:'Primary source excerpt', title:'Zimmermann Telegram, German Foreign Secretary Arthur Zimmermann, January 1917 (decoded by British intelligence)',
       text:'We intend to begin on the first of February unrestricted submarine warfare. We shall endeavor in spite of this to keep the United States of America neutral. In the event of this not succeeding, we make Mexico a proposal of alliance on the following basis: make war together, make peace together, generous financial support and an understanding on our part that Mexico is to reconquer the lost territory in Texas, New Mexico, and Arizona.',
@@ -5179,7 +5179,7 @@ const LV_ERAS = [
     takeaway:'Unrestricted submarine warfare and the Zimmermann Telegram brought the U.S. into World War I in 1917. Afterward, the Senate rejected the League of Nations and the nation turned toward isolationism.' },
 
   { id:'a7', name:'The Suffrage Sash & Ballot Seal', year:'1920', icon:'🎗️', bm:['SS.912.A.3.8','SS.912.A.3.12'],
-    brief:[['smith','point','They hit the Progressive Era gallery and grabbed a suffragist’s sash and the ballot seal beside it.'],
+    brief:[['ctrl','point','They hit the Progressive Era gallery and grabbed a suffragist’s sash and the ballot seal beside it.'],
            ['judge','happy','Their cipher: “THE THIRTY-SIXTH STATE, BY ONE VOTE.” Find the state that made the 19th Amendment law.'],
            ['rev','','Seventy-two years of protest, undone in one heist. Delicious.']],
     stim:{ kind:'Primary source excerpt', title:'U.S. Constitution, Amendment XIX (ratified August 18, 1920)',
@@ -5229,7 +5229,7 @@ const LV_ERAS = [
   blurb:'World War II and Florida’s role, the Cold War, the Civil Rights Movement, major Supreme Court decisions and the Space Age.',
   artifacts:[
   { id:'a9', name:'A WWII Code Talker Field Radio', year:'1944', icon:'📻', bm:['SS.912.A.6.1','SS.912.A.6.4'],
-    brief:[['smith','point','Final era, Archivist. They took a field radio used by Navajo Code Talkers in the Pacific.'],
+    brief:[['ctrl','point','Final era, Archivist. They took a field radio used by Navajo Code Talkers in the Pacific.'],
            ['mentor','neutral','Their cipher is one word in the code itself: “BESH-LO.” The source tells you what it means.'],
            ['rev','','A code no one could break? I’ll settle for making everyone forget it.']],
     stim:{ kind:'Secondary source & glossary', title:'The Navajo Code Talkers, 1942–1945',
@@ -5257,7 +5257,7 @@ const LV_ERAS = [
 
   { id:'a10', name:'The Civil Rights Megaphone & Brown Brief', year:'1954–1965', icon:'📣', bm:['SS.912.A.7.8','SS.912.A.7.6'],
     brief:[['judge','upset','The Revisionists took a legal brief from Brown v. Board of Education and a megaphone from the marches that followed.'],
-           ['smith','point','The cipher: “SEPARATE IS NOT EQUAL — FIND THE CAPITAL OF KANSAS.” Read the Court’s words first.'],
+           ['ctrl','point','The cipher: “SEPARATE IS NOT EQUAL — FIND THE CAPITAL OF KANSAS.” Read the Court’s words first.'],
            ['tyler','','Capital of Kansas… Kansas City? No? Okay, I’ll just listen.']],
     stim:{ kind:'Primary source excerpt', title:'Brown v. Board of Education of Topeka, Chief Justice Earl Warren, May 17, 1954',
       text:'We conclude that, in the field of public education, the doctrine of “separate but equal” has no place. Separate educational facilities are inherently unequal. Therefore, we hold that the plaintiffs and others similarly situated for whom the actions have been brought are, by reason of the segregation complained of, deprived of the equal protection of the laws guaranteed by the Fourteenth Amendment.',
@@ -5283,7 +5283,7 @@ const LV_ERAS = [
     takeaway:'Brown v. Board (1954) overturned Plessy using the 14th Amendment. Nonviolent protest (Montgomery, sit-ins, marches) led to the Civil Rights Act of 1964 and the Voting Rights Act of 1965.' },
 
   { id:'a17', name:'A Piece of the Berlin Wall', year:'1961–1989', icon:'🧱', bm:['SS.912.A.6.10','SS.912.A.7.12'],
-    brief:[['smith','hmm','They chiseled off a piece of the Berlin Wall — the most famous symbol of the Cold War.'],
+    brief:[['ctrl','hmm','They chiseled off a piece of the Berlin Wall — the most famous symbol of the Cold War.'],
            ['mentor','neutral','Their cipher: “BUILT IN ’61, FELL IN ’89.” Follow the timeline from the Airlift to the fall.'],
            ['tyler','','Wait, they had a whole wall through a city? Why didn’t people just… go around?']],
     stim:{ kind:'Timeline', title:'Berlin: A City at the Center of the Cold War',
@@ -5310,7 +5310,7 @@ const LV_ERAS = [
     takeaway:'Berlin was the Cold War’s front line: the Airlift (1948–49), the Wall (1961) and its fall (1989). The Soviet Union collapsed in 1991, leaving the U.S. as the world’s only superpower.' },
 
   { id:'a12', name:'The Cape Canaveral Launch Key', year:'1969', icon:'🚀', bm:['SS.912.A.7.18','SS.912.A.6.13'],
-    brief:[['smith','cheer','Last artifact! The Revisionists grabbed a launch key from the Apollo era at Cape Canaveral.'],
+    brief:[['ctrl','cheer','Last artifact! The Revisionists grabbed a launch key from the Apollo era at Cape Canaveral.'],
            ['judge','happy','Their cipher: “LAUNCH COMPLEX 39A.” Find where Apollo 11 left Earth for the Moon.'],
            ['tyler','','Okay, this one I know. Houston. Because, you know… “Houston, we have a problem.” …No?']],
     stim:{ kind:'Timeline & data', title:'The Space Race and Florida’s Space Coast',
@@ -5362,7 +5362,7 @@ const LV_ERAS = [
    Counsel for the Defense family:
    - same modular Avatar 3.0 (layers + AV3 geometry, ported from Money Moves),
      with one-click import of a student's Money Moves character
-   - returning cast: Coach Smith (Mission Control), Prof. Reyes & Judge Holloway
+   - returning cast: Director Okafor (Mission Control), Prof. Reyes & Judge Holloway
      (Archive Guardians), Tyler (rival), plus The Revisionist
    - 4-stage loop per artifact: Cipher Briefing → Primary Source Investigation →
      Vault Security Lock (tiered EOC questions, Cipher Multiplier, hints,
@@ -5374,7 +5374,7 @@ const LV_KEY_SALT = 'liberty-vault-grenadier-2026';
 const LV_DIR = 'vault/';
 const LV_RANKS = [ {min:0, name:'Junior Field Archivist'}, {min:1, name:'Field Archivist'}, {min:2, name:'Senior Historian'}, {min:3, name:'Master of the Liberty Vault'} ];
 const LV_CAST = {
-  smith:{ name:'Coach Smith', role:'Mission Control', img:m=>LV_DIR+'char/smith_'+({point:'point',cheer:'cheer',hmm:'hmm'}[m]||'idle')+'.webp' },
+  ctrl:{ name:'Director Okafor', role:'Mission Control', img:()=>LV_DIR+'char/manager-okafor.webp' },
   mentor:{ name:'Prof. Reyes', role:'Archive Guardian', img:m=>LV_DIR+'char/mentor_'+({happy:'happy',upset:'upset',shocked:'shocked'}[m]||'neutral')+'.webp' },
   judge:{ name:'Judge Holloway', role:'Archive Guardian', img:m=>LV_DIR+'char/judge_'+({happy:'happy',upset:'upset',shocked:'shocked'}[m]||'neutral')+'.webp' },
   tyler:{ name:'Tyler', role:'Rival archivist', img:()=>LV_DIR+'char/rival_neutral.webp' },
@@ -5508,12 +5508,12 @@ function renderVault(m){
 
   /* ---------- story intro ---------- */
   function intro(){
-    const lines=[['smith','point','Welcome to the Liberty Vault, Archivist. Down here we protect the primary sources that prove what really happened in American history.'],
+    const lines=[['ctrl','point','Welcome to the Liberty Vault, Archivist. Down here we protect the primary sources that prove what really happened in American history.'],
       ['rev','','Good evening, little archivists. My syndicate — the Revisionists — has borrowed twelve of your precious artifacts. Without proof, history becomes whatever I say it is.'],
       ['mentor','upset','Each stolen artifact left a cipher behind. Read the evidence, crack the cipher, and the vault will show you where they hid it.'],
       ['judge','neutral','But the vaults are guarded. Answer the security questions correctly — every miss weakens the lock, and the Archive will explain why.'],
       ['tyler','','Relax, I’ll probably find all twelve before lunch. You can carry my flashlight.'],
-      ['smith','cheer','Ignore him. First, suit up — let’s build your Junior Field Archivist.']];
+      ['ctrl','cheer','Ignore him. First, suit up — let’s build your Junior Field Archivist.']];
     let i=0; const paint=()=>{ shell(`<div class="lv-top"><button class="btn ghost lv-x" id="lvExit">← Classroom Arena</button></div>
       <div class="lv-hero"><div class="lv-kicker">A Florida U.S. History EOC Mission</div><h1>THE LIBERTY VAULT</h1><div class="lv-sub">Artifact Hunters</div></div>
       <div class="lv-dlg">${lines.slice(0,i+1).map(l=>lvLine(...l)).join('')}</div>
@@ -5526,12 +5526,12 @@ function renderVault(m){
   function hub(){
     const lock=lvEraLock(); const r=lvRank(); const found=lvFound().length;
     const next=LV_ERAS.find(e=>(!lock||e.id===lock) && !v.seals[e.id]);
-    const smithLine = found===0? 'Pick an expedition. Doing the full campaign? Start with Era 1 and work forward through time.' : lvSeals().length===3 ? 'Every artifact recovered and every vault sealed. You’re a Master of the Liberty Vault. Claim your certificate!' : `${found} of 12 artifacts back in the vault. ${next?`Next up: Era ${next.n}, ${next.name}.`:''}`;
+    const ctrlLine = found===0? 'Pick an expedition. Doing the full campaign? Start with Era 1 and work forward through time.' : lvSeals().length===3 ? 'Every artifact recovered and every vault sealed. You’re a Master of the Liberty Vault. Claim your certificate!' : `${found} of 12 artifacts back in the vault. ${next?`Next up: Era ${next.n}, ${next.name}.`:''}`;
     shell(`<div class="lv-top"><button class="btn ghost lv-x" id="lvExit">← Classroom Arena</button><div class="row">${lvHudChips()}</div></div>
       <div class="lv-hub">
         <div class="lv-card lv-me"><div class="lv-av" id="lvAv"></div><div><div class="lv-kicker">${esc(r.name)}</div><h2 style="margin:.1rem 0">${esc((S.join&&S.join.name)||'Archivist')}</h2>
           <div class="row" style="margin-top:.5rem"><button class="btn" id="lvEdit">✏️ Edit archivist</button><button class="btn" data-lv="trophy">🏆 Trophy case</button><button class="btn ${lvSeals().length?'gold':''}" data-lv="cert" ${lvSeals().length?'':'disabled title="Earn an era Mastery Seal first"'}>📜 Certificate</button></div></div></div>
-        <div class="lv-card">${lvLine('smith', found?'point':'idle', smithLine)}</div>
+        <div class="lv-card">${lvLine('ctrl', found?'point':'idle', ctrlLine)}</div>
       </div>
       <h2 class="lv-h">Choose your expedition</h2>
       ${lock?`<p class="lv-note">🔒 Your teacher has set this class to Era ${LV_ERAS.find(e=>e.id===lock).n}.</p>`:''}
@@ -5641,7 +5641,7 @@ function renderVault(m){
       if(pass && !v.seals[e.id]){ v.seals[e.id]=Date.now(); award(2,'Era Mastery Seal'); } lvSave(); pass?SFX.fanfare():SFX.wrong();
       shell(`<div class="lv-top"><button class="btn ghost lv-x" data-lv="era:${e.id}">← Era ${e.n}</button><div class="row">${lvHudChips()}</div></div>
         <div class="lv-trophy-big">${lvPic(pass?'lv_seal':'lv_dial','lv-arti big',pass?'Mastery Seal':'Vault lock')}<div class="lv-kicker">${right}/6 correct</div><h1>${pass?`Era ${e.n} Mastery Seal earned!`:'The seal held — this time.'}</h1></div>
-        <div class="lv-card">${pass?lvLine('smith','cheer',`Outstanding, Archivist. The ${e.name} vault is sealed for good. ${lvSeals().length===3?'All three seals — go claim the Master of the Liberty Vault certificate!':'Your certificate is ready whenever you are.'}`):lvLine('rev','','Close, but the seal stays mine. Review those fact checks and come back.')}</div>
+        <div class="lv-card">${pass?lvLine('ctrl','cheer',`Outstanding, Archivist. The ${e.name} vault is sealed for good. ${lvSeals().length===3?'All three seals — go claim the Master of the Liberty Vault certificate!':'Your certificate is ready whenever you are.'}`):lvLine('rev','','Close, but the seal stays mine. Review those fact checks and come back.')}</div>
         ${missed.length?`<div class="lv-card"><div class="lv-kicker">Review what you missed</div>${missed.map(q=>`<div class="lv-note-i"><b>${esc(q.s)}</b><br>✔ ${esc(q.o[0])}<br><span class="small">${esc(q.fc)}</span></div>`).join('')}</div>`:''}
         <div class="row" style="justify-content:center;margin-top:1rem">${pass?`<button class="btn gold big" data-lv="cert">📜 Get my certificate</button><button class="btn" data-lv="hub">Vault hub</button>`:`<button class="btn gold big" data-lv="boss:${e.id}">Try the seal again 🔄</button><button class="btn" data-lv="era:${e.id}">Review artifacts</button>`}</div>`, e); };
     intro();

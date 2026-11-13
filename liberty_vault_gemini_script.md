@@ -2,7 +2,7 @@
 
 **Total: 5 Gemini generations.** Your original list would have taken about 12, so this script combines pieces onto sheets. Do it all in **one new Gemini chat**, then send Claude every image in one zip. Claude cuts the sheets apart, removes the magenta backgrounds, and builds everything into the game, which is already set up to use this art.
 
-**Already in the game, so don't make these again:** student avatars (Money Moves Avatar 3.0), Coach Smith, Prof. Reyes, Judge Holloway, Tyler, and the gold corner flourishes on the certificate.
+**Already in the game, so don't make these again:** student avatars (Money Moves Avatar 3.0), Director Okafor, Prof. Reyes, Judge Holloway, Tyler, and the gold corner flourishes on the certificate.
 
 ---
 

@@ -460,6 +460,14 @@ mark.lv-hl{background:#FDE047;color:#111;padding:0 .15em;border-radius:3px;box-s
 .lv-pick:has(.lv-skin){grid-template-columns:110px 1fr}
 .lv-skin{width:34px;height:34px;border-radius:50%;border:2px solid #CBD5E1;background:#F1F5F9;font-weight:700;cursor:pointer}.lv-skin.on{border-color:#1D4ED8;background:#DBEAFE}
 @media (max-width:900px){ .lv-hub,.lv-inv{grid-template-columns:1fr} .lv-eras{grid-template-columns:1fr} .lv-case{grid-template-columns:repeat(2,1fr)} .lv-studio{grid-template-columns:1fr} .lvfeat{grid-template-columns:auto 1fr} .lvfeat-go{grid-column:1/-1} }
+/* Liberty Vault art */
+img.lv-arti{background:radial-gradient(circle,rgba(224,176,74,.28),transparent 68%);padding:4px;filter:drop-shadow(0 6px 10px rgba(0,0,0,.45))}
+img.lv-arti.ped{opacity:.55;filter:grayscale(.4) drop-shadow(0 4px 8px rgba(0,0,0,.4));background:none}
+.lv-lensico{width:22px;height:22px;object-fit:contain;vertical-align:-6px;margin-right:6px}
+.lv-sealimg{width:84px;height:84px;object-fit:contain;display:block;margin:0 auto .3rem;filter:grayscale(1) brightness(.55) opacity(.6)}
+.lv-seal.on .lv-sealimg{filter:drop-shadow(0 0 14px rgba(252,211,77,.55))}
+.lv-kit .kit-off img{filter:grayscale(1) brightness(.35);opacity:.7}
+.lv-kit{grid-template-columns:repeat(3,1fr)}
 </style></head>
 <body><header id="topbar"></header><main id="main"></main>
 <script id="arenaApp">
@@ -5012,63 +5020,59 @@ const LV_ERAS = [
         fc:'The timeline says the Central Pacific was built with thousands of Chinese immigrant workers. The Union Pacific relied more on Irish immigrants and Civil War veterans.' } ],
     takeaway:'The transcontinental railroad (1869) created national markets and sped settlement, but it was built by exploited immigrant labor and helped destroy the Plains Native American way of life.' },
 
-  { id:'a3', name:'A Dawes Act Allotment Deed', year:'1887', icon:'📃', bm:['SS.912.A.2.7'],
-    brief:[['mentor','upset','This one hurts. They took an allotment deed from 1887 — proof of how Native lands were divided.'],
-           ['smith','hmm','Their cipher: “ONE FAMILY, ONE HUNDRED SIXTY ACRES.” Careful — two different laws used that number.'],
-           ['rev','','Allotment was a kindness. That’s how I’d like the textbooks to tell it.']],
-    stim:{ kind:'Primary source excerpt', title:'General Allotment Act (Dawes Act), 1887',
-      text:'That in all cases where any tribe or band of Indians has been, or shall hereafter be, located upon any reservation… the President of the United States… is authorized… to cause said reservation… to be surveyed… and to allot the lands in said reservation in severalty to any Indian located thereon in quantities as follows: To each head of a family, one-quarter of a section…',
-      lens:[['in severalty','“In severalty” means individually. The law broke up land that tribes held together.'],
-            ['one-quarter of a section','A quarter section is 160 acres per head of family.'],
-            ['the President of the United States','The federal government, not the tribes, controlled how land was divided.']] },
-    locate:{ s:'“ONE FAMILY, ONE HUNDRED SIXTY ACRES” — and the excerpt is about reservations. Which law is it?',
-      o:['The Dawes Act (1887)','The Homestead Act (1862)','The Indian Removal Act (1830)','The Indian Citizenship Act (1924)'],
-      fc:'Both the Homestead Act and the Dawes Act used 160 acres, but only the Dawes Act divided reservation land among Native American families. The Homestead Act gave public land to settlers.' },
+  { id:'a13', name:'Edison’s Menlo Park Light Bulb', year:'1879', icon:'💡', bm:['SS.912.A.3.5','SS.912.A.3.4'],
+    brief:[['smith','idle','The Industry wing is dark — literally. The Revisionists took one of Thomas Edison’s early light bulbs.'],
+           ['mentor','happy','Their cipher: “THE INVENTION FACTORY LIT A CITY.” The timeline will show us where it came from.'],
+           ['rev','','Inventors, inventors. Let’s just say progress… happened on its own.']],
+    stim:{ kind:'Timeline', title:'Inventions of the Second Industrial Revolution',
+      text:'1876 — Alexander Graham Bell patents the telephone.\n1876 — Thomas Edison opens a research laboratory at Menlo Park, New Jersey, an invention factory where teams of workers develop new products.\n1879 — Edison’s lab produces a long-lasting incandescent light bulb.\n1882 — Lewis Latimer, an African American inventor, patents an improved carbon filament that makes bulbs last longer and cost less.\n1882 — Edison’s Pearl Street Station begins selling electricity to customers in New York City.\n1890s — Electric lights and motors let factories run longer hours and power streetcars in growing cities.',
+      lens:[['invention factory','Menlo Park was one of the first industrial research labs: teams inventing on purpose, not a lone genius in a shed.'],
+            ['Lewis Latimer','An African American inventor and draftsman whose carbon filament made electric light practical and affordable.'],
+            ['Pearl Street Station','The first central power plant in the U.S. — the start of the electric grid.']] },
+    locate:{ s:'“THE INVENTION FACTORY LIT A CITY.” Where was the long-lasting bulb developed?',
+      o:['Thomas Edison’s laboratory at Menlo Park, New Jersey','Alexander Graham Bell’s workshop in Boston, Massachusetts','Andrew Carnegie’s Homestead steel works near Pittsburgh','John D. Rockefeller’s oil refinery in Cleveland, Ohio'],
+      fc:'Edison called Menlo Park his “invention factory,” and it produced a long-lasting light bulb in 1879. Bell invented the telephone, Carnegie made steel and Rockefeller refined oil.' },
     lock:[
-      { t:'ID', bm:'SS.912.A.2.7', s:'What was the goal of the Dawes Act?',
-        o:['To assimilate Native Americans by breaking reservations into individual family farms','To return western reservation land to tribal control and self-government','To move all remaining tribes west of the Mississippi River to Oklahoma','To buy reservation land for new railroad lines while paying tribes fair market prices for every acre'],
-        fc:'Supporters wanted Native Americans to give up tribal ways and become individual farmers. It was presented as reform, but its purpose was assimilation.' },
-      { t:'CE', bm:'SS.912.A.2.7', s:'What was a major effect of the Dawes Act?',
-        o:['Native Americans lost about two-thirds of their land, much of it sold to white settlers','Tribal landholdings grew as Native families claimed new 160-acre farms on public land outside their reservations','Reservations were closed to all non-Native settlement until 1934','Most Native families became wealthy commercial farmers within a decade'],
-        fc:'Land left over after allotment was declared “surplus” and sold, and many allotments were later lost. Native-held land fell from about 138 million acres in 1887 to about 48 million acres by 1934.' },
-      { t:'CT', bm:'SS.912.A.5.11', s:'Which later law ended allotment and encouraged tribal self-government?',
-        o:['The Indian Reorganization Act of 1934, part of the New Deal','The Indian Removal Act of 1830, signed by Jackson','The Homestead Act of 1862, passed by Congress during the Civil War','The Interstate Commerce Act of 1887, a reform law'],
-        fc:'The Indian Reorganization Act (1934) ended allotment and supported tribal governments. It was part of Franklin Roosevelt’s New Deal.' },
-      { t:'PS', bm:'SS.912.A.1.2', s:'According to the excerpt, who has the power to divide reservation land?', hl:'the President of the United States',
-        o:['The President of the United States','Each tribe’s own elected council','The governors of the western states','The railroad companies crossing the land'],
-        fc:'The excerpt says “the President of the United States… is authorized” to survey and allot the land. Tribes had no say in the decision.' } ],
-    takeaway:'Native American policy moved from removal (1830s) to reservations (1850s–1880s) to assimilation through allotment (Dawes Act, 1887), which cost tribes about two-thirds of their land.' },
+      { t:'ID', bm:'SS.912.A.3.5', s:'Which inventor improved the light bulb with a longer-lasting carbon filament?',
+        o:['Lewis Latimer','George Washington Carver','Garrett Morgan','Madam C. J. Walker'],
+        fc:'Lewis Latimer, an African American inventor, patented a carbon filament in 1882 and later worked for Edison’s company. Carver found new uses for peanuts, and Garrett Morgan invented a safety hood and a traffic signal.' },
+      { t:'CE', bm:'SS.912.A.3.4', s:'How did electricity change American factories and cities by the 1890s?',
+        o:['Factories could run longer hours, and electric streetcars helped cities spread out','Factories had to close at sunset because electric lights were banned for safety reasons','Most workers moved back to farms because electric machines eliminated factory jobs','Railroads were no longer needed to ship goods'],
+        fc:'Electric lights and motors let factories run night shifts, and electric streetcars let cities grow outward into new neighborhoods. Railroads remained the main way to ship goods.' },
+      { t:'CT', bm:'SS.912.A.3.3', s:'How did the second Industrial Revolution (after 1870) differ from the first?',
+        o:['Steel, oil and electricity replaced water power and textiles as the main drivers','Most manufacturing moved back into workers’ homes, where families used simple hand tools','Businesses stayed small and local, so total production fell','It took place mostly in Southern cotton mills before the Civil War'],
+        fc:'The first Industrial Revolution (early 1800s) centered on textiles, water power and canals. The second brought steel, oil, electricity, railroads and giant corporations.' },
+      { t:'PS', bm:'SS.912.A.1.2', s:'Based on the timeline, what made Menlo Park different from earlier ways of inventing?', hl:'invention factory',
+        o:['Teams of workers developed new products in an organized lab','A single inventor worked alone with no money or tools','The federal government owned the lab and every patent produced in it','It only copied inventions that came from Europe'],
+        fc:'The timeline calls Menlo Park an invention factory where teams of workers developed new products. Organized research labs became a model for big business.' } ],
+    takeaway:'The second Industrial Revolution ran on steel, oil and electricity. Inventors such as Edison, Bell and Lewis Latimer helped make the U.S. the world’s leading industrial power by 1900.' },
 
-  { id:'a4', name:'An Ellis Island Inspection Card', year:'1892–1910', icon:'🗽', bm:['SS.912.A.3.7','SS.912.A.3.2'],
-    brief:[['smith','point','Last artifact in this era: an Ellis Island inspection card — the ticket millions of immigrants carried into America.'],
-           ['mentor','happy','The cipher is a riddle: “THE ISLAND OF HOPE OPENED IN THE YEAR OF COLUMBUS’S 400TH.” Do the math, then read the data.'],
-           ['tyler','','1492 plus 400… hold on, I’m getting my phone out.']],
-    stim:{ kind:'Data table', title:'Immigration to the United States by Region of Origin (rounded)',
-      table:[['Decade','Total immigrants','From Northern & Western Europe','From Southern & Eastern Europe'],
-             ['1871–1880','2.8 million','about 74%','about 7%'],
-             ['1881–1890','5.2 million','about 72%','about 18%'],
-             ['1901–1910','8.8 million','about 22%','about 71%']],
-      text:'Source: U.S. Census Bureau, Historical Statistics of the United States (percentages rounded).',
-      lens:[['8.8 million','The largest decade of immigration in U.S. history up to that time.'],
-            ['Southern & Eastern Europe','The “new immigrants”: Italians, Poles, Greeks, Slavs and Jews fleeing Russia.'],
-            ['about 74%','The “old immigrants”: mostly Germans, Irish, British and Scandinavians.']] },
-    locate:{ s:'“THE ISLAND OF HOPE OPENED IN THE YEAR OF COLUMBUS’S 400TH.” Which station is it, and when did it open?',
-      o:['Ellis Island, New York — opened 1892','Angel Island, California — opened 1910','Castle Garden, New York — opened 1855','Galveston, Texas — opened 1907'],
-      fc:'1492 + 400 = 1892, the year Ellis Island opened in New York Harbor. Angel Island in San Francisco Bay opened in 1910 and mainly processed Asian immigrants.' },
+  { id:'a14', name:'A Farmers’ Alliance Lantern', year:'1892', icon:'🏮', bm:['SS.912.A.3.1','SS.912.A.3.12'],
+    brief:[['smith','point','Last artifact in this era. They took a lantern from a Farmers’ Alliance hall — farmers carried these to night meetings across the Plains.'],
+           ['mentor','neutral','Their cipher: “THE PEOPLE’S PARTY MET IN OMAHA.” Read the platform and it will lead us to the vault.'],
+           ['tyler','','Farmers started a political party? I thought they just… farmed.']],
+    stim:{ kind:'Primary source excerpt', title:'Omaha Platform of the People’s (Populist) Party, 1892',
+      text:'We meet in the midst of a nation brought to the verge of moral, political, and material ruin… We demand a national currency, safe, sound, and flexible… We demand free and unlimited coinage of silver and gold at the present legal ratio of 16 to 1… We demand a graduated income tax… Transportation being a means of exchange and a public necessity, the government should own and operate the railroads in the interest of the people.',
+      lens:[['free and unlimited coinage of silver','“Free silver” would put more money in circulation, raising crop prices and making debts easier to repay.'],
+            ['graduated income tax','Higher tax rates on higher incomes. It became possible with the 16th Amendment (1913).'],
+            ['own and operate the railroads','Farmers blamed high railroad shipping rates for their losses.']] },
+    locate:{ s:'“THE PEOPLE’S PARTY MET IN OMAHA.” What did its 1892 platform demand?',
+      o:['Free silver, a graduated income tax and government-run railroads','Keeping the gold standard, cutting taxes on the wealthy and leaving railroads private','An end to immigration and the sale of public land to railroads','Higher tariffs, a national bank and a ban on labor unions'],
+      fc:'The Omaha Platform (1892) called for free silver, a graduated income tax and government ownership of the railroads. Many of its ideas were later adopted by Progressives.' },
     lock:[
-      { t:'ID', bm:'SS.912.A.3.2', s:'What “push” factor drove many new immigrants to leave Southern and Eastern Europe?',
-        o:['Poverty and religious persecution, such as attacks (pogroms) on Jews in Russia','Free farmland promised to Europeans under the Dawes Act of 1887','The California Gold Rush, which drew miners from Italy and Russia','U.S. labor recruiters who offered every European free steamship passage and instant citizenship'],
-        fc:'Many new immigrants fled poverty, overcrowding and persecution, including pogroms against Jews in the Russian Empire. Factory jobs in American cities were a major “pull” factor.' },
-      { t:'CE', bm:'SS.912.A.3.7', s:'How did many native-born Americans react to the new immigrants?',
-        o:['Nativism grew, leading to a literacy test in 1917 and quota laws in the 1920s','They welcomed them and passed laws granting immediate citizenship','They demanded that Ellis Island stop all medical and legal inspections to speed up arrivals','They banned all European immigration with the 1882 Exclusion Act'],
-        fc:'Nativists feared the new immigrants’ religions, languages and competition for jobs. Congress passed a literacy test in 1917 and quota laws in 1921 and 1924 that targeted Southern and Eastern Europeans.' },
-      { t:'CT', bm:'SS.912.A.3.7', s:'Compare Ellis Island (New York) with Angel Island (San Francisco). Which statement is accurate?',
-        o:['Chinese immigrants at Angel Island were often detained for weeks or months because of exclusion laws','Angel Island mainly processed Irish and German immigrants arriving by sea, who were usually released within an hour','Most Europeans at Ellis Island were held for months before being admitted','Both stations admitted all immigrants without any medical or legal inspection'],
-        fc:'Most Ellis Island arrivals were processed in a few hours, while Chinese immigrants at Angel Island could be held for weeks or months under the Chinese Exclusion Act. That difference is the key East–West comparison.' },
-      { t:'PS', bm:'SS.912.A.1.4', s:'According to the table, what changed between 1871–1880 and 1901–1910?', hl:'about 71%',
-        o:['Southern and Eastern Europe replaced Northern and Western Europe as the main source','Total immigration fell by about half, to roughly 1.4 million per decade','Northern and Western Europe’s share of immigrants grew to about 71%','Immigration from all parts of Europe nearly stopped after the 1890s as American factories closed'],
-        fc:'Southern and Eastern Europe’s share grew from about 7% to about 71%, while total immigration more than tripled. This shift is the move from “old” to “new” immigration.' } ],
-    takeaway:'New immigrants (1880s–1910s) came mostly from Southern and Eastern Europe through Ellis Island, while Asian immigrants faced exclusion at Angel Island. Nativism led to the 1920s quota laws.' } ],
+      { t:'ID', bm:'SS.912.A.3.1', s:'What problems led farmers to form the Grange and the Farmers’ Alliances?',
+        o:['Falling crop prices, high railroad rates and heavy debt','Rising crop prices that made farmland too expensive to buy','A shortage of farm machinery after factories switched to making weapons for the Civil War','Federal rules that banned selling crops across state lines'],
+        fc:'Farmers grew more than ever, so prices fell while railroad rates and loan payments stayed high. The Grange and the Farmers’ Alliances organized to fight back.' },
+      { t:'CE', bm:'SS.912.A.3.1', s:'What was one result of farmers’ pressure on the railroads?',
+        o:['Congress passed the Interstate Commerce Act (1887) to regulate railroad rates','The federal government took over every railroad in 1890','Railroads stopped carrying farm products to Eastern markets','The Supreme Court banned farm cooperatives and Grange halls in every Midwestern state'],
+        fc:'Granger laws in states like Illinois led to the Interstate Commerce Act of 1887, the first federal law regulating railroads. The government never took over the railroads in peacetime.' },
+      { t:'CT', bm:'SS.912.A.3.12', s:'How did Populist ideas influence the Progressive Era?',
+        o:['Progressives enacted Populist goals such as an income tax and the direct election of senators','The Populist Party won the presidency in 1896 and passed its whole platform within a single term','Progressives rejected every Populist idea and kept railroads unregulated','Populist ideas disappeared completely after 1896'],
+        fc:'The Populist Party faded after William Jennings Bryan lost in 1896, but Progressives adopted its ideas. The 16th Amendment (income tax) and 17th Amendment (direct election of senators) both became law in 1913.' },
+      { t:'PS', bm:'SS.912.A.1.2', s:'According to the excerpt, why should the government run the railroads?', hl:'a public necessity',
+        o:['Transportation is a public necessity that should serve the people','Railroads were losing money and needed a rescue','The army needed the railroads to fight in the West','Foreign companies owned most U.S. railroad lines and planned to close them down'],
+        fc:'The platform calls transportation “a public necessity” that should be run “in the interest of the people.” Farmers believed private railroads charged them unfair rates.' } ],
+    takeaway:'Farmers faced falling prices, high railroad rates and debt. The Grange and the Populist Party (Omaha Platform, 1892) demanded free silver, an income tax and railroad regulation — ideas Progressives later enacted.' } ],
   boss:[
     { t:'SYN', bm:'SS.912.A.2.4', s:'Which pair correctly matches a Reconstruction amendment to what it did?',
       o:['14th Amendment — equal protection of the laws','13th Amendment — voting rights regardless of race','15th Amendment — birthright citizenship','14th Amendment — abolished slavery'],
@@ -5082,9 +5086,9 @@ const LV_ERAS = [
     { t:'SYN', bm:'SS.912.A.2.7', s:'How did U.S. policy toward Native Americans change from the 1830s to 1887?',
       o:['From removal, to reservations, to assimilation through allotment','From assimilation, to removal, to full citizenship','From reservations, to removal, to self-government','It stayed the same throughout the period: treaties that were honored by both sides'],
       fc:'The Indian Removal Act (1830) forced tribes west, reservations confined them from the 1850s on, and the Dawes Act (1887) tried to assimilate them through allotment. Each step took more Native land.' },
-    { t:'SYN', bm:'SS.912.A.3.1', s:'Why did many farmers support the Populist Party in the 1890s?',
-      o:['They wanted railroad regulation and “free silver” to raise prices and ease debts','They wanted higher railroad rates to pay for more rural rail lines','They wanted the gold standard kept so their crops would earn more','They wanted to end all government involvement in the economy, including railroad rules'],
-      fc:'Farmers faced falling crop prices, high railroad rates and heavy debt. The Populists’ Omaha Platform (1892) called for government ownership of the railroads, a graduated income tax and the free coinage of silver.' },
+    { t:'SYN', bm:'SS.912.A.3.7', s:'How did the experiences of immigrants at Ellis Island and Angel Island differ?',
+      o:['Most Europeans at Ellis Island were admitted within hours, while Chinese immigrants at Angel Island were often held for weeks','Angel Island processed Europeans quickly, while Ellis Island held Asian immigrants for months','Both stations turned away most arrivals and sent them home','Neither station inspected newcomers for disease, legal status or ability to work, so everyone who arrived entered the country on the same day'],
+      fc:'Ellis Island (1892) processed mostly European “new immigrants” in a few hours, while Angel Island (1910) held Chinese immigrants for weeks or months under the Chinese Exclusion Act. Nativism later led to the 1920s quota laws.' },
     { t:'SYN', bm:'SS.912.A.3.9', s:'Which event best shows the conflict between workers and owners in the Gilded Age?',
       o:['The Pullman Strike of 1894, which ended when the federal government sent troops','The completion of the transcontinental railroad at Promontory Summit in 1869','The opening of Ellis Island in 1892 to process millions of new immigrants arriving in New York','The passage of the Dawes Act to divide reservation land in 1887'],
       fc:'Railway workers struck after the Pullman Company cut wages without lowering rents in its company town. President Cleveland sent federal troops, and the strike collapsed.' } ] },
@@ -5093,32 +5097,59 @@ const LV_ERAS = [
   guardian:'judge', tint:['#0E2A3B','#2F6B7E'],
   blurb:'American imperialism, Progressivism, World War I, the Roaring Twenties, the Great Depression and the New Deal.',
   artifacts:[
-  { id:'a5', name:'A Panama Canal Lock Key', year:'1914', icon:'🗝️', bm:['SS.912.A.4.4','SS.912.A.4.1'],
-    brief:[['smith','point','Archivist, new era, new trouble. The Revisionists swiped a lock key from the Panama Canal.'],
-           ['judge','neutral','Order in the vault. The cipher reads: “A PATH BETWEEN THE SEAS, OPENED THE SUMMER WAR CAME.” Weigh the evidence before you rule.'],
-           ['rev','','A canal is just a ditch with good publicity.']],
-    stim:{ kind:'Timeline & data', title:'Why the United States Built the Panama Canal',
-      text:'1898 — During the Spanish–American War, the battleship USS Oregon needs about 67 days to sail from San Francisco around South America to the Caribbean.\n1903 — The United States supports Panama’s revolt against Colombia, then signs a treaty with the new nation giving the U.S. control of a Canal Zone.\n1904–1914 — Workers dig the canal while Dr. William Gorgas leads a campaign against yellow fever and malaria.\nAugust 15, 1914 — The canal opens, two weeks after World War I begins in Europe.\nSea route, New York to San Francisco: about 13,000 miles around Cape Horn — about 5,200 miles through the canal.',
-      lens:[['USS Oregon','The military motive: the Navy needed to move ships quickly between oceans.'],
-            ['Panama’s revolt against Colombia','Roosevelt backed Panama’s independence after Colombia rejected the U.S. offer — “Big Stick” diplomacy.'],
-            ['about 5,200 miles','The economic motive: a much shorter, cheaper trade route.']] },
-    locate:{ s:'“A PATH BETWEEN THE SEAS, OPENED THE SUMMER WAR CAME.” Which waterway holds the vault?',
-      o:['The Panama Canal Zone','The Suez Canal','The Erie Canal','The Nicaragua canal route'],
-      fc:'The Panama Canal connected the Atlantic and Pacific and opened on August 15, 1914, just after World War I began. The Suez Canal is in Egypt, and the Erie Canal is in New York.' },
+  { id:'a15', name:'The USS Maine Telegraph Key', year:'1898', icon:'⚓', bm:['SS.912.A.4.3','SS.912.A.4.1'],
+    brief:[['smith','point','Archivist, new era, new trouble. The Revisionists swiped the telegraph key that sent word of the USS Maine explosion.'],
+           ['judge','neutral','Order in the vault. The cipher reads: “REMEMBER THE MAINE — AND THE HEADLINES.” Weigh the facts against what the papers printed.'],
+           ['rev','','Facts are dull. Headlines sell. Some things never change.']],
+    stim:{ kind:'Timeline', title:'From Havana Harbor to an Overseas Empire, 1895–1898',
+      text:'1895 — Cubans rebel against Spanish rule.\n1896 — Spain’s General Weyler forces Cuban civilians into crowded camps, where thousands die of disease and hunger.\n1896–1898 — Newspapers owned by William Randolph Hearst and Joseph Pulitzer print exaggerated stories of Spanish cruelty, known as yellow journalism.\nFebruary 15, 1898 — The battleship USS Maine explodes in Havana Harbor, killing about 260 sailors. The cause is unknown, but the newspapers blame Spain.\nApril 1898 — Congress declares war; the Teller Amendment promises the U.S. will not annex Cuba.\nDecember 1898 — The Treaty of Paris gives the U.S. Puerto Rico, Guam and the Philippines.',
+      lens:[['yellow journalism','Sensational, exaggerated reporting meant to sell papers and stir up anger.'],
+            ['The cause is unknown','A 1976 U.S. Navy study concluded an accidental fire inside the ship was the likely cause, not a Spanish mine.'],
+            ['Teller Amendment','Congress promised not to annex Cuba, but the Platt Amendment (1901) later gave the U.S. power over Cuban affairs.']] },
+    locate:{ s:'“REMEMBER THE MAINE — AND THE HEADLINES.” What turned the explosion into a call for war?',
+      o:['Yellow journalism in Hearst and Pulitzer newspapers','Muckraking magazine articles about meatpacking plants','Government censorship under the Espionage Act','Radio fireside chats broadcast from the White House'],
+      fc:'Hearst’s and Pulitzer’s papers printed exaggerated stories and blamed Spain for the Maine before any investigation. Muckraking exposed real problems a few years later, and the Espionage Act was a World War I law.' },
     lock:[
-      { t:'ID', bm:'SS.912.A.4.4', s:'Which motive for building the canal does the USS Oregon’s voyage illustrate?',
-        o:['Military — moving the Navy quickly between the Atlantic and Pacific','Religious — sending missionaries more quickly to Asia, Hawaii and the Pacific islands','Cultural — spreading American music and sports across Latin America','Humanitarian — delivering medicine to end yellow fever worldwide'],
-        fc:'The Oregon’s two-month voyage during the Spanish–American War showed the Navy needed a shortcut between the oceans. Military security joined trade as a main reason for the canal.' },
-      { t:'CE', bm:'SS.912.A.4.1', s:'How did the United States gain the right to build the canal?',
-        o:['It backed Panama’s independence from Colombia, then signed a treaty with Panama','It bought the Canal Zone from Spain for $20 million in the 1898 Treaty of Paris ending the war','It won the land from Colombia in the Spanish–American War of 1898','It leased the route from Great Britain for ninety-nine years in 1901'],
-        fc:'When Colombia rejected the U.S. offer, President Theodore Roosevelt backed a revolt that created Panama in 1903. The new government quickly signed a treaty giving the U.S. the Canal Zone.' },
-      { t:'CT', bm:'SS.912.A.4.1', s:'How did U.S. foreign policy change between 1890 and 1914?',
-        o:['It shifted from focusing at home to overseas expansion and intervention','It shifted from overseas expansion to complete isolation from the world','It focused only on European alliances and avoided Latin America, Asia and the Pacific','It ended all U.S. involvement in Latin America and the Pacific'],
-        fc:'Seeking markets, naval bases and influence, the U.S. took Hawaii, Puerto Rico, Guam and the Philippines and built the Panama Canal. The Roosevelt Corollary (1904) claimed a right to intervene in Latin America.' },
-      { t:'PS', bm:'SS.912.A.1.4', s:'Based on the data, what was the canal’s economic benefit?', hl:'about 5,200 miles',
-        o:['It cut the New York–San Francisco sea route by more than half','It doubled the length of most Atlantic–Pacific shipping routes','It mostly helped ships traveling between New York and Europe','It made cross-country railroads faster and cheaper than ships'],
-        fc:'The route dropped from about 13,000 miles to about 5,200 miles, saving time and money on trade. Shorter routes helped American businesses reach Pacific and Asian markets.' } ],
-    takeaway:'The U.S. built the Panama Canal (opened 1914) for military, economic and security reasons, using “Big Stick” diplomacy to back Panama’s independence from Colombia.' },
+      { t:'ID', bm:'SS.912.A.4.3', s:'Which territories did the U.S. gain from Spain in the Treaty of Paris (1898)?',
+        o:['Puerto Rico, Guam and the Philippines','Hawaii, Alaska and the Panama Canal Zone','Cuba, Mexico and the Dominican Republic','Florida, Texas and California'],
+        fc:'Spain gave up Puerto Rico, Guam and the Philippines, and Cuba became independent under U.S. influence. Hawaii was annexed separately in 1898, and Alaska was bought from Russia in 1867.' },
+      { t:'CE', bm:'SS.912.A.4.1', s:'Which factor helped drive American imperialism in the 1890s?',
+        o:['A search for new markets and overseas naval bases','A plan to shrink the U.S. Navy to save money after the Civil War','Spain’s offer to sell Cuba to any buyer at auction','A treaty requiring the U.S. to defend every European colony in Asia, Africa and the Americas'],
+        fc:'Businesses wanted new markets, and Alfred T. Mahan argued that a strong navy needed overseas bases and coaling stations. Ideas like Social Darwinism were also used to justify expansion.' },
+      { t:'CT', bm:'SS.912.A.4.2', s:'How did U.S. policy toward the Philippines change after 1898?',
+        o:['The U.S. fought Filipino independence fighters, then ruled the islands until 1946','The U.S. granted the Philippines full independence in 1899','The U.S. sold the Philippines back to Spain in 1900 after Congress refused to pay for governing the islands','The Philippines became a U.S. state in 1959'],
+        fc:'Filipinos led by Emilio Aguinaldo fought U.S. rule from 1899 to 1902. The Philippines became independent in 1946; Hawaii and Alaska were the states admitted in 1959.' },
+      { t:'PS', bm:'SS.912.A.1.2', s:'Based on the timeline, what was known about the cause of the explosion when newspapers blamed Spain?', hl:'The cause is unknown',
+        o:['The cause was unknown','Spain’s government had claimed responsibility','Investigators had traced it to a bomb planted by Cuban rebels','Survivors had seen a Spanish warship fire a torpedo at the Maine in the harbor'],
+        fc:'The timeline says the cause was unknown, yet the newspapers blamed Spain anyway. That gap between evidence and headlines is what made yellow journalism so powerful.' } ],
+    takeaway:'Yellow journalism and the USS Maine (1898) pushed the U.S. into the Spanish–American War. The Treaty of Paris made the U.S. an imperial power with Puerto Rico, Guam and the Philippines.' },
+
+  { id:'a16', name:'The Muckraker’s Printing Plate', year:'1906', icon:'📰', bm:['SS.912.A.3.8','SS.912.A.3.12'],
+    brief:[['judge','upset','A printing plate from a 1906 muckraking exposé is gone. The Revisionists would love for this one to stay buried.'],
+           ['smith','hmm','Their cipher: “THE JUNGLE FED A NATION’S ANGER.” The excerpt will tell us which law followed.'],
+           ['rev','','Muckrakers. Always digging. I prefer my dirt left where it is.']],
+    stim:{ kind:'Primary source excerpt', title:'Upton Sinclair, The Jungle (1906)',
+      text:'There would be meat that had tumbled out on the floor, in the dirt and sawdust, where the workers had tramped and spit uncounted billions of consumption germs. There would be meat stored in great piles in rooms; and the water from leaky roofs would drip over it, and thousands of rats would race about on it… the packers would put poisoned bread out for them; they would die, and then rats, bread, and meat would go into the hoppers together.',
+      lens:[['consumption germs','“Consumption” meant tuberculosis, a deadly disease that spread in crowded, filthy workplaces.'],
+            ['the packers','The meatpacking companies — some of the biggest corporations of the era.'],
+            ['into the hoppers together','The grinders. Sinclair wanted readers to see that no one inspected what they were eating.']] },
+    locate:{ s:'“THE JUNGLE FED A NATION’S ANGER.” Which 1906 law answered Sinclair’s book?',
+      o:['The Meat Inspection Act','The Sherman Antitrust Act','The Interstate Commerce Act','The Clayton Antitrust Act'],
+      fc:'Outrage over The Jungle led Congress to pass the Meat Inspection Act and the Pure Food and Drug Act in 1906. The Sherman (1890) and Clayton (1914) Acts targeted monopolies.' },
+    lock:[
+      { t:'ID', bm:'SS.912.A.3.8', s:'Who were the muckrakers?',
+        o:['Journalists who exposed corruption and unsafe conditions','Factory owners who hired private guards to break up strikes','Politicians who ran city machines such as Tammany Hall','Farmers who demanded free silver and government-run railroads in the 1890s'],
+        fc:'Theodore Roosevelt gave them the nickname. Writers such as Upton Sinclair, Ida Tarbell and Jacob Riis exposed problems in industry, big business and city slums.' },
+      { t:'CE', bm:'SS.912.A.3.12', s:'Ida Tarbell exposed Standard Oil’s business practices. What was a later result?',
+        o:['The Supreme Court broke up Standard Oil under the Sherman Antitrust Act in 1911','Standard Oil bought out its rivals and grew larger','Congress banned the oil industry for ten years','John D. Rockefeller won the presidency on a reform platform after admitting the company’s abuses'],
+        fc:'Tarbell’s History of the Standard Oil Company (1904) showed how Rockefeller crushed his rivals. In 1911 the Supreme Court ordered Standard Oil broken into smaller companies.' },
+      { t:'CT', bm:'SS.912.A.3.8', s:'How did the federal government’s role in the economy change during the Progressive Era?',
+        o:['It began regulating business to protect consumers, workers and competition','It stopped passing laws about business altogether','It handed control of food safety to the meatpacking companies themselves','It sold off national forests and parks to private owners to raise money for the Navy'],
+        fc:'Progressives believed government should act as a referee. New laws regulated food and drugs, broke up trusts and protected millions of acres through conservation.' },
+      { t:'PS', bm:'SS.912.A.1.2', s:'What did Sinclair most want readers to conclude from this passage?', hl:'thousands of rats would race about on it',
+        o:['Meat sold to the public was dangerous, and the industry needed inspection','Meatpacking workers were paid too much for their work','Rats were the biggest problem facing American cities','The packing plants were clean and safe for both workers and the families who bought their meat'],
+        fc:'The passage shows filthy, diseased meat going straight into food. Sinclair hoped to win sympathy for workers, but readers reacted most strongly to the threat to their own food.' } ],
+    takeaway:'Muckrakers (Sinclair, Tarbell, Riis) exposed abuses that led to Progressive reforms: the Meat Inspection and Pure Food and Drug Acts (1906), trust-busting and conservation.' },
 
   { id:'a6', name:'The Zimmermann Telegram Cipher', year:'1917', icon:'📨', bm:['SS.912.A.4.5'],
     brief:[['judge','shocked','They took the Zimmermann Telegram — the message that helped pull the United States into World War I!'],
@@ -5172,38 +5203,11 @@ const LV_ERAS = [
       { t:'PS', bm:'SS.912.A.1.2', s:'Based on the excerpt, who is forbidden from denying women the vote?', hl:'by the United States or by any State',
         o:['Both the federal government and every state','Only the federal government in Washington','Only the state, county and local governments','Only Congress and the President together'],
         fc:'The text says the vote shall not be denied “by the United States or by any State.” Congress also has the power to enforce it with laws.' } ],
-    takeaway:'Progressive reformers and suffragists (NAWSA, Alice Paul’s National Woman’s Party) won the 19th Amendment in 1920, helped by women’s service in World War I.' },
-
-  { id:'a8', name:'A Florida CCC Camp Badge', year:'1933–1942', icon:'🌲', bm:['SS.912.A.5.11','SS.912.A.5.12'],
-    brief:[['smith','cheer','Home turf! They stole a Civilian Conservation Corps badge from a Florida camp.'],
-           ['judge','neutral','Their cipher: “BUILT BY THE TREE ARMY.” The timeline shows what that army left behind in Florida.'],
-           ['tyler','','A tree army? Like, the trees fought? Coach, I have questions.']],
-    stim:{ kind:'Timeline', title:'Florida in the Boom, the Bust and the New Deal',
-      text:'1925 — Florida’s land boom peaks as buyers rush to buy lots, often sight unseen.\n1926 — The boom collapses, and a major hurricane strikes Miami. Florida’s hard times begin before the rest of the nation’s.\n1928 — The Okeechobee hurricane kills about 2,500 people.\nOctober 1929 — The stock market crashes, and the Great Depression spreads nationwide.\n1933 — The New Deal creates the Civilian Conservation Corps (CCC). In Florida, CCC workers build state parks such as Highlands Hammock and Myakka River.\n1935 — The Labor Day hurricane destroys the Overseas Railroad in the Keys and kills hundreds, including World War I veterans in federal relief camps.',
-      lens:[['The boom collapses','Florida’s depression started in 1926, three years before the 1929 crash.'],
-            ['Civilian Conservation Corps (CCC)','A relief program that gave young men jobs in conservation. It was nicknamed “Roosevelt’s Tree Army.”'],
-            ['Highlands Hammock and Myakka River','Florida state parks built by CCC workers that you can still visit today.']] },
-    locate:{ s:'“BUILT BY THE TREE ARMY.” Which New Deal program was nicknamed “Roosevelt’s Tree Army”?',
-      o:['The Civilian Conservation Corps (CCC)','The Works Progress Administration (WPA)','The Tennessee Valley Authority (TVA)','The Federal Deposit Insurance Corporation (FDIC)'],
-      fc:'The CCC hired young men to plant trees, fight erosion and build parks, earning the nickname “Roosevelt’s Tree Army.” The WPA built roads and buildings, and the FDIC insures bank deposits.' },
-    lock:[
-      { t:'ID', bm:'SS.912.A.5.11', s:'What was the main purpose of the Civilian Conservation Corps?',
-        o:['To give jobs to young unemployed men through conservation projects','To insure bank deposits so savers would trust banks again','To pay monthly pensions to retired and elderly workers through a payroll tax','To regulate the stock market and stop risky speculation'],
-        fc:'The CCC was a relief program that employed about 3 million young men in conservation work. The FDIC insured deposits, Social Security paid pensions, and the SEC regulated the stock market.' },
-      { t:'CE', bm:'SS.912.A.5.11', s:'Which was a major cause of the Great Depression?',
-        o:['Overproduction, buying stocks on margin and widespread bank failures','Strict government regulation that slowed banks and businesses','High wages that left factories unable to afford enough workers to keep running','The opening of the Panama Canal, which hurt U.S. railroads'],
-        fc:'Factories and farms produced more than people could buy, and speculators bought stocks with borrowed money. When the market crashed in 1929, thousands of banks failed and savings were lost.' },
-      { t:'CT', bm:'SS.912.A.5.12', s:'Florida’s economic troubles began before 1929. Why?',
-        o:['The land boom collapsed in 1926, and hurricanes in 1926 and 1928 damaged the economy','Florida banned new tourism and land sales in 1925 to slow its fast growth','The Panama Canal took most of Florida’s shipping and port business away to the Gulf of Mexico','The CCC closed Florida’s farms in 1926 to turn them into new state parks'],
-        fc:'Florida’s 1920s land boom was built on speculation and collapsed in 1926. Major hurricanes in 1926 and 1928 deepened the slump before the national crash.' },
-      { t:'PS', bm:'SS.912.A.1.4', s:'According to the timeline, how did the New Deal leave a lasting mark on Florida?', hl:'Highlands Hammock and Myakka River',
-        o:['CCC workers built state parks such as Highlands Hammock and Myakka River','New Deal workers rebuilt the Overseas Railroad to Key West in 1936','New Deal programs started Florida’s 1920s land boom over again by selling cheap government lots','Congress moved Florida’s state capital to Miami during the Depression'],
-        fc:'The timeline says CCC workers built state parks including Highlands Hammock and Myakka River. The Overseas Railroad was not rebuilt; its route later became the Overseas Highway.' } ],
-    takeaway:'The Great Depression (causes: overproduction, margin buying, bank failures) hit Florida early after its 1926 land bust. New Deal programs like the CCC brought relief and built Florida state parks.' } ],
+    takeaway:'Progressive reformers and suffragists (NAWSA, Alice Paul’s National Woman’s Party) won the 19th Amendment in 1920, helped by women’s service in World War I.' } ],
   boss:[
-    { t:'SYN', bm:'SS.912.A.4.3', s:'Which was a cause of the Spanish–American War (1898)?',
-      o:['Yellow journalism and the explosion of the USS Maine in Havana Harbor','The Zimmermann Telegram’s offer of an alliance with Mexico','Spain’s surprise attack on U.S. Navy ships anchored in Tampa Bay and off Key West','Spain’s refusal to let the U.S. build the Panama Canal'],
-      fc:'Newspapers exaggerated Spanish cruelty in Cuba, and many blamed Spain when the USS Maine exploded. The war made the U.S. an imperial power with Puerto Rico, Guam and the Philippines.' },
+    { t:'SYN', bm:'SS.912.A.4.4', s:'Why did the United States build the Panama Canal (opened 1914)?',
+      o:['To move warships and trade quickly between the Atlantic and Pacific','To give Spain a faster route to its remaining Caribbean colonies','To connect the Great Lakes to the Gulf of Mexico so Midwestern farmers could ship grain','To end U.S. trade with Asia'],
+      fc:'The 1898 war showed the Navy needed a shortcut between the oceans. Roosevelt backed Panama’s independence from Colombia in 1903, and the canal opened in 1914 — “Big Stick” diplomacy in action.' },
     { t:'SYN', bm:'SS.912.A.4.11', s:'What role did Florida play in the Spanish–American War?',
       o:['Tampa was the main port where U.S. troops gathered to sail for Cuba','Spain invaded and briefly occupied Key West and St. Augustine','Florida’s governor declared the state neutral for the whole war','The peace treaty ending the war was signed at the naval yard in Pensacola, Florida'],
       fc:'Tampa’s port and railroad made it the main gathering point for troops heading to Cuba, including Theodore Roosevelt’s Rough Riders. Cuban exiles in Tampa and Key West also supported Cuban independence.' },
@@ -5278,32 +5282,32 @@ const LV_ERAS = [
         fc:'Chief Justice Warren wrote that separate educational facilities “are inherently unequal.” The ruling rested on the 14th Amendment’s Equal Protection Clause.' } ],
     takeaway:'Brown v. Board (1954) overturned Plessy using the 14th Amendment. Nonviolent protest (Montgomery, sit-ins, marches) led to the Civil Rights Act of 1964 and the Voting Rights Act of 1965.' },
 
-  { id:'a11', name:'A Cuban Missile Crisis Reconnaissance Photo', year:'1962', icon:'🛰️', bm:['SS.912.A.6.13','SS.912.A.6.10'],
-    brief:[['smith','hmm','This one’s close to home. They stole a U-2 spy plane photo from the Cuban Missile Crisis.'],
-           ['mentor','neutral','The cipher: “THIRTEEN DAYS, NINETY MILES.” Which Florida city sits about ninety miles from Cuba?'],
-           ['rev','','Thirteen days the world nearly ended. Imagine teaching it as a minor misunderstanding.']],
-    stim:{ kind:'Timeline', title:'Thirteen Days: The Cuban Missile Crisis, October 1962',
-      text:'October 14 — A U.S. U-2 spy plane photographs Soviet nuclear missile sites being built in Cuba, about 90 miles from Key West, Florida.\nOctober 22 — President John F. Kennedy announces a naval “quarantine” (blockade) of Cuba. Troops and aircraft gather at bases across Florida.\nOctober 27 — A U-2 is shot down over Cuba, and its pilot is killed.\nOctober 28 — Soviet leader Nikita Khrushchev agrees to remove the missiles. The U.S. promises not to invade Cuba and secretly agrees to remove its own missiles from Turkey.',
-      lens:[['Soviet nuclear missile sites','Missiles in Cuba could reach most of the United States within minutes.'],
-            ['naval “quarantine” (blockade)','Kennedy chose a blockade instead of an air strike or invasion.'],
-            ['secretly agrees to remove its own missiles from Turkey','The hidden part of the deal that helped end the crisis.']] },
-    locate:{ s:'“THIRTEEN DAYS, NINETY MILES.” Which Florida city lies about 90 miles from Cuba?',
-      o:['Key West, Florida','Pensacola, Florida','Jacksonville, Florida','Tallahassee, Florida'],
-      fc:'Key West sits about 90 miles north of Cuba, which made the crisis especially frightening for Floridians. Florida bases became staging areas for U.S. forces.' },
+  { id:'a17', name:'A Piece of the Berlin Wall', year:'1961–1989', icon:'🧱', bm:['SS.912.A.6.10','SS.912.A.7.12'],
+    brief:[['smith','hmm','They chiseled off a piece of the Berlin Wall — the most famous symbol of the Cold War.'],
+           ['mentor','neutral','Their cipher: “BUILT IN ’61, FELL IN ’89.” Follow the timeline from the Airlift to the fall.'],
+           ['tyler','','Wait, they had a whole wall through a city? Why didn’t people just… go around?']],
+    stim:{ kind:'Timeline', title:'Berlin: A City at the Center of the Cold War',
+      text:'1948–1949 — The Soviets block roads and railways into West Berlin; the U.S. and its allies fly in food and fuel during the Berlin Airlift.\n1949 — The U.S., Canada and Western European nations form NATO, promising to defend one another.\nAugust 1961 — East Germany builds the Berlin Wall to stop its people from escaping to the West.\nJune 1987 — In West Berlin, President Ronald Reagan says, “Mr. Gorbachev, tear down this wall!”\nNovember 9, 1989 — East Germany opens the border, and crowds begin tearing down the wall.\n1990–1991 — Germany reunites, and the Soviet Union breaks apart, ending the Cold War.',
+      lens:[['Berlin Airlift','Containment without war: U.S. and British planes kept West Berlin supplied for almost a year.'],
+            ['to stop its people from escaping','The wall showed the world that a communist government had to fence its own citizens in.'],
+            ['tear down this wall','Reagan’s challenge to Soviet leader Mikhail Gorbachev, who was already loosening Soviet control.']] },
+    locate:{ s:'“BUILT IN ’61, FELL IN ’89.” Which event does the cipher point to?',
+      o:['The opening of the Berlin Wall in November 1989','The start of the Berlin Airlift in June 1948','The Cuban Missile Crisis in October 1962','The founding of NATO by the U.S. and its allies in April 1949'],
+      fc:'East Germany built the wall in 1961, and it fell on November 9, 1989. The Airlift (1948–49) and NATO (1949) came at the start of the Cold War.' },
     lock:[
-      { t:'ID', bm:'SS.912.A.6.13', s:'What caused the Cuban Missile Crisis?',
-        o:['Soviet nuclear missiles were placed in Cuba, within range of the U.S.','Cuban troops landed in Florida after the failed Bay of Pigs invasion','The United States built nuclear missile bases inside Mexico','China sent nuclear-armed submarines into the Caribbean Sea near the Florida coast'],
-        fc:'After the failed Bay of Pigs invasion (1961), the Soviets secretly sent nuclear missiles to Fidel Castro’s Cuba. U-2 photos revealed the sites in October 1962.' },
-      { t:'CE', bm:'SS.912.A.6.13', s:'How did President Kennedy respond to the missiles?',
-        o:['He ordered a naval quarantine of Cuba while negotiating','He ordered a full-scale invasion of Cuba right away','He ignored the missiles until after the election','He asked the United Nations to take over and govern Cuba'],
-        fc:'Kennedy rejected an immediate air strike and chose a blockade to stop more missiles from arriving. Negotiations with Khrushchev ended the crisis on October 28.' },
-      { t:'CT', bm:'SS.912.A.6.10', s:'How did the policy of containment change from Truman to Kennedy?',
-        o:['It expanded from Europe to Asia and Latin America (Korea, Cuba)','It shrank from a global policy to defending only Europe','It was replaced by a military alliance with the Soviets','It ended soon after World War II when the Soviet Union agreed to disarm'],
-        fc:'Containment began with aid to Greece, Turkey and Western Europe (1947–1948). It spread to Korea (1950–1953) and to Cuba and Vietnam in the 1960s.' },
-      { t:'PS', bm:'SS.912.A.1.4', s:'Based on the timeline, how was the crisis resolved?', hl:'secretly agrees to remove its own missiles from Turkey',
-        o:['The Soviets removed the missiles; the U.S. pledged not to invade and secretly removed missiles from Turkey','The U.S. invaded Cuba, removed the missiles itself and replaced Castro’s government with a new one','The Soviets kept the missiles in Cuba but promised in writing never to launch them at the U.S.','The United Nations took temporary control of Cuba and sent its own engineers to dismantle every missile site'],
-        fc:'On October 28, Khrushchev agreed to remove the missiles in exchange for a U.S. promise not to invade Cuba. The U.S. also secretly agreed to remove its missiles from Turkey.' } ],
-    takeaway:'The Cuban Missile Crisis (1962) was the closest the Cold War came to nuclear war. Containment had spread from Europe (Truman Doctrine, Marshall Plan) to Asia and Latin America, and Florida stood on the front line.' },
+      { t:'ID', bm:'SS.912.A.6.10', s:'Why did the U.S. organize the Berlin Airlift in 1948?',
+        o:['To supply West Berlin after the Soviets blocked the roads and railways into it','To launch a surprise attack on Soviet troops in East Germany','To evacuate every West Berliner to the United States before the Soviet army could take the city','To deliver atomic bombs to Western Europe'],
+        fc:'The Soviets cut off land routes to West Berlin to force the Western Allies out. Instead of fighting, the U.S. and Britain flew in supplies until the Soviets lifted the blockade in 1949 — containment in action.' },
+      { t:'CE', bm:'SS.912.A.6.13', s:'In 1962 a U-2 spy plane photographed Soviet missiles in Cuba, about 90 miles from Florida. How did President Kennedy respond?',
+        o:['He ordered a naval quarantine of Cuba while negotiating with Khrushchev','He launched an immediate invasion of Cuba','He ignored the missiles to avoid a crisis','He pulled U.S. troops out of West Berlin in exchange for leaving the missiles in Cuba'],
+        fc:'Kennedy chose a naval “quarantine” instead of an air strike. Khrushchev removed the missiles in exchange for a U.S. pledge not to invade Cuba, and the U.S. quietly removed its missiles from Turkey.' },
+      { t:'CT', bm:'SS.912.A.7.12', s:'How did the end of the Cold War (1989–1991) change the U.S. role in the world?',
+        o:['The U.S. became the only superpower and later shifted its focus to threats such as terrorism','The U.S. returned to isolationism and left NATO','The Soviet Union grew stronger, and the arms race sped up through the 1990s as old treaties were abandoned','The U.S. and Soviet Union merged under the United Nations'],
+        fc:'After the Soviet Union collapsed in 1991, the U.S. was the world’s only superpower. NATO expanded east, and after September 11, 2001, terrorism became the top security concern.' },
+      { t:'PS', bm:'SS.912.A.1.4', s:'Based on the timeline, why did East Germany build the wall?', hl:'to stop its people from escaping to the West',
+        o:['To stop its own people from escaping to the West','To keep West German troops out of East Berlin','To protect Berlin from a U.S. nuclear attack','To mark the border that NATO and East Germany had agreed to in a treaty'],
+        fc:'The timeline says the wall was built “to stop its people from escaping to the West.” Millions of East Germans had fled before 1961.' } ],
+    takeaway:'Berlin was the Cold War’s front line: the Airlift (1948–49), the Wall (1961) and its fall (1989). The Soviet Union collapsed in 1991, leaving the U.S. as the world’s only superpower.' },
 
   { id:'a12', name:'The Cape Canaveral Launch Key', year:'1969', icon:'🚀', bm:['SS.912.A.7.18','SS.912.A.6.13'],
     brief:[['smith','cheer','Last artifact! The Revisionists grabbed a launch key from the Apollo era at Cape Canaveral.'],
@@ -5376,7 +5380,16 @@ const LV_CAST = {
   tyler:{ name:'Tyler', role:'Rival archivist', img:()=>LV_DIR+'char/rival_neutral.webp' },
   rev:{ name:'The Revisionist', role:'Leader of the syndicate', img:()=> (typeof ART!=='undefined' && ART.lv_revisionist) || '' }
 };
-const lvArt = k => (typeof ART!=='undefined' && ART[k]) || '';
+const LV_ART_FILES = {
+  lv_art_a1:'artifact_14th_amendment_quill', lv_art_a2:'artifact_golden_spike', lv_art_a13:'artifact_edison_bulb', lv_art_a14:'artifact_populist_lantern',
+  lv_art_a15:'artifact_uss_maine_telegraph', lv_art_a16:'artifact_muckraker_press_plate', lv_art_a6:'artifact_zimmermann_cipher', lv_art_a7:'artifact_suffrage_sash',
+  lv_art_a9:'artifact_codetalker_radio', lv_art_a10:'artifact_civil_rights_megaphone', lv_art_a17:'artifact_berlin_wall_chisel', lv_art_a12:'artifact_apollo_launch_key',
+  lv_bg_hub:'bg_liberty_vault_hub', lv_bg_e1:'bg_era1_gilded_vault', lv_bg_e2:'bg_era2_war_room', lv_bg_e3:'bg_era3_modern_archive',
+  lv_revisionist:'npc_the_revisionist', lv_seal:'cert_liberty_vault_seal', lv_lens:'ui_cipher_lens', lv_pedestal:'ui_pedestal_empty', lv_dial:'ui_vault_lock_dial',
+  lv_gear1:'avatar_gear_cipher_goggles', lv_gear2:'avatar_gear_explorer_hat', lv_gear3:'avatar_gear_archivist_coat' };
+const lvArt = k => (typeof ART!=='undefined' && ART[k]) || (LV_ART_FILES[k] ? LV_DIR+'art/'+LV_ART_FILES[k]+'.webp' : '');
+const LV_GEAR = [['lv_gear1','Cipher Goggles','Earn your 1st Mastery Seal'],['lv_gear2','Explorer’s Hat','Earn your 2nd Mastery Seal'],['lv_gear3','Archivist’s Field Coat','Earn all 3 Mastery Seals']];
+const lvPic = (k, cls='', alt='') => `<img class="${cls}" src="${lvArt(k)}" alt="${alt}" draggable="false">`;
 
 /* ------------------------------ state ------------------------------ */
 function LV(){ S.vault = S.vault || {}; const v=S.vault; v.arts=v.arts||{}; v.seals=v.seals||{}; v.boss=v.boss||{}; v.right=v.right||0; v.total=v.total||0; v.score=v.score||0; v.combo=v.combo||0; v.hints=v.hints||0; return v; }
@@ -5539,7 +5552,7 @@ function renderVault(m){
       <div class="lv-arts">${e.artifacts.map(a=>{ const st=v.arts[a.id]||{}; const stage=st.done?4:(st.stage||0);
         return `<button class="lv-art ${st.done?'done':''}" data-lv="art:${a.id}">${lvArtIcon(a)}<div><b>${esc(a.name)}</b><div class="small">${esc(a.year)} · ${a.bm.map(esc).join(', ')}</div>
           <div class="lv-dots">${[0,1,2,3].map(i=>`<i class="${i<stage?'ok':''}"></i>`).join('')}</div><div class="small">${st.done?'✅ Recovered':stage?'In progress — continue':'Not started'}</div></div></button>`; }).join('')}
-        <button class="lv-art boss ${done<4?'locked':''} ${v.seals[e.id]?'done':''}" data-lv="boss:${e.id}" ${done<4?'disabled':''}><span class="lv-arti">${v.seals[e.id]?'🏅':'🔐'}</span><div><b>Vault Seal Boss</b><div class="small">6 cross-topic questions · need 5 to earn the Mastery Seal</div><div class="small">${v.seals[e.id]?'🏅 Seal earned':done<4?`Recover all 4 artifacts to unlock (${done}/4)`:'Ready!'}</div></div></button>
+        <button class="lv-art boss ${done<4?'locked':''} ${v.seals[e.id]?'done':''}" data-lv="boss:${e.id}" ${done<4?'disabled':''}>${v.seals[e.id]?lvPic('lv_seal','lv-arti','Mastery Seal'):lvPic('lv_dial','lv-arti','Vault lock')}<div><b>Vault Seal Boss</b><div class="small">6 cross-topic questions · need 5 to earn the Mastery Seal</div><div class="small">${v.seals[e.id]?'🏅 Seal earned':done<4?`Recover all 4 artifacts to unlock (${done}/4)`:'Ready!'}</div></div></button>
       </div>`, e);
   }
 
@@ -5559,7 +5572,7 @@ function renderVault(m){
       const paint=()=>{ const st2=a.stim; let txt=esc(st2.text||''); let tbl=st2.table?`<table class="lv-tbl">${st2.table.map((r,i)=>`<tr>${r.map(c=>i?`<td>${esc(c)}</td>`:`<th>${esc(c)}</th>`).join('')}</tr>`).join('')}</table>`:'';
         st2.lens.forEach(([p],k)=>{ const e2=esc(p), btn=`<button class="lv-lens ${st.lens.includes(k)?'seen':''}" data-k="${k}">🔍 ${e2}</button>`; if(txt.includes(e2)) txt=txt.replace(e2,btn); else tbl=tbl.replace(e2,btn); });
         const all=st.lens.length>=st2.lens.length;
-        shell(`${head()}<div class="lv-inv"><div class="lv-stim"><div class="lv-stim-k">${esc(st2.kind)} · Cipher Lens</div><div class="lv-stim-t">${esc(st2.title)}</div>${tbl}<div class="lv-stim-x">${txt.replace(/\n/g,'<br>')}</div></div>
+        shell(`${head()}<div class="lv-inv"><div class="lv-stim"><div class="lv-stim-k">${lvPic('lv_lens','lv-lensico','')}${esc(st2.kind)} · Cipher Lens</div><div class="lv-stim-t">${esc(st2.title)}</div>${tbl}<div class="lv-stim-x">${txt.replace(/\n/g,'<br>')}</div></div>
           <div><div class="lv-card"><div class="lv-kicker">Cipher Lens findings ${st.lens.length}/${st2.lens.length}</div><div id="lvNotes">${st.lens.map(k=>`<div class="lv-note-i"><b>${esc(st2.lens[k][0])}</b> — ${esc(st2.lens[k][1])}</div>`).join('')||'<p class="small">Tap every 🔍 phrase in the source to examine it with your Cipher Lens.</p>'}</div></div>
           ${all?`<div class="lv-card"><div class="lv-kicker">📍 Pinpoint the vault</div><p><b>${esc(a.locate.s)}</b></p><div id="lvLoc">${shuffle(a.locate.o.map((o,i)=>[o,i])).map(([o,i])=>`<button class="opt" data-i="${i}">${esc(o)}</button>`).join('')}</div><div id="lvLocFb"></div></div>`:''}</div></div>`, e);
         $$('.lv-lens',m).forEach(b=>b.onclick=()=>{ const k=+b.dataset.k; if(!st.lens.includes(k)){ st.lens.push(k); lvSave(); SFX.click(); } paint(); });
@@ -5627,7 +5640,7 @@ function renderVault(m){
     const done=()=>{ const pass=right>=5; v.boss[e.id]=(v.boss[e.id]||0)+1;
       if(pass && !v.seals[e.id]){ v.seals[e.id]=Date.now(); award(2,'Era Mastery Seal'); } lvSave(); pass?SFX.fanfare():SFX.wrong();
       shell(`<div class="lv-top"><button class="btn ghost lv-x" data-lv="era:${e.id}">← Era ${e.n}</button><div class="row">${lvHudChips()}</div></div>
-        <div class="lv-trophy-big"><span class="lv-arti big">${pass?'🏅':'🔐'}</span><div class="lv-kicker">${right}/6 correct</div><h1>${pass?`Era ${e.n} Mastery Seal earned!`:'The seal held — this time.'}</h1></div>
+        <div class="lv-trophy-big">${lvPic(pass?'lv_seal':'lv_dial','lv-arti big',pass?'Mastery Seal':'Vault lock')}<div class="lv-kicker">${right}/6 correct</div><h1>${pass?`Era ${e.n} Mastery Seal earned!`:'The seal held — this time.'}</h1></div>
         <div class="lv-card">${pass?lvLine('smith','cheer',`Outstanding, Archivist. The ${e.name} vault is sealed for good. ${lvSeals().length===3?'All three seals — go claim the Master of the Liberty Vault certificate!':'Your certificate is ready whenever you are.'}`):lvLine('rev','','Close, but the seal stays mine. Review those fact checks and come back.')}</div>
         ${missed.length?`<div class="lv-card"><div class="lv-kicker">Review what you missed</div>${missed.map(q=>`<div class="lv-note-i"><b>${esc(q.s)}</b><br>✔ ${esc(q.o[0])}<br><span class="small">${esc(q.fc)}</span></div>`).join('')}</div>`:''}
         <div class="row" style="justify-content:center;margin-top:1rem">${pass?`<button class="btn gold big" data-lv="cert">📜 Get my certificate</button><button class="btn" data-lv="hub">Vault hub</button>`:`<button class="btn gold big" data-lv="boss:${e.id}">Try the seal again 🔄</button><button class="btn" data-lv="era:${e.id}">Review artifacts</button>`}</div>`, e); };
@@ -5638,9 +5651,11 @@ function renderVault(m){
   function trophy(){
     shell(`<div class="lv-top"><button class="btn ghost lv-x" data-lv="hub">← Vault hub</button><div class="row">${lvHudChips()}</div></div>
       <div class="lv-hero sm"><div class="lv-kicker">Interactive Vault</div><h1>Trophy Case</h1></div>
-      <div class="lv-seals">${LV_ERAS.map(e=>`<div class="lv-seal ${v.seals[e.id]?'on':''}">${v.seals[e.id]?'🏅':'⚪'}<div class="small">Era ${e.n}<br>${esc(e.name)}</div></div>`).join('')}</div>
+      <div class="lv-seals">${LV_ERAS.map(e=>`<div class="lv-seal ${v.seals[e.id]?'on':''}">${lvPic('lv_seal','lv-sealimg','')}<div class="small">Era ${e.n}<br>${esc(e.name)}</div></div>`).join('')}</div>
       ${LV_ERAS.map(e=>`<h3 class="lv-h">Era ${e.n} · ${esc(e.name)} <span class="small">(${esc(e.years)})</span></h3><div class="lv-case">${e.artifacts.map(a=>{ const d=(v.arts[a.id]||{}).done;
-        return `<button class="lv-slot ${d?'on':''}" ${d?`data-lv="art:${a.id}"`:'disabled'}>${d?lvArtIcon(a):'<span class="lv-arti">❔</span>'}<b>${d?esc(a.name):'Not yet recovered'}</b><span class="small">${esc(a.year)}</span></button>`; }).join('')}</div>`).join('')}`);
+        return `<button class="lv-slot ${d?'on':''}" ${d?`data-lv="art:${a.id}"`:'disabled'}>${d?lvArtIcon(a):lvPic('lv_pedestal','lv-arti ped','Empty pedestal')}<b>${d?esc(a.name):'Not yet recovered'}</b><span class="small">${esc(a.year)}</span></button>`; }).join('')}</div>`).join('')}
+      <h3 class="lv-h">Field Kit <span class="small">(gear for your Junior Field Archivist)</span></h3>
+      <div class="lv-case lv-kit">${LV_GEAR.map((g,i)=>{ const on=lvSeals().length>i; return `<div class="lv-slot ${on?'on':'kit-off'}">${lvPic(g[0],'lv-arti','')}<b>${on?g[1]:'Locked'}</b><span class="small">${on?'Unlocked!':g[2]}</span></div>`; }).join('')}</div>`);
   }
 
   /* ---------- certificate ---------- */

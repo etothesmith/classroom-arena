@@ -2772,7 +2772,7 @@ function renderArcade(m){
   m.innerHTML=`${backBtn()}<h1>🕹️ ${t('arcade')}</h1>
     <p>${coin()} <b>${S.tokens}</b> ${t('tokens')} · Earn tokens with every 3-answer mastery streak, basecamps, gallery walks and completed gauntlets.</p>
     <div class="grid g2">
-      <div class="card cab"><h3>🏃 Historian's Sprint</h3><p class="small">Jump over historical MYTHS, grab primary-source scrolls 📜. Space / tap to jump. 60 seconds.</p><p>${t('highScore')}: <b>${S.highs.sprint||0}</b></p><button class="btn gold" data-g="sprint">${t('play')}</button></div>
+      <div class="card cab"><h3>🏃 Historian's Sprint</h3><p class="small">Read each statement: jump the myths, run through the facts. Space / tap to jump. 60 seconds.</p><p>${t('highScore')}: <b>${S.highs.sprint||0}</b></p><button class="btn gold" data-g="sprint">${t('play')}</button></div>
       <div class="card cab"><h3>🔨 Whack-a-Fallacy</h3><p class="small">Read each sign, bop the myths and let the facts go. 60 seconds.</p><p>${t('highScore')}: <b>${S.highs.whack||0}</b></p><button class="btn gold" data-g="whack">${t('play')}</button></div>
     </div>`;
   bindBack(m);
@@ -2787,35 +2787,72 @@ function gameShell(title, w, h, onEnd){
 }
 function wrapText(ctx, text, x, y, maxW, lh){ const ws=text.split(' '); let line='', lines=[]; ws.forEach(w=>{ const tl=line?line+' '+w:w; if(ctx.measureText(tl).width>maxW && line){ lines.push(line); line=w; } else line=tl; }); lines.push(line); lines.forEach((l,i)=>ctx.fillText(l,x,y+i*lh-(lines.length-1)*lh/2)); }
 function sprint(){
-  const g=gameShell('🏃 Historian\'s Sprint',900,340), {ctx,cv}=g; const W=900,H=340,GY=280;
-  const myths=HISTORY_CLAIMS.filter(c=>!c[1]).map(c=>c[0]);
-  const P={x:120,y:GY,vy:0,on:true}; let obs=[], scrolls=[], time=60, score=0, spd=260, spawn=1.2, sc=1.6, flash=0, banner='', bt=0, inv=0;
+  /* Historian's Sprint v2 — one statement at a time, read it on the banner while the "?" hurdle approaches
+     (≈4–5 s). MYTH → jump it. FACT → run through it. Answer revealed after each hurdle; review at the end. */
+  const g=gameShell('🏃 Historian\'s Sprint',900,360), {ctx,cv}=g; const W=900,H=360,GY=300,PX=130, BH=78;
+  const deck=shuffle(HISTORY_CLAIMS.slice()); let di=0; const nextClaim=()=>{ if(di>=deck.length){ shuffle(deck); di=0; } return deck[di++]; };
+  const P={y:GY,vy:0,on:true}; let time=60, score=0, phase='intro', count=3, hz=null, gap=.6, spd=175, fx=[], flash=0, scroll=0, stumble=0;
+  const stats={right:0, wrong:[]};
   const sprite=new Image(); if(GEMINI_ASSETS.student_avatar) sprite.src=GEMINI_ASSETS.student_avatar;
-  const jump=e=>{ if(e) e.preventDefault(); if(P.on){ P.vy=-640; P.on=false; SFX.click(); } };
-  cv.addEventListener('pointerdown',jump); const kh=e=>{ if(e.code==='Space'||e.code==='ArrowUp'){ jump(e); } }; window.addEventListener('keydown',kh);
-  g.mm.addEventListener('remove',()=>window.removeEventListener('keydown',kh));
-  g.loop(dt=>{
-    time-=dt; if(time<=0){ window.removeEventListener('keydown',kh); return g.end(Math.max(0,Math.round(score)),'sprint'); }
-    spd+=dt*6; spawn-=dt; sc-=dt; flash=Math.max(0,flash-dt); bt-=dt; inv=Math.max(0,inv-dt);
-    if(spawn<=0){ const myth=pick(myths); obs.push({x:W+20,w:46,h:52+Math.random()*20,label:myth}); banner=myth; bt=2.4; spawn=1.1+Math.random()*1.1; }
-    if(sc<=0){ scrolls.push({x:W+20,y:GY-90-Math.random()*90}); sc=1.3+Math.random(); }
+  const jump=e=>{ if(e) e.preventDefault();
+    if(phase==='intro'){ phase='count'; count=3; SFX.click(); return; }
+    if(phase==='play' && P.on){ P.vy=-660; P.on=false; SFX.click(); } };
+  cv.addEventListener('pointerdown',jump); const kh=e=>{ if(e.code==='Space'||e.code==='ArrowUp') jump(e); }; window.addEventListener('keydown',kh);
+  const cleanup=()=>window.removeEventListener('keydown',kh); g.mm.addEventListener('remove',cleanup);
+
+  function update(dt){
+    if(phase==='count'){ count-=dt; if(count<=0){ phase='play'; SFX.coin(); } return; }
+    if(phase!=='play') return;
+    time-=dt; if(time<=0){ finish(); return; }
+    flash=Math.max(0,flash-dt); stumble=Math.max(0,stumble-dt);
+    const v=spd*(stumble>0?.45:1); scroll+=v*dt;
     P.vy+=1700*dt; P.y+=P.vy*dt; if(P.y>=GY){ P.y=GY; P.vy=0; P.on=true; }
-    obs.forEach(o=>o.x-=spd*dt); scrolls.forEach(s=>s.x-=spd*dt);
-    obs=obs.filter(o=>o.x>-80); scrolls=scrolls.filter(s=>s.x>-40 && !s.got);
-    obs.forEach(o=>{ if(!o.hit && inv<=0 && P.x+22>o.x && P.x-22<o.x+o.w && P.y>GY-o.h){ o.hit=true; score=Math.max(0,score-15); flash=.4; inv=.8; SFX.wrong(); } else if(!o.passed && o.x+o.w<P.x-22){ o.passed=true; score+=5; } });
-    scrolls.forEach(s=>{ if(Math.abs(s.x-P.x)<30 && Math.abs(s.y-(P.y-30))<40){ s.got=true; score+=10; SFX.coin(); } });
-    // draw
+    if(!hz){ gap-=dt; if(gap<=0){ const [txt,fact]=nextClaim(); hz={x:W+40,txt,fact,res:null}; spd=time>30?175:200; } }
+    if(hz){ hz.x-=v*dt;
+      // decision point: hurdle reaches the runner
+      if(hz.res===null && hz.x+24<=PX && !hz.judged){ hz.judged=true;
+        const inAir=P.y<GY-38;
+        if(!hz.fact){ if(!inAir){ hz.res='hit'; score-=10; stats.wrong.push(['myth',hz.txt]); flash=.4; stumble=.7; SFX.wrong(); fx.push({txt:'Ouch! That was a MYTH — jump myths  −10',c:'#DC2626',t:2}); } }
+        else if(inAir){ hz.res='skipped'; stats.wrong.push(['fact',hz.txt]); SFX.wrong(); fx.push({txt:'That was a FACT — run through facts',c:'#B45309',t:2}); }
+      }
+      if(hz.res===null && hz.x<PX-60){ hz.res='ok'; score+=10; stats.right++; SFX.right(); fx.push({txt:hz.fact?'FACT collected!  +10':'MYTH jumped!  +10',c:'#047857',t:1.6}); }
+      if(hz.x<-80){ hz=null; gap=.9; }
+    }
+    fx.forEach(f=>f.t-=dt); fx=fx.filter(f=>f.t>0);
+  }
+  function draw(){
     const gr=ctx.createLinearGradient(0,0,0,H); gr.addColorStop(0,'#38BDF8'); gr.addColorStop(1,'#E0F2FE'); ctx.fillStyle=gr; ctx.fillRect(0,0,W,H);
-    ctx.fillStyle='#93C5FD'; for(let i=0;i<6;i++){ const bx=((i*200 - (60-time)*40)%1200+1200)%1200-150; ctx.beginPath(); ctx.moveTo(bx,GY); ctx.lineTo(bx+90,140); ctx.lineTo(bx+180,GY); ctx.fill(); }
-    ctx.fillStyle='#86EFAC'; ctx.fillRect(0,GY,W,H-GY); ctx.fillStyle='#059669'; ctx.fillRect(0,GY,W,4);
-    obs.forEach(o=>{ ctx.fillStyle=o.hit?'#94A3B8':'#DC2626'; ctx.fillRect(o.x,GY-o.h,o.w,o.h); ctx.fillStyle='#FFFFFF'; ctx.font='bold 12px sans-serif'; ctx.textAlign='center'; ctx.fillText('MYTH',o.x+o.w/2,GY-o.h/2+4); });
-    scrolls.forEach(s=>{ ctx.font='28px serif'; ctx.textAlign='center'; ctx.fillText('📜',s.x,s.y); });
-    if(sprite.complete && sprite.naturalWidth){ ctx.globalAlpha=inv>0?.5:1; ctx.drawImage(sprite,P.x-36,P.y-72,72,72); ctx.globalAlpha=1; }
-    else { ctx.globalAlpha=inv>0?.5:1; ctx.fillStyle='#4DE0B1'; ctx.fillRect(P.x-14,P.y-40,28,30); ctx.fillStyle='#e8b98a'; ctx.beginPath(); ctx.arc(P.x,P.y-50,11,0,7); ctx.fill(); ctx.fillStyle='#F2B441'; ctx.fillRect(P.x-12,P.y-62,24,6); ctx.strokeStyle='#111'; ctx.lineWidth=5; const leg=Math.sin(time*18)*8; ctx.beginPath(); ctx.moveTo(P.x-6,P.y-10); ctx.lineTo(P.x-6-leg,P.y); ctx.moveTo(P.x+6,P.y-10); ctx.lineTo(P.x+6+leg,P.y); ctx.stroke(); ctx.globalAlpha=1; }
-    if(bt>0){ ctx.fillStyle='rgba(11,31,75,.88)'; ctx.fillRect(0,0,W,46); ctx.fillStyle='#FCD34D'; ctx.font='bold 16px sans-serif'; ctx.textAlign='center'; ctx.fillText('JUMP THE MYTH: "'+banner+'"',W/2,28); }
-    if(flash>0){ ctx.fillStyle=`rgba(255,77,157,${flash})`; ctx.fillRect(0,0,W,H); }
-    $('#gt',g.mm).textContent=Math.ceil(time); $('#gs',g.mm).textContent=Math.round(score);
-  });
+    ctx.fillStyle='#BFDBFE'; for(let i=0;i<7;i++){ const bx=((i*190 - scroll*.25)%1330+1330)%1330-200; ctx.beginPath(); ctx.moveTo(bx,GY); ctx.lineTo(bx+95,150); ctx.lineTo(bx+190,GY); ctx.fill(); }
+    ctx.fillStyle='#86EFAC'; ctx.fillRect(0,GY,W,H-GY); ctx.fillStyle='#16A34A'; ctx.fillRect(0,GY,W,4);
+    ctx.fillStyle='#4ADE80'; for(let i=0;i<20;i++){ const tx=((i*60 - scroll)%1200+1200)%1200-60; ctx.fillRect(tx,GY+18,22,4); }
+    if(hz){ const revealed=hz.res!==null, x=hz.x;
+      const col=revealed?(hz.fact?'#059669':'#DC2626'):'#92400E';
+      ctx.fillStyle=col; ctx.fillRect(x-4,GY-62,8,62); ctx.fillRect(x+44,GY-62,8,62);
+      ctx.fillStyle=revealed?(hz.fact?'#D1FAE5':'#FEE2E2'):'#FDE68A'; ctx.strokeStyle=col; ctx.lineWidth=3; ctx.beginPath(); ctx.roundRect(x-14,GY-72,76,34,8); ctx.fill(); ctx.stroke();
+      ctx.fillStyle=col; ctx.font='800 18px system-ui, sans-serif'; ctx.textAlign='center'; ctx.fillText(revealed?(hz.fact?'FACT':'MYTH'):'?',x+24,GY-49);
+      if(hz.fact && revealed){ ctx.globalAlpha=.35; ctx.fillStyle='#10B981'; ctx.fillRect(x+4,GY-38,40,38); ctx.globalAlpha=1; } }
+    const bob=P.on?Math.sin(scroll*.08)*2:0;
+    ctx.globalAlpha=stumble>0?.6:1;
+    if(sprite.complete && sprite.naturalWidth) ctx.drawImage(sprite,PX-38,P.y-76+bob,76,76);
+    else { ctx.fillStyle='#1D4ED8'; ctx.fillRect(PX-14,P.y-42+bob,28,30); ctx.fillStyle='#e8b98a'; ctx.beginPath(); ctx.arc(PX,P.y-52+bob,11,0,7); ctx.fill(); ctx.strokeStyle='#0F172A'; ctx.lineWidth=5; const leg=P.on?Math.sin(scroll*.12)*8:4; ctx.beginPath(); ctx.moveTo(PX-6,P.y-12); ctx.lineTo(PX-6-leg,P.y); ctx.moveTo(PX+6,P.y-12); ctx.lineTo(PX+6+leg,P.y); ctx.stroke(); }
+    ctx.globalAlpha=1;
+    // statement banner
+    ctx.fillStyle='rgba(11,31,75,.92)'; ctx.fillRect(0,0,W,BH);
+    if(hz && hz.res===null){ ctx.fillStyle='#FCD34D'; ctx.font='700 13px system-ui, sans-serif'; ctx.textAlign='left'; ctx.fillText('MYTH?  JUMP IT.     FACT?  RUN THROUGH IT.',18,20);
+      const d=Math.max(0,Math.min(1,(hz.x-PX)/(W+40-PX))); ctx.fillStyle='#334155'; ctx.fillRect(W-178,12,160,7); ctx.fillStyle=d>.3?'#38BDF8':'#F59E0B'; ctx.fillRect(W-178,12,160*d,7);
+      ctx.fillStyle='#FFFFFF'; ctx.font='700 21px system-ui, sans-serif'; ctx.textAlign='center'; wrapText(ctx,hz.txt,W/2,50,W-60,24); }
+    else if(fx.length){ const f=fx[fx.length-1]; ctx.fillStyle=f.c==='#047857'?'#86EFAC':f.c==='#DC2626'?'#FCA5A5':'#FCD34D'; ctx.font='800 22px system-ui, sans-serif'; ctx.textAlign='center'; ctx.fillText(f.txt,W/2,48); }
+    else { ctx.fillStyle='#93C5FD'; ctx.font='600 16px system-ui, sans-serif'; ctx.textAlign='center'; ctx.fillText('Get ready — next statement coming…',W/2,46); }
+    if(flash>0){ ctx.fillStyle=`rgba(220,38,38,${flash*.5})`; ctx.fillRect(0,0,W,H); }
+    if(phase==='intro'){ ctx.fillStyle='rgba(11,31,75,.86)'; ctx.fillRect(0,0,W,H); ctx.textAlign='center';
+      [['🏃 Historian\'s Sprint','800 36px system-ui, sans-serif','#FCD34D',90],['Read the statement at the top as the  ?  hurdle comes toward you.','600 19px system-ui, sans-serif','#fff',145],['MYTH → JUMP it  (tap / Space)','700 21px system-ui, sans-serif','#FCA5A5',190],['FACT → RUN THROUGH it  (don\'t jump)','700 21px system-ui, sans-serif','#86EFAC',225],['Tap anywhere to start','700 18px system-ui, sans-serif','#93C5FD',285]].forEach(([t,f,c,y])=>{ ctx.font=f; ctx.fillStyle=c; ctx.fillText(t,W/2,y); }); }
+    if(phase==='count'){ ctx.fillStyle='rgba(11,31,75,.8)'; ctx.fillRect(0,0,W,H); ctx.fillStyle='#FCD34D'; ctx.font='800 110px system-ui, sans-serif'; ctx.textAlign='center'; ctx.fillText(String(Math.ceil(count)),W/2,H/2+38); }
+  }
+  function finish(){ phase='done'; cleanup(); g.end(Math.max(0,score),'sprint');
+    const rv=stats.wrong.map(([k,t])=>`<li><b class="${k==='myth'?'bad':''}" ${k==='fact'?'style="color:#B45309"':''}>${k==='myth'?'Myth you ran into:':'Fact you jumped:'}</b> ${esc(t)}</li>`);
+    $('#gmsg',g.mm).innerHTML=`<b>Correct calls:</b> ${stats.right} · <b>Mistakes:</b> ${stats.wrong.length}${rv.length?`<br><b>Review these:</b><ul style="margin:.3rem 0 0;text-align:left">${rv.join('')}</ul>`:'<br>🌟 Perfect run — every call correct!'}`; }
+  g.loop(dt=>{ if(phase==='done') return; update(dt); if(phase!=='done') draw();
+    $('#gt',g.mm).textContent=Math.ceil(Math.max(0,time)); $('#gs',g.mm).textContent=score; });
 }
 function whack(){
   /* Whack-a-Fallacy v2 — readable pace: 6 signs, 1 at a time (max 2 later), reading time scales with

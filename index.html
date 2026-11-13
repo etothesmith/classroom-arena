@@ -2544,7 +2544,7 @@ function renderGallery(m){
         <div><div class="exhibit">${stationImg(u,i)?`<img src="${stationImg(u,i)}" alt="${esc(s.t)}" style="width:100%;display:block;border-radius:4px;margin-bottom:.6rem;cursor:zoom-in" id="exImg">${stationImgKind(u,i)==='original'?'':'<p class="small" style="color:#e8d3a2;margin:.2rem 0 .6rem">⚠️ Teaching illustration created for this class — not a historical artifact.</p>'}`:''}
           <div class="paper" style="white-space:pre-line">${s.kind==='Political Cartoon'&&!s.verbatim?'<b>What the cartoon shows:</b> ':''}${esc(s.ex)}</div>
           <div class="plaque"><b>${esc(s.t)}</b><br>${esc(s.src)} · <i>${esc(s.kind)}</i>${s.verbatim?' · verbatim text':' · description'}${s.link?` · <a href="${esc(s.link)}" target="_blank" rel="noopener" style="color:#F2B441">View the original ↗</a>`:''}</div></div>
-          ${isTeacherView()?`<div class="row" style="margin-top:.5rem"><button class="btn" id="tUp">⬆️ Upload original scan</button>${s.gem?'<button class="btn" id="tUpG">⬆️ Upload Gemini art</button><button class="btn ghost" id="tGem">📋 Gemini prompt</button>':''}</div>`:''}
+          ${isTeacherView()?`<div class="row" style="margin-top:.5rem"><button class="btn" id="tUp">⬆️ Upload original scan</button>${s.gem?'<button class="btn" id="tUpG">⬆️ Upload illustration</button><button class="btn ghost" id="tGem">📋 Image prompt</button>':''}</div>`:''}
           <div class="hs">${s.hs.map((h,k)=>`<button class="hsb" data-h="${k}">🔍 ${esc(h[0])}</button>`).join('')}</div><div id="nt"></div></div>
         <div class="card"><h2>📝 ${t('fieldLog')}</h2><div class="steps"><div class="step on">${t('s1')}</div><div class="step">${t('s2')}</div><div class="step">${t('s3')}</div></div><div id="log"><p>${t('inspectAll')}</p><p class="small" id="cnt">0 / 3</p></div></div>
       </div>`;
@@ -2552,7 +2552,7 @@ function renderGallery(m){
     const ei=$('#exImg',m); if(ei) ei.onclick=()=>modal(`<img src="${stationImg(u,i)}" style="width:100%"><p class="small">${esc(s.t)} — ${esc(s.src)}</p>`);
     if($('#tUp',m)) $('#tUp',m).onclick=()=>uploadStationImg(u,i,'original',()=>station(i));
     if($('#tUpG',m)) $('#tUpG',m).onclick=()=>uploadStationImg(u,i,'gemini',()=>station(i));
-    if($('#tGem',m)) $('#tGem',m).onclick=()=>{ const mm=modal(`<h2>🎨 Gemini prompt — ${esc(s.t)}</h2><textarea style="min-height:180px">${esc(s.gem)}</textarea><button class="btn gold" id="cpg">📋 Copy</button>`); $('#cpg',mm).onclick=()=>copyText(s.gem); };
+    if($('#tGem',m)) $('#tGem',m).onclick=()=>{ const mm=modal(`<h2>🎨 Image prompt — ${esc(s.t)}</h2><textarea style="min-height:180px">${esc(s.gem)}</textarea><button class="btn gold" id="cpg">📋 Copy</button>`); $('#cpg',mm).onclick=()=>copyText(s.gem); };
     $$('[data-h]',m).forEach(b=>b.onclick=()=>{ SFX.click(); const k=+b.dataset.h; seen.add(k); b.classList.add('seen'); $$('.hsb',m).forEach(x=>x.classList.remove('sel')); b.classList.add('sel'); sel=k;
       $('#nt',m).innerHTML=`<div class="note"><b>🔍 ${esc(s.hs[k][0])}</b><br>${esc(s.hs[k][1])}${step===1?`<br><button class="btn gold" id="citeBtn" style="margin-top:.5rem">📌 ${t('cite')}</button>`:''}</div>`;
       if(step===1) $('#citeBtn',m).onclick=cite;
@@ -2978,11 +2978,11 @@ function galleryManagerCard(){
   const u=curUnit(), st=u.gallery||[];
   return `<div class="card" style="margin-top:1rem"><div class="spread"><h2>🖼️ Gallery Walk Manager — ${esc(u.title)}</h2>
     <div class="row"><select id="gmUnit">${allUnits().map(x=>`<option value="${x.id}" ${x.id===u.id?'selected':''}>${esc(x.title)}</option>`).join('')}</select>
-    ${st.length?'<button class="btn" id="gmCopyAll">📋 Copy all Gemini prompts</button>':''}${activeClass()?'<button class="btn gold" id="gmAdd">➕ Add station</button>':''}</div></div>
-    <p class="small">Every station is a historical document or political cartoon. For cartoons, open the Library of Congress link, download the public-domain scan and upload it as the <b>original</b>. Or paste the Gemini prompt into Gemini and upload the result as a <b>teaching illustration</b> — students see it labeled "not a historical artifact."</p>
+    ${st.length?'<button class="btn" id="gmCopyAll">📋 Copy image prompts</button>':''}${activeClass()?'<button class="btn gold" id="gmAdd">➕ Add station</button>':''}</div></div>
+    <p class="small">Every station is a historical document or political cartoon. For cartoons, open the Library of Congress link, download the public-domain scan and upload it as the <b>original</b>. Or copy the image prompt into an AI image tool (like Gemini) and upload the result as a <b>teaching illustration</b> — students see it labeled "not a historical artifact."</p>
     ${st.length?`<table><tr><th>#</th><th>Station</th><th>Type</th><th>Image</th><th>Tools</th></tr>${st.map((s,i)=>`<tr><td>${i+1}</td><td><b>${esc(s.t)}</b><br><span class="small">${esc(s.src)}</span></td><td>${esc(s.kind)}</td>
       <td>${stationImg(u,i)?`<img loading="lazy" src="${stationImg(u,i)}" style="max-width:110px;max-height:80px;border-radius:6px"><br><span class="tag ${stationImgKind(u,i)==='original'?'em':'gold'}">${stationImgKind(u,i)==='original'?'Original':'Teaching illustration'}</span>`:'<span class="muted">none</span>'}</td>
-      <td><div class="row">${s.link?`<a class="btn" href="${esc(s.link)}" target="_blank" rel="noopener">🔎 Find original</a>`:''}<button class="btn" data-up="${i}" data-k="original">⬆️ Original scan</button>${s.gem?`<button class="btn" data-up="${i}" data-k="gemini">⬆️ Gemini art</button><button class="btn ghost" data-gp="${i}">📋 Prompt</button>`:''}${stationImg(u,i)?`<button class="btn ghost" data-rm="${i}">✕</button>`:''}</div></td></tr>`).join('')}</table>`
+      <td><div class="row">${s.link?`<a class="btn" href="${esc(s.link)}" target="_blank" rel="noopener">🔎 Find original</a>`:''}<button class="btn" data-up="${i}" data-k="original">⬆️ Original scan</button>${s.gem?`<button class="btn" data-up="${i}" data-k="gemini">⬆️ Illustration</button><button class="btn ghost" data-gp="${i}">📋 Prompt</button>`:''}${stationImg(u,i)?`<button class="btn ghost" data-rm="${i}">✕</button>`:''}</div></td></tr>`).join('')}</table>`
       :`<p class="muted">${u.custom?'No stations yet — add a document or political cartoon station.':'No gallery stations in this set.'}</p>`}</div>`;
 }
 function bindGalleryManager(m, rerender){
@@ -3241,7 +3241,7 @@ const TOUR = [
   { sel:'[data-go="live"]', card:true, title:'Freeze & Debrief', body:'Project one question, tally the room, then freeze to show the distractor breakdown and reteach card.' },
   { sel:'#ceCard', title:'Make it yours', body:'Remove built-in questions, vocabulary or gallery stations (restore any time), add your own, and rewrite Jeopardy clues.', go:()=>{ S.role='studio'; S.view='hub'; } },
   { sel:'#drop', card:true, title:'Import what you already have', body:'Drop in a Quizizz/Wayground spreadsheet, a session-results export or any study guide — it becomes a quiz, flashcards and a Jeopardy board.' },
-  { sel:'#gmWrap', title:'Gallery Walk Manager', body:'Each station links to the original on the Library of Congress. Upload the scan, or use the Gemini prompt to create a teaching illustration.' },
+  { sel:'#gmWrap', title:'Gallery Walk Manager', body:'Each station links to the original on the Library of Congress. Upload the scan, or use the image prompt to create a teaching illustration.' },
   { sel:'#sTimer', card:true, title:'Game settings', body:'Accuracy-only scoring, mastery threshold, read-lock length, power-ups, shuffling and claim + evidence locks.' },
   { sel:'#userBtn', title:'Your account', body:'Create more classrooms, change your password, replay this tour or sign out.', go:()=>{ S.role='dash'; S.view='hub'; } },
   { title:'🎉 You\'re all set!', body:'Share your class code with students and try a Mastery Gauntlet yourself in <b>Student View</b>.' }

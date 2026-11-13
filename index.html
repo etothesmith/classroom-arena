@@ -468,6 +468,206 @@ img.lv-arti.ped{opacity:.55;filter:grayscale(.4) drop-shadow(0 4px 8px rgba(0,0,
 .lv-seal.on .lv-sealimg{filter:drop-shadow(0 0 14px rgba(252,211,77,.55))}
 .lv-kit .kit-off img{filter:grayscale(1) brightness(.35);opacity:.7}
 .lv-kit{grid-template-columns:repeat(3,1fr)}
+
+/* ====================== ARENA IDENTITY ====================== */
+.ava{position:relative;display:inline-flex;align-items:flex-end;justify-content:center;flex:none;vertical-align:middle}
+.ava-head{width:var(--s);height:var(--s);border-radius:50%;background:radial-gradient(circle at 50% 35%,#E0E7FF,#C7D2FE);box-shadow:0 0 0 2px #fff,0 2px 6px rgba(15,23,42,.18);overflow:visible}
+.ava-head .ava-img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+.ava-full{width:calc(var(--s)*.62);height:var(--s)}
+.ava-full .ava-img{height:100%;width:auto;filter:drop-shadow(0 6px 10px rgba(0,0,0,.35));transform-origin:50% 100%}
+.ava-emoji{width:var(--s);height:var(--s);border-radius:50%;display:inline-grid;place-items:center;font-size:calc(var(--s)*.55);color:#fff;box-shadow:0 0 0 2px #fff}
+.ava-comp{position:absolute;right:calc(var(--cs)*-.35);bottom:-2px;width:var(--cs);height:var(--cs);font-size:calc(var(--cs)*.8);line-height:1;display:grid;place-items:center;filter:drop-shadow(0 2px 3px rgba(0,0,0,.3))}
+.ava-comp img{width:100%;height:100%;object-fit:contain}
+.ava-full .ava-comp{right:-28%;bottom:0}
+.ava-frart{position:absolute;inset:-14%;width:128%;height:128%;pointer-events:none;z-index:2}
+/* frames (CSS until art arrives) */
+.fr-parch{box-shadow:0 0 0 3px #E7D3A8,0 0 0 5px #A16207}
+.fr-gold{box-shadow:0 0 0 3px #FCD34D,0 0 0 5px #B45309,0 0 10px #FCD34D}
+.fr-neon{box-shadow:0 0 0 3px #22D3EE,0 0 12px #22D3EE,0 0 0 5px #A21CAF}
+.fr-stars{box-shadow:0 0 0 3px #fff,0 0 0 6px #DC2626,0 0 0 9px #1D4ED8}
+.fr-space{box-shadow:0 0 0 3px #A78BFA,0 0 0 5px #1E1B4B,0 0 14px #8B5CF6}
+.fr-vault{box-shadow:0 0 0 3px #FCD34D,0 0 0 6px #1D4ED8,0 0 0 8px #FCD34D}
+/* victory moves */
+.emo-play[data-emo="jump"] .ava-img{animation:emoJump .9s ease}
+.emo-play[data-emo="spin"] .ava-img{animation:emoSpin .9s ease}
+.emo-play[data-emo="flex"] .ava-img{animation:emoFlex 1s ease}
+.emo-play[data-emo="wave"] .ava-img{animation:emoWave 1s ease}
+.emo-play[data-emo="dance"] .ava-img{animation:emoDance 1.2s ease}
+.emo-play[data-emo="rocket"] .ava-img{animation:emoRocket 1.4s ease}
+@keyframes emoJump{0%,100%{transform:translateY(0)}30%{transform:translateY(-28%) scaleY(1.05)}55%{transform:translateY(0) scaleY(.92)}75%{transform:translateY(-8%)}}
+@keyframes emoSpin{0%{transform:rotateY(0)}100%{transform:rotateY(720deg)}}
+@keyframes emoFlex{0%,100%{transform:scale(1)}30%,70%{transform:scale(1.14)}50%{transform:scale(1.18) rotate(-3deg)}}
+@keyframes emoWave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-8deg)}40%,80%{transform:rotate(8deg)}}
+@keyframes emoDance{0%,100%{transform:translateX(0) rotate(0)}20%{transform:translateX(-10%) rotate(-8deg)}40%{transform:translateX(10%) rotate(8deg)}60%{transform:translateX(-10%) rotate(-8deg) translateY(-8%)}80%{transform:translateX(10%) rotate(8deg)}}
+@keyframes emoRocket{0%{transform:translateY(0)}15%{transform:translateY(4%) scaleY(.9)}55%{transform:translateY(-70%)}70%{transform:translateY(-70%)}100%{transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){.emo-play .ava-img{animation:none!important}}
+/* confetti + celebration */
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:9999;overflow:hidden}
+.confetti i{position:absolute;top:-12px;width:9px;height:14px;border-radius:2px;animation:cfall linear forwards}
+@keyframes cfall{to{transform:translateY(110vh) rotate(720deg);opacity:.9}}
+.celebrate{position:fixed;inset:0;z-index:9000;display:grid;place-items:center;background:radial-gradient(circle at 50% 45%,rgba(30,58,138,.92),rgba(2,6,23,.94) 70%);backdrop-filter:blur(4px);animation:fadeIn .2s}
+.celebrate.out{opacity:0;transition:opacity .3s}
+.cel-card{text-align:center;color:#fff;animation:popIn .35s cubic-bezier(.2,1.4,.4,1)}
+.cel-line{font-size:clamp(1.6rem,4vw,3rem);font-weight:900;color:#FCD34D;text-shadow:0 3px 0 rgba(0,0,0,.35)}
+.cel-sub{font-size:1.2rem;font-weight:700}
+@keyframes popIn{from{transform:scale(.6);opacity:0}to{transform:none;opacity:1}}
+@keyframes fadeIn{from{opacity:0}}
+/* Locker */
+.locker{display:grid;grid-template-columns:auto 1fr;gap:1.4rem;align-items:center;padding:1.1rem 1.4rem;border-radius:22px;margin-bottom:1rem;color:#fff;background-size:cover;background-position:center;overflow:hidden;position:relative}
+.bg-classic{background:radial-gradient(circle at 15% 80%,rgba(252,211,77,.25),transparent 40%),linear-gradient(120deg,#0F172A,#1E3A8A 60%,#312E81)}
+.bg-capitol{background:radial-gradient(ellipse at 20% 110%,#F8FAFC 0 18%,transparent 19%),linear-gradient(180deg,#60A5FA,#1E40AF)}
+.bg-glades{background:linear-gradient(180deg,#F97316,#DB2777 45%,#064E3B 46%,#022C22)}
+.bg-news{background:repeating-linear-gradient(90deg,rgba(0,0,0,.05) 0 2px,transparent 2px 18px),linear-gradient(135deg,#78350F,#292524)}
+.bg-launch{background:radial-gradient(circle at 80% 20%,#fff 0 2px,transparent 3px),radial-gradient(circle at 30% 30%,#fff 0 1px,transparent 2px),linear-gradient(180deg,#020617,#1E1B4B 60%,#F97316)}
+.bg-archive{background:linear-gradient(90deg,rgba(120,53,15,.85),rgba(28,25,23,.9)),repeating-linear-gradient(0deg,#78350F 0 30px,#451A03 30px 34px)}
+.lk-stage{width:150px;height:200px;display:grid;place-items:end center}
+.lk-new{width:150px;height:190px;border-radius:18px;border:2px dashed rgba(255,255,255,.5);background:rgba(255,255,255,.08);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;padding:.6rem;cursor:pointer;font:inherit}
+.lk-new span:first-child{font-size:3rem}
+.lk-name{font-size:1.6rem;font-weight:900;line-height:1.1}
+.lk-title{display:inline-block;margin:.25rem 0 .5rem;padding:.15rem .6rem;border-radius:999px;background:linear-gradient(90deg,#FCD34D,#F59E0B);color:#422006;font-weight:800;font-size:.8rem;letter-spacing:.02em}
+.lk-lvl{display:flex;align-items:center;gap:.6rem;margin:.2rem 0 .6rem}
+.lk-badge{background:#FCD34D;color:#422006;font-weight:900;padding:.15rem .5rem;border-radius:8px;font-size:.85rem}
+.meter.xp{width:min(320px,45vw);height:10px;background:rgba(255,255,255,.2)}.meter.xp i{background:linear-gradient(90deg,#34D399,#FCD34D)}
+.locker .small{color:#E2E8F0}
+.locker .chip{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:#fff}
+.lk-btns{margin-top:.6rem}.locker .btn:not(.gold){background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.3);color:#fff}
+.quest{margin-top:.7rem;max-width:460px}.quest .meter.q{display:block;position:relative;width:100%;height:12px;margin:.3rem 0;background:rgba(148,163,184,.3)}
+.quest .meter.q i{background:linear-gradient(90deg,#10B981,#FCD34D)}.quest .meter.q em{position:absolute;top:-3px;width:4px;height:18px;border-radius:2px;background:rgba(148,163,184,.8)}.quest .meter.q em.on{background:#FCD34D}
+#questCard .quest{max-width:none}#questCard .small{color:var(--muted)}
+@media (max-width:640px){.locker{grid-template-columns:1fr;text-align:center}.lk-stage{margin:0 auto}.lk-lvl,.lk-chips,.lk-btns{justify-content:center}}
+/* Shop + badges */
+.chip.big{font-size:1.05rem;padding:.4rem .8rem}
+.shop-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:.8rem}
+.sh-item{display:flex;flex-direction:column;align-items:center;gap:.35rem;text-align:center;padding:.8rem;border:1px solid var(--line);border-radius:16px;background:#fff}
+.sh-item.on{border-color:#10B981;box-shadow:0 0 0 3px #A7F3D0}
+.sh-item .btn{width:100%;margin-top:auto}
+.sh-prev{height:120px;width:100%;display:grid;place-items:center;border-radius:12px;background:linear-gradient(180deg,#EEF2FF,#E0E7FF)}
+.sh-emoji{font-size:4rem}.sh-prev img{max-height:110px;max-width:100%}
+.sh-bg{background-size:cover;background-position:center}
+.sh-try{background:none;border:0;cursor:pointer}
+.badge-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.7rem}
+.bdg{display:flex;flex-direction:column;align-items:center;gap:.2rem;text-align:center;padding:.8rem;border-radius:14px;border:1px dashed var(--line);opacity:.55;filter:grayscale(.8)}
+.bdg.on{opacity:1;filter:none;border:1px solid #FCD34D;background:#FFFBEB}
+.bdg-ico{font-size:2.4rem;line-height:1}.bdg-ico img{width:64px;height:64px;object-fit:contain}
+/* feature cards */
+.escfeat{background:linear-gradient(120deg,#022C22,#065F46 55%,#0F172A)!important}
+.alfeat{background:linear-gradient(120deg,#4C1D95,#BE185D 60%,#F59E0B)!important;margin-bottom:1rem}
+.seg{display:inline-flex;background:var(--cab2);border-radius:12px;padding:4px;gap:4px;flex-wrap:wrap}
+.seg button{border:0;background:none;padding:.5rem .9rem;border-radius:9px;font:inherit;font-weight:700;color:var(--muted);cursor:pointer}
+.seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}.seg button:disabled{opacity:.45;cursor:not-allowed}
+
+/* ====================== JEOPARDY 2.0 ====================== */
+.jp-teamset{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.7rem}
+.jp-col{border:2px solid var(--tc);border-radius:14px;padding:.6rem;background:color-mix(in srgb,var(--tc) 6%,#fff);cursor:pointer;min-height:120px}
+.jp-tn{width:100%;font-weight:800;color:var(--tc);border:0;background:transparent;font-size:1.05rem;padding:.2rem 0;margin-bottom:.3rem}
+.jp-mem,.jp-pool{display:flex;flex-wrap:wrap;gap:.35rem}
+.jp-mw{position:relative;display:inline-flex}
+.jp-chip{display:inline-flex;align-items:center;gap:.35rem;padding:.2rem .55rem .2rem .2rem;border-radius:999px;border:1px solid var(--line);background:#fff;font:inherit;font-size:.85rem;font-weight:600;cursor:pointer}
+.jp-chip.sel{outline:3px solid #F59E0B}.jp-chip.picked{background:#DBEAFE;border-color:#2563EB}.jp-chip.ghost{background:var(--cab2)}
+.jp-x{position:absolute;top:-6px;right:-6px;width:18px;height:18px;border-radius:50%;border:0;background:#E11D48;color:#fff;font-size:.65rem;cursor:pointer;line-height:18px;padding:0}
+.jp-wrap{display:grid;grid-template-columns:1fr 240px;gap:1rem;align-items:stretch;margin-top:.6rem}
+.jp-spot{border-radius:18px;padding:.8rem;text-align:center;color:#fff;background:radial-gradient(circle at 50% 30%,color-mix(in srgb,var(--tc) 60%,#1E3A8A),#0B1F4B 75%);display:flex;flex-direction:column;align-items:center;justify-content:center;border:3px solid var(--tc)}
+.jp-spot .btn{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.3);color:#fff}
+.jp-up{font-weight:900;letter-spacing:.2em;color:#FCD34D;font-size:.85rem}.jp-who{font-weight:900;font-size:1.3rem;margin-top:.3rem}.jp-tm{color:#CBD5E1;font-weight:700}
+.jp-spot .small{color:#E2E8F0}
+.jp-team{cursor:pointer;font:inherit;border-top:5px solid var(--tc)!important;transition:transform .15s}
+.jp-team.cur{box-shadow:0 0 0 4px var(--tc);transform:translateY(-3px)}
+.jp-tname{font-weight:800;margin-top:.25rem}
+.jp-heads{display:inline-flex;justify-content:center}.jp-heads .ava{margin-left:-8px}.jp-heads .ava:first-child{margin-left:0}
+.jp-more{align-self:center;margin-left:.25rem;font-size:.8rem;font-weight:800;color:var(--muted)}
+.jp-upbar{display:flex;align-items:center;gap:.7rem;margin-bottom:.6rem}
+.jblue .team{border-top:5px solid var(--tc,#1D4ED8)}
+@media (max-width:900px){.jp-wrap{grid-template-columns:1fr}}
+/* podium */
+.podium-wrap{padding:1rem 0;color:#fff}.pod-h{text-align:center;color:#FCD34D;font-size:clamp(1.8rem,4vw,3rem);margin:.2rem 0 1rem}
+.podium{display:flex;justify-content:center;align-items:flex-end;gap:1rem}
+.pod{display:flex;flex-direction:column;align-items:center;min-width:180px;animation:popIn .5s cubic-bezier(.2,1.4,.4,1) both}
+.pod.p2{animation-delay:.3s}.pod.p3{animation-delay:0s}.pod.p1{animation-delay:.7s}
+.pod-avas{display:flex;align-items:flex-end;justify-content:center;gap:.2rem;min-height:120px}
+.pod-step{width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:.5rem;border-radius:12px 12px 0 0;color:#fff;background:linear-gradient(180deg,color-mix(in srgb,var(--tc,#2563EB) 85%,#fff),var(--tc,#1E3A8A));box-shadow:inset 0 -6px 0 rgba(0,0,0,.25)}
+.pod.p1 .pod-step{height:190px;background:linear-gradient(180deg,#FDE68A,#D97706)}.pod.p2 .pod-step{height:145px;background:linear-gradient(180deg,#E2E8F0,#94A3B8)}.pod.p3 .pod-step{height:115px;background:linear-gradient(180deg,#FDBA74,#B45309)}
+.pod-step b{font-size:1.1rem;color:#0F172A}.pod-step span{color:#0F172A;font-weight:800}
+.pod-n{font-size:2.4rem;font-weight:900;color:#fff!important;text-shadow:0 2px 0 rgba(0,0,0,.3);line-height:1}
+
+/* ====================== ARENA LIVE ====================== */
+.al-stage{background:radial-gradient(circle at 20% 0%,#4C1D95,transparent 50%),radial-gradient(circle at 90% 100%,#BE185D,transparent 45%),#0F172A;color:#fff;border-radius:22px;padding:1rem 1.2rem 1.4rem;min-height:72vh}
+.al-top{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;justify-content:space-between}
+.al-top .btn.ghost,.al-top .btn.ghost:hover{color:#fff;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3)}
+.al-stage .chip b,.jblue .chip b{color:#FCD34D}
+.al-top>b{margin-right:auto}
+.al-code b{letter-spacing:.15em;color:#FCD34D;font-size:1.2rem}
+.al-lobby{display:flex;flex-direction:column;align-items:center;gap:1rem;margin-top:1rem}
+.al-join{text-align:center}.al-join .small{color:#E2E8F0}.al-join .bigcode{color:#fff;font-size:clamp(3rem,9vw,6rem)}
+.al-wall{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;min-height:180px;max-width:1100px}
+.al-pl{display:flex;flex-direction:column;align-items:center;animation:popIn .45s cubic-bezier(.2,1.4,.4,1) both}
+.al-pl>span:not(.ava){font-weight:800;background:rgba(255,255,255,.12);padding:.1rem .5rem;border-radius:999px;margin-top:-4px}
+.al-ctl{display:flex;justify-content:center;gap:.8rem;margin-top:1.2rem;align-items:center}
+.al-stage .chip{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:#fff}
+.al-qhead{display:flex;gap:.6rem;align-items:center;margin:1rem 0 .4rem;flex-wrap:wrap}
+.al-timer{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:1.6rem;background:#7C3AED;box-shadow:0 0 0 4px rgba(255,255,255,.2)}
+.al-q{font-weight:800;font-size:clamp(1.4rem,3vw,2.4rem);text-align:center;margin:.6rem 0 1rem;line-height:1.25}
+.al-stim{max-width:900px;margin:0 auto;color:var(--ink)}
+.al-opts{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.al-opt{display:flex;align-items:center;gap:.8rem;background:var(--oc);border-radius:14px;padding:1rem;font-weight:800;font-size:clamp(1rem,1.8vw,1.35rem);min-height:90px;position:relative;box-shadow:inset 0 -6px 0 rgba(0,0,0,.2);transition:opacity .3s}
+.al-opt.dim{opacity:.35}.al-opt.right{outline:5px solid #fff}
+.al-sh{font-size:1.6rem;width:44px;text-align:center;flex:none}
+.al-ot{flex:1}
+.al-bar{width:46px;height:70px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;flex:none}.al-bar i{display:block;width:100%;background:rgba(255,255,255,.85);border-radius:6px 6px 0 0}.al-bar b{font-size:1rem}
+.al-why{max-width:900px;margin:1rem auto 0;color:var(--ink)}
+.al-h{text-align:center;color:#FCD34D}
+.al-lb{max-width:760px;margin:0 auto;display:grid;gap:.5rem}
+.al-row{display:flex;align-items:center;gap:.8rem;background:rgba(255,255,255,.1);border-radius:14px;padding:.5rem .9rem;animation:slideIn .4s both}
+.al-row b{flex:1;font-size:1.2rem}.al-rk{font-weight:900;font-size:1.4rem;width:2ch;color:#FCD34D}.al-sc{font-weight:900;font-size:1.3rem}
+@keyframes slideIn{from{transform:translateX(-30px);opacity:0}}
+/* student device */
+.al-sbox{max-width:760px;margin:0 auto;padding:.8rem;border-radius:18px;background:#F8FAFC;min-height:60vh}
+.al-sbox.al-good{background:#ECFDF5}.al-sbox.al-bad{background:#FEF2F2}
+.al-shead{display:flex;align-items:center;gap:.6rem;margin-bottom:.8rem}.al-shead b{flex:1}
+.al-you{text-align:center;padding:1rem}
+.al-sq{font-weight:800;font-size:1.25rem;margin:.6rem 0 1rem}
+.al-sopts{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.al-sopt{display:flex;align-items:center;gap:.6rem;background:var(--oc);color:#fff;border:0;border-radius:14px;padding:1rem;font:inherit;font-weight:800;text-align:left;min-height:90px;cursor:pointer;box-shadow:inset 0 -5px 0 rgba(0,0,0,.2)}
+.al-sopt:active{transform:scale(.97)}
+.al-wait{text-align:center;padding:1.5rem}.al-sh.big{width:90px;height:90px;border-radius:18px;display:grid;place-items:center;margin:0 auto;color:#fff;font-size:2.6rem}
+.al-res{text-align:center}.al-pts{font-size:2.2rem;font-weight:900;color:#059669;margin:.2rem 0}
+@media (max-width:640px){.al-opts,.al-sopts{grid-template-columns:1fr}}
+
+/* ====================== ESCAPE ROOM ====================== */
+.esc-intro{display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;padding:1.4rem;border-radius:22px;color:#fff;background:linear-gradient(120deg,#022C22,#065F46 55%,#0F172A)}
+.esc-hero h1{font-family:Georgia,serif;font-size:clamp(2rem,5vw,3.4rem);margin:.2rem 0;color:#FDE68A}
+.esc-hero p,.esc-hero .small{color:#E2E8F0}
+.esc-legend{display:grid;gap:.3rem;margin:.6rem 0}
+.esc-room{position:relative;height:min(64vh,560px);border-radius:20px;overflow:hidden;margin-top:.6rem;background-size:cover;background-position:center;
+  background-color:#3B2412;background-image:linear-gradient(180deg,#5B3A1E 0 62%,#2A1A0E 62% 100%),repeating-linear-gradient(90deg,rgba(0,0,0,.12) 0 2px,transparent 2px 90px)}
+.esc-obj,.esc-door{position:absolute;transform:translate(-50%,0);background:none;border:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:.2rem;transition:transform .15s}
+.esc-obj:hover,.esc-door:hover{transform:translate(-50%,-4px) scale(1.04)}
+.esc-em{font-size:clamp(3.4rem,8vw,6rem);filter:drop-shadow(0 8px 10px rgba(0,0,0,.5))}
+.esc-obj img,.esc-door img{max-height:min(22vh,190px);filter:drop-shadow(0 8px 10px rgba(0,0,0,.5))}
+.esc-tag{background:rgba(2,6,23,.75);color:#fff;font-weight:800;font-size:.8rem;padding:.15rem .55rem;border-radius:999px;white-space:nowrap}
+.esc-obj.solved{filter:saturate(.6)}.esc-obj.solved .esc-tag{background:#059669}
+.esc-obj:not(.solved) .esc-em,.esc-obj:not(.solved) img{animation:escPulse 2.4s ease-in-out infinite}
+@keyframes escPulse{0%,100%{filter:drop-shadow(0 8px 10px rgba(0,0,0,.5))}50%{filter:drop-shadow(0 0 18px rgba(252,211,77,.85))}}
+.esc-you{position:absolute;left:24%;bottom:2%;pointer-events:none}
+.esc-notes{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin-top:.6rem}
+.esc-note{padding:.3rem .7rem;border-radius:10px;background:var(--cab2);font-weight:700}.esc-note.on{background:#D1FAE5}
+.esc-match{display:grid;grid-template-columns:1fr 2fr;gap:.8rem}.esc-match>div{display:grid;gap:.5rem;align-content:start}
+.esc-term,.esc-def,.esc-ev{padding:.7rem;border-radius:12px;border:2px solid var(--line);background:#fff;font:inherit;text-align:left;cursor:pointer}
+.esc-term{font-weight:800}.esc-term.sel{border-color:#F59E0B;background:#FFFBEB}.esc-term.ok,.esc-def.ok{border-color:#10B981;background:#ECFDF5;opacity:.7}
+.shake{animation:shake .35s}@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.esc-slots{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin:.6rem 0}
+.esc-slot{min-height:90px;border-radius:12px;border:2px dashed var(--line);display:grid;place-items:center;text-align:center;padding:.4rem;font-size:.9rem;color:var(--muted);font-weight:800}
+.esc-slot.on{border-style:solid;border-color:#10B981;background:#ECFDF5;color:var(--ink);font-weight:500}
+.esc-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.5rem}
+.esc-code{display:flex;justify-content:center;gap:.5rem;margin:.8rem 0}.esc-code span{width:56px;height:68px;border-radius:12px;background:#0F172A;color:#FCD34D;font-size:2rem;font-weight:900;display:grid;place-items:center}
+.esc-pad{display:grid;grid-template-columns:repeat(3,80px);gap:.5rem;justify-content:center}
+.esc-glow{box-shadow:0 0 0 3px #FCD34D,0 0 14px #FCD34D}
+.esc-paper .paper{max-height:42vh;overflow:auto}
+@media (max-width:700px){.esc-intro{grid-template-columns:1fr}.esc-me{display:none}.esc-match{grid-template-columns:1fr}.esc-slots{grid-template-columns:1fr 1fr}.esc-tag{font-size:.7rem}}
+.locker .chip b{color:#FCD34D}
+#shopBox>.spread{padding-right:2.6rem}
+.sh-item .small{color:var(--muted)}
+.bg-vaultbg{background:radial-gradient(circle at 70% 30%,rgba(252,211,77,.35),transparent 45%),linear-gradient(135deg,#1C1917,#3B2412 60%,#0B1220)}
+@media (max-width:700px){.esc-you{left:auto;right:1%;bottom:1%}.esc-you .ava-full{--s:110px!important}.esc-room{height:70vh}}
 </style></head>
 <body><header id="topbar"></header><main id="main"></main>
 <script id="arenaApp">
@@ -2127,7 +2327,7 @@ let SAVE_KEY = 'classroom_arena_v1';
 const DEFAULT_STATE = () => ({
   lang:'en', muted:false, role:'student', view:'hub', unit:'u1',
   student:{ name:'', period:'' }, tokens:3, streak:0, best:0, xp:0, lastBm:'',
-  qstat:{}, loops:0, galleryDone:{}, highs:{}, study:{}, srs:{}, vault:{},
+  qstat:{}, loops:0, galleryDone:{}, highs:{}, study:{}, srs:{}, vault:{}, avatar:null, look:{}, owned:{}, daily:{}, esc:{}, alive:{},
   settings:{ timer:'accuracy', threshold:85, lock:5, powerups:true, shuffle:true, claimEvidence:true, god:false },
   custom:[], assets:{}, classrooms:[], activeClass:null, locked:false, welcomed:false
 });
@@ -2494,6 +2694,7 @@ function renderStudentHub(m){
   const nx=typeof nextAction==='function'?nextAction(u):null;
   const bms=[...new Set(u.qs.map(q=>q.bm))];
   m.innerHTML=`
+    ${typeof lockerHTML==='function'?lockerHTML():''}
     ${unitBar(u, first?(es?`Hola, ${first} 👋`:`Hi, ${first} 👋`):'')}
     <button class="studyhero" data-go="study">
       <div class="sh-txt"><span class="eyebrow">${es?'Empieza aquí':'Start here'}</span>
@@ -2506,6 +2707,9 @@ function renderStudentHub(m){
     <button class="lvfeat" data-go="vault"><span class="lvfeat-ico">🗝️</span><div><span class="eyebrow" style="color:#FCD34D">${es?'Misión del examen EOC':'EOC mission game'}</span><h3>The Liberty Vault: Artifact Hunters</h3>
       <span class="small">${es?'Recupera 12 artefactos robados de la historia de EE. UU. Descifra fuentes primarias, abre las bóvedas y gana tu certificado.':'Recover 12 stolen artifacts from U.S. history. Crack primary sources, open the vaults and earn your certificate.'}</span></div>
       <span class="lvfeat-go">${typeof LV==='function'?`🏺 ${lvFound().length}/12 · 🏅 ${lvSeals().length}/3`:''}</span></button>
+    <button class="lvfeat escfeat" data-go="escape"><span class="lvfeat-ico">🔐</span><div><span class="eyebrow" style="color:#6EE7B7">${es?'Sala de escape':'Escape Room'}</span><h3>The Locked Archive</h3>
+      <span class="small">${es?'Resuelve 4 acertijos sobre esta unidad para conseguir el código de la puerta.':'Solve 4 puzzles about this unit to crack the door code. Beat your best time.'}</span></div>
+      <span class="lvfeat-go">${(S.esc&&S.esc[u.id]&&S.esc[u.id].best)?`⏱️ ${mmss(S.esc[u.id].best)}`:'▶'}</span></button>
     <h3 class="sect">${es?'Más formas de practicar':'More ways to practice'}</h3>
     <div class="grid g4">
       <button class="card mode" data-go="gauntlet">${modeIco('m_gauntlet','🧭')}<h3>${t('gauntlet')}</h3><span class="small">${es?'Preguntas con reenseñanza hasta dominarlas.':'Questions with reteaching until you master them.'}</span></button>
@@ -2517,7 +2721,7 @@ function renderStudentHub(m){
       ${bms.map(bm=>{ const p=bmPct(u,bm)||0; const sm=typeof studyState==='function'?studyState(u.id,bm):{}; return `<div class="bmbar"><span>${sm.secured?artImg('b_secured','mini'):sm.mastered?artImg('b_mastered','mini'):''}${esc(bm)}</span><span class="meter"><i style="width:${p}%"></i></span><b class="${p>=S.settings.threshold?'ok':''}">${p}%</b></div>`; }).join('')}
     </details>
     ${(u.timeline||[]).length?`<details class="card fold"><summary>🗓️ ${es?'Línea de tiempo de la unidad':'Unit timeline'}</summary><div class="timeline">${u.timeline.map(([y,e])=>`<div class="tl"><b>${esc(y)}</b><br>${esc(e)}</div>`).join('')}</div></details>`:''}`;
-  bindUnitBar(m, ()=>render());
+  bindUnitBar(m, ()=>render()); if(typeof bindLocker==='function') bindLocker(m);
   $$('[data-go]',m).forEach(b=>b.onclick=()=>{ SFX.click(); const v=b.dataset.go;
     if(v==='gallery' && !(u.gallery&&u.gallery.length)) return toast('This imported set has no gallery stations — try the Gauntlet, Summit or Jeopardy.');
     if(v==='arcade') return go('arcade');
@@ -2746,87 +2950,7 @@ function renderSummit(m, squadMode){
   }
 }
 
-/* ======================= MODE A: CLASSROOM JEOPARDY ================= */
-function renderJeopardy(m){
-  const u=curUnit();
-  m.innerHTML=`${backBtn()}<h1>🏆 ${t('jeopardy')}</h1><div class="card">
-    <p><b>${esc(u.title)}</b> — ${u.jp?'25 clues ready':'board auto-built from this set'}</p>
-    <div class="grid g2"><div class="field"><label>Teams (2–6, one per line)</label><textarea id="tm" style="min-height:140px">Team 1\nTeam 2\nTeam 3\nTeam 4</textarea></div>
-    <div><div class="field"><label>Daily Doubles</label><select id="dd"><option value="1">1</option><option value="2" selected>2</option><option value="0">0</option></select></div>
-    <div class="field" style="margin-top:.6rem"><label>Clue timer</label><select id="jt"><option value="0">No timer (teacher paced)</option><option value="15">15s</option><option value="30" selected>30s</option><option value="45">45s</option></select></div></div></div>
-    <button class="btn gold big" id="go" style="margin-top:.8rem">${t('start')}</button></div>`;
-  bindBack(m);
-  $('#go',m).onclick=()=>{ const names=$('#tm',m).value.split('\n').map(s=>s.trim()).filter(Boolean).slice(0,6); start(names.length>1?names:['Team 1','Team 2'], +$('#dd',m).value, +$('#jt',m).value); };
-
-  function start(names, ddN, secs){
-    const jp=u.jp||buildJeopardy(u);
-    const teams=names.map(n=>({n,s:0})), used=new Set();
-    const tiles=[]; for(let c=0;c<5;c++) for(let r=0;r<5;r++) tiles.push(c+'-'+r);
-    const dds=new Set(shuffle(tiles.filter(k=>+k.split('-')[1]>=1)).slice(0,ddN));
-    board();
-    function board(){
-      const lead=Math.max(...teams.map(x=>x.s));
-      m.innerHTML=`<div class="spread"><button class="back" data-back>${t('back')}</button><div class="row"><button class="btn" id="fj">🎯 Final Jeopardy</button></div></div>
-        <div class="jboard">${jp.cats.map(c=>`<div class="jcat">${esc(c)}</div>`).join('')}
-        ${[0,1,2,3,4].map(r=>[0,1,2,3,4].map(c=>{ const k=c+'-'+r; return `<button class="jtile ${used.has(k)?'used':''}" data-k="${k}" ${used.has(k)?'disabled':''}>$${(r+1)*100}</button>`; }).join('')).join('')}</div>
-        <div class="teams">${teams.map((x,i)=>`<div class="team ${x.s===lead&&lead>0?'lead':''}"><div>${esc(x.n)}</div><div class="sc ${x.s<0?'neg':''}">$${x.s}</div><div class="row" style="justify-content:center"><button class="iconbtn" data-adj="${i}" data-v="-100">−</button><button class="iconbtn" data-adj="${i}" data-v="100">+</button></div></div>`).join('')}</div>`;
-      bindBack(m);
-      $$('[data-adj]',m).forEach(b=>b.onclick=()=>{ teams[+b.dataset.adj].s+=+b.dataset.v; SFX.click(); board(); });
-      $$('.jtile:not(.used)',m).forEach(b=>b.onclick=()=>clue(b.dataset.k));
-      $('#fj',m).onclick=final;
-      if(used.size===25) $('#fj',m).classList.add('gold');
-    }
-    function clue(k){
-      const [c,r]=k.split('-').map(Number), [q,a]=jp.c[c][r], val=(r+1)*100, isDD=dds.has(k);
-      SFX.click();
-      const mm=modal(`<div id="cz"></div>`,{full:true, onClose:()=>{ clearInterval(iv); used.add(k); board(); }});
-      mm.classList.add('jblue'); const z=$('#cz',mm); let iv=null;
-      if(isDD){ SFX.fanfare();
-        z.innerHTML=`<div class="clue" style="color:#FCD34D">⭐ DAILY DOUBLE! ⭐</div><div class="grid g2" style="max-width:600px;margin:0 auto"><div class="field"><label>Team</label><select id="ddt">${teams.map((x,i)=>`<option value="${i}">${esc(x.n)}</option>`).join('')}</select></div><div class="field"><label>Wager</label><input id="ddw" type="number" min="5" value="${val}"></div></div><p style="text-align:center"><button class="btn gold big" id="ddgo">Reveal Clue</button></p>`;
-        $('#ddgo',z).onclick=()=>{ const ti=+$('#ddt',z).value, max=Math.max(teams[ti].s,500); const w=clamp(+$('#ddw',z).value||0,5,max); show(w,[ti]); };
-      } else show(val, teams.map((_,i)=>i));
-      function show(v, eligible){
-        let left=secs;
-        z.innerHTML=`<div class="spread" style="padding-right:3rem"><span class="tag gold">${esc(jp.cats[c])} · $${v}${isDD?' · Daily Double':''}</span>${secs?`<span class="chip">⏱️ <b id="tl">${left}</b>s</span>`:''}</div>
-          <div class="clue">${esc(q)}</div>
-          <div style="text-align:center"><button class="btn gold big" id="rv">Reveal Answer</button></div><div id="ans"></div>`;
-        if(secs){ iv=setInterval(()=>{ left--; const e=$('#tl',z); if(e) e.textContent=left; if(left<=5&&left>0) SFX.tick(); if(left<=0){ clearInterval(iv); SFX.buzz(); } },1000); }
-        $('#rv',z).onclick=()=>{ clearInterval(iv); SFX.right(); $('#rv',z).remove();
-          const key=a.toLowerCase().split(' (')[0]; const rq=u.qs.find(x=>x.r&&x.r[1].toLowerCase().includes(key));
-          const vm=(u.vocab||[]).find(x=>a.toLowerCase().includes(x[0].toLowerCase().split(' (')[0]) || x[0].toLowerCase().includes(a.toLowerCase().split(' (')[0]));
-          $('#ans',z).innerHTML=`<div class="clue" style="color:#6EE7B7">${esc(a)}</div>
-            <div class="reteach" style="max-width:820px;margin:0 auto"><h3>🎙️ Teacher Debrief / Why It Matters</h3>${vm?`<p><b>${esc(vm[0])}:</b> ${esc(vm[1])}</p><p>⭐ ${esc(vm[2]||'')}</p>`:`${rq?`<p><b>${esc(rq.r[0])}:</b> ${esc(rq.r[1])}</p>`:''}<p>Ask the class: <i>What caused this, who did it affect, and how does it connect to ${esc((u.bms||[])[0]||'the unit')}?</i></p>`}</div>
-            <p style="text-align:center;margin-top:1rem" id="stealMsg" class="gold"></p>
-            <div class="teams">${teams.map((x,i)=>`<div class="team" ${eligible.includes(i)?'':'style="opacity:.4"'}><b>${esc(x.n)}</b><div class="row" style="justify-content:center;margin-top:.3rem"><button class="btn em" data-ok="${i}" ${eligible.includes(i)?'':'disabled'}>✓ +${v}</button><button class="btn cr" data-no="${i}" ${eligible.includes(i)?'':'disabled'}>✗ −${v}</button></div></div>`).join('')}</div>
-            <p style="text-align:center;margin-top:1rem"><button class="btn big" id="cls">Back to Board</button></p>`;
-          $$('[data-ok]',z).forEach(b=>b.onclick=()=>{ teams[+b.dataset.ok].s+=v; SFX.coin(); mm.close(); });
-          $$('[data-no]',z).forEach(b=>b.onclick=()=>{ const i=+b.dataset.no; teams[i].s-=v; SFX.wrong(); b.disabled=true; b.previousElementSibling.disabled=true; b.closest('.team').style.opacity=.4;
-            if(!isDD) $('#stealMsg',z).textContent='🚨 STEAL OPEN — another team may answer!'; });
-          $('#cls',z).onclick=()=>mm.close();
-        };
-      }
-    }
-    function final(){
-      const [cat, q, a]=jp.fj; const mm=modal('<div id="fz"></div>',{full:true,onClose:board}); mm.classList.add('jblue'); const z=$('#fz',mm);
-      z.innerHTML=`<div class="clue" style="color:#FCD34D">🎯 FINAL JEOPARDY</div><div class="clue" style="font-size:1.6rem">Category: ${esc(cat)}</div>
-        <p style="text-align:center">Each team secretly locks in a wager (up to its score; teams at $0 or below may wager $0).</p>
-        <div class="teams">${teams.map((x,i)=>`<div class="team"><b>${esc(x.n)}</b> · $${x.s}<input type="password" inputmode="numeric" data-w="${i}" placeholder="wager" style="width:100%;margin-top:.3rem"><button class="btn" data-lock="${i}" style="margin-top:.3rem;width:100%">🔒 Lock</button></div>`).join('')}</div>
-        <p style="text-align:center"><button class="btn gold big" id="fgo" disabled>Reveal Final Clue</button></p>`;
-      const wag={};
-      $$('[data-lock]',z).forEach(b=>b.onclick=()=>{ const i=+b.dataset.lock, inp=$(`[data-w="${i}"]`,z); wag[i]=clamp(Math.round(+inp.value||0),0,Math.max(0,teams[i].s)); inp.disabled=true; b.disabled=true; b.textContent='✅ Locked'; SFX.click(); if(Object.keys(wag).length===teams.length) $('#fgo',z).disabled=false; });
-      $('#fgo',z).onclick=()=>{ let left=30;
-        z.innerHTML=`<div class="spread" style="padding-right:3rem"><span class="tag gold">${esc(cat)}</span><span class="chip">⏱️ <b id="tl">30</b>s</span></div><div class="clue">${esc(q)}</div><p style="text-align:center"><button class="btn gold big" id="rv">Reveal Answer</button></p><div id="ans"></div>`;
-        const iv=setInterval(()=>{ left--; const e=$('#tl',z); if(e) e.textContent=left; SFX.tick(); if(left<=0){ clearInterval(iv); SFX.buzz(); } },1000);
-        $('#rv',z).onclick=()=>{ clearInterval(iv); $('#rv',z).remove();
-          $('#ans',z).innerHTML=`<div class="clue" style="color:#6EE7B7">${esc(a)}</div><div class="teams">${teams.map((x,i)=>`<div class="team"><b>${esc(x.n)}</b><br>Wager: $${wag[i]}<div class="row" style="justify-content:center"><button class="btn em" data-f="${i}" data-r="1">✓</button><button class="btn cr" data-f="${i}" data-r="0">✗</button></div></div>`).join('')}</div><p style="text-align:center"><button class="btn gold big" id="win">Show Winner</button></p>`;
-          $$('[data-f]',z).forEach(b=>b.onclick=()=>{ const i=+b.dataset.f; teams[i].s+= b.dataset.r==='1'?wag[i]:-wag[i]; $$(`[data-f="${i}"]`,z).forEach(x=>x.disabled=true); SFX.click(); });
-          $('#win',z).onclick=()=>{ const top=Math.max(...teams.map(x=>x.s)); const w=teams.filter(x=>x.s===top).map(x=>x.n); SFX.fanfare();
-            z.innerHTML=`<div class="clue" style="color:#FCD34D">🏆 ${esc(w.join(' & '))} WIN${w.length>1?'':'S'}! 🏆</div><div class="teams">${teams.slice().sort((p,q)=>q.s-p.s).map(x=>`<div class="team"><b>${esc(x.n)}</b><div class="sc">$${x.s}</div></div>`).join('')}</div>`; };
-        };
-      };
-    }
-  }
-}
+/* Classroom Jeopardy lives in arena.js (avatars, teams from the roster, podium). */
 function buildJeopardy(u){
   const pool=[...(u.vocab||[]).map(v=>[v[1],v[0]]), ...u.qs.map(q=>[q.s,q.o[0]])];
   const cats=(u.heads&&u.heads.length>=5?u.heads.slice(0,5):['Set A','Set B','Set C','Set D','Set E']);
@@ -3495,6 +3619,8 @@ function renderHostHub(m){
   const u=curUnit();
   m.innerHTML=`${unitBar(u,'🖥️ Present on the board')}
     <h3 class="sect">Students follow on their own laptops</h3>
+    <button class="lvfeat alfeat" data-go="alive"><span class="lvfeat-ico">⚡</span><div><span class="eyebrow" style="color:#FCD34D">New · Live quiz game</span><h3>Arena Live</h3>
+      <span class="small">Students' avatars pop into the lobby, everyone answers on their own device, and the top 3 finish on the podium. Accuracy mode means no speed pressure.</span></div><span class="lvfeat-go">▶ Host</span></button>
     <div class="grid g2">
       <button class="card mode wide" data-go="live-gallery">${modeIco('m_livegw','📡')}<div><h3>Live Gallery Walk</h3><span class="small">You put up each station; every student's screen follows. Watch answers come in, reveal, then move on.</span></div></button>
       <button class="card mode wide" data-go="live">${modeIco('m_live','📡')}<div><h3>${t('live')}</h3><span class="small">${t('liveD')}</span></div></button>
@@ -3506,7 +3632,7 @@ function renderHostHub(m){
       <button class="card mode" data-go="gallery">${modeIco('m_gallery','🏛️')}<h3>${t('gallery')} (board only)</h3><span class="small">Walk the class through each exhibit on the board.</span></button>
     </div>`;
   bindUnitBar(m, ()=>render());
-  $$('[data-go]',m).forEach(b=>b.onclick=()=>{ SFX.click(); if(b.dataset.go==='live-gallery') return go(LIVE_T&&LIVE_T.active?'livegw':'livesetup'); if(b.dataset.go==='gallery'&&!(u.gallery||[]).length) return toast('No gallery stations in this set.'); go(b.dataset.go); });
+  $$('[data-go]',m).forEach(b=>b.onclick=()=>{ SFX.click(); if(b.dataset.go==='alive') return go(AL_T&&AL_T.active?'alhost':'alsetup'); if(b.dataset.go==='live-gallery') return go(LIVE_T&&LIVE_T.active?'livegw':'livesetup'); if(b.dataset.go==='gallery'&&!(u.gallery||[]).length) return toast('No gallery stations in this set.'); go(b.dataset.go); });
 }
 
 /* ========================== TEACHER STUDIO ========================== */
@@ -3970,7 +4096,7 @@ function queueSync(){
   syncTimer=setTimeout(async()=>{
     try{
       if(SESSION.type==='teacher'){ const c=activeClass(); if(c && c.ownerUid) await API.saveClass(c); }
-      else if(SESSION.type==='student' && S.join){ await API.saveStudent(S.join.classId, S.join.sid, { name:S.join.name, period:S.join.period, qstat:S.qstat, tokens:S.tokens, streak:S.streak, best:S.best, xp:S.xp, loops:S.loops, galleryDone:S.galleryDone, highs:S.highs, study:S.study, srs:S.srs, vault:S.vault }); }
+      else if(SESSION.type==='student' && S.join){ await API.saveStudent(S.join.classId, S.join.sid, { name:S.join.name, period:S.join.period, qstat:S.qstat, tokens:S.tokens, streak:S.streak, best:S.best, xp:S.xp, loops:S.loops, galleryDone:S.galleryDone, highs:S.highs, study:S.study, srs:S.srs, vault:S.vault, ...(typeof arenaPayload==='function'?arenaPayload():{}) }); }
       setSyncState('saved');
     }catch(e){ console.warn(e); setSyncState('error'); }
   }, 1200);
@@ -4028,7 +4154,7 @@ function renderTop(){
       <button class="iconbtn ${S.lang==='en'?'on':''}" data-lang="en">EN</button><button class="iconbtn ${S.lang==='es'?'on':''}" data-lang="es">ES</button>
       <button class="iconbtn" id="muteBtn" title="Sound">${S.muted?'🔇':'🔊'}</button><span class="sync saved" id="syncDot" title="All changes saved"></span>
       <button class="userbtn" id="userBtn"><span class="avatar">${esc(initials(tname))}</span>${esc(tname.split(' ')[0])}</button></div></div>
-      ${S.role==='student'&&!['livegw','livesetup','vault'].includes(S.view)||['study','gauntlet','gallery','summit','squad','arcade'].includes(S.view)?'<div class="hud" id="hud"></div>':''}`;
+      ${S.role==='student'&&!['livegw','livesetup','vault','alstu','alhost','alsetup','escape'].includes(S.view)||['study','gauntlet','gallery','summit','squad','arcade'].includes(S.view)?'<div class="hud" id="hud"></div>':''}`;
   }
   $$('[data-home]',tb).forEach(b=>b.onclick=()=>{ if(!SESSION.type){ PUB='home'; setHash(''); } else { S.view='hub'; S.role= SESSION.type==='teacher'?'dash':'student'; save(); renderTop(); } render(); scrollTo(0,0); });
   $$('[data-pub]',tb).forEach(b=>b.onclick=()=>{ PUB=b.dataset.pub; AUTH_TAB=b.dataset.tab||AUTH_TAB; setHash(PUB==='home'?'':PUB==='teacher'?'signin':PUB); render(); if(b.dataset.scroll) setTimeout(()=>{ const el=document.getElementById(b.dataset.scroll); el&&el.scrollIntoView({behavior:'smooth'}); },50); else scrollTo(0,0); });
@@ -4227,13 +4353,13 @@ function enterStudent(c, j, prev){
   const base=DEFAULT_STATE();
   S.join={classId:c.id, code:j.code, name:j.name, period:j.period, sid:j.sid};
   S.classrooms=[{...c, settings:Object.assign(base.settings,c.settings||{}), custom:c.custom||[], assets:{}}]; S.activeClass=c.id; linkClass();
-  Object.assign(S, { student:{name:j.name, period:j.period}, qstat:(prev&&prev.qstat)||{}, tokens:prev?prev.tokens||0:3, streak:prev?prev.streak||0:0, best:prev?prev.best||0:0, xp:prev?prev.xp||0:0, loops:prev?prev.loops||0:0, galleryDone:(prev&&prev.galleryDone)||{}, highs:(prev&&prev.highs)||{}, study:(prev&&prev.study)||{}, srs:(prev&&prev.srs)||{}, vault:(prev&&prev.vault)||{} });
+  Object.assign(S, { student:{name:j.name, period:j.period}, qstat:(prev&&prev.qstat)||{}, tokens:prev?prev.tokens||0:3, streak:prev?prev.streak||0:0, best:prev?prev.best||0:0, xp:prev?prev.xp||0:0, loops:prev?prev.loops||0:0, galleryDone:(prev&&prev.galleryDone)||{}, highs:(prev&&prev.highs)||{}, study:(prev&&prev.study)||{}, srs:(prev&&prev.srs)||{}, vault:(prev&&prev.vault)||{}, ...Object.fromEntries((typeof ARENA_SYNC!=='undefined'?ARENA_SYNC:[]).map(k=>[k,(prev&&prev[k])||(k==='avatar'?null:{})])) }); if(typeof arenaInitState==='function') arenaInitState();
   S.role='student'; S.view='hub'; S.locked=false; if(!allUnits().some(u=>u.id===S.unit)) S.unit=(allUnits()[0]||{}).id;
   SESSION={type:'student', ready:true}; JOIN_CLASS=null; setHash(''); save(); queueSync(); startStudentLive();
   loadAssets().then(()=>{ renderTop(); render(); });
   renderTop(); render(); toast(prev?`👋 Welcome back, ${esc(j.name)}! Your progress is restored.`:`🎉 You joined ${esc(c.name)}!`);
 }
-async function leaveClass(){ if(STUDENT_LIVE_UNSUB){ try{STUDENT_LIVE_UNSUB();}catch(e){} STUDENT_LIVE_UNSUB=null; } LIVE_S=null; LIVE_ANS=null; save(); clearTimeout(syncTimer); try{ await API.saveStudent(S.join.classId,S.join.sid,{qstat:S.qstat,tokens:S.tokens,streak:S.streak,best:S.best,xp:S.xp,loops:S.loops,galleryDone:S.galleryDone,highs:S.highs,study:S.study,srs:S.srs,vault:S.vault,name:S.join.name,period:S.join.period}); }catch(e){}
+async function leaveClass(){ if(STUDENT_LIVE_UNSUB){ try{STUDENT_LIVE_UNSUB();}catch(e){} STUDENT_LIVE_UNSUB=null; } LIVE_S=null; LIVE_ANS=null; save(); clearTimeout(syncTimer); try{ await API.saveStudent(S.join.classId,S.join.sid,{qstat:S.qstat,tokens:S.tokens,streak:S.streak,best:S.best,xp:S.xp,loops:S.loops,galleryDone:S.galleryDone,highs:S.highs,study:S.study,srs:S.srs,vault:S.vault,...(typeof arenaPayload==='function'?arenaPayload():{}),name:S.join.name,period:S.join.period}); }catch(e){}
   const base=DEFAULT_STATE(); Object.assign(S,{join:null, classrooms:[], activeClass:null, qstat:{}, tokens:3, streak:0, xp:0, loops:0, galleryDone:{}, highs:{}, study:{}, srs:{}, vault:{}, student:base.student}); linkClass();
   await API.signOut().catch(()=>{}); SESSION={type:null, ready:true}; PUB='home'; save(); renderTop(); render(); }
 
@@ -4266,7 +4392,7 @@ function overallPct(st){ const us=allUnits().filter(u=>qstatAttempted(st.qstat||
 const ago=ts=>{ if(!ts) return '—'; const s=(Date.now()-ts)/1000; return s<90?'just now':s<3600?Math.round(s/60)+' min ago':s<86400?Math.round(s/3600)+' hr ago':Math.round(s/86400)+' days ago'; };
 async function loadDash(force){
   const c=activeClass(); if(!c) return; if(!force && DASH.cid===c.id && Date.now()-DASH.at<20000) return;
-  DASH.loading=true; try{ const [s,r]=await Promise.all([API.listStudents(c.id), API.listReports(c.id)]); Object.assign(DASH,{cid:c.id, students:s.sort((a,b)=>(a.name||'').localeCompare(b.name||'')), reports:r, at:Date.now()}); }
+  DASH.loading=true; try{ const [s,r]=await Promise.all([API.listStudents(c.id), API.listReports(c.id)]); Object.assign(DASH,{cid:c.id, students:s.sort((a,b)=>(a.name||'').localeCompare(b.name||'')), reports:r, at:Date.now()}); if(typeof questSync==='function') questSync(c); }
   catch(e){ toast('⚠️ Could not load student data: '+esc(e.message)); } DASH.loading=false;
 }
 function joinLink(c){ return location.origin+location.pathname+'#join-'+c.code; }
@@ -4285,7 +4411,7 @@ function dashHTML(c){
   if(DASH.loading && !st.length) body='<p class="muted">Loading students…</p>';
   else if(!st.length) body=`<div style="text-align:center;padding:2rem">${artImg('x_empty','moment','')||'<p style="font-size:2rem;margin:0">🎓</p>'}<h3>No students yet</h3><p class="muted">Share your class code <b>${esc(c.code||'')}</b>. Students appear here as soon as they join.</p></div>`;
   else if(tab==='roster') body=`<div style="overflow-x:auto"><table><tr><th>Student</th><th>Period</th>${units.slice(0,6).map(u=>`<th title="${esc(u.title)}">${u.icon||''} ${esc(u.short||u.title).slice(0,14)}</th>`).join('')}<th>Overall</th><th>Reteach loops</th><th>Last active</th><th></th></tr>
-    ${st.map(s=>{ const q=s.qstat||{}; return `<tr><td><b>${esc(s.name)}</b></td><td>${esc(s.period||'—')}</td>${units.slice(0,6).map(u=>{ const p=qstatUnitPct(q,u), a=qstatAttempted(q,u); return `<td>${a?`<span class="pill" style="background:${pctColor(p)}">${p}%</span>`:'<span class="muted">—</span>'}</td>`; }).join('')}
+    ${st.map(s=>{ const q=s.qstat||{}; return `<tr><td><span style="display:inline-flex;align-items:center;gap:.5rem">${typeof avaHTML==='function'?avaHTML(avaSpec(s),{size:32, look:{frame:(s.look||{}).frame}, comp:false}):''}<b>${esc(s.name)}</b></span></td><td>${esc(s.period||'—')}</td>${units.slice(0,6).map(u=>{ const p=qstatUnitPct(q,u), a=qstatAttempted(q,u); return `<td>${a?`<span class="pill" style="background:${pctColor(p)}">${p}%</span>`:'<span class="muted">—</span>'}</td>`; }).join('')}
       <td><b>${overallPct(s)}%</b></td><td>${s.loops||0}</td><td class="small">${ago(s.lastSeen)}</td><td><button class="btn ghost" data-sv="${esc(s.id)}">View</button></td></tr>`; }).join('')}</table></div>`;
   else if(tab==='heat'){ const bms=[...new Set(hu.qs.map(q=>q.bm))];
     body=`<div class="row" style="margin-bottom:.6rem"><select id="huSel">${units.map(u=>`<option value="${u.id}" ${u.id===hu.id?'selected':''}>${esc(u.title)}</option>`).join('')}</select><span class="small">🟩 80%+ · 🟨 60–79% · 🟥 below 60% · ⬜ not attempted</span></div>
@@ -4305,6 +4431,7 @@ function dashHTML(c){
       <div class="card" id="joinCard"><div class="small" style="font-weight:700;text-transform:uppercase;letter-spacing:.05em">Class code</div><div class="bigcode">${esc(c.code||'——')}</div>
         <p class="small" style="margin:.3rem 0 .7rem">Students go to this site → <b>Join a class</b> → enter the code.</p>
         <div class="row"><button class="btn" id="cpLink">🔗 Copy join link</button><button class="btn" id="projJoin">📽️ Show on board</button></div></div>
+      ${typeof questCardHTML==='function'?questCardHTML(c):''}
       <div class="card"><div class="spread"><b>My classrooms</b><button class="btn ghost" id="dNew">＋ New</button></div>
         <div class="grid" style="gap:.4rem;margin-top:.5rem">${S.classrooms.map(x=>`<button class="clsbtn ${x.id===c.id?'on':''}" data-cl="${x.id}"><b>${esc(x.name)}</b><div class="small">Code ${esc(x.code||'—')}</div></button>`).join('')}</div></div>
     </div>
@@ -4315,6 +4442,7 @@ function dashHTML(c){
     </div></div>`;
 }
 function bindDash(m,c){
+  if(typeof bindQuestCard==='function') bindQuestCard(m,c);
   $('#dEdit',m).onclick=()=>classroomWizard(c);
   $('#dPresent',m).onclick=()=>{ S.role='host'; S.view='hub'; save(); renderTop(); render(); };
   $('#dNew',m).onclick=()=>classroomWizard();
@@ -4361,6 +4489,10 @@ function render(){
   if(v==='livestu' && SESSION.type==='student') return renderLiveStudent(m);
   if(v==='livesetup' && SESSION.type==='teacher') return renderLiveSetup(m);
   if(v==='livegw' && SESSION.type==='teacher') return renderLiveTeacher(m);
+  if(v==='alstu' && SESSION.type==='student') return renderArenaLiveStudent(m);
+  if(v==='alsetup' && SESSION.type==='teacher') return renderArenaLiveSetup(m);
+  if(v==='alhost' && SESSION.type==='teacher') return renderArenaLiveHost(m);
+  if(v==='escape') return renderEscape(m);
   if(v==='study') return renderStudy(m);
   if(v==='vault') return renderVault(m);
   if(v==='gauntlet') return renderGauntlet(m);
@@ -4404,13 +4536,13 @@ async function handleAuth(force){
     }
   }catch(e){ console.error(e); SESSION={type:null, ready:true}; toast('⚠️ '+esc(friendlyAuthError(e))); }
   AUTH_BUSY=false;
-  if(!['hub','arcade','livegw'].includes(S.view)) S.view='hub';
+  if(!['hub','arcade','livegw','alhost'].includes(S.view)) S.view='hub';
   if(SESSION.type==='student') startStudentLive();
   if(!(JOINING && !SESSION.type)) { renderTop(); render(); }
 }
 let CURRENT_USER=null;
 function init(){
-  load(); routeFromHash();
+  load(); if(typeof arenaInitState==='function') arenaInitState(); routeFromHash();
   window.addEventListener('hashchange',()=>{ if(!SESSION.type){ routeFromHash(); renderTop(); render(); } });
   renderTop(); render();
   let first=true;
@@ -4486,7 +4618,7 @@ function paintLivePanel(m){
           ${LIVE_T.showResults||reveal?`<span class="meter" style="width:100%;height:8px"><i style="width:${pct}%;background:${reveal?(good?'var(--emerald)':'#FCA5A5'):'var(--primary)'}"></i></span>`:''}</div>`; }).join('')}</div>`; }).join('');
   p.innerHTML=`<div class="spread"><div><div class="tile" style="padding:.6rem .9rem;display:inline-block"><div class="v">${done.length}<span class="small"> / ${here.length}</span></div><div class="l">answers locked in</div></div></div>
       <label class="small"><input type="checkbox" id="lvShow" ${LIVE_T.showResults?'checked':''}> Show tallies on board</label></div>
-    <div class="row" style="margin:.6rem 0;gap:.3rem">${here.length?here.slice().sort((a,b)=>(a.name||'').localeCompare(b.name||'')).map(r=>`<span class="pill" style="background:${r.station===i&&r.submitted?'var(--ok-50);color:#065F46':'var(--cab2);color:var(--muted)'}">${r.station===i&&r.submitted?'✓ ':''}${esc(r.name||'')}</span>`).join(''):'<span class="small">Waiting for students to open the live session…</span>'}</div>
+    <div class="row" style="margin:.6rem 0;gap:.3rem">${here.length?here.slice().sort((a,b)=>(a.name||'').localeCompare(b.name||'')).map(r=>`<span class="pill" style="background:${r.station===i&&r.submitted?'var(--ok-50);color:#065F46':'var(--cab2);color:var(--muted)'};display:inline-flex;align-items:center;gap:.3rem">${avaHTML(avaSpec(r),{size:24, look:{frame:(r.look||{}).frame}, comp:false})}${r.station===i&&r.submitted?'✓ ':''}${esc(r.name||'')}</span>`).join(''):'<span class="small">Waiting for students to open the live session…</span>'}</div>
     ${blocks}
     <div class="row" style="margin-top:1rem">
       ${reveal?'':`<button class="btn gold" id="lvReveal">👁 Reveal answers</button>`}
@@ -4514,9 +4646,14 @@ function startStudentLive(){
   if(SESSION.type!=='student'||!S.join) return;
   STUDENT_LIVE_UNSUB=API.watchLive(S.join.classId, d=>{
     const was=LIVE_S&&LIVE_S.active; LIVE_S=d;
+    if(d&&d.active&&d.mode==='quiz'){
+      const isNew=!AL_S||AL_S.sessionId!==d.sessionId||!AL_S.active; if(isNew){ SFX.fanfare(); toast('⚡ Arena Live is starting!'); alStudentJoin(d); } else AL_S=d;
+      if(S.view!=='alstu'){ S.view='alstu'; renderTop(); }
+      render(); return;
+    } else if(S.view==='alstu'){ AL_S=d; S.view='hub'; if(d&&!d.active) toast('Arena Live has ended'); renderTop(); render(); return; }
     if(d&&d.active&&d.mode==='gallery'){
       if(!was){ SFX.fanfare(); toast('📡 Your teacher started a live Gallery Walk'); }
-      API.sendResponse(S.join.classId,S.join.sid,{name:S.join.name, period:S.join.period, sessionId:d.sessionId, station:LIVE_ANS&&LIVE_ANS.station===d.station?d.station:d.station, submitted:!!(LIVE_ANS&&LIVE_ANS.station===d.station&&LIVE_ANS.submitted&&LIVE_ANS.sessionId===d.sessionId)}).catch(()=>{});
+      API.sendResponse(S.join.classId,S.join.sid,{name:S.join.name, period:S.join.period, avatar:S.avatar||null, look:S.look||{}, sessionId:d.sessionId, station:LIVE_ANS&&LIVE_ANS.station===d.station?d.station:d.station, submitted:!!(LIVE_ANS&&LIVE_ANS.station===d.station&&LIVE_ANS.submitted&&LIVE_ANS.sessionId===d.sessionId)}).catch(()=>{});
       if(S.view!=='livestu'){ S.view='livestu'; renderTop(); }
       render();
     } else if(was && S.view==='livestu'){ S.view='hub'; LIVE_ANS=null; toast('The live session has ended'); renderTop(); render(); }
@@ -4541,7 +4678,7 @@ function renderLiveStudent(m){
   $$('[data-h]',m).forEach(b=>b.onclick=()=>{ const k=+b.dataset.h; A.open.add(k); b.classList.add('seen'); SFX.click(); $('#lvNote',m).innerHTML=`<div class="note"><b>🔍 ${esc(s.hs[k][0])}</b><br>${esc(s.hs[k][1])}</div>`; });
   $$('.opt[data-k]',m).forEach(b=>b.onclick=()=>{ if(A.submitted) return; A[b.dataset.k]=+b.dataset.i; SFX.click(); renderLiveStudent(m); });
   const sub=$('#lvSub',m); if(sub) sub.onclick=async()=>{ A.submitted=true; SFX.right();
-    try{ await API.sendResponse(S.join.classId,S.join.sid,{name:S.join.name, period:S.join.period, sessionId:d.sessionId, station:i, submitted:true, hipp:A.hipp, ev:A.ev, q:A.q}); }catch(e){ A.submitted=false; toast('⚠️ Not sent — check your connection'); }
+    try{ await API.sendResponse(S.join.classId,S.join.sid,{name:S.join.name, period:S.join.period, avatar:S.avatar||null, look:S.look||{}, sessionId:d.sessionId, station:i, submitted:true, hipp:A.hipp, ev:A.ev, q:A.q}); }catch(e){ A.submitted=false; toast('⚠️ Not sent — check your connection'); }
     renderLiveStudent(m); };
   if(reveal && !A.awarded){ A.awarded=true; const allRight=A.hipp===0&&A.ev===s.ev[1]&&A.q===0;
     if(q && A.q===0 && !S.qstat[q.id]) S.qstat[q.id]='first';
@@ -5433,13 +5570,13 @@ async function lvPaintAvatar(el, eq, kind='full'){ if(!el) return; const r=await
   if(src){ const im=new Image(); im.src=src; im.alt='Your archivist'; el.appendChild(im); } else { const cv=kind==='head'?r.headCanvas:r.canvas; el.appendChild(cv); } }
 function lvMoneyMovesEquip(){ try{ const o=JSON.parse(localStorage.getItem('money-moves-progress-v1')||'null'); const eq=o&&o.inv&&o.inv.equip; return eq&&eq.v===3&&AV3.b[`${eq.shape}-${eq.skin}`]? {...eq, acc:(eq.acc||[]).filter(a=>LV_CLOTHES()[a])} : null; }catch(e){ return null; } }
 
-function lvAvatarStudio(onDone){
-  const v=LV(); let eq=JSON.parse(JSON.stringify(v.av||lvFreshEquip(Math.floor(Math.random()*8))));
+function lvAvatarStudio(onDone, opts={}){
+  const v=LV(); let eq=JSON.parse(JSON.stringify(S.avatar||v.av||lvFreshEquip(Math.floor(Math.random()*8))));
   const C=LV_CLOTHES(); const tops=TOPS, bots=BOTTOMS; const SH=['slim','athletic','curvy','plus'];
-  const mm=modal(`<h2>🧑‍🎓 Your Junior Field Archivist</h2>
+  const mm=modal(`<h2>${opts.title||'🧑‍🎓 Your Junior Field Archivist'}</h2>
     <p class="small">Same character system as Money Moves.${lvMoneyMovesEquip()?' <button class="btn" id="avImp">⬇️ Use my Money Moves character</button>':''}</p>
     <div class="lv-studio"><div class="lv-prev" id="avPrev"></div><div class="lv-opts" id="avOpts"></div></div>
-    <div class="row" style="justify-content:flex-end;margin-top:.8rem"><button class="btn ghost" id="avRand">🎲 Surprise me</button><button class="btn gold big" id="avOk">Save my archivist</button></div>`,{full:true, onClose:()=>{ if(saved) return; if(!v.av){ v.av=eq; lvSave(); } onDone&&onDone(); }});
+    <div class="row" style="justify-content:flex-end;margin-top:.8rem"><button class="btn ghost" id="avRand">🎲 Surprise me</button><button class="btn gold big" id="avOk">${opts.btn||'Save my archivist'}</button></div>`,{full:true, onClose:()=>{ if(saved) return; if(!S.avatar&&!v.av){ S.avatar=eq; v.av=eq; lvSave(); } onDone&&onDone(); }});
   let saved=false;
   const pick=(label,val,id)=>`<div class="lv-pick"><span class="small">${label}</span><button class="btn" data-d="-1" data-k="${id}">◀</button><b>${esc(val)}</b><button class="btn" data-d="1" data-k="${id}">▶</button></div>`;
   const accGroups=[['eyes','Glasses'],['ears','Earrings'],['neck','Necklace'],['phones','Headphones'],['hat','Hat'],['bag','Bag'],['hand','In hand']];
@@ -5469,7 +5606,7 @@ function lvAvatarStudio(onDone){
   }
   const imp=$('#avImp',mm); if(imp) imp.onclick=()=>{ eq=lvMoneyMovesEquip(); toast('Imported your Money Moves character'); draw(); };
   $('#avRand',mm).onclick=()=>{ eq={...lvFreshEquip(Math.floor(Math.random()*8)), face:Math.floor(Math.random()*16), hair:Math.floor(Math.random()*32), skin:Math.floor(Math.random()*8)}; draw(); };
-  $('#avOk',mm).onclick=()=>{ v.av=eq; saved=true; lvSave(); mm.close(); SFX.coin(); onDone&&onDone(); };
+  $('#avOk',mm).onclick=()=>{ S.avatar=eq; v.av=eq; saved=true; if(typeof arenaOnAvatarSaved==='function') arenaOnAvatarSaved(); lvSave(); mm.close(); SFX.coin(); onDone&&onDone(); };
   draw();
 }
 
@@ -5501,7 +5638,7 @@ function renderVault(m){
     if(screen==='era') LVV={screen,era:arg}; else if(screen==='art') LVV={screen,art:arg}; else if(screen==='boss') LVV={screen,era:arg}; else LVV={screen};
     draw(); };
   const draw=()=>{ const s=LVV.screen;
-    if(!v.intro) return intro(); if(!v.av) return lvAvatarStudio(()=>draw());
+    if(!v.intro) return intro(); if(!(S.avatar||v.av)) return lvAvatarStudio(()=>draw());
     if(s==='era') return era(LV_ERAS.find(e=>e.id===LVV.era)); if(s==='art') return artifact(lvAllArts().find(a=>a.id===LVV.art));
     if(s==='boss') return boss(LV_ERAS.find(e=>e.id===LVV.era)); if(s==='trophy') return trophy(); if(s==='cert') return cert(); hub(); };
   draw();
@@ -5540,7 +5677,7 @@ function renderVault(m){
           <div class="lv-kicker">Era ${e.n} · ${esc(e.years)}</div><h3>${esc(e.name)}</h3><p class="small">${esc(e.blurb)}</p><p class="lv-cat">${esc(e.cat)}</p>
           <div class="lv-prog"><i style="width:${got*25}%"></i></div><div class="spread"><span class="small">${got}/4 artifacts</span><span class="small">${v.seals[e.id]?'🏅 Mastery Seal earned':'Seal: locked'}</span></div>
           <button class="btn ${off?'':'gold'}" data-lv="era:${e.id}" ${off?'disabled':''}>${got?'Continue expedition':'Launch expedition'} ▶</button></div>`; }).join('')}</div>`);
-    lvPaintAvatar($('#lvAv',m), v.av); $('#lvEdit',m).onclick=()=>lvAvatarStudio(()=>draw());
+    lvPaintAvatar($('#lvAv',m), S.avatar||v.av); $('#lvEdit',m).onclick=()=>lvAvatarStudio(()=>draw());
   }
 
   /* ---------- era ---------- */
@@ -5672,7 +5809,7 @@ function renderVault(m){
       if(!f||!l) return $('#cErr',m).textContent='Type both your first and last name.';
       if(!/^[\p{L}][\p{L}'’\- .]*$/u.test(f)||!/^[\p{L}][\p{L}'’\- .]*$/u.test(l)) return $('#cErr',m).textContent='Use letters only. Hyphens, apostrophes and spaces are okay.';
       $('#cErr',m).textContent=''; const full=`${f} ${l}`; const tier=seals.length; const code=lvMakeCode(tier, full);
-      const cv=document.createElement('canvas'); await lvDrawCert(cv,{name:full, period:p, tier, rank:r.name, eras:seals.map(e=>`Era ${e.n}: ${e.name}`), found:lvFound().length, acc:lvAcc(), code, date:new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}), av:v.av});
+      const cv=document.createElement('canvas'); await lvDrawCert(cv,{name:full, period:p, tier, rank:r.name, eras:seals.map(e=>`Era ${e.n}: ${e.name}`), found:lvFound().length, acc:lvAcc(), code, date:new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}), av:S.avatar||v.av});
       let blob; try{ blob=await new Promise(res=>cv.toBlob(res,'image/png')); blob=await lvPngText(blob,'LibertyVault',JSON.stringify({v:1,tier,name:full,code})); }catch(e){ blob=null; }
       v.cert={tier, code, name:full, at:Date.now()}; lvSave(); SFX.fanfare();
       const url=blob?URL.createObjectURL(blob):''; const fname=`Liberty-Vault-${r.name.replace(/\s+/g,'-')}-${f}-${l}.png`.replace(/[^\p{L}\p{N}\-.]+/gu,'-');
@@ -5742,5 +5879,684 @@ function lvDetailHTML(s){ const v=s.vault; if(!v||!v.arts) return `<h3 style="ma
   const found=lvAllArts().filter(a=>(v.arts[a.id]||{}).done); const seals=LV_ERAS.filter(e=>(v.seals||{})[e.id]);
   return `<h3 style="margin-top:1rem">🗝️ Liberty Vault</h3><p class="small">Artifacts <b>${found.length}/12</b> · Seals <b>${seals.length}/3</b> · Accuracy <b>${v.total?Math.round(100*v.right/v.total):0}%</b>${v.cert?` · Certificate <b>${esc(LV_RANKS[v.cert.tier].name)}</b> <span class="mono">${esc(v.cert.code)}</span>`:''}</p>
     <p class="small">${LV_ERAS.map(e=>`Era ${e.n}: ${e.artifacts.map(a=>(v.arts[a.id]||{}).done?'✅':((v.arts[a.id]||{}).stage?'🟡':'⬜')).join('')} ${(v.seals||{})[e.id]?'🏅':''}`).join(' · ')}</p>`; }
+
+/* =====================================================================
+   ARENA IDENTITY — one avatar that follows each student everywhere
+   Locker (level, streak, tokens, badges), pick-and-buy shop (no random
+   packs), Class Quest, avatars on the smartboard (Jeopardy, live lobby,
+   podiums). Art drops into arena/… — listed in ARENA_ART_HAVE once it exists.
+   ===================================================================== */
+const ARENA_DIR = 'arena/';
+const ARENA_SYNC = ['avatar','look','owned','daily','esc','alive'];
+const ARENA_ART_HAVE = new Set([]);           // e.g. 'comp/c_eagle' once arena/comp/c_eagle.webp is uploaded
+const arenaArt = k => ARENA_ART_HAVE.has(k) ? ARENA_DIR+k+'.webp' : '';
+
+function arenaInitState(){
+  S.look = Object.assign({frame:'', comp:'', title:'t_rookie', emote:'e_jump', bg:'b_classic'}, S.look||{});
+  S.owned = S.owned||{}; S.daily = Object.assign({last:'', count:0, best:0}, S.daily||{}); S.esc = S.esc||{}; S.alive = Object.assign({played:0, podium:0, wins:0}, S.alive||{});
+  if(!S.avatar && S.vault && S.vault.av) S.avatar = S.vault.av;
+}
+function arenaPayload(){ arenaInitState(); return Object.fromEntries(ARENA_SYNC.map(k=>[k, S[k]??null])); }
+function arenaOnAvatarSaved(){ arenaInitState(); if(S.vault) S.vault.av=S.avatar; save(); SFX.coin(); if(['hub'].includes(S.view)) render(); }
+
+/* ----------------------------- catalog ------------------------------ */
+const SHOP = {
+  comp:[
+    {id:'c_owl',     name:'Archie the Archive Owl',   emoji:'🦉', price:8,  blurb:'Never forgets a date.'},
+    {id:'c_cat',     name:'Ink the Newsroom Cat',      emoji:'🐈‍⬛', price:8,  blurb:'Sniffs out yellow journalism.'},
+    {id:'c_gator',   name:'Gus the Gator',             emoji:'🐊', price:10, blurb:'Florida born and raised.'},
+    {id:'c_manatee', name:'Manny the Manatee',         emoji:'🦭', price:10, blurb:'Slow, steady, always learning.'},
+    {id:'c_eagle',   name:'Liberty the Eagle',         emoji:'🦅', price:12, blurb:'Soars over every benchmark.'},
+    {id:'c_bison',   name:'Big Plains Bison',          emoji:'🦬', price:12, blurb:'Survived the railroad era.'},
+    {id:'c_pigeon',  name:'Cher Ami the Pigeon',       emoji:'🕊️', price:15, blurb:'A real WWI hero that carried a message through enemy fire.'},
+    {id:'c_bulldog', name:'Rough Rider Bulldog',       emoji:'🐶', price:15, blurb:'Charges up San Juan Hill.'},
+    {id:'c_rover',   name:'Lunar Rover Bot',           emoji:'🤖', price:20, blurb:'Launched from Cape Canaveral.'},
+    {id:'c_ghost',   name:'The Archive Ghost',         emoji:'👻', price:25, blurb:'Haunts the Liberty Vault after hours.'} ],
+  frame:[
+    {id:'f_parch',  name:'Parchment',          css:'fr-parch',  price:4},
+    {id:'f_gold',   name:'Gold Laurel',        css:'fr-gold',   price:6},
+    {id:'f_neon',   name:'Neon Arcade',        css:'fr-neon',   price:6},
+    {id:'f_stars',  name:'Stars & Stripes',    css:'fr-stars',  price:8},
+    {id:'f_space',  name:'Space Age',          css:'fr-space',  price:10},
+    {id:'f_vault',  name:'Vault Seal',         css:'fr-vault',  price:0, need:'b_vault', needTxt:'Earn a Liberty Vault seal'} ],
+  bg:[
+    {id:'b_classic',   name:'Arena Classic',     css:'bg-classic',   price:0},
+    {id:'b_capitol',   name:'Capitol Steps',     css:'bg-capitol',   price:6},
+    {id:'b_everglades',name:'Everglades Sunset', css:'bg-glades',    price:6},
+    {id:'b_newsroom',  name:'1900s Newsroom',    css:'bg-news',      price:6},
+    {id:'b_launch',    name:'Launch Pad 39A',    css:'bg-launch',    price:8},
+    {id:'b_archive',   name:'The Archive',       css:'bg-archive',   price:8},
+    {id:'b_vault',     name:'The Liberty Vault', css:'bg-vaultbg',   price:0, need:'b_vault3', needTxt:'Earn all 3 Liberty Vault seals'} ],
+  emote:[
+    {id:'e_jump',  name:'Victory Jump',  icon:'⤴️', price:0},
+    {id:'e_spin',  name:'Spin',          icon:'🌀', price:5},
+    {id:'e_flex',  name:'Power Pose',    icon:'💪', price:5},
+    {id:'e_wave',  name:'Big Wave',      icon:'👋', price:4},
+    {id:'e_dance', name:'Happy Dance',   icon:'🕺', price:8},
+    {id:'e_rocket',name:'Rocket Launch', icon:'🚀', price:12} ],
+  title:[
+    {id:'t_rookie', name:'Rookie Historian',   price:0},
+    {id:'t_source', name:'Primary Source Pro', price:4},
+    {id:'t_myth',   name:'Myth Buster',        price:4},
+    {id:'t_amend',  name:'Amendment Ace',      price:5},
+    {id:'t_map',    name:'Map Master',         price:5},
+    {id:'t_chief',  name:'Chief Justice',      price:8},
+    {id:'t_streak', name:'Unstoppable',        price:0, need:'b_day7',  needTxt:'Reach a 7-day streak'},
+    {id:'t_escape', name:'Escape Artist',      price:0, need:'b_escape',needTxt:'Escape a room'},
+    {id:'t_podium', name:'Podium Regular',     price:0, need:'b_live',  needTxt:'Finish top 3 in Arena Live'},
+    {id:'t_legend', name:'Arena Legend',       price:20} ]
+};
+const SHOP_TABS = [['comp','🐾 Companions'],['frame','🖼️ Frames'],['bg','🌄 Backdrops'],['emote','🎉 Victory moves'],['title','🏷️ Titles']];
+const SHOP_BY = Object.fromEntries(Object.entries(SHOP).flatMap(([k,l])=>l.map(x=>[x.id,{...x,kind:k}])));
+
+const BADGES = [
+  {id:'b_avatar', name:'New Recruit',      icon:'🧑‍🎓', desc:'Build your Arena avatar',                ok:()=>!!S.avatar},
+  {id:'b_day3',   name:'On a Roll',        icon:'🔥', desc:'Study 3 days in a row',                   ok:()=>S.daily.best>=3},
+  {id:'b_day7',   name:'Week Warrior',     icon:'📅', desc:'Study 7 days in a row',                   ok:()=>S.daily.best>=7},
+  {id:'b_q25',    name:'Sharp Shooter',    icon:'🎯', desc:'Get 25 questions right on the first try',  ok:()=>Object.values(S.qstat||{}).filter(x=>x==='first').length>=25},
+  {id:'b_unit',   name:'Unit Conqueror',   icon:'🏔️', desc:'Reach 85% mastery in a unit',             ok:()=>allUnits().some(u=>u.qs.length&&unitPct(u)>=85)},
+  {id:'b_gallery',name:'Curator',          icon:'🏛️', desc:'Finish a gallery walk',                    ok:()=>allUnits().some(u=>u.gallery&&u.gallery.length&&((S.galleryDone||{})[u.id]||[]).length>=u.gallery.length)},
+  {id:'b_vault',  name:'Vault Breaker',    icon:'🗝️', desc:'Earn a Liberty Vault seal',                ok:()=>typeof lvSeals==='function'&&lvSeals().length>0},
+  {id:'b_vault3', name:'Master of the Vault', icon:'🏆', desc:'Earn all 3 Liberty Vault seals',        ok:()=>typeof lvSeals==='function'&&lvSeals().length>=3},
+  {id:'b_escape', name:'Escape Artist',    icon:'🚪', desc:'Escape a room',                            ok:()=>Object.values(S.esc||{}).some(x=>x&&x.runs)},
+  {id:'b_live',   name:'Podium Finish',    icon:'🥇', desc:'Finish top 3 in Arena Live',              ok:()=>(S.alive||{}).podium>0},
+  {id:'b_lvl5',   name:'Level 5',          icon:'⭐', desc:'Reach level 5',                            ok:()=>lvlInfo(S.xp||0).n>=5},
+  {id:'b_shop',   name:'Collector',        icon:'🛍️', desc:'Unlock 3 shop items',                      ok:()=>Object.keys(S.owned||{}).length>=3} ];
+const badgeOk = id => { const b=BADGES.find(x=>x.id===id); try{ return !!(b&&b.ok()); }catch(e){ return false; } };
+const earnedBadges = () => BADGES.filter(b=>{ try{ return b.ok(); }catch(e){ return false; } });
+
+function lvlInfo(xp){ let n=1, base=0, need=500; while(xp>=base+need){ base+=need; n++; need=500+250*(n-1); } return {n, into:xp-base, need, pct:Math.round(100*(xp-base)/need)}; }
+const ownedOrFree = id => { const it=SHOP_BY[id]; if(!it) return false; return !!S.owned[id] || (it.price===0 && (!it.need || badgeOk(it.need))); };
+
+/* --------------------------- daily streak --------------------------- */
+const dayKey = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+function arenaDailyTick(){
+  if(typeof SESSION==='undefined' || SESSION.type!=='student') return; arenaInitState();
+  const now=new Date(), today=dayKey(now); if(S.daily.last===today) return;
+  const y=new Date(now); y.setDate(now.getDate()-1);
+  S.daily.count = S.daily.last===dayKey(y) ? S.daily.count+1 : 1; S.daily.last=today; S.daily.best=Math.max(S.daily.best, S.daily.count);
+  const bonus = S.daily.count%10===0?5 : S.daily.count%5===0?3 : 1;
+  setTimeout(()=>award(bonus, `🔥 ${S.daily.count}-day study streak`), 600);
+}
+if(typeof onCorrect==='function'){ const _arenaOnCorrect=onCorrect; onCorrect=function(...a){ const r=_arenaOnCorrect.apply(this,a); try{ arenaDailyTick(); }catch(e){} return r; }; }
+
+/* --------------------------- avatar render -------------------------- */
+function fnv(str){ let h=2166136261>>>0; for(const ch of String(str)){ h^=ch.charCodeAt(0); h=Math.imul(h,16777619)>>>0; } return h; }
+function seededAvatar(key){
+  const h=fnv(key), tops=TOPS.filter(t=>t.col!==null), bots=BOTTOMS.filter(t=>t.col!==null);
+  return {...lvFreshEquip(h%8), skin:(h>>>3)%8, face:(h>>>6)%16, hair:(h>>>10)%32, top:tops[(h>>>15)%tops.length].id, bottom:bots[(h>>>20)%bots.length].id, acc:[]};
+}
+const avaSpec = s => (s&&s.avatar) || seededAvatar((s&&(s.id||s.sid||s.name))||'guest');
+function compHTML(id, size){ const c=SHOP_BY[id]; if(!c||c.kind!=='comp') return ''; const art=arenaArt('comp/'+id);
+  return `<span class="ava-comp" title="${esc(c.name)}" style="--cs:${Math.round(size*.42)}px">${art?`<img src="${art}" alt="">`:c.emoji}</span>`; }
+function avaHTML(spec, o={}){
+  const look=o.look||{}, kind=o.kind||'head', size=o.size||56, fr=SHOP_BY[look.frame];
+  const frArt=fr&&arenaArt('frame/'+fr.id);
+  return `<span class="ava ava-${kind} ${kind==='head'&&fr?fr.css:''} ${o.cls||''}" style="--s:${size}px" data-ava="${esc(JSON.stringify(spec||null))}" ${o.name?`title="${esc(o.name)}"`:''}>${kind==='head'&&frArt?`<img class="ava-frart" src="${frArt}" alt="">`:''}${o.comp!==false&&look.comp?compHTML(look.comp,size):''}</span>`;
+}
+const myAva = (o={}) => avaHTML(S.avatar||seededAvatar((S.join&&S.join.sid)||S.student.name||'me'), {look:S.look, ...o});
+async function hydrateAva(el){
+  if(el.dataset.done) return; el.dataset.done='1'; let spec=null; try{ spec=JSON.parse(el.dataset.ava); }catch(e){}
+  if(!spec || typeof lvCompose!=='function') return; const r=await lvCompose(spec).catch(()=>null); if(!r) return;
+  const kind=el.classList.contains('ava-full')?'full':'head', src=kind==='full'?r.full:r.head;
+  const im=document.createElement('img'); im.className='ava-img'; im.alt=''; im.draggable=false;
+  if(src) im.src=src; else { const cv=kind==='full'?r.canvas:r.headCanvas; im.src=cv.toDataURL(); }
+  el.prepend(im);
+}
+const AVA_OBS = new MutationObserver(ms=>{ for(const m of ms) for(const n of m.addedNodes){ if(n.nodeType!==1) continue; if(n.matches&&n.matches('[data-ava]')) hydrateAva(n); n.querySelectorAll&&n.querySelectorAll('[data-ava]:not([data-done])').forEach(hydrateAva); } });
+function arenaStartObserver(){ if(document.body && !arenaStartObserver.on){ AVA_OBS.observe(document.body,{childList:true,subtree:true}); arenaStartObserver.on=1; document.querySelectorAll('[data-ava]:not([data-done])').forEach(hydrateAva); } }
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', arenaStartObserver); else arenaStartObserver();
+
+function playEmote(el, emote){ if(!el) return; const e=(emote||'e_jump').replace('e_',''); el.classList.remove('emo-play'); el.dataset.emo=e; void el.offsetWidth; el.classList.add('emo-play'); }
+function confetti(n=90){
+  const box=document.createElement('div'); box.className='confetti'; const cols=['#FCD34D','#1D4ED8','#DC2626','#10B981','#F472B6','#FFFFFF'];
+  for(let i=0;i<n;i++){ const p=document.createElement('i'); p.style.left=Math.random()*100+'%'; p.style.background=cols[i%cols.length]; p.style.animationDelay=(Math.random()*.6)+'s'; p.style.animationDuration=(1.8+Math.random()*1.6)+'s'; p.style.transform=`rotate(${Math.random()*360}deg)`; box.appendChild(p); }
+  document.body.appendChild(box); setTimeout(()=>box.remove(), 4200);
+}
+function celebrate(spec, look, line, sub){
+  const d=document.createElement('div'); d.className='celebrate';
+  d.innerHTML=`<div class="cel-card">${avaHTML(spec,{kind:'full', size:260, look})}<div class="cel-line">${esc(line)}</div>${sub?`<div class="cel-sub">${esc(sub)}</div>`:''}</div>`;
+  document.body.appendChild(d); SFX.fanfare&&SFX.fanfare(); confetti(70);
+  setTimeout(()=>playEmote(d.querySelector('.ava-full'), (look||{}).emote), 350);
+  return new Promise(res=>{ const done=()=>{ d.classList.add('out'); setTimeout(()=>{ d.remove(); res(); },300); }; d.onclick=done; setTimeout(done, 2300); });
+}
+
+/* ------------------------------ Locker ------------------------------ */
+function classQuest(){ const c=activeClass(); const q=c&&c.settings&&c.settings.quest; if(!q||!q.goal) return null; const tot=c.questXP||0; return {...q, tot, pct:Math.min(100,Math.round(100*tot/q.goal))}; }
+function questMeter(q, big){ return `<div class="quest ${big?'big':''}"><div class="spread"><b>🗺️ Class Quest${q.name?': '+esc(q.name):''}</b><span class="small">${q.tot.toLocaleString()} / ${(+q.goal).toLocaleString()} XP</span></div>
+  <span class="meter q"><i style="width:${q.pct}%"></i>${[25,50,75].map(p=>`<em style="left:${p}%" class="${q.pct>=p?'on':''}"></em>`).join('')}</span>${q.reward?`<div class="small">🎁 Class reward at 100%: <b>${esc(q.reward)}</b></div>`:''}</div>`; }
+function lockerHTML(){
+  arenaInitState(); const L=lvlInfo(S.xp||0), es=S.lang==='es', bg=SHOP_BY[S.look.bg]||SHOP_BY.b_classic, bgArt=arenaArt('bg/'+bg.id), q=classQuest(), ttl=SHOP_BY[S.look.title];
+  const name=(S.join&&S.join.name)||S.student.name||'';
+  const nb=earnedBadges();
+  return `<section class="locker ${bg.css}" ${bgArt?`style="background-image:linear-gradient(90deg,rgba(2,6,23,.8),rgba(2,6,23,.25)),url(${bgArt})"`:''}>
+    <div class="lk-stage" id="lkStage">${S.avatar?myAva({kind:'full', size:190}):`<button class="lk-new" id="lkBuild"><span>🧑‍🎓</span><b>${es?'Crea tu avatar':'Build your avatar'}</b><span class="small">${es?'Aparecerá en el pizarrón cuando juegues':'It shows up on the smartboard when you play'}</span></button>`}</div>
+    <div class="lk-info">
+      <div class="lk-name">${esc(name)}</div>
+      ${ttl?`<span class="lk-title">${esc(ttl.name)}</span>`:''}
+      <div class="lk-lvl"><span class="lk-badge">LV ${L.n}</span><span class="meter xp"><i style="width:${L.pct}%"></i></span><span class="small">${L.into}/${L.need} XP</span></div>
+      <div class="row lk-chips"><span class="chip">🔥 <b>${S.daily.count||0}</b> ${es?'días seguidos':'day streak'}</span><span class="chip">${coin()} <b>${S.tokens}</b></span><span class="chip">🏅 <b>${nb.length}</b>/${BADGES.length}</span></div>
+      <div class="row lk-btns"><button class="btn" id="lkEdit">✏️ ${es?'Editar avatar':'Edit avatar'}</button><button class="btn gold" id="lkShop">🛍️ ${es?'Tienda':'Shop'}</button><button class="btn" id="lkBadges">🏅 ${es?'Insignias':'Badges'}</button></div>
+      ${q?questMeter(q):''}
+    </div></section>`;
+}
+function bindLocker(m){
+  const ed=()=>lvAvatarStudio(()=>render(), {title:'🧑‍🎓 Your Arena Avatar', btn:'Save my avatar'});
+  const b=$('#lkBuild',m); if(b) b.onclick=ed; const e=$('#lkEdit',m); if(e) e.onclick=ed;
+  $('#lkShop',m).onclick=()=>shopModal(); $('#lkBadges',m).onclick=()=>badgesModal();
+  const st=$('#lkStage .ava-full',m); if(st){ st.style.cursor='pointer'; st.title='Tap for your victory move'; st.onclick=()=>playEmote(st,S.look.emote); }
+}
+
+/* ------------------------------- Shop ------------------------------- */
+let SHOP_TAB='comp';
+function shopModal(){
+  arenaInitState();
+  const mm=modal(`<div id="shopBox"></div>`,{full:true, onClose:()=>render()}); draw();
+  function itemPreview(it){
+    if(it.kind==='comp'){ const a=arenaArt('comp/'+it.id); return `<div class="sh-prev">${a?`<img src="${a}" alt="">`:`<span class="sh-emoji">${it.emoji}</span>`}</div>`; }
+    if(it.kind==='frame') return `<div class="sh-prev">${myAva({size:84, look:{...S.look, frame:it.id, comp:''}})}</div>`;
+    if(it.kind==='bg'){ const a=arenaArt('bg/'+it.id); return `<div class="sh-prev sh-bg ${it.css}" ${a?`style="background-image:url(${a})"`:''}></div>`; }
+    if(it.kind==='emote') return `<div class="sh-prev"><button class="sh-try" data-try="${it.id}">${myAva({kind:'full', size:120, look:{...S.look, comp:''}})}</button></div>`;
+    return `<div class="sh-prev"><span class="lk-title">${esc(it.name)}</span></div>`;
+  }
+  function draw(){
+    const list=SHOP[SHOP_TAB].map(x=>SHOP_BY[x.id]);
+    const slot={comp:'comp',frame:'frame',bg:'bg',emote:'emote',title:'title'}[SHOP_TAB];
+    $('#shopBox',mm).innerHTML=`<div class="spread"><h2 style="margin:0">🛍️ Arena Shop</h2><span class="chip big">${coin()} <b>${S.tokens}</b> tokens</span></div>
+      <p class="small">${SHOP_TAB==='emote'?'Tap a character to preview the move. ':''}Earn tokens by mastering questions, keeping your daily streak, recovering artifacts and escaping rooms. You choose exactly what you unlock — no random packs.</p>
+      <div class="tabs">${SHOP_TABS.map(([k,l])=>`<button class="${k===SHOP_TAB?'on':''}" data-tab="${k}">${l}</button>`).join('')}</div>
+      <div class="shop-grid">${list.map(it=>{ const own=ownedOrFree(it.id), on=S.look[slot]===it.id, locked=it.need&&!badgeOk(it.need);
+        return `<div class="sh-item ${on?'on':''}">${itemPreview(it)}<b>${it.icon?it.icon+' ':''}${esc(it.name)}</b>${it.blurb?`<span class="small">${esc(it.blurb)}</span>`:''}
+          ${on?`<button class="btn" data-unequip="${it.id}" ${['title','bg','emote'].includes(slot)?'disabled':''}>✅ Equipped</button>`
+            : own?`<button class="btn em" data-eq="${it.id}">Equip</button>`
+            : locked?`<button class="btn" disabled>🔒 ${esc(it.needTxt)}</button>`
+            : `<button class="btn gold" data-buy="${it.id}" ${S.tokens<it.price?'disabled':''}>${coin()} ${it.price}</button>`}</div>`; }).join('')}</div>`;
+    $$('[data-tab]',mm).forEach(b=>b.onclick=()=>{ SHOP_TAB=b.dataset.tab; SFX.click(); draw(); });
+    $$('[data-eq]',mm).forEach(b=>b.onclick=()=>{ S.look[slot]=b.dataset.eq; save(); SFX.click(); draw(); });
+    $$('[data-unequip]',mm).forEach(b=>b.onclick=()=>{ if(['comp','frame'].includes(slot)){ S.look[slot]=''; save(); draw(); } });
+    $$('[data-buy]',mm).forEach(b=>b.onclick=()=>{ const it=SHOP_BY[b.dataset.buy]; if(S.tokens<it.price) return toast('Not enough tokens yet'); S.tokens-=it.price; S.owned[it.id]=Date.now(); S.look[slot]=it.id; save(); renderHUD(); SFX.coin(); confetti(40); toast(`🎉 Unlocked <b>${esc(it.name)}</b>`); draw(); });
+    $$('[data-try]',mm).forEach(b=>b.onclick=()=>playEmote(b.querySelector('.ava-full'), b.dataset.try));
+  }
+}
+function badgesModal(){
+  modal(`<h2>🏅 Badges</h2><p class="small">Badges unlock automatically as you learn. Some also unlock titles and frames in the shop.</p>
+    <div class="badge-grid">${BADGES.map(b=>{ let ok=false; try{ ok=b.ok(); }catch(e){} const a=arenaArt('badge/'+b.id);
+      return `<div class="bdg ${ok?'on':''}"><span class="bdg-ico">${a?`<img src="${a}" alt="">`:b.icon}</span><b>${esc(b.name)}</b><span class="small">${esc(b.desc)}</span>${ok?'<span class="tag em">Earned</span>':'<span class="tag">Locked</span>'}</div>`; }).join('')}</div>`);
+}
+
+/* ---------------------------- Class Quest --------------------------- */
+function questSync(c){ if(!c||SESSION.type!=='teacher') return; const tot=DASH.students.reduce((a,s)=>a+(s.xp||0),0); if(tot!==c.questXP){ c.questXP=tot; c.questAt=Date.now(); save(); } }
+function questCardHTML(c){
+  const q=Object.assign({goal:0,name:'',reward:''}, (c.settings||{}).quest||{}); const cq=classQuest();
+  return `<div class="card" id="questCard"><div class="spread"><b>🗺️ Class Quest</b><button class="btn ghost" id="qEdit">${q.goal?'Edit':'Set up'}</button></div>
+    ${cq?questMeter(cq):'<p class="small" style="margin:.4rem 0 0">Set a class-wide XP goal and a reward. Every student\'s practice fills the same meter — it shows on their Locker.</p>'}</div>`;
+}
+function bindQuestCard(m,c){ const b=$('#qEdit',m); if(!b) return; b.onclick=()=>{
+  const q=Object.assign({goal:0,name:'',reward:''}, (c.settings||{}).quest||{}), n=Math.max(1,DASH.students.length), tot=DASH.students.reduce((a,s)=>a+(s.xp||0),0), sug=Math.ceil((tot+n*1500)/1000)*1000;
+  const mm=modal(`<h2>🗺️ Class Quest</h2><p class="small">Students earn about 100 XP for each question they get right on the first try. With ${n} student${n>1?'s':''}, adding ${(n*1500).toLocaleString()} XP is roughly 15 first-try answers each. The class has ${tot.toLocaleString()} XP so far, and the meter counts all of it.</p>
+    <div class="field"><label>Quest name</label><input id="qN" value="${esc(q.name)}" placeholder="e.g., Road to the EOC"></div>
+    <div class="grid g2"><div class="field"><label>XP goal</label><input id="qG" type="number" min="100" step="100" value="${q.goal||sug}"></div>
+    <div class="field"><label>Class reward at 100%</label><input id="qR" value="${esc(q.reward)}" placeholder="e.g., Review-day music Friday"></div></div>
+    <div class="row" style="margin-top:.8rem"><button class="btn gold" id="qSave">Save quest</button>${q.goal?'<button class="btn ghost" id="qOff">Turn off</button>':''}</div>`);
+  $('#qSave',mm).onclick=()=>{ c.settings.quest={goal:Math.max(100,+$('#qG',mm).value||0), name:$('#qN',mm).value.trim().slice(0,40), reward:$('#qR',mm).value.trim().slice(0,60)}; questSync(c); save(); mm.close(); render(); toast('Class Quest saved'); };
+  const off=$('#qOff',mm); if(off) off.onclick=()=>{ c.settings.quest={}; save(); mm.close(); render(); }; }; }
+
+/* ===================== SMARTBOARD JEOPARDY 2.0 ====================== */
+const TEAM_NAMES=['Team Liberty','Team Frontier','Team Gator','Team Apollo','Team Suffrage','Team Rough Riders'];
+const TEAM_MASCOT=['🦅','🐂','🐊','🚀','🎗️','🐎'];
+const TEAM_COL=['#2563EB','#DC2626','#059669','#7C3AED','#D97706','#DB2777'];
+let JP = {mode:null, nTeams:4, roster:null, rosterFor:null, period:'all', absent:new Set(), teams:null, picks:new Set(), sel:null, dd:2, secs:30, turn:'rotate'};
+
+async function renderJeopardy(m){
+  const u=curUnit(), c=activeClass(), J=JP;
+  if(c && J.rosterFor!==c.id && SESSION.type==='teacher'){
+    m.innerHTML=`${backBtn()}<p class="muted">Loading your class roster…</p>`;
+    try{ J.roster=(await API.listStudents(c.id)).map(s=>({id:s.id, name:s.name||'Student', period:s.period||'', avatar:s.avatar||null, look:s.look||{}})).sort((a,b)=>a.name.localeCompare(b.name)); }catch(e){ J.roster=[]; }
+    J.rosterFor=c.id; J.teams=null; J.picks=new Set(); J.absent=new Set(); J.mode=null;
+  }
+  if(!J.roster) J.roster=[];
+  if(!J.mode){ const n=J.roster.length; J.mode = n>=4?'teams' : n>=2?'solo' : 'quick'; if(n>=4) J.nTeams=clamp(Math.floor(n/3),2,4); if(J.mode==='solo') J.picks=new Set(J.roster.map(s=>s.id)); }
+  const periods=[...new Set(J.roster.map(s=>s.period).filter(Boolean))].sort();
+  const present=()=>J.roster.filter(s=>(J.period==='all'||s.period===J.period) && !J.absent.has(s.id));
+  const byId=id=>J.roster.find(s=>s.id===id);
+  const autoTeams=()=>{ const p=shuffle(present()); J.teams=Array.from({length:J.nTeams},(_,i)=>({n:TEAM_NAMES[i], members:[]})); p.forEach((s,i)=>J.teams[i%J.nTeams].members.push(s.id)); };
+  const first=n=>{ const p=(n||'').split(' '); return p[0]+(p[1]?' '+p[1][0]+'.':''); };
+  const chip=(s,extra='')=>`<button class="jp-chip ${J.sel===s.id?'sel':''} ${extra}" data-chip="${esc(s.id)}">${avaHTML(avaSpec(s),{size:30, look:{frame:s.look.frame}, comp:false})}<span>${esc(first(s.name))}</span></button>`;
+  setup();
+
+  function setup(){
+    if(J.mode==='teams' && (!J.teams || J.teams.length!==J.nTeams)) autoTeams();
+    const P=present();
+    m.innerHTML=`${backBtn()}<div class="spread"><h1 style="margin:0">🏆 ${t('jeopardy')}</h1><span class="tag gold">${esc(u.title)}</span></div>
+      <div class="card jp-setup">
+        <div class="seg">${[['teams','👥 Teams'],['solo','🧑 Individual players'],['quick','✍️ Quick names']].map(([k,l])=>`<button class="${J.mode===k?'on':''}" data-mode="${k}" ${(k==='teams'&&J.roster.length<4)||(k==='solo'&&J.roster.length<2)?`disabled title="${J.roster.length?'Needs more students in this class':'Students appear here after they join your class'}"`:''}>${l}</button>`).join('')}</div>
+        ${J.mode!=='quick'&&periods.length>1?`<div class="row" style="margin:.6rem 0"><label class="small">Period</label><select id="jpPer"><option value="all">All periods</option>${periods.map(p=>`<option ${J.period===p?'selected':''}>${esc(p)}</option>`).join('')}</select><span class="small">${P.length} students here today</span></div>`:''}
+        ${J.mode==='teams'?`<div class="row" style="margin:.6rem 0"><label class="small">Teams</label><select id="jpN">${[2,3,4,5,6].map(n=>`<option ${n===J.nTeams?'selected':''}>${n}</option>`).join('')}</select><button class="btn" id="jpShuf">🔀 Shuffle teams</button><span class="small">Tap a student, then tap a team to move them. Tap ✕ for anyone absent.</span></div>
+          <div class="jp-teamset">${J.teams.map((tm,i)=>`<div class="jp-col" data-team="${i}" style="--tc:${TEAM_COL[i]}"><input class="jp-tn" data-tn="${i}" value="${esc(tm.n)}" maxlength="24"><div class="jp-mem">${tm.members.map(byId).filter(Boolean).map(s=>`<span class="jp-mw">${chip(s)}<button class="jp-x" data-abs="${esc(s.id)}" title="Absent today">✕</button></span>`).join('')||'<span class="small">Tap a student, then tap here</span>'}</div></div>`).join('')}</div>`:''}
+        ${J.mode==='solo'?`<div class="row" style="margin:.6rem 0"><span class="small">Tap to choose contestants (up to 12). <b>${J.picks.size}</b> chosen.</span><button class="btn" id="jpRand">🎲 Pick 6 at random</button><button class="btn ghost" id="jpClr">Clear</button></div>
+          <div class="jp-pool">${P.map(s=>chip(s, J.picks.has(s.id)?'picked':'')).join('')}</div>`:''}
+        ${J.mode==='quick'?`<div class="field" style="margin-top:.6rem"><label>Team names (2–6, one per line)</label><textarea id="tm" style="min-height:120px">${J.roster.length?'':'Team 1\nTeam 2\nTeam 3\nTeam 4'}${J.roster.length?'Team 1\nTeam 2\nTeam 3\nTeam 4':''}</textarea>${!J.roster.length?'<p class="small">Once students join your class, you can build teams from your roster and their avatars will appear on the board.</p>':''}</div>`:''}
+        ${J.absent.size?`<div class="small" style="margin-top:.6rem">Absent today: ${[...J.absent].map(byId).filter(Boolean).map(s=>`<button class="jp-chip ghost" data-back="${esc(s.id)}">↩ ${esc(first(s.name))}</button>`).join(' ')}</div>`:''}
+        <div class="grid g3" style="margin-top:.8rem">
+          <div class="field"><label>Daily Doubles</label><select id="dd">${[0,1,2,3].map(n=>`<option ${n===J.dd?'selected':''}>${n}</option>`).join('')}</select></div>
+          <div class="field"><label>Clue timer</label><select id="jt">${[[0,'No timer'],[15,'15s'],[30,'30s'],[45,'45s']].map(([v,l])=>`<option value="${v}" ${v===J.secs?'selected':''}>${l}</option>`).join('')}</select></div>
+          <div class="field"><label>Who picks next?</label><select id="jturn"><option value="rotate" ${J.turn==='rotate'?'selected':''}>Rotate every clue (fair for class)</option><option value="winner" ${J.turn==='winner'?'selected':''}>Whoever answers right (TV rules)</option></select></div></div>
+        <button class="btn gold big" id="go" style="margin-top:.8rem">${t('start')}</button></div>`;
+    bindBack(m);
+    $$('[data-mode]',m).forEach(b=>b.onclick=()=>{ J.mode=b.dataset.mode; J.sel=null; SFX.click(); setup(); });
+    const per=$('#jpPer',m); if(per) per.onchange=()=>{ J.period=per.value; J.teams=null; J.picks=new Set(); setup(); };
+    const n=$('#jpN',m); if(n) n.onchange=()=>{ J.nTeams=+n.value; autoTeams(); setup(); };
+    const sh=$('#jpShuf',m); if(sh) sh.onclick=()=>{ autoTeams(); SFX.click(); setup(); };
+    $$('[data-tn]',m).forEach(inp=>inp.oninput=()=>{ J.teams[+inp.dataset.tn].n=inp.value; });
+    $$('[data-chip]',m).forEach(b=>b.onclick=e=>{ e.stopPropagation(); const id=b.dataset.chip;
+      if(J.mode==='solo'){ if(J.picks.has(id)) J.picks.delete(id); else if(J.picks.size<12) J.picks.add(id); else toast('Up to 12 contestants'); SFX.click(); return setup(); }
+      J.sel = J.sel===id?null:id; SFX.click(); setup(); });
+    $$('[data-team]',m).forEach(col=>col.onclick=e=>{ if(e.target.closest('input,.jp-x')) return; if(!J.sel) return; J.teams.forEach(tm=>tm.members=tm.members.filter(x=>x!==J.sel)); J.teams[+col.dataset.team].members.push(J.sel); J.sel=null; SFX.click(); setup(); });
+    $$('[data-abs]',m).forEach(b=>b.onclick=e=>{ e.stopPropagation(); const id=b.dataset.abs; J.absent.add(id); J.teams.forEach(tm=>tm.members=tm.members.filter(x=>x!==id)); setup(); });
+    $$('[data-back]',m).forEach(b=>b.onclick=()=>{ const id=b.dataset.back; J.absent.delete(id); if(J.teams){ const sm=J.teams.reduce((a,tm,i)=>tm.members.length<J.teams[a].members.length?i:a,0); J.teams[sm].members.push(id); } setup(); });
+    const rd=$('#jpRand',m); if(rd) rd.onclick=()=>{ J.picks=new Set(shuffle(present()).slice(0,6).map(s=>s.id)); setup(); };
+    const cl=$('#jpClr',m); if(cl) cl.onclick=()=>{ J.picks=new Set(); setup(); };
+    $('#dd',m).onchange=e=>J.dd=+e.target.value; $('#jt',m).onchange=e=>J.secs=+e.target.value; $('#jturn',m).onchange=e=>J.turn=e.target.value;
+    $('#go',m).onclick=()=>{
+      let cons;
+      if(J.mode==='teams'){ cons=J.teams.filter(tm=>tm.members.length).map((tm,i)=>({n:tm.n||TEAM_NAMES[i], col:TEAM_COL[J.teams.indexOf(tm)], mascot:TEAM_MASCOT[J.teams.indexOf(tm)], members:shuffle(tm.members.map(byId).filter(Boolean)), s:0, up:0})); if(cons.length<2) return toast('Put students on at least 2 teams'); }
+      else if(J.mode==='solo'){ cons=[...J.picks].map(byId).filter(Boolean).map((s,i)=>({n:s.name, col:TEAM_COL[i%6], mascot:'', members:[s], s:0, up:0, solo:true})); if(cons.length<2) return toast('Choose at least 2 contestants'); }
+      else { const names=$('#tm',m).value.split('\n').map(s=>s.trim()).filter(Boolean).slice(0,6); cons=(names.length>1?names:['Team 1','Team 2']).map((n,i)=>({n, col:TEAM_COL[i], mascot:TEAM_MASCOT[i], members:[], s:0, up:0})); }
+      SFX.fanfare&&SFX.fanfare(); play(cons);
+    };
+  }
+
+  function play(teams){
+    const jp=u.jp||buildJeopardy(u), used=new Set(), secs=J.secs, ddN=J.dd;
+    const tiles=[]; for(let c=0;c<5;c++) for(let r=0;r<5;r++) tiles.push(c+'-'+r);
+    const dds=new Set(shuffle(tiles.filter(k=>+k.split('-')[1]>=1)).slice(0,ddN));
+    let cur=0;
+    const who=i=>{ const tm=teams[i]; return tm.members.length?tm.members[tm.up%tm.members.length]:null; };
+    const faceOf=(i,size,kind='head')=>{ const s=who(i); return s?avaHTML(avaSpec(s),{size, kind, look:s.look}):`<span class="ava-emoji" style="--s:${size}px;background:${teams[i].col}">${teams[i].mascot||'⭐'}</span>`; };
+    const heads=tm=>tm.members.length?`<span class="jp-heads">${tm.members.slice(0,6).map(s=>avaHTML(avaSpec(s),{size:30, look:{frame:s.look.frame}, comp:false})).join('')}${tm.members.length>6?`<span class="jp-more">+${tm.members.length-6}</span>`:''}</span>`:'';
+    const advance=(winner)=>{ const prev=cur; teams[prev].up++; cur = (J.turn==='winner' && winner!=null) ? winner : (cur+1)%teams.length; };
+    board();
+    function board(){
+      const lead=Math.max(...teams.map(x=>x.s)), s=who(cur), tm=teams[cur];
+      m.innerHTML=`<div class="spread"><button class="back" data-back>${t('back')}</button><div class="row"><button class="btn" id="fj">🎯 Final Jeopardy</button></div></div>
+        <div class="jp-wrap"><div class="jboard">${jp.cats.map(c=>`<div class="jcat">${esc(c)}</div>`).join('')}
+          ${[0,1,2,3,4].map(r=>[0,1,2,3,4].map(c=>{ const k=c+'-'+r; return `<button class="jtile ${used.has(k)?'used':''}" data-k="${k}" ${used.has(k)?'disabled':''}>$${(r+1)*100}</button>`; }).join('')).join('')}</div>
+          <aside class="jp-spot" style="--tc:${tm.col}"><div class="jp-up">UP NOW</div>${faceOf(cur,170,s?'full':'head')}<div class="jp-who">${esc(s?s.name:tm.n)}</div>${s&&!tm.solo?`<div class="jp-tm">${esc(tm.n)}</div>`:''}
+            <div class="row" style="justify-content:center;margin-top:.5rem">${tm.members.length>1?'<button class="btn ghost" id="jpSkip" title="Next teammate">🔄 Teammate</button>':''}<button class="btn ghost" id="jpPass">⏭ Next ${tm.solo?'player':'team'}</button></div>
+            <div class="small" style="margin-top:.3rem">${esc((s?first(s.name):tm.n))}, pick a category!</div></aside></div>
+        <div class="teams">${teams.map((x,i)=>`<button class="team jp-team ${i===cur?'cur':''} ${x.s===lead&&lead>0?'lead':''}" data-turn="${i}" style="--tc:${x.col}">${x.solo?faceOf(i,54):heads(x)||faceOf(i,40)}<div class="jp-tname">${esc(x.solo?first(x.n):x.n)}</div><div class="sc ${x.s<0?'neg':''}">$${x.s}</div>
+          <div class="row" style="justify-content:center"><span class="iconbtn" data-adj="${i}" data-v="-100">−</span><span class="iconbtn" data-adj="${i}" data-v="100">＋</span></div></button>`).join('')}</div>`;
+      bindBack(m);
+      $$('[data-adj]',m).forEach(b=>b.onclick=e=>{ e.stopPropagation(); teams[+b.dataset.adj].s+=+b.dataset.v; SFX.click(); board(); });
+      $$('[data-turn]',m).forEach(b=>b.onclick=()=>{ cur=+b.dataset.turn; SFX.click(); board(); });
+      const sk=$('#jpSkip',m); if(sk) sk.onclick=()=>{ teams[cur].up++; SFX.click(); board(); };
+      $('#jpPass',m).onclick=()=>{ cur=(cur+1)%teams.length; SFX.click(); board(); };
+      $$('.jtile:not(.used)',m).forEach(b=>b.onclick=()=>clue(b.dataset.k));
+      $('#fj',m).onclick=final;
+      if(used.size===25) $('#fj',m).classList.add('gold');
+    }
+    function clue(k){
+      const [c,r]=k.split('-').map(Number), [q,a]=jp.c[c][r], val=(r+1)*100, isDD=dds.has(k);
+      SFX.click(); let winner=null, iv=null;
+      const mm=modal(`<div id="cz"></div>`,{full:true, onClose:()=>{ clearInterval(iv); used.add(k); advance(winner); board(); }});
+      mm.classList.add('jblue'); const z=$('#cz',mm);
+      const upBar=()=>{ const s=who(cur); return `<div class="jp-upbar">${faceOf(cur,64)}<div><div class="small" style="color:#FCD34D;font-weight:800;letter-spacing:.08em">ON THE PODIUM</div><b>${esc(s?s.name:teams[cur].n)}</b>${s&&!teams[cur].solo?` · ${esc(teams[cur].n)}`:''}</div></div>`; };
+      if(isDD){ SFX.fanfare();
+        z.innerHTML=`${upBar()}<div class="clue" style="color:#FCD34D">⭐ DAILY DOUBLE! ⭐</div><p style="text-align:center">${esc(teams[cur].solo?first(teams[cur].n):teams[cur].n)}, how much will you wager? (up to $${Math.max(teams[cur].s,500)})</p>
+          <div class="row" style="justify-content:center"><input id="ddw" type="number" min="5" value="${Math.max(100,Math.min(500,teams[cur].s))}" style="width:160px;font-size:1.4rem"><button class="btn gold big" id="ddgo">Lock wager</button></div>`;
+        $('#ddgo',z).onclick=()=>{ const max=Math.max(teams[cur].s,500); const w=clamp(+$('#ddw',z).value||0,5,max); show(w,[cur]); };
+      } else show(val, teams.map((_,i)=>i));
+      function show(v, eligible){
+        let left=secs;
+        z.innerHTML=`${upBar()}<div class="spread" style="padding-right:3rem"><span class="tag gold">${esc(jp.cats[c])} · $${v}${isDD?' · Daily Double':''}</span>${secs?`<span class="chip">⏱️ <b id="tl">${left}</b>s</span>`:''}</div>
+          <div class="clue">${esc(q)}</div><div style="text-align:center"><button class="btn gold big" id="rv">Reveal Answer</button></div><div id="ans"></div>`;
+        if(secs){ iv=setInterval(()=>{ left--; const e=$('#tl',z); if(e) e.textContent=left; if(left<=5&&left>0) SFX.tick(); if(left<=0){ clearInterval(iv); SFX.buzz(); } },1000); }
+        $('#rv',z).onclick=()=>{ clearInterval(iv); SFX.right(); $('#rv',z).remove();
+          const key=a.toLowerCase().split(' (')[0]; const rq=u.qs.find(x=>x.r&&x.r[1].toLowerCase().includes(key));
+          const vm=(u.vocab||[]).find(x=>a.toLowerCase().includes(x[0].toLowerCase().split(' (')[0]) || x[0].toLowerCase().includes(a.toLowerCase().split(' (')[0]));
+          const order=[...eligible.filter(i=>i===cur), ...eligible.filter(i=>i!==cur)];
+          $('#ans',z).innerHTML=`<div class="clue" style="color:#6EE7B7">${esc(a)}</div>
+            <div class="reteach" style="max-width:820px;margin:0 auto"><h3>🎙️ Teacher Debrief / Why It Matters</h3>${vm?`<p><b>${esc(vm[0])}:</b> ${esc(vm[1])}</p>${vm[2]?`<p>⭐ ${esc(vm[2])}</p>`:''}`:`${rq?`<p><b>${esc(rq.r[0])}:</b> ${esc(rq.r[1])}</p>`:''}`}</div>
+            <p style="text-align:center;margin-top:1rem" id="stealMsg" class="gold"></p>
+            <div class="teams">${order.map(i=>`<div class="team" style="--tc:${teams[i].col}">${faceOf(i,44)}<b>${esc(teams[i].solo?first(teams[i].n):teams[i].n)}</b><div class="row" style="justify-content:center;margin-top:.3rem"><button class="btn em" data-ok="${i}">✓ +$${v}</button><button class="btn cr" data-no="${i}">✗ −$${v}</button></div></div>`).join('')}</div>
+            <p style="text-align:center;margin-top:1rem"><button class="btn big" id="cls">Back to Board</button></p>`;
+          $$('[data-ok]',z).forEach(b=>b.onclick=async()=>{ const i=+b.dataset.ok; teams[i].s+=v; winner=i; SFX.coin(); const s=who(i);
+            if(s) await celebrate(avaSpec(s), s.look, `${first(s.name)} got it!`, `+$${v} for ${teams[i].solo?'the board':teams[i].n}`); mm.close(); });
+          $$('[data-no]',z).forEach(b=>b.onclick=()=>{ const i=+b.dataset.no; teams[i].s-=v; SFX.wrong(); b.disabled=true; b.previousElementSibling.disabled=true; b.closest('.team').style.opacity=.4;
+            if(!isDD) $('#stealMsg',z).textContent='🚨 STEAL OPEN — another team may answer!'; });
+          $('#cls',z).onclick=()=>mm.close();
+        };
+      }
+    }
+    function final(){
+      const [cat, q, a]=jp.fj; const mm=modal('<div id="fz"></div>',{full:true,onClose:board}); mm.classList.add('jblue'); const z=$('#fz',mm);
+      z.innerHTML=`<div class="clue" style="color:#FCD34D">🎯 FINAL JEOPARDY</div><div class="clue" style="font-size:1.6rem">Category: ${esc(cat)}</div>
+        <p style="text-align:center">Each ${teams[0].solo?'player':'team'} secretly locks in a wager (up to its score; at $0 or below, wager $0).</p>
+        <div class="teams">${teams.map((x,i)=>`<div class="team" style="--tc:${x.col}">${faceOf(i,40)}<b>${esc(x.solo?first(x.n):x.n)}</b> · $${x.s}<input type="password" inputmode="numeric" data-w="${i}" placeholder="wager" style="width:100%;margin-top:.3rem"><button class="btn" data-lock="${i}" style="margin-top:.3rem;width:100%">Lock</button></div>`).join('')}</div>
+        <p style="text-align:center"><button class="btn gold big" id="fgo" disabled>Reveal Final Clue</button></p>`;
+      const wag={};
+      $$('[data-lock]',z).forEach(b=>b.onclick=()=>{ const i=+b.dataset.lock, inp=$(`[data-w="${i}"]`,z); wag[i]=clamp(Math.round(+inp.value||0),0,Math.max(0,teams[i].s)); inp.disabled=true; b.disabled=true; b.textContent='✅ Locked'; SFX.click(); if(Object.keys(wag).length===teams.length) $('#fgo',z).disabled=false; });
+      $('#fgo',z).onclick=()=>{ let left=30;
+        z.innerHTML=`<div class="spread" style="padding-right:3rem"><span class="tag gold">${esc(cat)}</span><span class="chip">⏱️ <b id="tl">30</b>s</span></div><div class="clue">${esc(q)}</div><p style="text-align:center"><button class="btn gold big" id="rv">Reveal Answer</button></p><div id="ans"></div>`;
+        const iv=setInterval(()=>{ left--; const e=$('#tl',z); if(e) e.textContent=left; SFX.tick(); if(left<=0){ clearInterval(iv); SFX.buzz(); } },1000);
+        $('#rv',z).onclick=()=>{ clearInterval(iv); $('#rv',z).remove();
+          $('#ans',z).innerHTML=`<div class="clue" style="color:#6EE7B7">${esc(a)}</div><div class="teams">${teams.map((x,i)=>`<div class="team" style="--tc:${x.col}">${faceOf(i,40)}<b>${esc(x.solo?first(x.n):x.n)}</b><br>Wager: $${wag[i]}<div class="row" style="justify-content:center"><button class="btn em" data-f="${i}" data-r="1">✓</button><button class="btn cr" data-f="${i}" data-r="0">✗</button></div></div>`).join('')}</div>
+            <p style="text-align:center"><button class="btn gold big" id="win">🏆 Crown the winners</button></p>`;
+          $$('[data-f]',z).forEach(b=>b.onclick=()=>{ const i=+b.dataset.f; teams[i].s+= b.dataset.r==='1'?wag[i]:-wag[i]; $$(`[data-f="${i}"]`,z).forEach(x=>x.disabled=true); SFX.click(); });
+          $('#win',z).onclick=()=>{ mm.close(); podium(); };
+        };
+      };
+    }
+    function podium(){
+      const ranked=teams.map((x,i)=>({...x,i})).sort((p,q)=>q.s-p.s), top=ranked.slice(0,3), order=[top[1],top[0],top[2]].filter(Boolean);
+      const mm=modal(`<div class="podium-wrap"><h1 class="pod-h">🏆 ${esc(top[0].solo?first(top[0].n):top[0].n)} wins!</h1><div class="podium">${order.map(x=>{ const place=top.indexOf(x)+1;
+          return `<div class="pod p${place}" style="--tc:${x.col}"><div class="pod-avas">${x.members.length?x.members.slice(0,x.solo?1:4).map(s=>avaHTML(avaSpec(s),{kind:'full', size:x.solo?200:(place===1?130:110), look:s.look})).join(''):`<span class="ava-emoji" style="--s:120px;background:${x.col}">${x.mascot}</span>`}</div>
+            <div class="pod-step"><span class="pod-n">${place}</span><b>${esc(x.solo?first(x.n):x.n)}</b><span>$${x.s}</span></div></div>`; }).join('')}</div>
+          ${ranked.length>3?`<div class="small" style="text-align:center;margin-top:1rem;color:#CBD5E1">${ranked.slice(3).map((x,k)=>`${k+4}. ${esc(x.solo?first(x.n):x.n)} ($${x.s})`).join(' · ')}</div>`:''}
+          <p style="text-align:center;margin-top:1rem"><button class="btn gold big" id="pdDone">Done</button></p></div>`,{full:true, onClose:board});
+      mm.classList.add('jblue'); SFX.fanfare(); confetti(140);
+      setTimeout(()=>$$('.pod.p1 .ava-full',mm).forEach((el,k)=>setTimeout(()=>playEmote(el,(top[0].members[k]||{look:{}}).look.emote),k*180)),900);
+      $('#pdDone',mm).onclick=()=>mm.close();
+    }
+  }
+}
+
+/* =====================================================================
+   ARENA LIVE — Kahoot-style live quiz with avatars
+   Lobby (avatars pop in) → question → reveal + chart → leaderboard → podium.
+   Accuracy mode (default): full points for every correct answer, no speed pressure.
+   Speed mode: up to +500 for fast correct answers. Answer streaks add a bonus.
+   Firestore: same live/session doc as the gallery walk (mode:'quiz'), responses per student.
+   ===================================================================== */
+const AL_COL=['#E11D48','#2563EB','#D97706','#059669','#7C3AED'], AL_SHAPE=['▲','◆','●','■','★'];
+let AL_T=null, AL_RESP=[], AL_S=null, AL_ME=null;
+const alOrder = (sid, idx, n) => seededOrder(n, sid+'#'+idx);
+
+function alQuestion(sess, idx){ const u=getUnit(sess.unitId), q=u.qs.find(x=>x.id===sess.qids[idx]); return {u,q}; }
+function alScore(sess, ok, ms, streak){ if(!ok) return 0; const base=1000; const speed=sess.scoring==='speed'&&sess.secs? Math.round(500*Math.max(0,1-ms/(sess.secs*1000))) : 0; return base+speed+Math.min(500,Math.max(0,streak-1)*100); }
+
+/* ------------------------------ TEACHER ------------------------------ */
+function renderArenaLiveSetup(m){
+  const c=activeClass(), u=curUnit();
+  m.innerHTML=`${backBtn()}<h1>⚡ Arena Live</h1>
+    <div class="grid g2"><div class="card"><h2>How it works</h2>
+      <ol style="margin:.2rem 0 0 1.1rem;padding:0;line-height:1.7"><li>Students join your class with code <b>${esc(c?c.code||'':'')}</b>. Their avatars pop into the lobby on your board.</li><li>Each question shows on the board and on every student's device, with the same colors.</li><li>After each question: the answer, a quick explanation, then the leaderboard.</li><li>The top 3 finish on the podium, doing their victory moves.</li></ol>
+      <p class="small" style="margin-top:.6rem"><b>Accuracy mode</b> gives every correct answer the same points, so careful readers aren't punished for taking their time.</p></div>
+    <div class="card"><h2>Start a game</h2>
+      <div class="field"><label>Unit</label><select id="alUnit">${allUnits().filter(x=>x.qs.length).map(x=>`<option value="${x.id}" ${x.id===u.id?'selected':''}>${esc(x.title)} (${x.qs.length} questions)</option>`).join('')}</select></div>
+      <div class="grid g3"><div class="field"><label>Questions</label><select id="alN"><option>5</option><option selected>8</option><option>10</option><option value="99">All</option></select></div>
+      <div class="field"><label>Scoring</label><select id="alSc"><option value="accuracy" selected>Accuracy (no speed points)</option><option value="speed">Speed bonus</option></select></div>
+      <div class="field"><label>Timer</label><select id="alSecs"><option value="0">None (you reveal)</option><option value="20">20s</option><option value="30" selected>30s</option><option value="45">45s</option><option value="60">60s</option></select></div></div>
+      <p class="small">${API.mode==='demo'?'Preview mode: students in other tabs of this browser can join. Use “Add sample players” to see it full.':'Students follow along on their own devices in real time.'}</p>
+      <button class="btn gold big" id="alGo">▶ Open the lobby</button></div></div>`;
+  bindBack(m);
+  $('#alGo',m).onclick=async()=>{ const uid=$('#alUnit',m).value, un=getUnit(uid), n=+$('#alN',m).value;
+    S.unit=uid; save();
+    AL_T={ active:true, mode:'quiz', sessionId:'al'+Date.now().toString(36), unitId:uid, qids:shuffle(un.qs.map(q=>q.id)).slice(0,n), idx:-1, stage:'lobby', scoring:$('#alSc',m).value, secs:+$('#alSecs',m).value };
+    try{ await API.setLive(c.id, AL_T); }catch(e){ return toast('⚠️ Could not start: '+esc(e.message)); }
+    SFX.fanfare(); go('alhost'); };
+}
+async function renderArenaLiveHost(m){
+  const c=activeClass(); if(!c) return go('hub');
+  if(!AL_T){ const cur=await new Promise(r=>{ const un=API.watchLive(c.id, d=>{ r(d); setTimeout(()=>{ try{un();}catch(e){} },0); }); });
+    if(cur&&cur.active&&cur.mode==='quiz') AL_T=cur; else { S.view='hub'; return renderArenaLiveSetup(m); } }
+  stopLiveWatchers();
+  LIVE_UNSUBS.push(API.watchResponses(c.id, list=>{ AL_RESP=list.filter(r=>r.sessionId===AL_T.sessionId); alPaint(m, true); }));
+  alPaint(m);
+}
+let AL_TIMER=null;
+function alPush(m, patch){ Object.assign(AL_T, patch); API.setLive(activeClass().id, AL_T).catch(e=>toast('⚠️ '+esc(e.message))); alPaint(m); }
+function alRanked(){ return AL_RESP.slice().sort((a,b)=>(b.score||0)-(a.score||0) || (a.name||'').localeCompare(b.name||'')); }
+function alStageStyle(){ const a=arenaArt('stage/live'); return a?` style="background-image:linear-gradient(rgba(15,23,42,.55),rgba(15,23,42,.75)),url(${a});background-size:cover;background-position:center"`:''; }
+function alPaint(m, fromData){
+  if(!AL_T) return; const T=AL_T, c=activeClass(), N=T.qids.length;
+  const answered=AL_RESP.filter(r=>r.lastIdx===T.idx);
+  if(fromData && T.stage==='q'){ // live counters only, don't rebuild the board
+    const el=$('#alCnt',m); if(el) el.textContent=answered.length; if(T.idx>=0 && answered.length && answered.length>=AL_RESP.length && !T._auto){ T._auto=1; setTimeout(()=>alReveal(m),600); } return; }
+  if(fromData && T.stage==='lobby'){ const box=$('#alLobby',m); if(box) return alLobby(m); }
+  if(fromData && T.stage==='podium') return;
+  clearInterval(AL_TIMER);
+  const top=`<div class="al-top"><span class="tag em">● LIVE</span><b>Arena Live · <span style="font-weight:500">${esc(getUnit(T.unitId).title)}</span></b><span class="al-code">Join code <b>${esc(c.code||'')}</b></span>
+    <span class="row">${API.mode==='demo'?'<button class="btn ghost" id="alSim">🎲 Add sample players</button>':''}<button class="btn cr" id="alEnd">■ End</button></span></div>`;
+  if(T.stage==='lobby'){ m.innerHTML=`<div class="al-stage"${alStageStyle()}>${top}<div id="alLobby"></div></div>`; alLobby(m); }
+  else if(T.stage==='q'||T.stage==='reveal'){
+    const {u,q}=alQuestion(T,T.idx), order=alOrder(T.sessionId,T.idx,q.o.length), rev=T.stage==='reveal';
+    const counts=q.o.map((_,k)=>answered.filter(r=>r.lastChoice===k).length), mx=Math.max(1,...counts);
+    m.innerHTML=`<div class="al-stage"${alStageStyle()}>${top}
+      <div class="al-qhead"><span class="chip">Question <b>${T.idx+1}</b> / ${N}</span><span class="tag gold">${esc(q.bm)}</span>${T.secs&&!rev?`<span class="al-timer" id="alTl">${T.secs}</span>`:''}<span class="chip">✋ <b id="alCnt">${answered.length}</b> / ${AL_RESP.length} answered</span></div>
+      ${q.st?`<div class="stim al-stim">${esc(q.st)}</div>`:''}<div class="al-q">${esc(q.s)}</div>
+      <div class="al-opts">${order.map((oi,k)=>`<div class="al-opt ${rev?(oi===0?'right':'dim'):''}" style="--oc:${AL_COL[k]}"><span class="al-sh">${AL_SHAPE[k]}</span><span class="al-ot">${esc(q.o[oi])}</span>${rev?`<span class="al-bar"><i style="height:${Math.round(100*counts[oi]/mx)}%"></i><b>${counts[oi]}</b></span>`:''}</div>`).join('')}</div>
+      ${rev&&q.r?`<div class="reteach al-why"><h3>📘 ${esc(q.r[0])}</h3><p>${esc(q.r[1])}</p></div>`:''}
+      <div class="al-ctl">${rev?`<button class="btn gold big" id="alBoard">🏆 Leaderboard</button>`:`<button class="btn gold big" id="alRev">👁 Reveal answer</button>`}</div></div>`;
+    if(!rev && T.secs){ const t0=Date.now(); let left=T.secs; AL_TIMER=setInterval(()=>{ left=T.secs-Math.floor((Date.now()-t0)/1000); const e=$('#alTl',m); if(e) e.textContent=Math.max(0,left); if(left<=5&&left>0) SFX.tick(); if(left<=0){ clearInterval(AL_TIMER); SFX.buzz(); alReveal(m); } },250); }
+    const rv=$('#alRev',m); if(rv) rv.onclick=()=>alReveal(m);
+    const bd=$('#alBoard',m); if(bd) bd.onclick=()=>{ SFX.click(); alPush(m,{stage:'board'}); };
+  }
+  else if(T.stage==='board'){
+    const R=alRanked(), last=T.idx>=N-1;
+    m.innerHTML=`<div class="al-stage"${alStageStyle()}>${top}<h1 class="al-h">Leaderboard <span class="small">after ${T.idx+1} of ${N}</span></h1>
+      <div class="al-lb">${R.slice(0,5).map((r,k)=>`<div class="al-row" style="animation-delay:${k*90}ms"><span class="al-rk">${k+1}</span>${avaHTML(avaSpec(r),{size:54, look:r.look})}<b>${esc(r.name)}</b>${(r.streak||0)>=2?`<span class="tag gold">🔥 ${r.streak}</span>`:''}<span class="al-sc">${(r.score||0).toLocaleString()}</span></div>`).join('')||'<p class="muted">No players yet.</p>'}</div>
+      <div class="al-ctl"><button class="btn gold big" id="alNext">${last?'🏆 Podium':'Next question ▶'}</button></div></div>`;
+    $('#alNext',m).onclick=()=>{ SFX.click(); if(last) alPush(m,{stage:'podium', podium:alRanked().slice(0,3).map(r=>r.id)}); else alPush(m,{stage:'q', idx:T.idx+1, _auto:0}); };
+  }
+  else if(T.stage==='podium'){
+    const R=alRanked(), top3=R.slice(0,3), order=[top3[1],top3[0],top3[2]].filter(Boolean);
+    m.innerHTML=`<div class="al-stage"${alStageStyle()}>${top}<div class="podium-wrap"><h1 class="pod-h">🏆 Arena Live Champions</h1><div class="podium">${order.map(r=>{ const p=top3.indexOf(r)+1;
+      return `<div class="pod p${p}"><div class="pod-avas">${avaHTML(avaSpec(r),{kind:'full', size:p===1?220:180, look:r.look})}</div><div class="pod-step"><span class="pod-n">${p}</span><b>${esc(r.name)}</b><span>${(r.score||0).toLocaleString()}</span></div></div>`; }).join('')}</div>
+      ${R.length>3?`<div class="small" style="text-align:center;margin-top:1rem;color:#CBD5E1">${R.slice(3,10).map((r,k)=>`${k+4}. ${esc(r.name)}`).join(' · ')}</div>`:''}
+      <div class="al-ctl"><button class="btn gold big" id="alFin">End game</button></div></div></div>`;
+    SFX.fanfare(); confetti(160); setTimeout(()=>$$('.pod.p1 .ava-full',m).forEach(el=>playEmote(el,(top3[0]||{look:{}}).look&&top3[0].look.emote)),900);
+    $('#alFin',m).onclick=()=>alEnd();
+  }
+  const en=$('#alEnd',m); if(en) en.onclick=()=>alEnd();
+  const sim=$('#alSim',m); if(sim) sim.onclick=()=>alSimulate(m);
+}
+function alLobby(m){
+  const box=$('#alLobby',m); if(!box) return; const c=activeClass();
+  box.innerHTML=`<div class="al-lobby"><div class="al-join"><div class="small">Join at <b>${esc(location.host+location.pathname)}</b> → Join a class</div><div class="bigcode">${esc(c.code||'')}</div></div>
+    <div class="al-wall">${AL_RESP.map(r=>`<div class="al-pl">${avaHTML(avaSpec(r),{kind:'full', size:120, look:r.look})}<span>${esc((r.name||'').split(' ')[0])}</span></div>`).join('')||'<p class="muted" style="color:#CBD5E1">Waiting for players… their avatars will pop in here.</p>'}</div>
+    <div class="al-ctl"><span class="chip big">👥 <b>${AL_RESP.length}</b> players</span><button class="btn gold big" id="alStart" ${AL_RESP.length?'':'disabled'}>Start ▶</button></div></div>`;
+  $('#alStart',box).onclick=()=>{ SFX.fanfare(); alPush(m,{stage:'q', idx:0, _auto:0}); };
+}
+function alReveal(m){ if(!AL_T||AL_T.stage!=='q') return; clearInterval(AL_TIMER); SFX.right(); alPush(m,{stage:'reveal'}); }
+async function alEnd(){ const c=activeClass(); clearInterval(AL_TIMER); try{ await API.setLive(c.id,{active:false, sessionId:AL_T&&AL_T.sessionId, mode:'quiz'}); }catch(e){} stopLiveWatchers(); AL_T=null; AL_RESP=[]; toast('Arena Live ended'); S.view='hub'; save(); renderTop(); render(); }
+async function alSimulate(m){
+  const c=activeClass(), T=AL_T; const names=['Aaliyah R.','Mateo G.','Sofia L.','Jayden T.','Camila P.','Noah B.','Isabella C.','Liam D.','Zoe K.','Gabriel M.','Nia W.','Carlos V.'];
+  const emos=['e_jump','e_spin','e_flex','e_dance','e_wave','e_rocket'], comps=SHOP.comp.map(x=>x.id), frames=SHOP.frame.map(x=>x.id);
+  for(const [k,n] of names.entries()){ const sid=studentId(n,'3'), ex=AL_RESP.find(r=>r.id===sid)||{};
+    const data={name:n, period:'3', sessionId:T.sessionId, look:{emote:emos[k%6], comp:k%3?comps[k%comps.length]:'', frame:k%2?frames[k%5]:''}, score:ex.score||0, streak:ex.streak||0};
+    if(T.stage==='q'){ const ok=Math.random()<.68, {q}=alQuestion(T,T.idx); const choice=ok?0:1+Math.floor(Math.random()*(q.o.length-1)); data.lastIdx=T.idx; data.lastChoice=choice; data.streak=ok?(ex.streak||0)+1:0; data.score=(ex.score||0)+alScore(T,ok,4000+Math.random()*15000,data.streak); }
+    await API.sendResponse(c.id, sid, data); }
+}
+
+/* ------------------------------ STUDENT ------------------------------ */
+function alStudentJoin(d){
+  AL_S=d; const me={name:S.join.name, period:S.join.period, sessionId:d.sessionId, avatar:S.avatar||null, look:S.look||{}};
+  if(!AL_ME||AL_ME.sessionId!==d.sessionId){ AL_ME={sessionId:d.sessionId, score:0, streak:0, answers:{}, seenAt:{}, place:0}; me.score=0; me.streak=0; }
+  API.sendResponse(S.join.classId,S.join.sid,me).catch(()=>{});
+}
+function renderArenaLiveStudent(m){
+  const d=AL_S; if(!d||!d.active){ S.view='hub'; return renderStudentHub(m); }
+  const A=AL_ME, es=S.lang==='es';
+  const head=`<div class="al-shead">${myAva({size:44})}<b>${esc((S.join&&S.join.name)||'')}</b><span class="chip">⭐ <b>${(A.score||0).toLocaleString()}</b></span>${A.streak>=2?`<span class="chip">🔥 ${A.streak}</span>`:''}</div>`;
+  if(d.stage==='lobby'){ m.innerHTML=`<div class="al-sbox">${head}<div class="al-you">${myAva({kind:'full', size:200})}<h2>${es?'¡Estás dentro!':'You\'re in!'}</h2><p>${es?'Busca tu avatar en el pizarrón.':'Look for your avatar on the board.'}</p>
+      <div class="row" style="justify-content:center"><button class="btn" id="alEmo">🎉 ${es?'Probar movimiento':'Try my victory move'}</button><button class="btn ghost" id="alEd">✏️ ${es?'Editar avatar':'Edit avatar'}</button></div></div></div>`;
+    $('#alEmo',m).onclick=()=>playEmote($('.al-you .ava-full',m),S.look.emote);
+    $('#alEd',m).onclick=()=>lvAvatarStudio(()=>{ API.sendResponse(S.join.classId,S.join.sid,{avatar:S.avatar,look:S.look}).catch(()=>{}); renderArenaLiveStudent(m); }, {title:'🧑‍🎓 Your Arena Avatar', btn:'Save my avatar'});
+    return; }
+  if(d.stage==='podium'){ const place=(d.podium||[]).indexOf(S.join.sid)+1; A.place=place;
+    m.innerHTML=`<div class="al-sbox">${head}<div class="al-you">${myAva({kind:'full', size:200})}<h2>${place&&place<=3?['🥇 1st place!','🥈 2nd place!','🥉 3rd place!'][place-1]:es?'¡Buen juego!':'Good game!'}</h2><p>${es?'Puntos finales':'Final score'}: <b>${(A.score||0).toLocaleString()}</b></p></div></div>`;
+    if(!A.done){ A.done=1; S.alive.played++; if(place&&place<=3){ S.alive.podium++; if(place===1) S.alive.wins++; } award(place===1?3:place&&place<=3?2:1, 'Arena Live'); setTimeout(()=>playEmote($('.al-you .ava-full',m),S.look.emote),500); }
+    return; }
+  const {u,q}=alQuestion(d,d.idx); if(!q) return; const order=alOrder(d.sessionId,d.idx,q.o.length), mine=A.answers[d.idx];
+  if(A.seenAt[d.idx]==null) A.seenAt[d.idx]=Date.now();
+  if(d.stage==='q'){
+    m.innerHTML=`<div class="al-sbox">${head}<div class="small">${es?'Pregunta':'Question'} ${d.idx+1} / ${d.qids.length}</div>${q.st?`<div class="stim">${esc(q.st)}</div>`:''}<div class="al-sq">${esc(q.s)}</div>
+      ${mine?`<div class="al-wait"><div class="al-sh big" style="background:${AL_COL[order.indexOf(mine.c)]}">${AL_SHAPE[order.indexOf(mine.c)]}</div><h3>${es?'¡Respuesta enviada!':'Answer locked in!'}</h3><p class="small">${es?'Espera a que tu maestro revele la respuesta.':'Wait for your teacher to reveal the answer.'}</p></div>`
+        :`<div class="al-sopts">${order.map((oi,k)=>`<button class="al-sopt" data-c="${oi}" style="--oc:${AL_COL[k]}"><span class="al-sh">${AL_SHAPE[k]}</span><span>${esc(q.o[oi])}</span></button>`).join('')}</div>`}</div>`;
+    $$('[data-c]',m).forEach(b=>b.onclick=async()=>{ const ch=+b.dataset.c, ms=Date.now()-A.seenAt[d.idx], ok=ch===0; A.streak=ok?A.streak+1:0; const pts=alScore(d,ok,ms,A.streak);
+      A.answers[d.idx]={c:ch, ok, pts}; A.score+=pts; SFX.click();
+      if(ok && !S.qstat[q.id]){ S.qstat[q.id]='first'; S.xp+=100; } else if(ok) S.xp+=25; save();
+      if(ok) try{ arenaDailyTick(); }catch(e){}
+      renderArenaLiveStudent(m);
+      try{ await API.sendResponse(S.join.classId,S.join.sid,{name:S.join.name, period:S.join.period, sessionId:d.sessionId, avatar:S.avatar||null, look:S.look||{}, lastIdx:d.idx, lastChoice:ch, score:A.score, streak:A.streak}); }catch(e){ toast('⚠️ Not sent — check your connection'); } });
+    return; }
+  // reveal / board
+  const ok=mine&&mine.ok;
+  m.innerHTML=`<div class="al-sbox ${mine?ok?'al-good':'al-bad':''}">${head}<div class="al-res">${mine?(ok?`<h2>✅ ${es?'¡Correcto!':'Correct!'}</h2><p class="al-pts">+${mine.pts.toLocaleString()}</p>`:`<h2>❌ ${es?'No esta vez':'Not this time'}</h2>`):`<h2>⏱️ ${es?'Sin respuesta':'No answer'}</h2>`}
+    <p><b>${es?'Respuesta':'Answer'}:</b> ${esc(q.o[0])}</p>${q.r?`<div class="reteach" style="text-align:left"><h3>📘 ${esc(q.r[0])}</h3><p>${esc(q.r[1])}</p></div>`:''}</div></div>`;
+  if(ok && d.stage==='reveal' && !mine.cel){ mine.cel=1; setTimeout(()=>playEmote($('.al-shead .ava',m),S.look.emote),200); }
+}
+
+/* =====================================================================
+   ESCAPE ROOM — Genially-style breakout for any unit (solo, self-paced)
+   Four locked objects in an archive room. Each puzzle earns a digit:
+   ▲ Filing cabinet: 3 questions right · ◆ Sealed letter: primary source evidence
+   ● Wall map: vocabulary match · ■ Grandfather clock: put events in order.
+   The door plaque gives the symbol order for the 4-digit code.
+   ===================================================================== */
+const ESC_SYM=['▲','◆','●','■'];
+const ESC_OBJ=[
+  {k:'cab',  name:'Filing Cabinet', emoji:'🗄️', x:9,  y:44, title:'Answer 3 questions correctly'},
+  {k:'let',  name:'Sealed Letter',  emoji:'✉️', x:33, y:62, title:'Read the source and find the evidence'},
+  {k:'map',  name:'Wall Map',       emoji:'🗺️', x:47, y:18, title:'Match each term to its meaning'},
+  {k:'clk',  name:'Grandfather Clock', emoji:'🕰️', x:70, y:36, title:'Put the events in time order'} ];
+let ESC=null;
+function escNew(u){
+  const order=shuffle([0,1,2,3]);
+  return {unitId:u.id, t0:Date.now(), pen:0, hints:0, solved:[false,false,false,false], digits:[0,1,2,3].map(()=>Math.floor(Math.random()*10)), order, done:false,
+    qpool:shuffle(u.qs.map(q=>q.id)), right:0, entry:''};
+}
+const escTime = () => Math.floor((Date.now()-ESC.t0)/1000)+ESC.pen;
+const mmss = s => `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+let ESC_IV=null;
+
+function renderEscape(m){
+  const u=curUnit(), es=S.lang==='es';
+  if(!ESC || ESC.unitId!==u.id || ESC.done==='left'){
+    const best=(S.esc||{})[u.id];
+    m.innerHTML=`${backBtn()}<div class="esc-intro"><div class="esc-hero"><span class="eyebrow" style="color:#FCD34D">${es?'Sala de escape':'Escape Room'}</span><h1>The Locked Archive</h1>
+      <p>${es?'Estás encerrado en el archivo con la puerta bloqueada. Resuelve cuatro acertijos sobre':'You\'re locked in the archive. Solve four puzzles about'} <b>${esc(u.title)}</b> ${es?'para conseguir el código de 4 dígitos.':'to collect the 4-digit door code.'}</p>
+      <div class="esc-legend">${ESC_OBJ.map((o,i)=>`<span>${o.emoji} <b>${ESC_SYM[i]}</b> ${esc(o.name)} — ${esc(o.title)}</span>`).join('')}</div>
+      <p class="small">${es?'Pistas: +30 segundos cada una. Errores en las parejas o el orden: +10 segundos.':'Hints cost +30 seconds each. Wrong matches or wrong order: +10 seconds.'}${best&&best.best?` · ${es?'Tu mejor tiempo':'Your best time'}: <b>${mmss(best.best)}</b>`:''}</p>
+      <button class="btn gold big" id="escGo">🔓 ${es?'Entrar a la sala':'Enter the room'}</button></div><div class="esc-me">${myAva({kind:'full', size:200})}</div></div>`;
+    bindBack(m); $('#escGo',m).onclick=()=>{ ESC=escNew(u); SFX.fanfare&&SFX.fanfare(); room(); };
+    return;
+  }
+  room();
+  function room(){
+    const art=arenaArt('escape/room');
+    m.innerHTML=`<div class="spread"><button class="back" id="escBack">${t('back')}</button><div class="row"><span class="chip big">⏱️ <b id="escT">${mmss(escTime())}</b></span><span class="chip">🔓 ${ESC.solved.filter(Boolean).length}/4</span></div></div>
+      <div class="esc-room" ${art?`style="background-image:url(${art})"`:''}>
+        ${ESC_OBJ.map((o,i)=>{ const oa=arenaArt('escape/obj_'+o.k); return `<button class="esc-obj ${ESC.solved[i]?'solved':''}" data-o="${i}" style="left:clamp(64px,${o.x}%,calc(100% - 64px));top:${o.y}%">${oa?`<img src="${oa}" alt="">`:`<span class="esc-em">${o.emoji}</span>`}<span class="esc-tag">${ESC_SYM[i]} ${esc(o.name)}${ESC.solved[i]?` · <b>${ESC.digits[i]}</b>`:''}</span></button>`; }).join('')}
+        <button class="esc-door" id="escDoor" style="left:min(86%,calc(100% - 56px));top:22%">${arenaArt('escape/obj_door')?`<img src="${arenaArt('escape/obj_door')}" alt="">`:'<span class="esc-em">🚪</span>'}<span class="esc-tag">🔐 ${ESC.order.map(i=>ESC_SYM[i]).join(' ')}</span></button>
+        <div class="esc-you">${myAva({kind:'full', size:150})}</div>
+      </div>
+      <div class="esc-notes">${ESC_OBJ.map((o,i)=>`<span class="esc-note ${ESC.solved[i]?'on':''}">${ESC_SYM[i]} = <b>${ESC.solved[i]?ESC.digits[i]:'?'}</b></span>`).join('')}<span class="small">Door code order: <b>${ESC.order.map(i=>ESC_SYM[i]).join(' ')}</b></span></div>`;
+    $('#escBack',m).onclick=()=>{ clearInterval(ESC_IV); go('hub'); };
+    clearInterval(ESC_IV); ESC_IV=setInterval(()=>{ const e=$('#escT',m); if(!e||!document.body.contains(e)) return clearInterval(ESC_IV); e.textContent=mmss(escTime()); },1000);
+    $$('[data-o]',m).forEach(b=>b.onclick=()=>{ const i=+b.dataset.o; if(ESC.solved[i]) return toast(`Already solved: ${ESC_SYM[i]} = ${ESC.digits[i]}`); SFX.click(); [cab,letter,vmap,clock][i](i); });
+    $('#escDoor',m).onclick=door;
+  }
+  function solve(i,mm){ ESC.solved[i]=true; SFX.coin(); mm.close(); toast(`🔓 ${ESC_OBJ[i].name} opened! ${ESC_SYM[i]} = <b>${ESC.digits[i]}</b>`,3000); room(); }
+  function hintBtn(){ return `<button class="btn ghost" id="eHint">💡 Hint (+30s)</button>`; }
+  function useHint(){ ESC.pen+=30; ESC.hints++; SFX.click(); }
+
+  /* ▲ three questions */
+  function cab(i){
+    const mm=modal(`<div id="eb"></div>`,{full:false}); let got=0, eliminated=null; next();
+    function next(){
+      if(got>=3) return solve(i,mm);
+      if(!ESC.qpool.length) ESC.qpool=shuffle(u.qs.map(q=>q.id));
+      const want=ESC.qpool.shift(); let q=u.qs.find(x=>x.id===want); if(!q){ console.warn('escape: missing',want,'in',u.id,u.qs.length); q=pick(u.qs); } const order=shuffle(q.o.map((_,k)=>k)); eliminated=null;
+      draw();
+      function draw(){
+        $('#eb',mm).innerHTML=`<h2>🗄️ Filing Cabinet <span class="small">${got}/3 correct</span></h2>${q.st?`<div class="stim">${esc(q.st)}</div>`:''}<div class="stem">${esc(q.s)}</div>
+          <div class="opts">${order.map((oi,k)=>`<button class="opt" data-a="${oi}" ${eliminated===oi?'disabled style="opacity:.35;text-decoration:line-through"':''}><span class="k">${LETTERS[k]}</span><span>${esc(q.o[oi])}</span></button>`).join('')}</div>
+          <div id="eFb"></div><div class="row" style="margin-top:.6rem">${eliminated===null?hintBtn():''}</div>`;
+        $$('[data-a]',mm).forEach(b=>b.onclick=()=>{ const a=+b.dataset.a;
+          if(a===0){ got++; SFX.right(); if(!S.qstat[q.id]){ S.qstat[q.id]='first'; S.xp+=100; } save(); try{ arenaDailyTick(); }catch(e){} next(); }
+          else { SFX.wrong(); $$('[data-a]',mm).forEach(x=>x.disabled=true); b.classList.add('wrong'); $$('[data-a="0"]',mm).forEach(x=>x.classList.add('right'));
+            $('#eFb',mm).innerHTML=`${q.r?`<div class="reteach"><h3>📘 ${esc(q.r[0])}</h3><p>${esc(q.r[1])}</p></div>`:''}<button class="btn gold" id="eNx">Try a new question</button>`; $('#eNx',mm).onclick=next; } });
+        const h=$('#eHint',mm); if(h) h.onclick=()=>{ useHint(); eliminated=shuffle(order.filter(x=>x!==0))[0]; draw(); };
+      }
+    }
+  }
+  /* ◆ primary source letter */
+  function letter(i){
+    const gal=(u.gallery||[]).filter(s=>s.hs&&s.ev); const mm=modal(`<div id="eb"></div>`,{full:true});
+    if(!gal.length){ return cabFallback(); }
+    const s=pick(gal), q=u.qs[s.q]; let step=0, open=new Set(), hint=false; draw();
+    function draw(){
+      const ex=`<div class="paper" style="white-space:pre-line">${s.kind==='Political Cartoon'&&!s.verbatim?'<b>What the cartoon shows:</b> ':''}${esc(s.ex)}</div><div class="plaque"><b>${esc(s.t)}</b><br>${esc(s.src)}</div>`;
+      $('#eb',mm).innerHTML=`<h2>✉️ The Sealed Letter</h2><div class="grid g2" style="align-items:start"><div class="esc-paper">${ex}<div class="hs">${s.hs.map((h,k)=>`<button class="hsb ${open.has(k)?'seen':''} ${hint&&k===s.ev[1]?'esc-glow':''}" data-h="${k}">🔍 ${esc(h[0])}</button>`).join('')}</div><div id="eNote"></div></div>
+        <div>${step===0?`<div class="stem">${esc(s.ev[0])}</div><div class="opts">${s.hs.map((h,k)=>`<button class="opt" data-ev="${k}"><span class="k">🔍</span><span>${esc(h[0])}</span></button>`).join('')}</div><div class="row" style="margin-top:.6rem">${hint?'':hintBtn()}</div>`
+          : q?`<div class="small">Evidence found ✓ — now the question:</div><div class="stem">${esc(q.s)}</div><div class="opts">${shuffle(q.o.map((_,k)=>k)).map((oi,k)=>`<button class="opt" data-a="${oi}"><span class="k">${LETTERS[k]}</span><span>${esc(q.o[oi])}</span></button>`).join('')}</div>`:''}<div id="eFb"></div></div></div>`;
+      $$('[data-h]',mm).forEach(b=>b.onclick=()=>{ const k=+b.dataset.h; open.add(k); b.classList.add('seen'); $('#eNote',mm).innerHTML=`<div class="note"><b>🔍 ${esc(s.hs[k][0])}</b><br>${esc(s.hs[k][1])}</div>`; });
+      $$('[data-ev]',mm).forEach(b=>b.onclick=()=>{ if(+b.dataset.ev===s.ev[1]){ SFX.right(); step=1; if(!q) return solve(i,mm); draw(); } else { SFX.wrong(); ESC.pen+=10; b.classList.add('wrong'); b.disabled=true; $('#eFb',mm).innerHTML=`<p class="small">Open the 🔍 hotspots and re-read. (+10s)</p>`; } });
+      $$('[data-a]',mm).forEach(b=>b.onclick=()=>{ if(+b.dataset.a===0){ SFX.right(); if(!S.qstat[q.id]){ S.qstat[q.id]='first'; S.xp+=100; save(); } solve(i,mm); } else { SFX.wrong(); ESC.pen+=10; b.classList.add('wrong'); b.disabled=true; $('#eFb',mm).innerHTML=q.r?`<div class="reteach"><h3>📘 ${esc(q.r[0])}</h3><p>${esc(q.r[1])}</p></div>`:''; } });
+      const h=$('#eHint',mm); if(h) h.onclick=()=>{ useHint(); hint=true; draw(); };
+    }
+    function cabFallback(){ mm.close(); cab(i); }
+  }
+  /* ● vocabulary match */
+  function vmap(i){
+    const V=shuffle(u.vocab||[]).slice(0,4); const mm=modal(`<div id="eb"></div>`,{full:true});
+    if(V.length<3){ mm.close(); return cab(i); }
+    const defs=shuffle(V.map((_,k)=>k)); let sel=null; const done=new Set(); draw();
+    function draw(){
+      $('#eb',mm).innerHTML=`<h2>🗺️ The Wall Map <span class="small">Match each term to its meaning</span></h2>
+        <div class="esc-match"><div>${V.map((v,k)=>`<button class="esc-term ${done.has(k)?'ok':''} ${sel===k?'sel':''}" data-t="${k}" ${done.has(k)?'disabled':''}>${esc(v[0])}</button>`).join('')}</div>
+        <div>${defs.map(k=>`<button class="esc-def ${done.has(k)?'ok':''}" data-d="${k}" ${done.has(k)?'disabled':''}>${esc(V[k][1])}</button>`).join('')}</div></div>
+        <div class="row" style="margin-top:.6rem">${hintBtn()}<span class="small">Tap a term, then tap its meaning.</span></div>`;
+      $$('[data-t]',mm).forEach(b=>b.onclick=()=>{ sel=+b.dataset.t; SFX.click(); draw(); });
+      $$('[data-d]',mm).forEach(b=>b.onclick=()=>{ if(sel===null) return toast('Tap a term first'); const k=+b.dataset.d;
+        if(k===sel){ done.add(k); sel=null; SFX.right(); if(done.size===V.length) return solve(i,mm); draw(); } else { SFX.wrong(); ESC.pen+=10; b.classList.add('shake'); setTimeout(()=>b.classList.remove('shake'),400); } });
+      $('#eHint',mm).onclick=()=>{ const k=[...V.keys()].find(x=>!done.has(x)); if(k==null) return; useHint(); done.add(k); if(done.size===V.length) return solve(i,mm); draw(); };
+    }
+  }
+  /* ■ timeline order */
+  function clock(i){
+    const T=u.timeline||[]; const mm=modal(`<div id="eb"></div>`,{full:true});
+    if(T.length<4){ mm.close(); return cab(i); }
+    const step=T.length/4, picks=[0,1,2,3].map(k=>T[Math.min(T.length-1,Math.floor(k*step+Math.random()*step))]);
+    const uniq=[...new Map(picks.map(p=>[p[1],p])).values()]; if(uniq.length<4){ mm.close(); return cab(i); }
+    const deck=shuffle(uniq.map((_,k)=>k)); let placed=[]; draw();
+    function draw(){
+      $('#eb',mm).innerHTML=`<h2>🕰️ The Grandfather Clock <span class="small">Tap the events from EARLIEST to LATEST</span></h2>
+        <div class="esc-slots">${[0,1,2,3].map(k=>`<div class="esc-slot ${placed[k]!=null?'on':''}">${placed[k]!=null?`<b>${esc(uniq[placed[k]][0])}</b> ${esc(uniq[placed[k]][1])}`:`${k+1}`}</div>`).join('')}</div>
+        <div class="esc-cards">${deck.filter(k=>!placed.includes(k)).map(k=>`<button class="esc-ev" data-e="${k}">${esc(uniq[k][1])}</button>`).join('')}</div>
+        <div class="row" style="margin-top:.6rem">${hintBtn()}</div>`;
+      $$('[data-e]',mm).forEach(b=>b.onclick=()=>{ const k=+b.dataset.e;
+        if(k===placed.length){ placed.push(k); SFX.right(); if(placed.length===4) return solve(i,mm); draw(); }
+        else { SFX.wrong(); ESC.pen+=10; b.classList.add('shake'); setTimeout(()=>b.classList.remove('shake'),400); toast('Not next in time — think about what had to happen first (+10s)'); } });
+      $('#eHint',mm).onclick=()=>{ useHint(); placed.push(placed.length); if(placed.length===4) return solve(i,mm); draw(); };
+    }
+  }
+  /* 🚪 the door */
+  function door(){
+    const mm=modal(`<div id="eb"></div>`); let entry='';
+    draw();
+    function draw(){
+      $('#eb',mm).innerHTML=`<h2>🔐 The Archive Door</h2><p>The plaque reads: <b style="font-size:1.4rem;letter-spacing:.3em">${ESC.order.map(i=>ESC_SYM[i]).join(' ')}</b></p>
+        <p class="small">Your notes: ${ESC_OBJ.map((o,i)=>`${ESC_SYM[i]} = <b>${ESC.solved[i]?ESC.digits[i]:'?'}</b>`).join(' · ')}</p>
+        <div class="esc-code">${[0,1,2,3].map(k=>`<span>${entry[k]??''}</span>`).join('')}</div>
+        <div class="esc-pad">${[1,2,3,4,5,6,7,8,9,'⌫',0,'✓'].map(k=>`<button class="btn big" data-k="${k}">${k}</button>`).join('')}</div>`;
+      $$('[data-k]',mm).forEach(b=>b.onclick=()=>{ const k=b.dataset.k; SFX.click();
+        if(k==='⌫'){ entry=entry.slice(0,-1); return draw(); }
+        if(k==='✓'){ const code=ESC.order.map(i=>ESC.digits[i]).join(''); if(entry===code){ mm.close(); return escaped(); } SFX.buzz(); ESC.pen+=10; entry=''; toast(ESC.solved.every(Boolean)?'❌ Wrong code — check the symbol order on the plaque (+10s)':'❌ Locked. Solve the other puzzles to find the missing digits.'); return draw(); }
+        if(entry.length<4){ entry+=k; draw(); } });
+    }
+  }
+  async function escaped(){
+    clearInterval(ESC_IV); const time=escTime(); const rec=S.esc[u.id]=S.esc[u.id]||{runs:0,best:0}; const first=!rec.runs; rec.runs++; const pb=!rec.best||time<rec.best; if(pb) rec.best=time; ESC.done='left'; save();
+    await celebrate(S.avatar||seededAvatar('me'), S.look, 'You escaped!', `${mmss(time)}${pb?' · new personal best':''}`);
+    award(first?3:1, 'Escaped the archive');
+    m.innerHTML=`${backBtn()}<div class="esc-intro"><div class="esc-hero"><span class="eyebrow" style="color:#6EE7B7">Escaped!</span><h1>${mmss(time)}</h1><p>${ESC.hints} hint${ESC.hints===1?'':'s'} used · best time <b>${mmss(rec.best)}</b> · ${rec.runs} escape${rec.runs===1?'':'s'}</p>
+      <div class="row"><button class="btn gold big" id="escAgain">🔁 New room (new puzzles)</button><button class="btn" id="escHub">Back to home</button></div></div><div class="esc-me">${myAva({kind:'full', size:200})}</div></div>`;
+    bindBack(m); $('#escAgain',m).onclick=()=>{ ESC=escNew(u); renderEscape(m); }; $('#escHub',m).onclick=()=>go('hub');
+    setTimeout(()=>playEmote($('.esc-me .ava-full',m),S.look.emote),300);
+  }
+}
 
 </script></body></html>

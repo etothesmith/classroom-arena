@@ -2,6 +2,9 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Classroom Arena — Mastery-based review for every classroom</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231D4ED8'/%3E%3Cpath d='M32 12 14 52h9l3.5-8h11l3.5 8h9L32 12zm-2.6 24L32 29l2.6 7h-5.2z' fill='%23fff'/%3E%3Ccircle cx='49' cy='15' r='6' fill='%23FCD34D'/%3E%3C/svg%3E">
+<meta name="description" content="Classroom Arena: mastery-based review games, study tools and smartboard game nights for the classroom.">
+<meta name="theme-color" content="#1D4ED8">
 <meta name="description" content="Standards-aligned review games, primary-source gallery walks and live mastery data for Florida U.S. History classrooms.">
 <style id="arenaCss">/* =====================================================================
    CLASSROOM ARENA — design system (light, modern, official)
@@ -846,6 +849,7 @@ body:has(main.gn-scene){background:transparent!important}
 main.gn-scene .r4-side{background:rgba(255,255,255,.94)}
 .gb-x i.cx{display:inline-block;width:24px;height:24px;background:#D1D5DB;-webkit-mask:url(arena/gn/chalk_x.webp) center/contain no-repeat;mask:url(arena/gn/chalk_x.webp) center/contain no-repeat}
 .gb-x i.cx.on{background:var(--tc)}
+@media (max-width:640px){.gn-hero{flex-direction:column-reverse}.gn-hero .tag{align-self:flex-start}.gn-hero h1{font-size:1.6rem}}
 </style></head>
 <body><header id="topbar"></header><main id="main"></main>
 <script id="arenaApp">
@@ -4348,7 +4352,7 @@ function renderTop(){
       <button class="iconbtn ${S.lang==='en'?'on':''}" data-lang="en">EN</button><button class="iconbtn ${S.lang==='es'?'on':''}" data-lang="es">ES</button>
       <button class="iconbtn" id="muteBtn" title="Sound">${S.muted?'🔇':'🔊'}</button><span class="sync saved" id="syncDot" title="All changes saved"></span>
       <button class="userbtn" id="userBtn"><span class="avatar">${esc(initials(tname))}</span>${esc(tname.split(' ')[0])}</button></div></div>
-      ${S.role==='student'&&!['livegw','livesetup','vault','alstu','alhost','alsetup','escape'].includes(S.view)||(['study','gauntlet','gallery','summit','arcade'].includes(S.view)||(S.view==='squad'&&SESSION.type!=='teacher'))?'<div class="hud" id="hud"></div>':''}`;
+      ${S.role==='student'&&!['livegw','livesetup','vault','alstu','alhost','alsetup','escape'].includes(S.view)||(['study','gauntlet','gallery','summit','arcade'].includes(S.view)||(S.view==='squad'&&(SESSION.type!=='teacher'||S.role==='student')))?'<div class="hud" id="hud"></div>':''}`;
   }
   $$('[data-home]',tb).forEach(b=>b.onclick=()=>{ if(!SESSION.type){ PUB='home'; setHash(''); } else { S.view='hub'; S.role= SESSION.type==='teacher'?'dash':'student'; save(); renderTop(); } render(); scrollTo(0,0); });
   $$('[data-pub]',tb).forEach(b=>b.onclick=()=>{ PUB=b.dataset.pub; AUTH_TAB=b.dataset.tab||AUTH_TAB; setHash(PUB==='home'?'':PUB==='teacher'?'signin':PUB); render(); if(b.dataset.scroll) setTimeout(()=>{ const el=document.getElementById(b.dataset.scroll); el&&el.scrollIntoView({behavior:'smooth'}); },50); else scrollTo(0,0); });
@@ -4692,7 +4696,7 @@ function render(){
   if(v==='gauntlet') return renderGauntlet(m);
   if(v==='gallery') return renderGallery(m);
   if(v==='summit') return renderSummit(m,false);
-  if(v==='squad') return SESSION.type==='teacher'?renderSquad(m):renderSummit(m,true);
+  if(v==='squad') return (SESSION.type==='teacher'&&S.role!=='student')?renderSquad(m):renderSummit(m,true);
   if(v==='floor') return renderFloor(m);
   if(v==='grudge') return renderGrudge(m);
   if(v==='chests') return renderChests(m);
@@ -6632,6 +6636,7 @@ let ESC_IV=null;
 
 function renderEscape(m){
   const u=curUnit(), es=S.lang==='es';
+  if(!u||!u.qs||u.qs.length<3){ m.innerHTML=`${backBtn()}<div class="card"><h2>🔐 The Locked Archive</h2><p>${es?'Esta unidad necesita al menos 3 preguntas para la sala de escape. Elige otra unidad.':'This unit needs at least 3 questions for the escape room. Pick a different unit.'}</p></div>`; return bindBack(m); }
   if(!ESC || ESC.unitId!==u.id || ESC.done==='left'){
     const best=(S.esc||{})[u.id];
     m.innerHTML=`${backBtn()}<div class="esc-intro"><div class="esc-hero"><span class="eyebrow" style="color:#FCD34D">${es?'Sala de escape':'Escape Room'}</span><h1>The Locked Archive</h1>
@@ -6768,7 +6773,7 @@ function renderEscape(m){
 const gnImg = (k, cls='', alt='') => arenaArt('gn/'+k) ? `<img class="${cls}" src="${arenaArt('gn/'+k)}" alt="${alt}" draggable="false">` : '';
 const GN_BG_VIEWS = {jeopardy:1, floor:1, grudge:1, chests:1, hotseat:1, four:1, squad:1, live:1};
 function gnBgFor(m, v){
-  const k = GN_BG_VIEWS[v] && SESSION.type==='teacher' ? v : null, a = k && arenaArt('gn/bg_'+k);
+  const k = GN_BG_VIEWS[v] && SESSION.type==='teacher' && S.role!=='student' ? v : null, a = k && arenaArt('gn/bg_'+k);
   if(a){ m.classList.add('gn-scene'); m.style.setProperty('--gnbg', `url(${a})`); } else m.style.removeProperty('--gnbg');
 }
 const GN = {roster:null, rosterFor:null, period:'all', absent:new Set(), names:''};
@@ -6793,6 +6798,8 @@ const gnLabel = c => c.solo ? gnFirst(c.n) : c.n;
 
 /* ---------- generic setup: teams from roster, or all players ---------- */
 async function gnSetup(m, cfg){
+  const u0=curUnit();
+  if(!u0 || !u0.qs || u0.qs.length<3){ m.innerHTML=`${backBtn()}<div class="card"><h2>${cfg.icon} ${esc(cfg.title)}</h2><p>This unit needs at least 3 questions to play. Choose a different unit on the Present tab, or add questions in the Studio.</p></div>`; return bindBack(m); }
   m.innerHTML=`${backBtn()}<p class="muted">Loading your class roster…</p>`; await gnLoadRoster();
   const u=curUnit(), R=GN.roster, periods=[...new Set(R.map(s=>s.period).filter(Boolean))].sort();
   let mode = cfg.kind==='players' ? (R.length>=cfg.minPlayers?'roster':'quick') : (R.length>=4?'teams':'quick');
@@ -6983,7 +6990,8 @@ function grudgeGame(m, T, o){
     board();
   }
   function shot(x){ return new Promise(res=>{
-    const mm=modal(`<div id="sh"></div>`,{full:true}); mm.classList.add('jblue'); const z=$('#sh',mm); let raf=0;
+    let settled=false, raf=0, kdRef=null; const done=v=>{ if(settled) return; settled=true; cancelAnimationFrame(raf); if(kdRef) document.removeEventListener('keydown',kdRef); res(v); };
+    const mm=modal(`<div id="sh"></div>`,{full:true, onClose:()=>done(0)}); mm.classList.add('jblue'); const z=$('#sh',mm);
     z.innerHTML=`<h2 style="text-align:center;color:#FCD34D">🏀 Take the shot!</h2><p style="text-align:center;color:#E2E8F0">Pick your line. Then tap <b>SHOOT</b> (or press the space bar) when the ball is in the green zone.</p>
       <div class="row" style="justify-content:center"><button class="btn big" data-line="2">2-pointer (easier)</button><button class="btn gold big" data-line="3">3-pointer (harder)</button></div>`;
     $$('[data-line]',z).forEach(b=>b.onclick=()=>go(+b.dataset.line));
@@ -6994,8 +7002,8 @@ function grudgeGame(m, T, o){
         <p style="text-align:center"><button class="btn gold big" id="shGo" style="font-size:1.6rem;padding:.8rem 2.6rem">SHOOT!</button></p><div id="shR" class="gn-verdict"></div>`;
       const N=$('#shN',z); const loop=t=>{ const dt=(t-last)/1000; last=t; p+=dir*speed*dt; if(p>1){p=1;dir=-1;} if(p<0){p=0;dir=1;} N.style.left=(p*100)+'%'; if(!stopped) raf=requestAnimationFrame(loop); }; raf=requestAnimationFrame(loop);
       const fire=()=>{ if(stopped) return; stopped=true; cancelAnimationFrame(raf); document.removeEventListener('keydown',kd); const made=p>=z0&&p<=z0+zone;
-        const B=$('#shB',z); B.classList.add(made?'swish':'brick'); if(made) setTimeout(()=>{ const sw=$('#shS',z); if(sw) sw.classList.add('on'); },600); setTimeout(()=>{ made?(SFX.fanfare(),confetti(50)):SFX.buzz(); $('#shR',z).innerHTML=made?`SWISH! +${line}`:'Clank! Just the 1 ✕'; $('#shR',z).className='gn-verdict '+(made?'ok':'no'); setTimeout(()=>{ mm.close(); res(made?line:0); },1300); },700); };
-      const kd=e=>{ if(e.code==='Space'){ e.preventDefault(); fire(); } }; document.addEventListener('keydown',kd); $('#shGo',z).onclick=fire;
+        const B=$('#shB',z); B.classList.add(made?'swish':'brick'); if(made) setTimeout(()=>{ const sw=$('#shS',z); if(sw) sw.classList.add('on'); },600); setTimeout(()=>{ made?(SFX.fanfare(),confetti(50)):SFX.buzz(); $('#shR',z).innerHTML=made?`SWISH! +${line}`:'Clank! Just the 1 ✕'; $('#shR',z).className='gn-verdict '+(made?'ok':'no'); setTimeout(()=>{ done(made?line:0); mm.close(); },1300); },700); };
+      const kd=e=>{ if(e.code==='Space'){ e.preventDefault(); fire(); } }; kdRef=kd; document.addEventListener('keydown',kd); $('#shGo',z).onclick=fire;
     }
   }); }
   function endTurn(){ phase='ask'; pts=0; taken={}; T[cur].up++; cur=(cur+1)%T.length; board(); }

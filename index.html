@@ -850,6 +850,54 @@ main.gn-scene .r4-side{background:rgba(255,255,255,.94)}
 .gb-x i.cx{display:inline-block;width:24px;height:24px;background:#D1D5DB;-webkit-mask:url(arena/gn/chalk_x.webp) center/contain no-repeat;mask:url(arena/gn/chalk_x.webp) center/contain no-repeat}
 .gb-x i.cx.on{background:var(--tc)}
 @media (max-width:640px){.gn-hero{flex-direction:column-reverse}.gn-hero .tag{align-self:flex-start}.gn-hero h1{font-size:1.6rem}}
+
+/* ===================== teacher + student tools ===================== */
+/* easy-read text: larger, wider spacing, uses fonts already on the device */
+html.easyread body{font-size:18px;line-height:1.75;letter-spacing:.02em;word-spacing:.12em}
+html.easyread{--fb:Verdana,Tahoma,'Trebuchet MS',system-ui,sans-serif}
+html.easyread .stem,html.easyread .opt,html.easyread .stim,html.easyread .reteach p,html.easyread .al-sq,html.easyread .al-sopt{font-family:Verdana,Tahoma,'Trebuchet MS',system-ui,sans-serif;line-height:1.75;letter-spacing:.02em}
+html.easyread .stem{font-size:1.25rem} html.easyread .opt{font-size:1.08rem}
+.rd-btn{white-space:nowrap}
+
+.as-card{margin:0 0 1rem;border-left:5px solid var(--primary)}
+.as-list{display:grid;gap:.45rem;margin-top:.6rem}
+.as-item{display:flex;align-items:center;gap:.7rem;text-align:left;background:var(--primary-50);border:1px solid var(--primary-100);border-radius:var(--r-sm);padding:.55rem .75rem;width:100%}
+.as-item:hover{border-color:var(--primary)}
+.as-item.done{background:var(--ok-50);border-color:#A7F3D0;opacity:.85}
+.as-item.late{background:var(--bad-50);border-color:#FECACA}
+.as-ico{font-size:1.4rem;flex:none}
+.as-t{display:flex;flex-direction:column;flex:1;min-width:0}
+.as-go{font-weight:800;color:var(--primary)}
+
+.ns-row{display:grid;grid-template-columns:1.4fr 1fr;gap:1rem;margin:0 0 1rem}
+@media (max-width:760px){ .ns-row{grid-template-columns:1fr} }
+.ns-card{display:flex;align-items:center;gap:.9rem;text-align:left;background:linear-gradient(135deg,#0B1F4B,#1D4ED8);color:#fff;border:0;border-radius:var(--r);padding:1rem 1.1rem;box-shadow:var(--shadow);width:100%}
+.ns-card .eyebrow{color:#DBEAFE;background:rgba(255,255,255,.14);border-color:transparent;align-self:flex-start} .ns-card .small{color:#DBEAFE} .ns-card b{font-size:1.12rem}
+.ns-card:hover{filter:brightness(1.08)}
+.ns-ico{font-size:2rem;flex:none} .ns-t{display:flex;flex-direction:column;gap:.1rem;flex:1;min-width:0} .ns-go{font-size:1.3rem;font-weight:900}
+.ns-goal{display:flex;flex-direction:column;gap:.4rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:.85rem 1rem;box-shadow:var(--shadow)}
+.ns-goal .row .btn{padding:.35rem .7rem}
+.goal-dots{display:flex;gap:.4rem} .goal-dots i{width:22px;height:22px;border-radius:50%;background:var(--cab2);border:2px solid var(--line2)}
+.goal-dots i.on{background:var(--emerald);border-color:var(--emerald)}
+.lnk{background:none;border:0;color:var(--primary);padding:0;text-decoration:underline}
+
+.pin-box{text-align:center;max-width:340px;margin:0 auto}
+.pin-dots{display:flex;justify-content:center;gap:.7rem;margin:1rem 0 .4rem}
+.pin-dots i{width:18px;height:18px;border-radius:50%;border:2px solid var(--primary);background:transparent}
+.pin-dots i.on{background:var(--primary)}
+.pin-pad{margin-top:.8rem} .pin-pad .btn{font-size:1.3rem}
+
+.tt-new{background:var(--primary-50);border:1px solid var(--primary-100);border-radius:var(--r-sm);padding:.8rem}
+.tt-as{border:1px solid var(--line);border-radius:var(--r-sm);padding:.6rem .8rem;margin-top:.6rem;background:var(--surface)}
+.tt-as.late{border-color:#FECACA}
+.tt-as summary{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;cursor:pointer}
+.tt-as-t{flex:1;min-width:200px}
+.tt-trap{margin-top:.35rem;font-size:.86rem;background:var(--warn-50);border:1px solid #FDE68A;border-radius:8px;padding:.35rem .55rem}
+.tt-grp{margin:0}
+#dashTabs .tabs button{flex:1 0 auto;white-space:nowrap;padding:.5rem .75rem}
+.dash-grid > *{min-width:0}
+@media (max-width:900px){ .dash-grid{grid-template-columns:1fr!important} }
+.dash-grid > .grid{grid-template-columns:minmax(0,1fr)}
 </style></head>
 <body><header id="topbar"></header><main id="main"></main>
 <script id="arenaApp">
@@ -2389,6 +2437,443 @@ u6: [
 FLORIDA_US_HISTORY_DB.forEach(u=>{ if(GALLERY[u.id]) u.gallery = GALLERY[u.id]; u.bms=[...new Set(u.qs.map(q=>q.bm))]; });
 
 /* =====================================================================
+   MORE COURSES — starter units for Economics, U.S. Government and
+   AP Macroeconomics. Same schema as FLORIDA_US_HISTORY_DB (see data1.js).
+   Every unit carries a `course` key so classrooms can pick the right set.
+   ===================================================================== */
+FLORIDA_US_HISTORY_DB.forEach(u=>{ if(!u.course) u.course='ush'; });
+
+const COURSE_DB = [
+
+/* ------------------------------- ECONOMICS ------------------------------- */
+{ id:'ec1', course:'econ', icon:'🧮', title:'Scarcity, Choice & Economic Systems', short:'Economic Foundations', era:'Economics · Unit 1',
+  bms:['SS.912.E.1.1','SS.912.E.1.2','SS.912.E.1.3'],
+  spec:{ focus:'Factors of production; scarcity, choice and opportunity cost; production possibilities curves; how traditional, command, market and mixed economies answer the three basic economic questions.',
+    clar:'Students read and interpret a PPC (efficient, inefficient and unattainable points, shifts) and compare how each economic system decides what, how and for whom to produce.',
+    stim:'PPC graphs, short scenarios about business and household choices, and descriptions of real economies.' },
+  timeline:[['1776','Adam Smith publishes The Wealth of Nations'],['1848','Marx and Engels publish The Communist Manifesto'],['1917','Russian Revolution leads to a Soviet command economy'],['1936','Keynes argues governments can steady a market economy'],['1978','China begins market reforms'],['1991','The Soviet Union dissolves; its republics move toward markets']],
+  brief:{ causes:'Wants are unlimited but resources (land, labor, capital and entrepreneurship) are limited. That gap, scarcity, forces every person, business and government to choose.',
+    course:'Every choice has an opportunity cost: the value of the next-best alternative given up. A production possibilities curve shows the trade-offs an economy faces when it uses all of its resources efficiently. Points inside the curve waste resources; points outside cannot be reached with current resources and technology.',
+    consequences:'Societies answer what to produce, how to produce and for whom through tradition, central command, markets, or (in every real country) a mix. The United States is a mixed economy that leans heavily on markets.' },
+  vocab:[
+    ['Scarcity','The basic problem that resources are limited while wants are unlimited.','Scarcity is why every economic choice has a cost — even for rich people and rich countries.'],
+    ['Opportunity cost','The value of the next-best alternative given up when making a choice.','Only the single next-best option counts, not every option you passed on.'],
+    ['Factors of production','Land, labor, capital and entrepreneurship: the resources used to make goods and services.','"Capital" means tools, machines and buildings — not money.'],
+    ['Entrepreneurship','The ability to combine the other factors, take risks and start businesses.','Entrepreneurs earn profit as their reward for risk.'],
+    ['Production possibilities curve (PPC)','A graph showing the maximum combinations of two goods an economy can produce with its resources.','On the curve = efficient; inside = inefficient; outside = unattainable for now.'],
+    ['Economic growth','An increase in an economy\'s ability to produce, shown as an outward shift of the PPC.','More resources or better technology shift the curve out.'],
+    ['Command economy','An economic system in which the government decides what, how and for whom to produce.','Examples: the former Soviet Union, North Korea.'],
+    ['Market economy','An economic system in which individuals and businesses make decisions through voluntary exchange and prices.','Prices act as signals that coordinate millions of choices.'],
+    ['Mixed economy','An economic system that combines market decisions with some government planning and regulation.','Every modern economy, including the U.S., is mixed.'] ],
+  gallery:[],
+  qs:[
+    { id:'ec1q1', bm:'SS.912.E.1.1', dok:1, s:'A bakery uses an oven to make bread. In economics, the oven is an example of which factor of production?',
+      o:['Capital','Land','Labor','Entrepreneurship'],
+      w:['Definition trap: Land means natural resources such as soil, water and minerals.','Definition trap: Labor is human effort — the bakers, not the oven.','Definition trap: Entrepreneurship is the owner\'s risk-taking and organizing, not a tool.'],
+      r:['The Four Factors of Production','Land = natural resources. Labor = human work. Capital = human-made tools, machines and buildings used to produce other goods. Entrepreneurship = organizing the other three and taking the risk. Money is not capital in this sense; it buys capital.'],
+      p:{ s:'Which of these is an example of LAND as a factor of production?', o:['Timber from a forest','A delivery truck','A cashier\'s work','A business owner\'s new idea'], w:['A truck is capital.','A cashier provides labor.','A new business idea is entrepreneurship.'] } },
+    { id:'ec1q2', bm:'SS.912.E.1.2', dok:2, s:'Maya can work a paid shift for $60 or go to a free concert. She chooses the concert. What is her opportunity cost?',
+      o:['The $60 she could have earned','Nothing, because the concert was free','The price of a concert ticket','The time she spent at the concert'],
+      w:['"Free" trap: Free tickets still cost the value of the next-best alternative.','Wrong-item trap: She did not buy a ticket; the cost is what she gave up.','Restatement trap: Time is used, but the cost is measured by what that time could have earned — the $60.'],
+      r:['Opportunity Cost','Opportunity cost is the value of the single next-best alternative you give up. A "free" activity still has an opportunity cost if you could have used that time or money another way.'],
+      p:{ s:'A city spends $2 million on a new park instead of repaving roads, its next choice. The opportunity cost of the park is —', o:['the repaved roads','the $2 million in taxes','every other project the city considered','nothing, since parks are public'], w:['The money is the price, not the next-best use given up.','Only the single next-best alternative counts.','Public goods still have opportunity costs.'] } },
+    { id:'ec1q3', bm:'SS.912.E.1.2', dok:2, st:'A country\'s production possibilities curve shows tractors on one axis and wheat on the other. Point X lies inside the curve.',
+      s:'What does Point X show?',
+      o:['Resources are unemployed or used inefficiently','The country is producing as much as it possibly can','The country cannot produce that combination','The country has just experienced economic growth'],
+      w:['Location trap: Maximum output is ON the curve.','Location trap: Unattainable combinations lie OUTSIDE the curve.','Shift trap: Growth is shown by the whole curve shifting outward, not by a point inside it.'],
+      r:['Reading a PPC','On the curve = efficient (all resources fully used). Inside = inefficient (unemployment or waste, as in a recession). Outside = unattainable with current resources and technology. Moving along the curve shows the opportunity cost of producing more of one good.'],
+      p:{ s:'Which event would shift a country\'s PPC outward?', o:['A new technology that makes workers more productive','A recession that leaves factories idle','Choosing to make more wheat and fewer tractors','A drought that destroys farmland'], w:['A recession moves production to a point inside the curve.','That is a movement along the curve.','Losing resources shifts the curve inward.'] } },
+    { id:'ec1q4', bm:'SS.912.E.1.2', dok:3, s:'Why is a production possibilities curve usually bowed outward instead of a straight line?',
+      o:['Resources are not equally suited to both goods, so costs rise','Technology keeps improving each time the economy changes what it produces','Consumers always prefer one good to the other','Governments limit how much of each good can be made'],
+      w:['Irrelevant-cause trap: The PPC holds technology constant; improvements shift the whole curve.','Wrong-concept trap: A PPC shows what CAN be produced, not what people want.','Wrong-concept trap: The curve shows physical limits, not laws.'],
+      r:['Increasing Opportunity Cost','As an economy shifts more resources into one good, it must use resources that are less suited to it, so each extra unit costs more of the other good. That rising cost bows the curve outward. A straight-line PPC means constant opportunity cost.'],
+      p:{ s:'A straight-line PPC tells you that —', o:['opportunity cost stays constant','the economy is inefficient','the economy is growing','both goods are free'], w:['Efficiency depends on where you are relative to the curve, not its shape.','Growth is a shift of the curve.','Every point on a PPC has an opportunity cost.'] } },
+    { id:'ec1q5', bm:'SS.912.E.1.3', dok:2, s:'In which type of economy do customs and the way things were done in the past answer the question "What should we produce?"',
+      o:['Traditional economy','Command economy','Market economy','Mixed economy'],
+      w:['Definition trap: In a command economy, the government decides.','Definition trap: In a market economy, prices and voluntary exchange decide.','Definition trap: A mixed economy combines markets and government decisions.'],
+      r:['Four Economic Systems','Traditional: custom and habit decide. Command: central government planners decide. Market: buyers and sellers decide through prices. Mixed: markets plus some government planning and regulation — every real modern economy.'],
+      p:{ s:'Government planners set production quotas for every factory. This describes a —', o:['command economy','market economy','traditional economy','mixed economy with free trade'], w:['In markets, businesses set their own production.','Tradition, not quotas, guides traditional economies.','Quotas for every factory are central command.'] } },
+    { id:'ec1q6', bm:'SS.912.E.1.3', dok:2, s:'In a market economy, how is the question "For whom to produce?" mainly answered?',
+      o:['Goods go to people willing and able to pay','Goods are shared equally among all citizens','Government officials decide who receives each good','Goods go to the families who have always received them'],
+      w:['System-mix trap: Equal sharing describes a command ideal, not markets.','System-mix trap: Officials decide in a command economy.','System-mix trap: Inherited roles describe a traditional economy.'],
+      r:['The Three Basic Questions','What to produce? How to produce? For whom? In a market economy, consumer demand answers "what," businesses competing to lower cost answer "how," and income (ability to pay) answers "for whom."'],
+      p:{ s:'In a market economy, what signals businesses to make more of a product?', o:['Rising prices and profits','A government production order','Long-standing custom','A vote by all citizens'], w:['That is command.','That is traditional.','Markets use prices, not votes.'] } },
+    { id:'ec1q7', bm:'SS.912.E.1.3', dok:3, s:'Why do economists describe the United States as a mixed economy?',
+      o:['Markets make most decisions, but government also regulates','The government owns most factories, farms and large businesses','Prices for most goods are set by a central planning agency','Economic roles are passed down from parents by family tradition'],
+      w:['Fact trap: Most U.S. businesses are privately owned.','Fact trap: Most U.S. prices are set by supply and demand.','System-mix trap: That describes a traditional economy.'],
+      r:['The U.S. Mixed Economy','Private property, profit and competition drive most decisions, but the government regulates (food safety, antitrust), provides public goods (roads, defense), and runs programs such as Social Security. No real country is a pure market or pure command economy.'],
+      p:{ s:'Which is an example of government\'s role in the U.S. mixed economy?', o:['Setting food-safety standards for restaurants','Setting the price of every car','Deciding which job each worker must take','Owning all farmland'], w:['Car prices are set in markets.','Workers choose their jobs.','Most farmland is privately owned.'] } },
+    { id:'ec1q8', bm:'SS.912.E.1.1', dok:2, s:'Which person is acting as an ENTREPRENEUR?',
+      o:['A student who starts a lawn-care business','A worker who mows lawns for a company at an hourly wage','A company that rents out lawnmowers','A homeowner who pays a service for weekly lawn care'],
+      w:['Role trap: Working for a wage is labor.','Role trap: Renting out equipment supplies capital.','Role trap: The homeowner is a consumer.'],
+      r:['Entrepreneurship','Entrepreneurs spot an opportunity, organize land, labor and capital, and take the risk of loss. Their reward is profit. They are the "fourth factor" that makes the other three productive.'],
+      p:{ s:'An entrepreneur\'s reward for taking risks is —', o:['profit','wages','rent','interest'], w:['Wages pay labor.','Rent pays for land.','Interest pays for borrowed capital.'] } }
+  ],
+  sr:{ p:'Explain how scarcity forces choices. Use a production possibilities curve and the idea of opportunity cost in your answer, and give one real example.', k:['scarcity','opportunity cost','PPC','trade-off','efficient','resources','choice'] } },
+
+{ id:'ec2', course:'econ', icon:'📈', title:'Supply, Demand & Market Structures', short:'Markets', era:'Economics · Unit 2',
+  bms:['SS.912.E.1.4','SS.912.E.1.6'],
+  spec:{ focus:'Laws of supply and demand; changes in quantity vs. shifts of a curve; equilibrium, shortages and surpluses; the four market structures.',
+    clar:'Students predict how events shift supply or demand and change equilibrium price and quantity, and compare monopoly, oligopoly, monopolistic competition and pure competition.',
+    stim:'Supply and demand graphs, news-style scenarios and market descriptions.' },
+  timeline:[['1890','Sherman Antitrust Act targets monopolies'],['1911','Standard Oil is broken up by the Supreme Court'],['1914','Clayton Act and the Federal Trade Commission'],['1973','Oil embargo sends gas prices soaring'],['1984','AT&T telephone monopoly is broken up'],['2020','Pandemic shortages of toilet paper and lumber']],
+  brief:{ causes:'Prices come from the interaction of buyers (demand) and sellers (supply). The law of demand says buyers want more at lower prices; the law of supply says sellers offer more at higher prices.',
+    course:'A change in price moves along a curve (a change in quantity). A change in something else — income, tastes, input costs, technology, the number of sellers — shifts the whole curve. Where supply meets demand is equilibrium; a price above it causes a surplus and a price below it causes a shortage.',
+    consequences:'Market structure affects prices and choice. Pure competition has many sellers of identical goods; monopolistic competition has many sellers of differentiated goods; an oligopoly has a few large firms; a monopoly has a single seller and barriers to entry.' },
+  vocab:[
+    ['Law of demand','As price rises, quantity demanded falls (and the reverse), other things equal.','Demand curves slope downward.'],
+    ['Law of supply','As price rises, quantity supplied rises, other things equal.','Supply curves slope upward.'],
+    ['Equilibrium','The price and quantity where quantity supplied equals quantity demanded.','Markets push toward it on their own.'],
+    ['Shortage','When quantity demanded is greater than quantity supplied, usually because price is below equilibrium.','Shortages push prices up.'],
+    ['Surplus','When quantity supplied is greater than quantity demanded, usually because price is above equilibrium.','Surpluses push prices down.'],
+    ['Substitutes','Goods that can be used in place of each other.','If the price of one rises, demand for the other rises.'],
+    ['Complements','Goods used together.','If the price of one rises, demand for the other falls.'],
+    ['Monopoly','A market with a single seller and high barriers to entry.','Example: a local water utility (a natural monopoly).'],
+    ['Oligopoly','A market dominated by a few large firms.','Examples: airlines, cell-phone carriers.'] ],
+  gallery:[],
+  qs:[
+    { id:'ec2q1', bm:'SS.912.E.1.4', dok:2, s:'The price of movie tickets rises, and people buy fewer tickets. What does this show?',
+      o:['A decrease in quantity demanded','A decrease in demand','An increase in supply','A shortage of movie tickets at theaters'],
+      w:['Shift trap: A change in the good\'s OWN price moves along the curve; demand itself shifts only when something else changes.','Wrong-side trap: Buyers changed their behavior, not sellers.','Wrong-concept trap: A shortage happens when price is BELOW equilibrium.'],
+      r:['Quantity Demanded vs. Demand','A change in the good\'s own price causes a movement ALONG the demand curve (change in quantity demanded). A change in income, tastes, prices of related goods, expectations or the number of buyers SHIFTS the whole curve (change in demand).'],
+      p:{ s:'Which event would SHIFT the demand for sneakers to the right?', o:['A famous athlete starts wearing the brand','The price of the sneakers falls','A new factory lowers production costs','The price of the sneakers rises'], w:['A lower own price is a movement along the curve.','Production costs affect supply.','A higher own price is a movement along the curve.'] } },
+    { id:'ec2q2', bm:'SS.912.E.1.4', dok:2, s:'A frost destroys much of Florida\'s orange crop. What happens to the supply of oranges, and to their price?',
+      o:['Supply decreases and the price rises','Supply increases and the price falls','Demand decreases and the price falls','Supply decreases and the price falls'],
+      w:['Reversal trap: Losing crops reduces supply.','Wrong-side trap: The frost affects sellers, not buyers\' desire for oranges.','Graph trap: When supply shifts left, equilibrium price rises.'],
+      r:['Supply Shifts','Supply shifts with input costs, technology, weather, government rules and the number of sellers. A leftward shift (decrease) raises equilibrium price and lowers equilibrium quantity.'],
+      p:{ s:'A new machine lets factories make phones more cheaply. The supply curve for phones will —', o:['shift right, lowering price','shift left, raising price','stay the same while demand rises','shift left, lowering price'], w:['Better technology increases supply.','Technology affects supply, not demand.','A leftward shift raises price.'] } },
+    { id:'ec2q3', bm:'SS.912.E.1.4', dok:2, s:'A concert sells tickets for $20 when the equilibrium price is $50. What will result?',
+      o:['A shortage, because quantity demanded exceeds quantity supplied','A surplus, because quantity supplied is greater than quantity demanded','Equilibrium, because every ticket sells','A decrease in demand for the concert'],
+      w:['Reversal trap: A surplus happens when price is ABOVE equilibrium.','Wrong-concept trap: Selling out at a low price leaves many buyers without tickets — that is a shortage.','Shift trap: Price changes do not shift demand.'],
+      r:['Shortages and Surpluses','Price below equilibrium → quantity demanded > quantity supplied → shortage (lines, resale markets). Price above equilibrium → quantity supplied > quantity demanded → surplus (unsold goods, sales). Price ceilings cause shortages; price floors cause surpluses.'],
+      p:{ s:'A store has racks of unsold winter coats in March. This is a —', o:['surplus, so the store will likely cut prices','shortage, so the store will likely raise prices','sign of equilibrium','sign of increased demand'], w:['Unsold goods signal a surplus.','Unsold goods mean quantity supplied exceeds quantity demanded.','Demand for coats falls in spring.'] } },
+    { id:'ec2q4', bm:'SS.912.E.1.4', dok:3, s:'Hot dogs and hot dog buns are complements. If the price of hot dogs rises sharply, what happens to the demand for buns?',
+      o:['Demand for buns decreases','Demand for buns increases','The supply of buns increases','Nothing, because buns are a different product'],
+      w:['Related-goods trap: That would be true for substitutes.','Wrong-side trap: The change affects buyers of buns, not sellers.','Related-goods trap: Complements are linked.'],
+      r:['Related Goods','Complements are used together: if one gets more expensive, people buy less of it AND less of its partner. Substitutes replace each other: if one gets more expensive, demand for the other rises.'],
+      p:{ s:'If the price of coffee rises, demand for tea (a substitute) will —', o:['increase','decrease','stay the same','shift left'], w:['Substitutes move the opposite way.','Substitutes are related.','A leftward shift is a decrease.'] } },
+    { id:'ec2q5', bm:'SS.912.E.1.6', dok:2, s:'Which market structure has many sellers offering identical products, with no seller able to set the price?',
+      o:['Pure (perfect) competition','Monopoly','Oligopoly','Monopolistic competition among brands'],
+      w:['Structure trap: A monopoly has a single seller.','Structure trap: An oligopoly has a few large sellers.','Structure trap: Monopolistic competition has DIFFERENTIATED products, giving firms some price control.'],
+      r:['The Four Market Structures','Pure competition: many sellers, identical products, no price control (wheat farms). Monopolistic competition: many sellers, differentiated products (restaurants). Oligopoly: a few large firms (airlines). Monopoly: one seller, high barriers to entry (local water utility).'],
+      p:{ s:'Fast-food restaurants that compete through branding and slightly different menus are an example of —', o:['monopolistic competition','pure competition','monopoly','oligopoly'], w:['Their products are not identical.','There are many sellers.','There are many, not a few, restaurants.'] } },
+    { id:'ec2q6', bm:'SS.912.E.1.6', dok:2, s:'The U.S. airline industry is dominated by a few large companies. Which market structure is this?',
+      o:['Oligopoly','Pure competition','Monopolistic competition','Monopoly'],
+      w:['Count trap: Pure competition needs many small sellers.','Count trap: Monopolistic competition has many sellers.','Count trap: A monopoly has only one seller.'],
+      r:['Oligopoly','In an oligopoly a few firms control most sales, so each watches and reacts to the others. Barriers to entry (cost of planes, gates, networks) are high. Firms often compete on non-price features.'],
+      p:{ s:'A key feature of an oligopoly is that firms —', o:['react to one another\'s prices and decisions','have no control over price','sell identical products to thousands of rivals','face no barriers to entry'], w:['Oligopolists have some price power.','There are only a few rivals.','Barriers to entry are high.'] } },
+    { id:'ec2q7', bm:'SS.912.E.1.6', dok:3, s:'Why do governments often regulate a natural monopoly such as a city water system?',
+      o:['One firm serves the area most cheaply but could overcharge','Natural monopolies have too many competitors in the same area','Natural monopolies sell goods that nobody really needs','Regulation encourages more firms to build competing pipe networks'],
+      w:['Reversal trap: A monopoly has no direct competitors.','Fact trap: Water is a necessity, which is why price control matters.','Logic trap: Duplicate pipe networks would waste resources — that is why one firm serves the area.'],
+      r:['Natural Monopolies','When huge fixed costs make it cheapest for ONE firm to serve a market (water, power lines), competition would waste resources. Governments allow the monopoly but regulate its prices and service so customers are protected.'],
+      p:{ s:'Antitrust laws such as the Sherman Act (1890) were passed mainly to —', o:['prevent monopolies and promote competition','set the price of every product','create government-owned businesses','limit imports'], w:['Antitrust laws do not set all prices.','They regulate private firms, not create state ones.','Imports are trade policy.'] } },
+    { id:'ec2q8', bm:'SS.912.E.1.4', dok:3, s:'Demand for electric cars increases at the same time that new battery technology increases their supply. What is certain to happen?',
+      o:['Equilibrium quantity rises','Equilibrium price rises','Equilibrium price falls','Equilibrium quantity falls'],
+      w:['Double-shift trap: Higher demand pushes price up, but higher supply pushes it down; the price change is uncertain.','Double-shift trap: The net price effect depends on which shift is bigger.','Reversal trap: Both shifts increase quantity.'],
+      r:['Two Shifts at Once','When demand and supply BOTH increase, quantity definitely rises, but the effect on price depends on which shift is larger. Shift one curve at a time on a graph, then combine the results.'],
+      p:{ s:'If demand falls and supply rises at the same time, the equilibrium price will —', o:['fall','rise','stay exactly the same','be impossible to have'], w:['Both shifts push price down.','Both shifts push price down, so it cannot be unchanged for certain.','There is still an equilibrium.'] } }
+  ],
+  sr:{ p:'Choose a real product. Explain one event that would shift its demand and one that would shift its supply, and predict what happens to equilibrium price and quantity in each case.', k:['demand','supply','shift','equilibrium','price','quantity','shortage','surplus'] } },
+
+/* ---------------------------- U.S. GOVERNMENT ---------------------------- */
+{ id:'gv1', course:'gov', icon:'📜', title:'Foundations of American Government', short:'Foundations', era:'U.S. Government · Unit 1',
+  bms:['SS.912.CG.1.1','SS.912.CG.1.2','SS.912.CG.1.3'],
+  spec:{ focus:'Enlightenment and English influences (Magna Carta, English Bill of Rights, Locke, Montesquieu); the Declaration of Independence; weaknesses of the Articles of Confederation; the Federalist debate over ratification.',
+    clar:'Students trace ideas from primary documents into the Declaration and the Constitution and explain the Federalist arguments for ratification.',
+    stim:'Short excerpts from the Declaration, Federalist No. 10 and No. 51, Locke and Montesquieu.' },
+  timeline:[['1215','Magna Carta limits the English king'],['1689','English Bill of Rights; Locke\'s Two Treatises'],['1748','Montesquieu publishes The Spirit of the Laws'],['1776','Declaration of Independence'],['1781','Articles of Confederation take effect'],['1787','Constitutional Convention in Philadelphia'],['1787–88','The Federalist Papers are published'],['1791','Bill of Rights is ratified']],
+  brief:{ causes:'English documents such as the Magna Carta (1215) and the English Bill of Rights (1689) established that rulers are limited by law. Enlightenment thinkers argued that people have natural rights and that government rests on the consent of the governed.',
+    course:'Jefferson\'s Declaration of Independence (1776) applied John Locke\'s ideas: life, liberty and the pursuit of happiness, and the right to alter or abolish a government that violates rights. The first national government, the Articles of Confederation, was too weak — it could not tax, regulate trade or enforce laws.',
+    consequences:'The Constitution (1787) created a stronger national government with separation of powers and checks and balances, ideas drawn from Montesquieu. Federalists such as Madison, Hamilton and Jay defended it in the Federalist Papers; Anti-Federalists won the promise of a Bill of Rights (1791).' },
+  vocab:[
+    ['Natural rights','Rights people are born with that government cannot take away, such as life, liberty and property.','A key idea of John Locke, echoed in the Declaration.'],
+    ['Social contract','The idea that people agree to form a government that protects their rights in exchange for some of their freedom.','If government breaks the contract, Locke said, people may change it.'],
+    ['Consent of the governed','The principle that government gets its power from the people.','"Governments are instituted among Men, deriving their just powers from the consent of the governed."'],
+    ['Separation of powers','Dividing government into legislative, executive and judicial branches.','Associated with Montesquieu.'],
+    ['Checks and balances','Each branch can limit the powers of the others.','Example: the president can veto; Congress can override.'],
+    ['Articles of Confederation','The first U.S. national government (1781–1789), with a weak Congress and strong states.','Could not tax, regulate trade or enforce laws.'],
+    ['Federalists','Supporters of ratifying the Constitution and a stronger national government.','Madison, Hamilton and Jay wrote the Federalist Papers.'],
+    ['Anti-Federalists','Opponents of the Constitution who feared a powerful central government.','Their pressure led to the Bill of Rights.'],
+    ['Limited government','The principle that government\'s powers are restricted by law.','Traced to the Magna Carta.'] ],
+  gallery:[],
+  qs:[
+    { id:'gv1q1', bm:'SS.912.CG.1.2', dok:2, st:'"We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness." — Declaration of Independence, 1776',
+      s:'Which Enlightenment idea does this passage most directly express?',
+      o:['Natural rights','Separation of powers','Federalism','Checks and balances'],
+      w:['Wrong-thinker trap: Separation of powers (Montesquieu) is about dividing government, not individual rights.','Wrong-concept trap: Federalism divides power between national and state governments.','Wrong-concept trap: Checks and balances describe how branches limit each other.'],
+      r:['Locke and the Declaration','John Locke argued that people have natural rights to life, liberty and property, that government exists to protect them, and that people may alter or abolish a government that fails. Jefferson adapted "property" to "the pursuit of Happiness."'],
+      ev:['Which phrase is the evidence for natural rights?','"endowed by their Creator with certain unalienable Rights"','"We hold these truths"','"that all men are created equal"'],
+      p:{ s:'The Declaration says governments derive "their just powers from the consent of the governed." This reflects —', o:['popular sovereignty and the social contract','the divine right of kings','separation of powers','judicial review'], w:['The Declaration rejects rule by divine right.','That is about dividing government.','Judicial review came later (Marbury v. Madison, 1803).'] } },
+    { id:'gv1q2', bm:'SS.912.CG.1.1', dok:2, s:'How did the Magna Carta (1215) influence American government?',
+      o:['It established that even the ruler must obey the law','It created the first written constitution for the colonies','It divided government into three branches','It gave all adults the right to vote'],
+      w:['Wrong-document trap: The Magna Carta was English; the first U.S. national framework was the Articles of Confederation.','Wrong-thinker trap: Three branches come from Montesquieu\'s ideas.','Chronology trap: Universal suffrage came centuries later.'],
+      r:['English Roots of Limited Government','The Magna Carta (1215) forced King John to accept limits on his power and guaranteed rights such as due process. The English Bill of Rights (1689) limited the monarch further. Both shaped the American ideas of limited government and rule of law.'],
+      p:{ s:'Which American document right can be traced to the English Bill of Rights (1689)?', o:['Protection against cruel and unusual punishment','The right to a free public education','The right to vote at age 18','Direct election of senators'], w:['Public education is not a constitutional right.','The 26th Amendment came in 1971.','The 17th Amendment came in 1913.'] } },
+    { id:'gv1q3', bm:'SS.912.CG.1.1', dok:2, s:'The framers divided the national government into three branches. Which thinker most influenced this idea?',
+      o:['Montesquieu','John Locke','Thomas Hobbes','Jean-Jacques Rousseau'],
+      w:['Wrong-thinker trap: Locke is known for natural rights and the social contract.','Wrong-thinker trap: Hobbes argued for a strong ruler to prevent chaos.','Wrong-thinker trap: Rousseau is known for the "general will."'],
+      r:['Montesquieu\'s Separation of Powers','In The Spirit of the Laws (1748), Montesquieu argued that liberty is safest when lawmaking, enforcing and judging powers are held by separate bodies. The Constitution\'s Articles I, II and III follow that design.'],
+      p:{ s:'Article I of the Constitution creates which branch?', o:['Legislative (Congress)','Executive (President)','Judicial (Supreme Court)','State governments'], w:['Article II creates the executive.','Article III creates the judiciary.','States are addressed mainly in Article IV.'] } },
+    { id:'gv1q4', bm:'SS.912.CG.1.1', dok:2, s:'Which was a major weakness of the Articles of Confederation?',
+      o:['Congress could not collect taxes','The president had too much power','The national courts overruled the states too often','Congress had to approve every state law'],
+      w:['Fact trap: The Articles had no president at all.','Fact trap: The Articles had no national court system.','Reversal trap: The states, not Congress, held most of the power.'],
+      r:['Why the Articles Failed','Under the Articles (1781–1789), Congress could not tax, regulate trade between states, or enforce its laws; changes required unanimous approval. Shays\' Rebellion (1786–87) convinced many leaders that a stronger national government was needed.'],
+      p:{ s:'Which event convinced many leaders that the Articles of Confederation had to be replaced?', o:['Shays\' Rebellion','The Boston Tea Party','The Louisiana Purchase','The Battle of Gettysburg'], w:['The Tea Party (1773) came before the Articles.','The Louisiana Purchase (1803) came after the Constitution.','Gettysburg was in 1863.'] } },
+    { id:'gv1q5', bm:'SS.912.CG.1.3', dok:3, st:'"Ambition must be made to counteract ambition." — James Madison, Federalist No. 51',
+      s:'What argument is Madison making?',
+      o:['Each branch should be able to check the others','The national government should be weaker than the state governments','Citizens should directly elect Supreme Court justices','Ambitious people should be kept out of every public office'],
+      w:['Reversal trap: Federalists defended a STRONGER national government.','Fact trap: Justices are appointed and confirmed, not elected.','Literal-reading trap: Madison accepts ambition and uses it as a safeguard.'],
+      r:['Federalist No. 51','Madison argued that because people are not angels, government must be designed so its parts restrain each other: separation of powers plus checks and balances. He also defended federalism as a "double security" for rights.'],
+      p:{ s:'In Federalist No. 10, Madison argued that a large republic would —', o:['control the effects of factions because many competing groups would check each other','eliminate political parties entirely','require a king to stay united','make the Bill of Rights unnecessary'], w:['He said factions cannot be eliminated, only controlled.','He defended a republic, not a monarchy.','That was a different debate; No. 10 is about factions.'] } },
+    { id:'gv1q6', bm:'SS.912.CG.1.3', dok:2, s:'Why did many Anti-Federalists oppose ratifying the Constitution?',
+      o:['They feared a strong central government and wanted a bill of rights','They wanted to keep the president created by the Articles of Confederation','They thought the Constitution gave the states too much power','They wanted the national government to have no courts'],
+      w:['Fact trap: The Articles had no president.','Reversal trap: They thought the Constitution gave the NATIONAL government too much power.','Overstatement trap: Their main demand was protection of individual rights.'],
+      r:['The Ratification Debate','Federalists (Madison, Hamilton, Jay) argued a stronger union was needed. Anti-Federalists (such as Patrick Henry and George Mason) feared tyranny and demanded guarantees of individual rights. The compromise: ratify now, add a Bill of Rights — ratified in 1791.'],
+      p:{ s:'The Bill of Rights was added mainly to —', o:['win Anti-Federalist support by protecting individual liberties','give Congress the power to tax','create the Supreme Court','end slavery'], w:['Taxing power is in Article I.','Article III created the Supreme Court.','The 13th Amendment (1865) ended slavery.'] } },
+    { id:'gv1q7', bm:'SS.912.CG.1.2', dok:3, s:'The Declaration of Independence lists grievances against King George III. What was the PURPOSE of that list?',
+      o:['To show the king had violated the colonists\' rights','To set up the three branches of the new national government','To declare war on France and its allies in North America','To end slavery in all thirteen colonies'],
+      w:['Wrong-document trap: The Constitution set up the branches.','Fact trap: France became an ally of the colonies.','Fact trap: An anti-slavery passage was removed from the final draft.'],
+      r:['Structure of the Declaration','Preamble → statement of natural rights and the right of revolution → list of grievances (evidence the social contract was broken) → formal declaration of independence. The grievances apply Locke\'s argument to the colonies\' case.'],
+      p:{ s:'Which grievance from the Declaration became the 3rd Amendment\'s protection?', o:['Quartering large bodies of troops among the people','Taxes on tea','Dissolving colonial assemblies','Cutting off trade with all parts of the world'], w:['Taxes relate to "taxation without consent," not the 3rd Amendment.','That relates to representation.','That relates to trade.'] } },
+    { id:'gv1q8', bm:'SS.912.CG.1.1', dok:2, s:'Which example shows a CHECK by the judicial branch on the other branches?',
+      o:['The Supreme Court rules a law unconstitutional','The Senate confirms the president\'s choice for a cabinet secretary','The president vetoes a bill','Congress overrides a veto'],
+      w:['Branch trap: Confirmation is a legislative check on the executive.','Branch trap: A veto is an executive check on Congress.','Branch trap: An override is a legislative check on the president.'],
+      r:['Checks and Balances','Judicial: judicial review (Marbury v. Madison, 1803). Executive: veto, appointing judges. Legislative: override vetoes, confirm appointments, impeach, control spending.'],
+      p:{ s:'Which is a legislative check on the judicial branch?', o:['The Senate can reject a nominee to the Supreme Court','The president can pardon a person convicted of a federal crime','The Supreme Court can strike down a law','The president can sign treaties'], w:['A pardon is an executive power.','That is the judicial check on Congress.','Treaty-making is executive (with Senate approval).'] } }
+  ],
+  sr:{ p:'Explain how ideas from at least two earlier documents or thinkers shaped the Declaration of Independence or the Constitution. Use specific evidence.', k:['Locke','Montesquieu','Magna Carta','natural rights','consent','separation of powers','Federalist','checks and balances'] } },
+
+{ id:'gv2', course:'gov', icon:'🏛️', title:'Federalism, Powers & Citizenship', short:'Federalism', era:'U.S. Government · Unit 2',
+  bms:['SS.912.CG.3.12','SS.912.CG.2.1','SS.912.CG.3.15'],
+  spec:{ focus:'Expressed, implied, concurrent and reserved powers; the Supremacy and Necessary and Proper Clauses; the 10th Amendment; constitutional provisions on citizenship; how local, state and national governments affect citizens.',
+    clar:'Students classify powers by level of government and explain how a person becomes a U.S. citizen under the Constitution.',
+    stim:'Excerpts of Article I, Section 8, Article VI, the 10th and 14th Amendments, and everyday scenarios.' },
+  timeline:[['1787','Constitution divides power between national and state governments'],['1791','10th Amendment reserves powers to the states'],['1819','McCulloch v. Maryland upholds implied powers'],['1868','14th Amendment defines citizenship'],['1913','16th Amendment allows a federal income tax'],['1952','Immigration and Nationality Act sets naturalization rules']],
+  brief:{ causes:'The framers wanted a national government strong enough to unite the country but not so strong it threatened the states or liberty. Their answer was federalism: power divided between the national and state governments.',
+    course:'Expressed (enumerated) powers are listed for Congress in Article I, Section 8. The Necessary and Proper ("Elastic") Clause allows implied powers. Concurrent powers, such as taxing, are shared. Reserved powers belong to the states under the 10th Amendment. The Supremacy Clause makes the Constitution and federal law the "supreme Law of the Land."',
+    consequences:'The 14th Amendment (1868) defines citizenship by birth or naturalization. Citizens interact with every level of government — local (police, schools, zoning), state (driver\'s licenses, marriage) and national (passports, the military, mail).' },
+  vocab:[
+    ['Federalism','The division of power between a national government and state governments.','Both levels govern the same people.'],
+    ['Expressed (enumerated) powers','Powers specifically listed for Congress in the Constitution.','Coining money, declaring war, regulating interstate commerce.'],
+    ['Implied powers','Powers not listed but suggested by the Necessary and Proper Clause.','Upheld in McCulloch v. Maryland (1819).'],
+    ['Concurrent powers','Powers shared by the national and state governments.','Taxing, borrowing, making and enforcing laws.'],
+    ['Reserved powers','Powers kept by the states under the 10th Amendment.','Schools, marriage laws, driver\'s licenses.'],
+    ['Supremacy Clause','Article VI: the Constitution and federal laws are the supreme law of the land.','Federal law wins when it truly conflicts with state law.'],
+    ['Necessary and Proper Clause','Article I, Section 8 power to make laws needed to carry out the expressed powers.','Also called the Elastic Clause.'],
+    ['Naturalization','The legal process by which an immigrant becomes a citizen.','Requires residency, a civics test and an oath.'],
+    ['Birthright citizenship','Citizenship for people born on U.S. soil, from the 14th Amendment.','"All persons born or naturalized in the United States…"'] ],
+  gallery:[],
+  qs:[
+    { id:'gv2q1', bm:'SS.912.CG.3.12', dok:2, s:'Issuing driver\'s licenses and running public schools are examples of which kind of power?',
+      o:['Reserved powers of the states','Expressed powers of Congress','Implied powers of Congress','Powers denied to all governments'],
+      w:['Level trap: Congress\'s listed powers include coining money and declaring war, not licenses.','Level trap: Implied powers belong to the national government.','Fact trap: States clearly may do both.'],
+      r:['The 10th Amendment','"The powers not delegated to the United States by the Constitution, nor prohibited by it to the States, are reserved to the States respectively, or to the people." States handle education, licensing, marriage, local government and most criminal law.'],
+      p:{ s:'Which is an expressed power of Congress?', o:['Coining money','Setting up public schools','Issuing marriage licenses','Creating city governments'], w:['Schools are reserved to the states.','Marriage licenses are state powers.','Local governments are created by states.'] } },
+    { id:'gv2q2', bm:'SS.912.CG.3.12', dok:2, s:'Both Florida and the national government collect taxes. Taxing is therefore a —',
+      o:['concurrent power','reserved power','expressed power only of Congress','power denied to the states'],
+      w:['Definition trap: Reserved powers belong only to the states.','Definition trap: Taxing is listed for Congress, but states have it too, so it is shared.','Fact trap: States may tax (but may not tax imports or exports).'],
+      r:['Concurrent Powers','Shared powers include taxing, borrowing money, making and enforcing laws, establishing courts and spending for the general welfare. Picture a Venn diagram: national-only on one side, state-only on the other, concurrent in the middle.'],
+      p:{ s:'Which power is shared by both state and national governments?', o:['Establishing courts','Declaring war','Making treaties with other countries','Regulating interstate trade'], w:['Only Congress declares war.','Only the national government makes treaties.','Interstate commerce is a national power.'] } },
+    { id:'gv2q3', bm:'SS.912.CG.3.12', dok:3, s:'Congress created a national bank even though the Constitution does not list that power. Which clause did the Supreme Court use to uphold it in McCulloch v. Maryland (1819)?',
+      o:['The Necessary and Proper Clause','The Free Exercise Clause','The Equal Protection Clause of the 14th Amendment','The Establishment Clause'],
+      w:['Wrong-clause trap: Free Exercise protects religious practice (1st Amendment).','Wrong-clause trap: Equal Protection is from the 14th Amendment (1868), after this case.','Wrong-clause trap: The Establishment Clause bars a national religion.'],
+      r:['Implied Powers & McCulloch v. Maryland','Chief Justice John Marshall ruled that Congress may use reasonable means to carry out its listed powers (taxing, borrowing, regulating commerce), so a bank was "necessary and proper." He also ruled that Maryland could not tax the bank because of the Supremacy Clause.'],
+      p:{ s:'In McCulloch v. Maryland, why couldn\'t Maryland tax the national bank?', o:['Federal law is supreme over conflicting state law','States cannot collect any taxes','The bank was located in another country','The 10th Amendment banned national banks'], w:['States can tax many things.','The bank branch was in Maryland.','The Court ruled the bank was constitutional.'] } },
+    { id:'gv2q4', bm:'SS.912.CG.3.12', dok:2, s:'A state law directly conflicts with a valid federal law. According to Article VI, which law must be followed?',
+      o:['The federal law, because of the Supremacy Clause','The state law, because the 10th Amendment protects state powers','Whichever law was passed first','Whichever law the governor chooses'],
+      w:['Clause trap: The 10th Amendment reserves powers the Constitution does not give the national government; it does not override valid federal law.','Rule trap: Order of passage does not decide conflicts.','Rule trap: Governors do not settle constitutional conflicts; courts do.'],
+      r:['The Supremacy Clause','Article VI: the Constitution, federal laws made under it, and treaties are "the supreme Law of the Land." When a state law truly conflicts with a valid federal law, the federal law controls — but federal law must itself be within the Constitution\'s powers.'],
+      p:{ s:'The Supremacy Clause is found in which part of the Constitution?', o:['Article VI','Article I','The 1st Amendment','The Preamble'], w:['Article I covers Congress.','The 1st Amendment protects expression and religion.','The Preamble states goals, not rules.'] } },
+    { id:'gv2q5', bm:'SS.912.CG.2.1', dok:2, s:'According to the 14th Amendment, which two ways can a person become a U.S. citizen?',
+      o:['By being born in the U.S. or by naturalization','By paying taxes or by owning property','By voting or by serving on a jury','By living in the U.S. for one year or by registering for the draft'],
+      w:['Fact trap: Taxes and property do not grant citizenship.','Reversal trap: Voting and jury duty are privileges of citizens, not ways to become one.','Fact trap: Naturalization usually requires five years of permanent residency (three if married to a citizen).'],
+      r:['Citizenship and the 14th Amendment','"All persons born or naturalized in the United States, and subject to the jurisdiction thereof, are citizens of the United States and of the State wherein they reside." Children born abroad to U.S. citizens may also be citizens by law (blood).'],
+      p:{ s:'Which is a requirement for naturalization?', o:['Passing a test on English and U.S. civics','Being born in the United States','Owning a home','Serving in the military'], w:['Being born here makes you a citizen without naturalizing.','Home ownership is not required.','Military service can speed the process but is not required.'] } },
+    { id:'gv2q6', bm:'SS.912.CG.2.1', dok:3, s:'Why do the "right to vote" and "jury service" appear on lists of citizen RESPONSIBILITIES as well as rights?',
+      o:['Self-government and fair trials depend on citizens taking part','Both are required by law for every adult citizen every single year','Non-citizens are required to do them instead','The Constitution sets a penalty for citizens who do not vote'],
+      w:['Fact trap: Voting is not legally required in the U.S.','Fact trap: Only citizens may vote in federal elections or serve on juries.','Fact trap: There is no constitutional penalty for not voting.'],
+      r:['Rights and Responsibilities','Obligations are required by law (obey laws, pay taxes, serve on a jury when called, register for Selective Service for men 18–25). Responsibilities are voluntary but important (vote, stay informed, volunteer). Self-government only works if citizens participate.'],
+      p:{ s:'Which is a legal OBLIGATION of citizens rather than a voluntary responsibility?', o:['Paying taxes','Volunteering in the community','Staying informed about issues','Joining a political party'], w:['Volunteering is voluntary.','Staying informed is voluntary.','Joining a party is voluntary.'] } },
+    { id:'gv2q7', bm:'SS.912.CG.3.15', dok:2, s:'A family wants to build a fence, renew a passport and register their car. Which levels of government handle these, in order?',
+      o:['Local, national, state','State, local, national','National, state, local','Local, state, national'],
+      w:['Level trap: Passports are national, not state.','Level trap: Fences follow local zoning rules; passports are national.','Level trap: Car registration is a state job; passports are national.'],
+      r:['Who Does What?','Local: zoning, building permits, police, trash, public schools. State: driver\'s licenses, car registration, marriage licenses, state highways. National: passports, the military, the postal service, Social Security, immigration.'],
+      p:{ s:'Which service is provided by the NATIONAL government?', o:['Delivering mail through the Postal Service','Issuing building permits','Picking up trash','Issuing marriage licenses'], w:['Building permits are local.','Trash pickup is local.','Marriage licenses are issued by states (often through county offices).'] } },
+    { id:'gv2q8', bm:'SS.912.CG.3.12', dok:3, s:'Which pair correctly matches a power with the level of government that holds it?',
+      o:['Declaring war — national; conducting elections — state','Printing money — state; making treaties — national','Regulating interstate trade — state; setting school calendars — national','Granting patents — local; running prisons — national only'],
+      w:['Level trap: States may not print money.','Level trap: Interstate trade is national; school calendars are local/state.','Level trap: Patents are national; states run most prisons.'],
+      r:['Sorting Powers','National: war, treaties, money, interstate and foreign trade, patents, immigration. State: elections, schools, licenses, local governments, most criminal law. Shared: taxing, borrowing, courts, law enforcement.'],
+      p:{ s:'Which power is DENIED to the states by the Constitution?', o:['Making treaties with foreign nations','Collecting sales taxes','Setting up local governments','Building roads'], w:['States may collect sales taxes.','States create local governments.','States build roads.'] } }
+  ],
+  sr:{ p:'Explain how federalism divides power. Give one expressed, one implied, one concurrent and one reserved power, and explain how the Supremacy Clause settles conflicts.', k:['federalism','expressed','implied','concurrent','reserved','10th Amendment','Supremacy Clause','Necessary and Proper'] } },
+
+/* ---------------------------- AP MACROECONOMICS ---------------------------- */
+{ id:'mc1', course:'macro', icon:'⚖️', title:'Basic Economic Concepts', short:'AP Macro Unit 1', era:'AP Macroeconomics · Unit 1',
+  bms:['MACRO 1.1','MACRO 1.2','MACRO 1.3','MACRO 1.4–1.6'],
+  spec:{ focus:'Scarcity; opportunity cost and the PPC; comparative advantage and gains from trade; demand, supply and market equilibrium.',
+    clar:'Students calculate opportunity cost from tables and PPCs, identify comparative advantage, and predict changes in equilibrium.',
+    stim:'Output tables, PPC graphs and supply-and-demand graphs.' },
+  timeline:[['1776','Adam Smith describes the division of labor'],['1817','David Ricardo explains comparative advantage'],['1890','Alfred Marshall popularizes supply-and-demand graphs'],['1947','GATT lowers tariffs after World War II'],['1994','NAFTA links U.S., Canadian and Mexican markets'],['1995','The World Trade Organization is created']],
+  brief:{ causes:'Because resources are scarce, every choice involves an opportunity cost. A PPC shows the trade-off between two goods; its bowed shape reflects increasing opportunity cost.',
+    course:'Specialization based on comparative advantage — the lower opportunity cost — lets two parties consume beyond their own PPCs. Terms of trade must fall between the two producers\' opportunity costs for both to gain.',
+    consequences:'Markets coordinate decisions through prices. Equilibrium occurs where quantity demanded equals quantity supplied; shifts in demand or supply change equilibrium price and quantity in predictable ways.' },
+  vocab:[
+    ['Opportunity cost','What you give up to get something; on a PPC, the slope.','Calculate as "give up ÷ get."'],
+    ['Absolute advantage','The ability to produce more of a good with the same resources.','Does not determine who should specialize.'],
+    ['Comparative advantage','The ability to produce a good at a lower opportunity cost.','Specialize where your opportunity cost is lower.'],
+    ['Terms of trade','The rate at which one good is exchanged for another.','Must lie between the two producers\' opportunity costs.'],
+    ['Output method','Data given as how much each producer can make with fixed inputs.','"Output — Other goes Over."'],
+    ['Input method','Data given as how long or how many resources it takes to make one unit.','"Input — Other goes Under" — reversed setup.'],
+    ['Demand shifter','A non-price factor that shifts demand: tastes, income, related goods, expectations, number of buyers.','Remember T-I-R-E-N.'],
+    ['Supply shifter','A non-price factor that shifts supply: input costs, technology, taxes/subsidies, expectations, number of sellers.','Price changes move along the curve instead.'] ],
+  gallery:[],
+  qs:[
+    { id:'mc1q1', bm:'MACRO 1.2', dok:2, st:'In one day, Country A can produce either 20 cars or 40 computers.',
+      s:'What is Country A\'s opportunity cost of producing ONE car?',
+      o:['2 computers','1/2 computer','20 computers','40 computers'],
+      w:['Inversion trap: 1/2 car is the cost of one computer, not the reverse.','Total trap: 20 is the maximum number of cars, not a per-unit cost.','Total trap: 40 is the maximum number of computers.'],
+      r:['Calculating Opportunity Cost','With output data, the cost of one unit of X = (max of Y) ÷ (max of X). Here 40 computers ÷ 20 cars = 2 computers per car. Memory hook for output problems: "Other goes Over."'],
+      p:{ s:'Country B can produce either 30 cars or 30 computers. Its opportunity cost of one computer is —', o:['1 car','30 cars','2 cars','1/2 car'], w:['30 is a total, not a per-unit cost.','30 ÷ 30 = 1, not 2.','30 ÷ 30 = 1, not 1/2.'] } },
+    { id:'mc1q2', bm:'MACRO 1.3', dok:3, st:'Country A: 20 cars OR 40 computers per day. Country B: 30 cars OR 30 computers per day.',
+      s:'Based on comparative advantage, how should the two countries specialize?',
+      o:['A should make computers and B should make cars','A should make cars and B should make computers','B should make both because it can make more cars','Neither should trade because A makes more computers'],
+      w:['Reversal trap: A\'s cost of a car is 2 computers vs. B\'s 1 computer, so B has the comparative advantage in cars.','Absolute-advantage trap: Producing more of one good does not mean producing everything.','Absolute-advantage trap: Trade depends on comparative, not absolute, advantage.'],
+      r:['Comparative Advantage','Find each producer\'s opportunity cost for each good. A: 1 car = 2 computers; 1 computer = 1/2 car. B: 1 car = 1 computer; 1 computer = 1 car. B gives up less to make cars; A gives up less to make computers. Each specializes in its lower-cost good and trades.'],
+      p:{ s:'Which terms of trade would benefit BOTH countries in the example?', o:['1 car for 1.5 computers','1 car for 3 computers','1 car for 0.5 computer','1 car for 2.5 computers'], w:['3 computers is more than A\'s cost of 2 — A would lose.','0.5 is below B\'s cost of 1 — B would lose.','2.5 is above A\'s cost of 2 — A would lose.'] } },
+    { id:'mc1q3', bm:'MACRO 1.2', dok:2, s:'An economy is operating at a point on its PPC. Which change would allow it to produce more of BOTH goods?',
+      o:['An increase in the size of the labor force','Moving to a different point on the same curve','A rise in unemployment','A decision to produce more consumer goods'],
+      w:['Movement trap: Moving along the curve trades one good for the other.','Reversal trap: Unemployment moves production INSIDE the curve.','Movement trap: Choosing a different mix is a movement along the curve.'],
+      r:['PPC Shifts','More or better resources (labor, capital, land) or improved technology shift the PPC outward. Investing in capital goods today speeds future growth. Natural disasters or loss of resources shift it inward.'],
+      p:{ s:'Producing more capital goods today is most likely to —', o:['shift the PPC outward in the future','shift the PPC inward immediately','move the economy inside its PPC','have no effect on future production'], w:['Capital investment raises future capacity.','Choosing capital goods is a point on the curve.','Investment matters for growth.'] } },
+    { id:'mc1q4', bm:'MACRO 1.4–1.6', dok:2, s:'Consumers expect the price of gasoline to rise sharply next week. What happens to the demand for gasoline TODAY?',
+      o:['Demand increases','Demand decreases','Quantity demanded decreases along the curve','Supply increases'],
+      w:['Reversal trap: Expecting higher future prices makes people buy more now.','Shift trap: Expectations are a non-price shifter, so the curve itself moves.','Wrong-side trap: Consumer expectations affect demand.'],
+      r:['Demand Shifters (T-I-R-E-N)','Tastes, Income (normal vs. inferior goods), Related goods (substitutes/complements), Expectations, Number of buyers. Expecting higher future prices shifts demand right today.'],
+      p:{ s:'If income rises and demand for an INFERIOR good falls, the demand curve for that good shifts —', o:['left','right','along the curve','upward along supply'], w:['Inferior-good demand falls when income rises.','A shift moves the whole curve.','Supply is not involved.'] } },
+    { id:'mc1q5', bm:'MACRO 1.4–1.6', dok:3, s:'The government gives producers of solar panels a per-unit subsidy. What happens to the equilibrium price and quantity of solar panels?',
+      o:['Price falls and quantity rises','Price rises and quantity rises','Price rises and quantity falls','Price falls and quantity falls'],
+      w:['Graph trap: A rightward supply shift lowers price.','Shift trap: That would happen if supply DECREASED.','Graph trap: A supply increase raises quantity.'],
+      r:['Subsidies and Taxes','A subsidy lowers producers\' costs and shifts supply right → lower price, higher quantity. A per-unit tax shifts supply left → higher price, lower quantity.'],
+      p:{ s:'A new excise tax on producers of soda will most likely —', o:['raise the price and lower the quantity of soda','lower the price and raise the quantity','raise both price and quantity','have no effect on the market'], w:['A tax shifts supply left.','Quantity falls when supply decreases.','Taxes change producer costs.'] } },
+    { id:'mc1q6', bm:'MACRO 1.1', dok:1, s:'Which statement BEST describes scarcity?',
+      o:['Limited resources cannot satisfy all of society\'s wants','Only poor countries face trade-offs','A good becomes scarce only when its price rises above equilibrium','Scarcity disappears when an economy is producing efficiently'],
+      w:['Overstatement trap: Every economy faces scarcity.','Wrong-concept trap: Scarcity exists at every price; a shortage is a price problem.','Reversal trap: Efficient economies still face scarcity — that is why the PPC has a limit.'],
+      r:['Scarcity vs. Shortage','Scarcity is permanent: resources are limited for everyone. A shortage is temporary: quantity demanded exceeds quantity supplied at the current price, and it ends when price adjusts.'],
+      p:{ s:'Which is a SHORTAGE rather than scarcity?', o:['A concert sells out at a price below equilibrium','Oil is a limited natural resource','A country cannot make unlimited goods','Time is limited for every student'], w:['That is scarcity of a resource.','That is scarcity.','That is scarcity.'] } },
+    { id:'mc1q7', bm:'MACRO 1.4–1.6', dok:3, s:'A price ceiling is set BELOW the equilibrium price of apartments. What is the result?',
+      o:['A shortage of apartments','A surplus of apartments','No change, since the ceiling is below equilibrium','A rightward shift in the supply of apartments'],
+      w:['Reversal trap: Price floors above equilibrium create surpluses.','Binding trap: A ceiling below equilibrium IS binding.','Shift trap: Price controls change quantities, not the curves.'],
+      r:['Price Controls','Binding price ceiling (below equilibrium): quantity demanded > quantity supplied → shortage (rent control). Binding price floor (above equilibrium): quantity supplied > quantity demanded → surplus (minimum wage → possible labor surplus).'],
+      p:{ s:'A minimum wage set above the equilibrium wage would likely create —', o:['a surplus of labor (unemployment)','a shortage of labor','no effect on employment','a leftward shift in labor supply'], w:['A floor above equilibrium creates a surplus.','Shortages come from ceilings.','A binding floor changes quantities.'] } },
+    { id:'mc1q8', bm:'MACRO 1.3', dok:2, s:'Specialization and trade based on comparative advantage allow countries to —',
+      o:['consume combinations of goods outside their own PPCs','produce combinations of goods outside their own PPCs','eliminate opportunity costs','avoid using any resources'],
+      w:['Subtle trap: Production stays ON each PPC; consumption moves beyond it.','Overstatement trap: Trade lowers costs but cannot remove them.','Logic trap: Production always uses resources.'],
+      r:['Gains from Trade','Each country produces on its own PPC, but by specializing and trading at mutually beneficial terms, both can CONSUME a bundle that would be unattainable alone. That is the core argument for free trade.'],
+      p:{ s:'Trade between two countries benefits both when —', o:['each specializes in the good with its lower opportunity cost','one country has an absolute advantage in both goods','both produce identical amounts of every good','the terms of trade favor only one country'], w:['Absolute advantage does not determine gains.','Identical production removes the reason to trade.','Terms must benefit both.'] } }
+  ],
+  sr:{ p:'Using a numerical example, explain how two countries determine comparative advantage, how they should specialize, and what terms of trade would benefit both.', k:['comparative advantage','opportunity cost','specialize','terms of trade','absolute advantage','PPC'] } },
+
+{ id:'mc2', course:'macro', icon:'📊', title:'Economic Indicators & the Business Cycle', short:'AP Macro Unit 2', era:'AP Macroeconomics · Unit 2',
+  bms:['MACRO 2.1–2.2','MACRO 2.3','MACRO 2.4–2.5','MACRO 2.6','MACRO 2.7'],
+  spec:{ focus:'The circular flow and GDP; what GDP leaves out; unemployment types and the unemployment rate; price indices and inflation; real vs. nominal GDP; the business cycle.',
+    clar:'Students calculate GDP, the unemployment rate, inflation from a CPI and real GDP from a deflator, and classify unemployment.',
+    stim:'Data tables, labor-force figures, price-index tables and business-cycle graphs.' },
+  timeline:[['1929','The stock market crash begins the Great Depression'],['1933','U.S. unemployment reaches about 25%'],['1937','Simon Kuznets\' national income accounts lead to GDP'],['1979','Inflation passes 13% amid oil shocks'],['2008','The financial crisis triggers the Great Recession'],['2020','Pandemic recession: the sharpest drop in GDP since the 1940s'],['2022','U.S. CPI inflation peaks near 9%']],
+  brief:{ causes:'Economists track the whole economy with a few key indicators: gross domestic product (GDP), the unemployment rate and inflation.',
+    course:'GDP is the market value of all final goods and services produced within a country in a year: C + I + G + (X − M). It leaves out intermediate goods, used goods, financial transactions, transfer payments, and non-market and underground activity. Real GDP adjusts nominal GDP for price changes.',
+    consequences:'The unemployment rate = unemployed ÷ labor force × 100. Frictional and structural unemployment always exist; cyclical unemployment comes from recessions. Inflation (measured by the CPI or GDP deflator) hurts lenders and people on fixed incomes and helps borrowers when it is unexpected. The business cycle moves through expansion, peak, contraction (recession) and trough.' },
+  vocab:[
+    ['GDP','The market value of all final goods and services produced within a country in a given year.','Counts output inside the borders, by anyone.'],
+    ['Expenditure approach','GDP = C + I + G + (X − M).','Consumption is the largest share in the U.S.'],
+    ['Real GDP','GDP adjusted for changes in the price level.','Real GDP = nominal GDP ÷ deflator × 100.'],
+    ['Unemployment rate','Unemployed ÷ labor force × 100.','Discouraged workers are not in the labor force.'],
+    ['Frictional unemployment','Temporary unemployment while people search for or switch jobs.','Part of the natural rate.'],
+    ['Structural unemployment','Unemployment caused by a mismatch between workers\' skills and available jobs.','Often from new technology.'],
+    ['Cyclical unemployment','Unemployment caused by a recession.','Zero at full employment.'],
+    ['Consumer Price Index (CPI)','A measure of the price of a fixed market basket of consumer goods.','Inflation = (new CPI − old CPI) ÷ old CPI × 100.'],
+    ['Business cycle','The rise and fall of real GDP over time: expansion, peak, contraction, trough.','A recession is a sustained contraction.'] ],
+  gallery:[],
+  qs:[
+    { id:'mc2q1', bm:'MACRO 2.1–2.2', dok:2, s:'Which transaction is counted in this year\'s U.S. GDP?',
+      o:['A family buys a new refrigerator made in Ohio this year','A student buys a used car from a neighbor down the street','A retiree receives a monthly Social Security check','An investor buys shares of stock'],
+      w:['Exclusion trap: Used goods were counted when first produced.','Exclusion trap: Transfer payments are not payment for new production.','Exclusion trap: Financial transactions transfer ownership; they are not production.'],
+      r:['What GDP Counts','Counts: new final goods and services produced inside the country this year. Excludes: intermediate goods (to avoid double counting), used goods, transfer payments, stocks and bonds, non-market work (cooking at home) and the underground economy.'],
+      p:{ s:'Why is the steel sold to a car maker NOT counted separately in GDP?', o:['It is an intermediate good already included in the car\'s price','Steel is a natural resource','Steel is made by the government','Steel is always imported'], w:['Steel is a manufactured good.','Who makes it does not matter.','Imports are a separate issue.'] } },
+    { id:'mc2q2', bm:'MACRO 2.1–2.2', dok:2, st:'Consumption = $800 billion · Investment = $200 billion · Government purchases = $300 billion · Exports = $100 billion · Imports = $150 billion',
+      s:'What is GDP?',
+      o:['$1,250 billion','$1,550 billion','$1,400 billion','$1,300 billion'],
+      w:['Sign trap: You added imports instead of subtracting them (800+200+300+100+150).','Half-formula trap: You added exports but forgot to subtract imports.','Missing-term trap: You left out net exports entirely; net exports are 100 − 150 = −50.'],
+      r:['GDP = C + I + G + (X − M)','800 + 200 + 300 + (100 − 150) = 1,300 − 50 = $1,250 billion. Imports are subtracted because they were produced in other countries.'],
+      p:{ s:'If exports exceed imports, net exports are —', o:['positive, adding to GDP','negative, reducing GDP','zero by definition','not part of GDP'], w:['Exports greater than imports make net exports positive.','Net exports can be positive or negative.','Net exports are part of the formula.'] } },
+    { id:'mc2q3', bm:'MACRO 2.3', dok:2, st:'Employed: 180 million · Unemployed: 20 million · Not in the labor force: 100 million',
+      s:'What is the unemployment rate?',
+      o:['10%','11.1%','6.7%','20%'],
+      w:['Denominator trap: You divided by employed (20 ÷ 180) instead of the labor force.','Denominator trap: You divided by the whole population (20 ÷ 300).','Unit trap: 20 million is the number unemployed, not the rate.'],
+      r:['The Unemployment Rate','Labor force = employed + unemployed = 200 million. Rate = 20 ÷ 200 × 100 = 10%. People not looking for work (students, retirees, discouraged workers) are NOT in the labor force.'],
+      p:{ s:'A discouraged worker stops looking for a job. The measured unemployment rate will —', o:['fall, because they leave the labor force','rise, because they are still jobless','stay the same','double'], w:['They are no longer counted as unemployed.','They drop out of both the top and bottom of the ratio.','The rate does change.'] } },
+    { id:'mc2q4', bm:'MACRO 2.3', dok:2, s:'A factory worker loses her job when a robot replaces her, and her skills no longer match open jobs. What type of unemployment is this?',
+      o:['Structural','Frictional','Cyclical','Seasonal'],
+      w:['Type trap: Frictional is short-term job searching with matching skills.','Type trap: Cyclical is caused by a recession.','Type trap: Seasonal follows predictable times of year.'],
+      r:['Types of Unemployment','Frictional: between jobs or new to the job market. Structural: skills mismatch, often from technology or changes in industry. Cyclical: caused by recessions. Natural rate = frictional + structural; full employment means cyclical unemployment is zero.'],
+      p:{ s:'A college graduate is searching for her first job. She is —', o:['frictionally unemployed','structurally unemployed','cyclically unemployed','not in the labor force'], w:['Her skills are not mismatched.','No recession is involved.','She is actively looking, so she is in the labor force.'] } },
+    { id:'mc2q5', bm:'MACRO 2.4–2.5', dok:2, s:'The CPI rises from 200 to 210 in one year. What is the inflation rate?',
+      o:['5%','10%','4.8%','210%'],
+      w:['Arithmetic trap: 10 is the point change, not the percent change.','Denominator trap: Divide by the OLD CPI (200), not the new one (210).','Unit trap: 210 is the index level, not the rate.'],
+      r:['Inflation from a Price Index','Inflation rate = (new − old) ÷ old × 100 = (210 − 200) ÷ 200 × 100 = 5%.'],
+      p:{ s:'If the CPI falls from 150 to 147, the economy has —', o:['deflation of 2%','inflation of 2%','deflation of 3%','inflation of 3%'], w:['Prices fell, so it is deflation.','(150 − 147) ÷ 150 = 2%, not 3%.','Prices fell.'] } },
+    { id:'mc2q6', bm:'MACRO 2.4–2.5', dok:3, s:'Unexpected inflation will MOST likely help which group?',
+      o:['Borrowers with fixed-rate loans','Lenders with fixed-rate loans','Retirees living on fixed pensions','Savers holding cash'],
+      w:['Reversal trap: Lenders are repaid in dollars worth less.','Reversal trap: Fixed incomes buy less as prices rise.','Reversal trap: Cash loses purchasing power.'],
+      r:['Who Wins and Loses from Inflation','Unexpected inflation redistributes purchasing power: borrowers with fixed rates gain; lenders, savers and people on fixed incomes lose. Real interest rate = nominal rate − inflation.'],
+      p:{ s:'A bank charges 6% nominal interest, and inflation is 4%. The real interest rate is —', o:['2%','10%','6%','1.5%'], w:['Subtract inflation; do not add it.','6% is the nominal rate.','Real rate = 6 − 4 = 2.'] } },
+    { id:'mc2q7', bm:'MACRO 2.6', dok:3, s:'Nominal GDP is $12 trillion and the GDP deflator is 120. What is real GDP?',
+      o:['$10 trillion','$14.4 trillion','$12 trillion','$1.2 trillion'],
+      w:['Operation trap: You multiplied instead of dividing by the deflator.','Concept trap: Real GDP equals nominal only when the deflator is 100.','Decimal trap: Divide by 1.20, not by 10.'],
+      r:['Real vs. Nominal GDP','Real GDP = nominal GDP ÷ (deflator ÷ 100) = 12 ÷ 1.2 = $10 trillion. A deflator above 100 means prices are higher than in the base year, so real GDP is lower than nominal.'],
+      p:{ s:'Nominal GDP rose 6% while the price level rose 2%. Real GDP grew by about —', o:['4%','8%','3%','6%'], w:['Subtract inflation; do not add it.','6 − 2 = 4.','6% is nominal growth.'] } },
+    { id:'mc2q8', bm:'MACRO 2.7', dok:2, s:'During which phase of the business cycle is unemployment usually HIGHEST?',
+      o:['Trough','Peak','Expansion','Recovery from a recession'],
+      w:['Phase trap: At the peak, output is highest and unemployment is low.','Phase trap: During expansion, unemployment falls.','Phase trap: Recovery is when unemployment begins to fall.'],
+      r:['The Business Cycle','Expansion (real GDP rises, unemployment falls) → Peak (highest output; inflation risk) → Contraction (real GDP falls; a recession if sustained) → Trough (lowest output; highest cyclical unemployment) → expansion again.'],
+      p:{ s:'Which phase is most associated with rising inflation pressure?', o:['Peak','Trough','Contraction','The bottom of a recession'], w:['The trough has weak spending.','Contraction lowers spending.','Recessions reduce price pressure.'] } }
+  ],
+  sr:{ p:'Explain how GDP, the unemployment rate and inflation each describe the health of the economy, and what usually happens to all three during a recession.', k:['GDP','real GDP','unemployment','cyclical','inflation','CPI','recession','business cycle'] } }
+];
+
+Object.assign(BENCHMARK_TEXT, {
+  'SS.912.E.1.1':'Identify the factors of production and why they are necessary for the production of goods and services.',
+  'SS.912.E.1.2':'Analyze production possibilities curves to explain choice, scarcity, and opportunity costs.',
+  'SS.912.E.1.3':'Compare how the various economic systems (traditional, market, command, mixed) answer the questions: (1) What to produce? (2) How to produce? and (3) For whom to produce?',
+  'SS.912.E.1.4':'Define supply, demand, quantity supplied, and quantity demanded; graphically illustrate situations that would cause changes in each, and demonstrate how the equilibrium price of a product is determined by the interaction of supply and demand in the market place.',
+  'SS.912.E.1.6':'Compare the basic characteristics of the four market structures (monopoly, oligopoly, monopolistic competition, pure competition).',
+  'SS.912.CG.1.1':'Examine how intellectual influences in primary documents contributed to the ideas in the Declaration of Independence, the U.S. Constitution, and the Bill of Rights.',
+  'SS.912.CG.1.2':'Explain the influence of Enlightenment ideas on the Declaration of Independence.',
+  'SS.912.CG.1.3':'Explain arguments presented in the Federalist Papers in support of ratifying the U.S. Constitution.',
+  'SS.912.CG.2.1':'Explain the constitutional provisions that establish and affect citizenship.',
+  'SS.912.CG.3.12':'Explain the constitutional powers of the national and state governments: expressed, implied, concurrent, and reserved powers.',
+  'SS.912.CG.3.15':'Explain how citizens are affected by the local, state and national governments.',
+  'MACRO 1.1':'AP Macroeconomics 1.1 — Scarcity: resources are limited, so individuals and societies must make choices.',
+  'MACRO 1.2':'AP Macroeconomics 1.2 — Opportunity cost and the production possibilities curve.',
+  'MACRO 1.3':'AP Macroeconomics 1.3 — Comparative advantage, specialization, and gains from trade.',
+  'MACRO 1.4–1.6':'AP Macroeconomics 1.4–1.6 — Demand, supply, and market equilibrium (including changes in equilibrium and price controls).',
+  'MACRO 2.1–2.2':'AP Macroeconomics 2.1–2.2 — The circular flow and GDP; what GDP does and does not measure.',
+  'MACRO 2.3':'AP Macroeconomics 2.3 — Unemployment: measuring the rate and identifying its types.',
+  'MACRO 2.4–2.5':'AP Macroeconomics 2.4–2.5 — Price indices, inflation, and the costs of inflation.',
+  'MACRO 2.6':'AP Macroeconomics 2.6 — Real vs. nominal GDP.',
+  'MACRO 2.7':'AP Macroeconomics 2.7 — Business cycles.'
+});
+
+/* Every built-in unit, all courses. Classrooms pick from this list. */
+const BUILTIN_UNITS = FLORIDA_US_HISTORY_DB.concat(COURSE_DB);
+const COURSE_GROUPS = [
+  ['ush','🇺🇸 U.S. History', ['2100310','2100320','2100340']],
+  ['econ','💵 Economics', ['2102310','2102320','2102335','2102345']],
+  ['gov','🏛️ U.S. Government', ['2106310','2106320','2106420']],
+  ['macro','📊 AP Macroeconomics', ['2102370']] ];
+const courseGroupOf = code => (COURSE_GROUPS.find(g=>g[2].includes(code))||[])[0] || '';
+const isUSHUnit = u => !!u && (u.course==='ush' || (!u.course && (()=>{ const c=activeClass(); const g=c?courseGroupOf(c.course):''; return !g || g==='ush'; })()));
+
+/* =====================================================================
    GEMINI PROMPTS v2 — era-matched art styles + benchmark-specific scenes.
    Each prompt makes an ORIGINAL teaching illustration (never a copy of a
    historical cartoon/poster/photo, never a real person's likeness).
@@ -2545,9 +3030,10 @@ const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
 let EDIT_V=0, UCACHE=null;
 const allUnits = () => { const c=activeClass(); const key=(c?c.id+c.units.join():'-')+'|'+EDIT_V+'|'+(S.custom||[]).length;
   if(UCACHE && UCACHE.key===key) return UCACHE.list;
-  const base = c&&Array.isArray(c.units) ? FLORIDA_US_HISTORY_DB.filter(u=>c.units.includes(u.id)) : FLORIDA_US_HISTORY_DB;
+  const base = c&&Array.isArray(c.units) ? builtinUnits().filter(u=>c.units.includes(u.id)) : FLORIDA_US_HISTORY_DB;
   const list = base.concat(S.custom || []).map(u=>applyEdits(u,c)); UCACHE={key,list}; return list; };
 const getUnit = id => allUnits().find(u => u.id === id) || allUnits()[0] || FLORIDA_US_HISTORY_DB[0];
+const builtinUnits = () => typeof BUILTIN_UNITS!=='undefined' ? BUILTIN_UNITS : FLORIDA_US_HISTORY_DB;
 const curUnit = () => getUnit(S.unit);
 const words = s => (s.trim().match(/\S+/g) || []).length;
 function asset(slot, cls=''){
@@ -2719,8 +3205,9 @@ function generic(q,i){ return (q.w && q.w[i-1]) || 'Re-read the stem and compare
 function mcStep(host, item, ctx={}){
   return new Promise(resolve=>{
     const order = S.settings.shuffle ? shuffle(item.o.map((_,i)=>i)) : item.o.map((_,i)=>i);
-    const timed = typeof S.settings.timer==='number' && ctx.timed!==false;
-    let left = timed ? S.settings.timer : 0, iv=null, doneFlag=false;
+    const T0 = typeof S.settings.timer==='number' ? (typeof timerFor==='function'?timerFor(S.settings.timer):S.settings.timer) : 0;
+    const timed = T0>0 && ctx.timed!==false;
+    let left = timed ? T0 : 0, iv=null, doneFlag=false;
     const inv = ctx.inv;
     host.innerHTML=`
       <div class="qtop"><div class="row">${ctx.tags||''}</div><div class="row">${ctx.right||''}</div></div>
@@ -2732,12 +3219,15 @@ function mcStep(host, item, ctx={}){
       <div class="row" style="margin-top:.7rem">
         ${ctx.allowSkip?`<button class="btn ghost" id="bmk">${t('bookmark')}</button>`:''}
         ${ctx.unit?`<button class="btn ghost" id="cns">${t('consult')}</button>`:''}
+        ${typeof readBtnHTML==='function'?readBtnHTML():''}
       </div><div id="hint"></div>`;
-    const finish = v => { if(doneFlag) return; doneFlag=true; clearInterval(iv); resolve(v); };
+    const finish = v => { if(doneFlag) return; doneFlag=true; clearInterval(iv); if(typeof stopSpeak==='function') stopSpeak(); resolve(v); };
+    const rb=$('[data-read]',host); if(rb) rb.onclick=()=>speak(questionSpeech(item, order));
+    if(rb && ctx.timed!==false && typeof readingPrefs==='function' && readingPrefs().auto) setTimeout(()=>{ if(!doneFlag && document.body.contains(host)) speak(questionSpeech(item, order)); }, 250);
     $$('.opt',host).forEach(b=>b.onclick=()=>{ if(b.classList.contains('gone')) return; SFX.click(); finish(+b.dataset.i); });
     if(ctx.allowSkip) $('#bmk',host).onclick=()=>finish('skip');
     if(ctx.unit) $('#cns',host).onclick=()=>consultModal(ctx.unit, item);
-    if(timed){ const bar=$('.timer i',host); iv=setInterval(()=>{ left--; bar.style.width=(100*left/S.settings.timer)+'%'; if(left<=5&&left>0) SFX.tick(); if(left<=0) finish('timeout'); },1000); }
+    if(timed){ const bar=$('.timer i',host); iv=setInterval(()=>{ left--; bar.style.width=(100*left/T0)+'%'; if(left<=5&&left>0) SFX.tick(); if(left<=0) finish('timeout'); },1000); }
     if(inv) drawPU();
     function drawPU(){
       const pb=$('#pubar',host); if(!pb) return;
@@ -2818,6 +3308,7 @@ async function runItem(host, q, ctx={}){
   }
   if(!evMiss){
     markOpts(host, chosen); SFX.wrong(); $('.qwrap')?.classList.add('shake');
+    if(typeof recordMiss==='function' && SESSION.type==='student') recordMiss(q, chosen);
     const shield = ctx.inv&&ctx.inv.armed&&ctx.inv.armed.shield;
     onMiss(shield); if(shield) toast('🛡️ Historian\'s Shield saved your streak!');
     await diagnostic(host, q, chosen, {bm:q.bm, unit, q, deep:ctx.deep});
@@ -2864,12 +3355,13 @@ function unitPicker(){
 function unitBar(u, greet){
   return `<div class="unitbar"><div>${greet?`<span class="small">${esc(greet)}</span>`:''}<h1 style="margin:.1rem 0">${u.icon||''} ${esc(u.title)}</h1>
     <span class="small">${esc(u.era||'')} · ${t('mastery')} <b>${unitPct(u)}%</b></span></div>
-    <button class="btn" id="chgUnit" aria-expanded="false">${S.lang==='es'?'Cambiar unidad':'Change unit'} ▾</button></div>
+    ${typeof lockedUnit==='function'&&lockedUnit()?`<span class="chip" title="${S.lang==='es'?'Tu maestro eligió esta unidad para la clase':'Your teacher chose this unit for class'}">🔒 ${S.lang==='es'?'Unidad de la clase':'Class unit'}</span>`:`<button class="btn" id="chgUnit" aria-expanded="false">${S.lang==='es'?'Cambiar unidad':'Change unit'} ▾</button>`}</div>
   <div id="unitPick" hidden style="margin-bottom:1rem">${unitPicker()}</div>`;
 }
 function bindUnitBar(root, after){ const b=$('#chgUnit',root); if(b) b.onclick=()=>{ const p=$('#unitPick',root); p.hidden=!p.hidden; b.setAttribute('aria-expanded',String(!p.hidden)); }; bindUnitPicker(root, after); }
 function bindUnitPicker(root, after){ $$('[data-unit]',root).forEach(b=>b.onclick=()=>{ SFX.click(); S.unit=b.dataset.unit; save(); renderHUD(); after(); }); }
 
+const arcadeHidden = () => S.role==='student' && typeof SESSION!=='undefined' && SESSION.type==='student' && !!(S.settings&&S.settings.hideArcade);
 function renderStudentHub(m){
   const u=curUnit(), es=S.lang==='es';
   const first=((S.join&&S.join.name)||'').split(' ')[0];
@@ -2878,6 +3370,7 @@ function renderStudentHub(m){
   m.innerHTML=`
     ${typeof lockerHTML==='function'?lockerHTML():''}
     ${unitBar(u, first?(es?`Hola, ${first} 👋`:`Hi, ${first} 👋`):'')}
+    ${typeof studentPanelsHTML==='function'?studentPanelsHTML(u):''}
     <button class="studyhero" data-go="study">
       <div class="sh-txt"><span class="eyebrow">${es?'Empieza aquí':'Start here'}</span>
         <h2>${es?'Laboratorio de estudio':'Study Lab'}</h2>
@@ -2886,9 +3379,9 @@ function renderStudentHub(m){
         ${typeof studyHubBadge==='function'?`<div style="margin-top:.7rem">${studyHubBadge(u)}</div>`:''}</div>
       <div class="sh-art">${artImg('banner_study')}</div>
     </button>
-    <button class="lvfeat" data-go="vault"><span class="lvfeat-ico">🗝️</span><div><span class="eyebrow" style="color:#FCD34D">${es?'Misión del examen EOC':'EOC mission game'}</span><h3>The Liberty Vault: Artifact Hunters</h3>
+    ${typeof isUSHUnit==='function'&&!isUSHUnit(u)?'':`<button class="lvfeat" data-go="vault"><span class="lvfeat-ico">🗝️</span><div><span class="eyebrow" style="color:#FCD34D">${es?'Misión del examen EOC':'EOC mission game'}</span><h3>The Liberty Vault: Artifact Hunters</h3>
       <span class="small">${es?'Recupera 12 artefactos robados de la historia de EE. UU. Descifra fuentes primarias, abre las bóvedas y gana tu certificado.':'Recover 12 stolen artifacts from U.S. history. Crack primary sources, open the vaults and earn your certificate.'}</span></div>
-      <span class="lvfeat-go">${typeof LV==='function'?`🏺 ${lvFound().length}/12 · 🏅 ${lvSeals().length}/3`:''}</span></button>
+      <span class="lvfeat-go">${typeof LV==='function'?`🏺 ${lvFound().length}/12 · 🏅 ${lvSeals().length}/3`:''}</span></button>`}
     <button class="lvfeat escfeat" data-go="escape"><span class="lvfeat-ico">🔐</span><div><span class="eyebrow" style="color:#6EE7B7">${es?'Sala de escape':'Escape Room'}</span><h3>The Locked Archive</h3>
       <span class="small">${es?'Resuelve 4 acertijos sobre esta unidad para conseguir el código de la puerta.':'Solve 4 puzzles about this unit to crack the door code. Beat your best time.'}</span></div>
       <span class="lvfeat-go">${(S.esc&&S.esc[u.id]&&S.esc[u.id].best)?`⏱️ ${mmss(S.esc[u.id].best)}`:'▶'}</span></button>
@@ -2897,13 +3390,13 @@ function renderStudentHub(m){
       <button class="card mode" data-go="gauntlet">${modeIco('m_gauntlet','🧭')}<h3>${t('gauntlet')}</h3><span class="small">${es?'Preguntas con reenseñanza hasta dominarlas.':'Questions with reteaching until you master them.'}</span></button>
       <button class="card mode ${u.gallery&&u.gallery.length?'':'locked'}" data-go="gallery">${modeIco('m_gallery','🏛️')}<h3>${t('gallery')}</h3><span class="small">${es?'Analiza documentos y caricaturas reales.':'Analyze real documents and cartoons.'}</span></button>
       <button class="card mode" data-go="summit">${modeIco('m_summit','🏔️')}<h3>${t('summit')}</h3><span class="small">${es?'Sube la montaña estándar por estándar.':'Climb the mountain benchmark by benchmark.'}</span></button>
-      <button class="card mode" data-go="arcade">${modeIco('m_arcade','🕹️')}<h3>${t('arcade')}</h3><span class="small">${es?'Gasta tus fichas ganadas.':'Spend the tokens you earned.'}</span><span class="small">${coin()} <b>${S.tokens}</b></span></button>
+      ${arcadeHidden()?'':`<button class="card mode" data-go="arcade">${modeIco('m_arcade','🕹️')}<h3>${t('arcade')}</h3><span class="small">${es?'Gasta tus fichas ganadas.':'Spend the tokens you earned.'}</span><span class="small">${coin()} <b>${S.tokens}</b></span></button>`}
     </div>
     <details class="card fold"><summary>📊 ${t('mastery')} by ${t('benchmark')} <span class="tag gold" style="margin-left:.4rem">${unitPct(u)}%</span></summary>
       ${bms.map(bm=>{ const p=bmPct(u,bm)||0; const sm=typeof studyState==='function'?studyState(u.id,bm):{}; return `<div class="bmbar"><span>${sm.secured?artImg('b_secured','mini'):sm.mastered?artImg('b_mastered','mini'):''}${esc(bm)}</span><span class="meter"><i style="width:${p}%"></i></span><b class="${p>=S.settings.threshold?'ok':''}">${p}%</b></div>`; }).join('')}
     </details>
     ${(u.timeline||[]).length?`<details class="card fold"><summary>🗓️ ${es?'Línea de tiempo de la unidad':'Unit timeline'}</summary><div class="timeline">${u.timeline.map(([y,e])=>`<div class="tl"><b>${esc(y)}</b><br>${esc(e)}</div>`).join('')}</div></details>`:''}`;
-  bindUnitBar(m, ()=>render()); if(typeof bindLocker==='function') bindLocker(m);
+  bindUnitBar(m, ()=>render()); if(typeof bindLocker==='function') bindLocker(m); if(typeof bindStudentPanels==='function') bindStudentPanels(m);
   $$('[data-go]',m).forEach(b=>b.onclick=()=>{ SFX.click(); const v=b.dataset.go;
     if(v==='gallery' && !(u.gallery&&u.gallery.length)) return toast('This imported set has no gallery stations — try the Gauntlet, Summit or Category Clash.');
     if(v==='arcade') return go('arcade');
@@ -3374,15 +3867,19 @@ function whack(){
    ===================================================================== */
 const COURSES = [
   ['2100310','United States History (2100310)'],['2100320','United States History Honors (2100320)'],
-  ['2100340','AP United States History (2100330/2100340)'],['other','Other / my own course']
+  ['2100340','AP United States History (2100330/2100340)'],
+  ['2102310','Economics (2102310)'],['2102320','Economics Honors (2102320)'],['2102335','Economics with Financial Literacy (2102335)'],['2102345','Economics with Financial Literacy Honors (2102345)'],
+  ['2106310','United States Government (2106310)'],['2106320','United States Government Honors (2106320)'],['2106420','AP U.S. Government and Politics (2106420)'],
+  ['2102370','AP Macroeconomics (2102370)'],['other','Other / my own course']
 ];
+const unitsForCourse = code => { const g=courseGroupOf(code); return BUILTIN_UNITS.filter(u=>g?u.course===g:u.course==='ush').map(u=>u.id); };
 const SCRIPT_CLOSE = '</scr'+'ipt>';
 const isTeacherView = () => !S.locked || TEACHER_UNLOCKED;
 
 function newClassroom(f){
   const base=DEFAULT_STATE();
   return { id:'cls'+Date.now().toString(36), name:f.name||'My Classroom', teacher:f.teacher||'', school:f.school||'', course:f.course||'2100310',
-    periods:(f.periods||'').split(',').map(s=>s.trim()).filter(Boolean), units:f.units||FLORIDA_US_HISTORY_DB.map(u=>u.id), pin:f.pin||'',
+    periods:(f.periods||'').split(',').map(s=>s.trim()).filter(Boolean), units:f.units||unitsForCourse(f.course||'2100310'), pin:f.pin||'',
     settings:base.settings, custom:[], assets:{}, created:Date.now(), v:1 };
 }
 function switchClass(id){ save(); S.activeClass=id; linkClass(); const c=activeClass(); if(c && !allUnits().some(u=>u.id===S.unit)) S.unit=(allUnits()[0]||{}).id; save(); renderTop(); render(); }
@@ -3406,7 +3903,7 @@ function renderWelcome(m){
 
 /* ----------------------------- WIZARD ------------------------------- */
 function classroomWizard(edit){
-  const c=edit||{}; const units=c.units||FLORIDA_US_HISTORY_DB.map(u=>u.id);
+  const c=edit||{}; const units=c.units||unitsForCourse(c.course||'2100310');
   const mm=modal(`<h2>${edit?'✏️ Edit classroom':'🏫 Create your classroom'}</h2>
     <div class="grid g2">
       <div class="field"><label>Classroom name (shown in the header)</label><input id="cName" value="${esc(c.name||'')}" placeholder="e.g., Ms. Rivera's U.S. History"></div>
@@ -3416,10 +3913,12 @@ function classroomWizard(edit){
       <div class="field"><label>Class periods (comma-separated)</label><input id="cPer" value="${esc((c.periods||[]).join(', '))}" placeholder="1, 2, 4, 6"></div>
       <div class="field"><label>Teacher PIN for the Student Edition (optional)</label><input id="cPin" value="${esc(c.pin||'')}" maxlength="8" placeholder="4–8 digits"></div>
     </div>
-    <h3 style="margin-top:1rem">Built-in Florida units to include</h3>
-    <div class="grid g2">${FLORIDA_US_HISTORY_DB.map(u=>`<label class="chip" style="cursor:pointer;white-space:normal"><input type="checkbox" data-u="${u.id}" ${units.includes(u.id)?'checked':''}> ${u.icon} ${esc(u.title)}</label>`).join('')}</div>
+    <h3 style="margin-top:1rem">Built-in units to include</h3>
+    ${COURSE_GROUPS.map(([g,label])=>`<div class="small" style="margin:.5rem 0 .25rem"><b>${label}</b>${g==='ush'?'':' <span class="muted">· starter units</span>'}</div>
+    <div class="grid g2">${BUILTIN_UNITS.filter(u=>u.course===g).map(u=>`<label class="chip" style="cursor:pointer;white-space:normal"><input type="checkbox" data-u="${u.id}" data-g="${g}" ${units.includes(u.id)?'checked':''}> ${u.icon} ${esc(u.title)}</label>`).join('')}</div>`).join('')}
     <p class="small">Teaching a different subject? Uncheck everything and import your own content in Teacher Studio — Quizizz spreadsheets, study guides and notes become full games, and you can build your own gallery stations.</p>
     <div class="row" style="margin-top:.8rem"><button class="btn gold big" id="cSave">${edit?'Save changes':'Create classroom'}</button></div>`);
+  const cc=$('#cCourse',mm); cc.onchange=()=>{ const ids=unitsForCourse(cc.value); if(cc.value==='other') return; $$('[data-u]',mm).forEach(x=>x.checked=ids.includes(x.dataset.u)); };
   $('#cSave',mm).onclick=()=>{
     const f={ name:$('#cName',mm).value.trim(), teacher:$('#cTeacher',mm).value.trim(), school:$('#cSchool',mm).value.trim(), course:$('#cCourse',mm).value,
       periods:$('#cPer',mm).value, pin:$('#cPin',mm).value.trim(), units:$$('[data-u]',mm).filter(x=>x.checked).map(x=>x.dataset.u) };
@@ -3574,7 +4073,7 @@ function applyEdits(u, c){
   if(u.jp && (e.jp||e.jpCats||e.fj)) jp={ cats:u.jp.cats.map((x,i)=>(e.jpCats||{})[i]||x), c:u.jp.c.map((col,ci)=>col.map((cl,ri)=>(e.jp||{})[ci+'-'+ri]||cl)), fj:e.fj||u.jp.fj };
   return {...u, qs, vocab, gallery, jp, notes:e.notes||[], bms:[...new Set(qs.map(q=>q.bm))]};
 }
-function baseUnit(id){ return FLORIDA_US_HISTORY_DB.find(u=>u.id===id) || (S.custom||[]).find(u=>u.id===id); }
+function baseUnit(id){ return builtinUnits().find(u=>u.id===id) || (S.custom||[]).find(u=>u.id===id); }
 function editsFor(id){ const c=activeClass(); if(!c) return null; c.edits=c.edits||{}; return c.edits[id]=c.edits[id]||{}; }
 function commitEdit(){ EDIT_V++; save(); renderHUD(); }
 
@@ -4083,11 +4582,11 @@ function renderDemo(m){
 
   function sim(){
     const z=$('#dz',m);
-    z.innerHTML=`<div class="row"><label class="field"><span class="small">Scope</span><select id="scope"><option value="unit">This unit</option><option value="all">All 6 Florida units</option></select></label><button class="btn gold" id="run">👥 Simulate Live Class (25 AI Students)</button></div><div id="simOut"></div>`;
+    z.innerHTML=`<div class="row"><label class="field"><span class="small">Scope</span><select id="scope"><option value="unit">This unit</option><option value="all">All units in this class</option></select></label><button class="btn gold" id="run">👥 Simulate Live Class (25 AI Students)</button></div><div id="simOut"></div>`;
     $('#run',z).onclick=()=>runSim($('#scope',z).value);
   }
   function runSim(scope){
-    const units= scope==='all' ? FLORIDA_US_HISTORY_DB : [u];
+    const units= scope==='all' ? allUnits().filter(x=>x.qs.length) : [u];
     const qs=units.flatMap(x=>x.qs.map(q=>({...q,_u:x})));
     const bms=[...new Set(qs.map(q=>q.bm))];
     const first=['Aaliyah','Mateo','Jayden','Sofia','Elijah','Camila','Noah','Isabella','Liam','Valentina','Josiah','Ava','Gabriel','Mia','Xavier','Zoe','Adrian','Layla','Carlos','Nia','Dylan','Ariana','Jamal','Emily','Diego'];
@@ -4209,6 +4708,10 @@ function FirebaseAPI(cfg){
     async getStudent(cid,sid){ const s=await F.getDoc(d('classrooms',cid,'students',sid)); return s.exists()?s.data():null; },
     async saveStudent(cid,sid,data){ await F.setDoc(d('classrooms',cid,'students',sid), clean({...data, uid:auth.currentUser&&auth.currentUser.uid, lastSeen:Date.now()}), {merge:true}); },
     async listStudents(cid){ const s=await F.getDocs(col('classrooms',cid,'students')); return s.docs.map(x=>({id:x.id,...x.data()})); },
+    myUid(){ return auth.currentUser?auth.currentUser.uid:null; },
+    async claimStudent(cid,sid,pinHash){ await F.setDoc(d('classrooms',cid,'students',sid), {uid:auth.currentUser.uid, pinProof:pinHash, lastSeen:Date.now()}, {merge:true}); const s=await F.getDoc(d('classrooms',cid,'students',sid)); return s.exists()?s.data():null; },
+    async teacherPatch(cid,sid,data){ await F.setDoc(d('classrooms',cid,'students',sid), clean(data), {merge:true}); },
+    async resetPin(cid,sid){ await F.setDoc(d('classrooms',cid,'students',sid), {pinHash:null, uid:null, pinProof:null}, {merge:true}); },
     async deleteStudent(cid,sid){ await F.deleteDoc(d('classrooms',cid,'students',sid)); },
     async submitReport(cid,r){ await F.addDoc(col('classrooms',cid,'reports'), clean({...r, at:Date.now()})); },
     async listReports(cid){ const s=await F.getDocs(col('classrooms',cid,'reports')); return s.docs.map(x=>({id:x.id,...x.data()})).sort((a,b)=>b.at-a.at); },
@@ -4233,6 +4736,8 @@ function LocalAPI(){
   const setSession=s=>{ session=s; try{ s?localStorage.setItem(K+'_session',JSON.stringify(s)):localStorage.removeItem(K+'_session'); }catch(e){} listeners.forEach(f=>f(s)); };
   const listeners=[]; const err=code=>{ const e=new Error(code); e.code=code; return e; };
   const wait=()=>new Promise(r=>setTimeout(r,120));
+  const ownsC=cid=>!!(session && !session.anon && db.classrooms[cid] && db.classrooms[cid].ownerUid===session.uid);
+  const canTouch=(cid,x)=>ownsC(cid) || !x.pinHash || !x.uid || x.uid===(session&&session.uid);
   return {
     mode:'demo',
     onAuth(cb){ listeners.push(cb); setTimeout(()=>cb(session),0); },
@@ -4252,8 +4757,15 @@ function LocalAPI(){
     async studentAuth(){ if(session && !session.anon) setSession(null); if(!session) setSession({uid:'anon_'+Date.now().toString(36), anon:true}); },
     async findClass(code){ await wait(); const x=db.codes[(code||'').toUpperCase()]; return x&&db.classrooms[x.classId]?clean(db.classrooms[x.classId]):null; },
     async getClass(id){ return db.classrooms[id]?clean(db.classrooms[id]):null; },
-    async getStudent(cid,sid){ return ((db.students[cid]||{})[sid])||null; },
-    async saveStudent(cid,sid,data){ db.students[cid]=db.students[cid]||{}; db.students[cid][sid]=Object.assign(db.students[cid][sid]||{}, clean(data), {lastSeen:Date.now()}); write(); },
+    /* The demo backend enforces the same record lock as firestore.rules */
+    async getStudent(cid,sid){ const x=((db.students[cid]||{})[sid])||null; if(x && !canTouch(cid,x)) throw err('permission-denied'); return x?clean(x):null; },
+    async saveStudent(cid,sid,data){ db.students[cid]=db.students[cid]||{}; const cur=db.students[cid][sid];
+      if(cur && !canTouch(cid,cur) && !(data.pinProof && data.pinProof===cur.pinHash)) throw err('permission-denied');
+      db.students[cid][sid]=Object.assign(cur||{}, clean(data), {uid:session&&session.uid, lastSeen:Date.now()}); write(); },
+    myUid(){ return session?session.uid:null; },
+    async claimStudent(cid,sid,pinHash){ await this.saveStudent(cid,sid,{pinProof:pinHash}); return clean(db.students[cid][sid]); },
+    async teacherPatch(cid,sid,data){ if(!ownsC(cid)) throw err('permission-denied'); db.students[cid]=db.students[cid]||{}; db.students[cid][sid]=Object.assign(db.students[cid][sid]||{}, clean(data)); write(); },
+    async resetPin(cid,sid){ if(!ownsC(cid)) throw err('permission-denied'); const x=(db.students[cid]||{})[sid]; if(x){ x.pinHash=null; x.uid=null; x.pinProof=null; write(); } },
     async listStudents(cid){ return Object.entries(db.students[cid]||{}).map(([id,v])=>({id,...v})); },
     async deleteStudent(cid,sid){ if(db.students[cid]) delete db.students[cid][sid]; write(); },
     async submitReport(cid,r){ (db.reports[cid]=db.reports[cid]||[]).push(clean({...r, id:'r'+Date.now().toString(36), at:Date.now()})); write(); },
@@ -4320,7 +4832,7 @@ Object.assign(I18N.es,{ rDash:'Panel', rView:'Vista Estudiante', rPresent:'Prese
 const LOGO_SVG = `<svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2563EB"/><stop offset="1" stop-color="#0B1F4B"/></linearGradient></defs><rect width="40" height="40" rx="10" fill="url(#lg1)"/><path d="M11 30 L20 10 L29 30" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M14.6 23 H25.4" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/><circle cx="30.5" cy="10" r="3.6" fill="#FBBF24"/></svg>`;
 const brand = (sub) => `<button class="logo" data-home>${LOGO_SVG}<span>Classroom Arena${sub?`<small>${sub}</small>`:''}</span></button>`;
 let PUB = 'home';
-const routeFromHash = () => { const h=(location.hash||'').slice(1); if(h.startsWith('join-')){ PUB='join'; JOIN_PREFILL=h.slice(5).toUpperCase(); } else if(['schools','teacher','signin','join','home'].includes(h)) PUB = h==='signin'?'teacher':h; };
+const routeFromHash = () => { const h=(location.hash||'').slice(1); if(h.startsWith('join-')){ PUB='join'; JOIN_PREFILL=h.slice(5).toUpperCase(); } else if(['schools','teacher','signin','join','home','privacy'].includes(h)) PUB = h==='signin'?'teacher':h; };
 let JOIN_PREFILL='';
 const SANDBOX = (()=>{ try{ return sessionStorage.getItem('arena_sandbox')==='1'; }catch(e){ return false; } })();
 if(SANDBOX && API.mode==='live'){ API = LocalAPI(); }
@@ -4394,6 +4906,7 @@ function renderPublic(m){
   if(PUB==='schools') return renderSchools(m);
   if(PUB==='teacher') return renderTeacherAuth(m);
   if(PUB==='join') return renderJoin(m);
+  if(PUB==='privacy') return renderPrivacy(m);
   return renderHome(m);
 }
 function heroMock(){
@@ -4437,12 +4950,31 @@ function renderHome(m){
   bindPublic(m);
 }
 function footer(){ return `<footer class="footer"><div class="section"><div>${LOGO_SVG.replace('class="mark"','class="mark" style="width:22px;height:22px;vertical-align:-5px"')} <b style="color:var(--ink)">Classroom Arena</b> · © ${new Date().getFullYear()}</div>
-  <div class="row"><a href="#" data-go-pub="schools">For schools</a><a href="#" data-go-pub="join">Join a class</a><a href="#" data-go-pub="teacher" data-tab="in">Teacher sign in</a></div>
+  <div class="row"><a href="#" data-go-pub="schools">For schools</a><a href="#" data-go-pub="join">Join a class</a><a href="#" data-go-pub="teacher" data-tab="in">Teacher sign in</a><a href="#" data-go-pub="privacy">Privacy</a></div>
   <div style="width:100%">Students join with a class code and first name — no student email or password is collected.</div></div></footer>`; }
 let AUTH_TAB='in';
 function bindPublic(m){
   $$('[data-go-pub]',m).forEach(b=>b.onclick=e=>{ e.preventDefault(); PUB=b.dataset.goPub; AUTH_TAB=b.dataset.tab||AUTH_TAB; setHash(PUB==='teacher'?'signin':PUB==='home'?'':PUB); render(); scrollTo(0,0); });
   const td=$('#tryDemo',m); if(td) td.onclick=e=>{ e.preventDefault(); startDemo(); };
+}
+/* Privacy policy. Set PRIVACY_CONTACT to a support address before selling to schools. */
+const PRIVACY_CONTACT = '';
+const PRIVACY_UPDATED = 'November 15, 2026';
+function renderPrivacy(m){
+  const sec=(h,body)=>`<h2 style="margin-top:1.6rem">${h}</h2>${body}`;
+  m.innerHTML=`<div class="section" style="max-width:820px"><h1>Privacy Policy</h1><p class="muted">Last updated ${PRIVACY_UPDATED}</p>
+    <p class="lead">Classroom Arena is a study and review tool that teachers run for their classes. We collect as little as possible, we never sell data, and we show no ads.</p>
+    ${sec('What we collect from teachers','<ul><li>Name, school and email address, used to create and secure the account.</li><li>The classrooms, questions, images and settings the teacher creates.</li></ul>')}
+    ${sec('What we collect from students','<ul><li><b>First name and last initial, and class period.</b> Students never enter an email address or password.</li><li>Study progress: which questions were answered and how, practice history, tokens, badges, streaks and game results.</li><li>The avatar a student builds, reading settings they choose, and an optional 4-digit PIN. The PIN is stored only as a one-way hash.</li><li>Accommodation settings a teacher turns on (such as extended time or read-aloud). These are stored on the student\'s own record and are visible only to that student and their teacher.</li><li>A random anonymous sign-in ID for the device, used to keep each student\'s record theirs.</li></ul>')}
+    ${sec('What we do not collect','<ul><li>No student email, phone number, address, birthday or photo.</li><li>No advertising, ad tracking or third-party analytics.</li><li>No location data. Read-aloud uses the speech voices already built into the student\'s browser.</li></ul>')}
+    ${sec('How data is used','<p>Only to run Classroom Arena for the class: saving progress, showing teachers mastery reports, assignments and reteach groups, and running live games. We do not sell, rent or share personal information, and we do not use student data to build profiles for any other purpose.</p>')}
+    ${sec('Who can see it','<ul><li><b>Teachers</b> see the records of students in their own classes.</li><li><b>Students</b> see their own progress. On the smartboard during live games, classmates see a student\'s first name, last initial and avatar.</li><li><b>Service providers:</b> data is stored with Google Firebase (Authentication and Cloud Firestore), which processes it on our behalf under its own security and privacy terms.</li></ul>')}
+    ${sec('Schools, FERPA and COPPA','<p>Classroom Arena is designed to be used under the direction of a school. When a school or teacher uses it, the school controls student records, and we act on the school\'s behalf as a "school official" with a legitimate educational interest under FERPA. For students under 13, the school provides consent for use in the classroom, as permitted under COPPA. Parents may ask their child\'s teacher or school to review or delete their child\'s records.</p>')}
+    ${sec('Keeping and deleting data','<ul><li>Teachers can remove a student, reset a student\'s PIN, or delete a whole classroom at any time, which deletes its records.</li><li>Teachers can delete their account by contacting us; we then delete their classrooms and student records.</li></ul>')}
+    ${sec('Security','<p>Data travels over encrypted connections. Database rules let a teacher read only their own classes and lock each student record to the student who created it.</p>')}
+    ${sec('Changes and contact','<p>If this policy changes in a meaningful way, we will update the date above and notify teacher accounts. '+(PRIVACY_CONTACT?`Questions? Email <a href="mailto:${esc(PRIVACY_CONTACT)}">${esc(PRIVACY_CONTACT)}</a>.`:'Questions? Ask your teacher or school administrator.')+'</p>')}
+  </div>${footer()}`;
+  bindPublic(m);
 }
 function renderSchools(m){
   m.innerHTML=`<section class="hero"><div class="hero-in" style="grid-template-columns:1fr 1fr"><div>
@@ -4543,7 +5075,7 @@ function renderJoin(m){
   $('#nf',m).onsubmit=async e=>{ e.preventDefault(); const f=Object.fromEntries(new FormData(e.target)); const first=f.first.trim().replace(/\s+/g,' '), li=f.li.trim().toUpperCase();
     if(!/^[\p{L}' -]{1,24}$/u.test(first)) return $('#nErr',m).textContent='Use letters only for your first name.';
     const name=`${first[0].toUpperCase()+first.slice(1)} ${li}.`, period=(f.period||'').trim(), sid=studentId(name,period);
-    try{ const prev=await API.getStudent(c.id,sid); enterStudent(c, {name, period, sid, code:JOIN_PREFILL}, prev); }
+    try{ const j={name, period, sid, code:JOIN_PREFILL}; const g=await pinGate(c, j); if(!g) return; enterStudent(c, j, g.prev); }
     catch(ex){ $('#nErr',m).textContent=friendlyAuthError(ex); } };
 }
 let JOINING=false;
@@ -4551,14 +5083,18 @@ function enterStudent(c, j, prev){
   const base=DEFAULT_STATE();
   S.join={classId:c.id, code:j.code, name:j.name, period:j.period, sid:j.sid};
   S.classrooms=[{...c, settings:Object.assign(base.settings,c.settings||{}), custom:c.custom||[], assets:{}}]; S.activeClass=c.id; linkClass();
-  Object.assign(S, { student:{name:j.name, period:j.period}, qstat:(prev&&prev.qstat)||{}, tokens:prev?prev.tokens||0:3, streak:prev?prev.streak||0:0, best:prev?prev.best||0:0, xp:prev?prev.xp||0:0, loops:prev?prev.loops||0:0, galleryDone:(prev&&prev.galleryDone)||{}, highs:(prev&&prev.highs)||{}, study:(prev&&prev.study)||{}, srs:(prev&&prev.srs)||{}, vault:(prev&&prev.vault)||{}, ...Object.fromEntries((typeof ARENA_SYNC!=='undefined'?ARENA_SYNC:[]).map(k=>[k,(prev&&prev[k])||(k==='avatar'?null:{})])) }); if(typeof arenaInitState==='function') arenaInitState();
+  if(prev && !prev.lastSeen) prev=Object.assign({}, prev, {_rosterOnly:true});
+  Object.assign(S, { acc:(prev&&prev.acc)||null, student:{name:j.name, period:j.period}, qstat:(prev&&prev.qstat)||{}, tokens:prev?prev.tokens||0:3, streak:prev?prev.streak||0:0, best:prev?prev.best||0:0, xp:prev?prev.xp||0:0, loops:prev?prev.loops||0:0, galleryDone:(prev&&prev.galleryDone)||{}, highs:(prev&&prev.highs)||{}, study:(prev&&prev.study)||{}, srs:(prev&&prev.srs)||{}, vault:(prev&&prev.vault)||{}, ...Object.fromEntries((typeof ARENA_SYNC!=='undefined'?ARENA_SYNC:[]).map(k=>[k,(prev&&prev[k])||(k==='avatar'?null:{})])) }); if(typeof arenaInitState==='function') arenaInitState();
   S.role='student'; S.view='hub'; S.locked=false; if(!allUnits().some(u=>u.id===S.unit)) S.unit=(allUnits()[0]||{}).id;
-  SESSION={type:'student', ready:true}; JOIN_CLASS=null; setHash(''); save(); queueSync(); startStudentLive();
+  SESSION={type:'student', ready:true}; JOIN_CLASS=null; setHash(''); save();
+  if(j.pinHash) API.saveStudent(c.id, j.sid, {name:j.name, period:j.period, pinHash:j.pinHash}).catch(()=>{});
+  queueSync(); startStudentLive(); if(typeof startClassPoll==='function'){ startClassPoll(); enforceClassRules(); applyReadingClass(); }
   loadAssets().then(()=>{ renderTop(); render(); });
-  renderTop(); render(); toast(prev?`👋 Welcome back, ${esc(j.name)}! Your progress is restored.`:`🎉 You joined ${esc(c.name)}!`);
+  renderTop(); render(); toast(prev&&!prev._rosterOnly?`👋 Welcome back, ${esc(j.name)}! Your progress is restored.`:`🎉 You joined ${esc(c.name)}!`);
 }
 async function leaveClass(){ if(STUDENT_LIVE_UNSUB){ try{STUDENT_LIVE_UNSUB();}catch(e){} STUDENT_LIVE_UNSUB=null; } LIVE_S=null; LIVE_ANS=null; save(); clearTimeout(syncTimer); try{ await API.saveStudent(S.join.classId,S.join.sid,{qstat:S.qstat,tokens:S.tokens,streak:S.streak,best:S.best,xp:S.xp,loops:S.loops,galleryDone:S.galleryDone,highs:S.highs,study:S.study,srs:S.srs,vault:S.vault,...(typeof arenaPayload==='function'?arenaPayload():{}),name:S.join.name,period:S.join.period}); }catch(e){}
-  const base=DEFAULT_STATE(); Object.assign(S,{join:null, classrooms:[], activeClass:null, qstat:{}, tokens:3, streak:0, xp:0, loops:0, galleryDone:{}, highs:{}, study:{}, srs:{}, vault:{}, student:base.student}); linkClass();
+  if(typeof CLASS_POLL!=='undefined') clearInterval(CLASS_POLL); document.documentElement.classList.remove('easyread');
+  const base=DEFAULT_STATE(); Object.assign(S,{join:null, acc:null, _pinAsked:false, classrooms:[], activeClass:null, qstat:{}, tokens:3, streak:0, xp:0, loops:0, galleryDone:{}, highs:{}, study:{}, srs:{}, vault:{}, student:base.student}); linkClass();
   await API.signOut().catch(()=>{}); SESSION={type:null, ready:true}; PUB='home'; save(); renderTop(); render(); }
 
 /* -------------------------- CLASS CREATION --------------------------- */
@@ -4606,7 +5142,8 @@ function dashHTML(c){
   const hr=new Date().getHours(), greet=hr<12?'Good morning':hr<17?'Good afternoon':'Good evening';
   const tab=DASH.tab, hu=getUnit(DASH.unit||S.unit);
   let body='';
-  if(DASH.loading && !st.length) body='<p class="muted">Loading students…</p>';
+  if(typeof TT_TABS!=='undefined' && TT_TABS.some(x=>x[0]===tab) && (tab==='assign'||st.length)) body=ttTabBody(tab,c);
+  else if(DASH.loading && !st.length) body='<p class="muted">Loading students…</p>';
   else if(!st.length) body=`<div style="text-align:center;padding:2rem">${artImg('x_empty','moment','')||'<p style="font-size:2rem;margin:0">🎓</p>'}<h3>No students yet</h3><p class="muted">Share your class code <b>${esc(c.code||'')}</b>. Students appear here as soon as they join.</p></div>`;
   else if(tab==='roster') body=`<div style="overflow-x:auto"><table><tr><th>Student</th><th>Period</th>${units.slice(0,6).map(u=>`<th title="${esc(u.title)}">${u.icon||''} ${esc(u.short||u.title).slice(0,14)}</th>`).join('')}<th>Overall</th><th>Reteach loops</th><th>Last active</th><th></th></tr>
     ${st.map(s=>{ const q=s.qstat||{}; return `<tr><td><span style="display:inline-flex;align-items:center;gap:.5rem">${typeof avaHTML==='function'?avaHTML(avaSpec(s),{size:32, look:{frame:(s.look||{}).frame}, comp:false}):''}<b>${esc(s.name)}</b></span></td><td>${esc(s.period||'—')}</td>${units.slice(0,6).map(u=>{ const p=qstatUnitPct(q,u), a=qstatAttempted(q,u); return `<td>${a?`<span class="pill" style="background:${pctColor(p)}">${p}%</span>`:'<span class="muted">—</span>'}</td>`; }).join('')}
@@ -4618,29 +5155,35 @@ function dashHTML(c){
       const p=Math.round(100*items.reduce((a,x)=>a+(q[x.id]==='first'||q[x.id]==='mastered'?1:q[x.id]==='remediated'?.5:0),0)/items.length); return `<td style="background:${pctColor(p)}">${p}</td>`; }).join('')}</tr>`; }).join('')}</table></div>`; }
   else if(tab==='missed'){ const counts={}; st.forEach(s=>Object.entries(s.qstat||{}).forEach(([id,v])=>{ if(v==='remediated'||v==='mastered') counts[id]=(counts[id]||0)+1; }));
     const all=units.flatMap(u=>u.qs.map(q=>({q,u}))); const top=Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,10).map(([id,n])=>({...all.find(x=>x.q.id===id),n})).filter(x=>x.q);
-    body= top.length?`<table><tr><th>Question</th><th>Benchmark</th><th>Students who missed it first</th></tr>${top.map(x=>`<tr><td>${esc(x.q.s)}<div class="small">${esc(x.u.title)}</div></td><td><span class="tag gold">${esc(x.q.bm)}</span></td><td><b>${x.n}</b> of ${st.length}</td></tr>`).join('')}</table>
+    body= top.length?`<table><tr><th>Question</th><th>Benchmark</th><th>Students who missed it first</th></tr>${top.map(x=>`<tr><td>${esc(x.q.s)}<div class="small">${esc(x.u.title)}</div>${typeof trapLine==='function'?trapLine(x.q):''}</td><td><span class="tag gold">${esc(x.q.bm)}</span></td><td><b>${x.n}</b> of ${st.length}</td></tr>`).join('')}</table>
       <div class="row" style="margin-top:.8rem"><button class="btn gold" id="mkRet">🚀 Assign a reteach set from these questions</button><span class="small">Adds a set to your class that students see in their unit list.</span></div>`:'<p class="muted">No missed questions yet.</p>'; }
   else if(tab==='reports') body= DASH.reports.length?`<table><tr><th>Student</th><th>Unit</th><th>Mastery</th><th>Reteach loops</th><th>Verification</th><th>Submitted</th><th></th></tr>${DASH.reports.map((r,i)=>`<tr><td><b>${esc(r.name)}</b> <span class="small">P${esc(r.period||'')}</span></td><td class="small">${esc(r.unit)}</td><td><span class="pill" style="background:${pctColor(r.pct)}">${r.pct}%</span></td><td>${r.loops}</td><td><code>${esc(r.code)}</code></td><td class="small">${ago(r.at)}</td><td><button class="btn ghost" data-rv="${i}">Open</button></td></tr>`).join('')}</table>`:'<p class="muted">Reports appear here when students finish an Independent Mastery Gauntlet.</p>';
   return `<div class="spread" style="margin-bottom:1rem"><div><div class="small">${greet}${tname?', '+esc(tname.split(' ')[0]):''}</div><h1 style="margin:.1rem 0">${esc(c.name)}</h1>
       <div class="small">${esc((COURSES.find(x=>x[0]===c.course)||['',''])[1])}${c.periods&&c.periods.length?' · Periods '+esc(c.periods.join(', ')):''}</div></div>
-    <div class="row"><button class="btn" id="dEdit">✏️ Edit classroom</button><button class="btn gold" id="dPresent">🖥️ Present</button></div></div>
-  <div class="grid" style="grid-template-columns:minmax(260px,330px) 1fr;gap:1rem;align-items:start">
+    <div class="row"><button class="btn" id="dEdit">✏️ Edit classroom</button><button class="btn" id="dRoster">👥 Import roster</button><button class="btn" id="dExport">⬇️ Export grades</button><button class="btn gold" id="dPresent">🖥️ Present</button></div></div>
+  <div class="grid dash-grid" style="grid-template-columns:minmax(260px,330px) minmax(0,1fr);gap:1rem;align-items:start">
     <div class="grid" style="gap:1rem">
       <div class="card" id="joinCard"><div class="small" style="font-weight:700;text-transform:uppercase;letter-spacing:.05em">Class code</div><div class="bigcode">${esc(c.code||'——')}</div>
         <p class="small" style="margin:.3rem 0 .7rem">Students go to this site → <b>Join a class</b> → enter the code.</p>
         <div class="row"><button class="btn" id="cpLink">🔗 Copy join link</button><button class="btn" id="projJoin">📽️ Show on board</button></div></div>
       ${typeof questCardHTML==='function'?questCardHTML(c):''}
+      ${typeof controlsCardHTML==='function'?controlsCardHTML(c):''}
       <div class="card"><div class="spread"><b>My classrooms</b><button class="btn ghost" id="dNew">＋ New</button></div>
         <div class="grid" style="gap:.4rem;margin-top:.5rem">${S.classrooms.map(x=>`<button class="clsbtn ${x.id===c.id?'on':''}" data-cl="${x.id}"><b>${esc(x.name)}</b><div class="small">Code ${esc(x.code||'—')}</div></button>`).join('')}</div></div>
     </div>
     <div class="grid" style="gap:1rem">
       <div class="grid g4" style="gap:.7rem">${[['Students',st.length,''],['Average mastery',avg+'%','var(--primary)'],['Reteach loops',loops,'var(--emerald)'],['Reports submitted',DASH.reports.length,'']].map(([l,v,col])=>`<div class="tile"><div class="v" style="color:${col||'var(--ink)'}">${v}</div><div class="l">${l}</div></div>`).join('')}</div>
-      <div class="card" id="dashTabs"><div class="spread"><div class="tabs" style="margin:0;flex:1;max-width:560px">${[['roster','Roster'],['heat','Benchmark heatmap'],['missed','Most-missed'],['reports','Reports']].map(([k,l])=>`<button data-dt="${k}" class="${tab===k?'on':''}">${l}</button>`).join('')}</div>
+      <div class="card" id="dashTabs"><div class="spread"><div class="tabs" style="margin:0;flex:1;max-width:820px;flex-wrap:wrap">${[['roster','Roster'],['heat','Benchmark heatmap'],['missed','Most-missed'],...(typeof TT_TABS!=='undefined'?TT_TABS:[]),['reports','Reports']].map(([k,l])=>`<button data-dt="${k}" class="${tab===k?'on':''}">${l}</button>`).join('')}</div>
         <button class="btn ghost" id="dRef">↻ Refresh</button></div><div style="margin-top:1rem">${body}</div></div>
     </div></div>`;
 }
 function bindDash(m,c){
   if(typeof bindQuestCard==='function') bindQuestCard(m,c);
+  const redraw=()=>{ m.innerHTML=dashHTML(c); bindDash(m,c); };
+  if(typeof bindTTTabs==='function') bindTTTabs(m,c,redraw);
+  if(typeof bindControls==='function') bindControls(m,c);
+  const dx=$('#dExport',m); if(dx) dx.onclick=async()=>{ if(!DASH.students.length) await loadDash(true); if(!DASH.students.length) return toast('No students yet — nothing to export.'); exportModal(); };
+  const dr=$('#dRoster',m); if(dr) dr.onclick=async()=>{ if(DASH.cid!==c.id) await loadDash(true); rosterModal(c, redraw); };
   $('#dEdit',m).onclick=()=>classroomWizard(c);
   $('#dPresent',m).onclick=()=>{ S.role='host'; S.view='hub'; save(); renderTop(); render(); };
   $('#dNew',m).onclick=()=>classroomWizard();
@@ -4659,13 +5202,14 @@ function bindDash(m,c){
 }
 function studentDetail(c,s){
   const q=s.qstat||{};
-  modal(`<h2>${esc(s.name)} <span class="small">Period ${esc(s.period||'—')}</span></h2><div class="row small" style="margin-bottom:1rem"><span>Overall mastery <b>${overallPct(s)}%</b></span>·<span>Reteach loops <b>${s.loops||0}</b></span>·<span>Tokens <b>${s.tokens||0}</b></span>·<span>Last active ${ago(s.lastSeen)}</span></div>
+  const sdm=modal(`<h2>${esc(s.name)} <span class="small">Period ${esc(s.period||'—')}</span></h2><div class="row small" style="margin-bottom:1rem"><span>Overall mastery <b>${overallPct(s)}%</b></span>·<span>Reteach loops <b>${s.loops||0}</b></span>·<span>Tokens <b>${s.tokens||0}</b></span>·<span>Last active ${ago(s.lastSeen)}</span></div>
     ${allUnits().map(u=>{ const bms=[...new Set(u.qs.map(x=>x.bm))]; if(!qstatAttempted(q,u)) return `<details><summary>${u.icon||''} ${esc(u.title)} — <span class="muted">not started</span></summary></details>`;
       return `<details open><summary>${u.icon||''} ${esc(u.title)} — ${qstatUnitPct(q,u)}%</summary>${bms.map(b=>{ const it=u.qs.filter(x=>x.bm===b); const p=Math.round(100*it.reduce((a,x)=>a+(q[x.id]==='first'||q[x.id]==='mastered'?1:q[x.id]==='remediated'?.5:0),0)/it.length);
         return `<div class="bmbar"><span title="${esc(BENCHMARK_TEXT[b]||'')}">${esc(b)}</span><span class="meter"><i style="width:${p}%"></i></span><b>${p}%</b></div>`; }).join('')}</details>`; }).join('')}
     ${typeof studyDetailHTML==='function'?studyDetailHTML(s):''}
     ${typeof lvDetailHTML==='function'?lvDetailHTML(s):''}
-    <div class="row" style="margin-top:1rem"><button class="btn cr" id="rmStu">Remove student from class</button></div>`).querySelector('#rmStu').onclick=async function(){ if(!confirmInline(this,'Click again to remove')) return; await API.deleteStudent(c.id,s.id); this.closest('.modal-bg').remove(); await loadDash(true); render(); toast('Student removed'); };
+    ${typeof studentToolsHTML==='function'?studentToolsHTML(c,s):''}
+    <div class="row" style="margin-top:1rem"><button class="btn cr" id="rmStu">Remove student from class</button></div>`); if(typeof bindStudentTools==='function') bindStudentTools(sdm,c,s); sdm.querySelector('#rmStu').onclick=async function(){ if(!confirmInline(this,'Click again to remove')) return; await API.deleteStudent(c.id,s.id); this.closest('.modal-bg').remove(); await loadDash(true); render(); toast('Student removed'); };
 }
 function confirmInline(btn,msg){ if(btn.dataset.armed) return true; btn.dataset.armed='1'; btn.textContent=msg; setTimeout(()=>{ delete btn.dataset.armed; btn.textContent='Remove student from class'; },3000); return false; }
 function reportDetail(r){
@@ -4682,6 +5226,7 @@ function render(){
   if(!SESSION.ready){ m.innerHTML=`<div style="display:grid;place-items:center;height:60vh">${LOGO_SVG.replace('class="mark"','class="mark" style="width:56px;height:56px;opacity:.8"')}<p class="muted">Loading Classroom Arena…</p></div>`; return; }
   if(!SESSION.type) return renderPublic(m);
   renderHUD();
+  if(SESSION.type==='student' && typeof enforceClassRules==='function') enforceClassRules();
   const v=S.view; if(typeof gnBgFor==='function') gnBgFor(m,v);
   if(SESSION.type==='teacher' && !S.classrooms.length) return renderOnboard(m);
   if(v==='livestu' && SESSION.type==='student') return renderLiveStudent(m);
@@ -4702,7 +5247,7 @@ function render(){
   if(v==='chests') return renderChests(m);
   if(v==='hotseat') return renderHotSeat(m);
   if(v==='four') return renderFour(m);
-  if(v==='arcade') return renderArcade(m);
+  if(v==='arcade'){ if(arcadeHidden()){ S.view='hub'; toast(S.lang==='es'?'Tu maestro cerró el arcade por ahora.':'Your teacher has the arcade closed right now.'); return renderStudentHub(m); } return renderArcade(m); }
   if(v==='jeopardy') return renderJeopardy(m);
   if(v==='live') return renderLive(m);
   if(SESSION.type==='student') return renderStudentHub(m);
@@ -4740,7 +5285,7 @@ async function handleAuth(force){
   }catch(e){ console.error(e); SESSION={type:null, ready:true}; toast('⚠️ '+esc(friendlyAuthError(e))); }
   AUTH_BUSY=false;
   if(!['hub','arcade','livegw','alhost'].includes(S.view)) S.view='hub';
-  if(SESSION.type==='student') startStudentLive();
+  if(SESSION.type==='student'){ startStudentLive(); if(typeof startClassPoll==='function'){ startClassPoll(); enforceClassRules(); applyReadingClass(); setTimeout(()=>resumePinCheck().catch(()=>{}), 800); } }
   if(!(JOINING && !SESSION.type)) { renderTop(); render(); }
 }
 let CURRENT_USER=null;
@@ -6090,13 +6635,14 @@ function lvDetailHTML(s){ const v=s.vault; if(!v||!v.arts) return `<h3 style="ma
    podiums). Art drops into arena/… — listed in ARENA_ART_HAVE once it exists.
    ===================================================================== */
 const ARENA_DIR = 'arena/';
-const ARENA_SYNC = ['avatar','look','owned','daily','esc','alive'];
+const ARENA_SYNC = ['avatar','look','owned','daily','esc','alive','miss','goal','reading'];
 const ARENA_ART_HAVE = new Set(['gn/ball','gn/bg_chests','gn/bg_floor','gn/bg_four','gn/bg_grudge','gn/bg_hotseat','gn/bg_jeopardy','gn/bg_live','gn/bg_squad','gn/boulder','gn/chalk_x','gn/chest_closed','gn/chest_open','gn/clock','gn/cobweb','gn/coins','gn/diamond','gn/disc_gold','gn/disc_red','gn/flag','gn/fx_check','gn/fx_confetti','gn/fx_fireworks','gn/fx_ice','gn/fx_sparkle','gn/fx_wrong','gn/gift','gn/hoop','gn/icon_chests','gn/icon_floor','gn/icon_four','gn/icon_grudge','gn/icon_hotseat','gn/icon_jeopardy','gn/icon_live','gn/icon_squad','gn/ladder','gn/lifelines','gn/ll_ask','gn/ll_cut','gn/ll_huddle','gn/podium','gn/raccoon','gn/rope','gn/swap','gn/swish','gn/trapdoor','gn/trophy','gn/vs','badge/b_avatar','badge/b_day3','badge/b_day7','badge/b_escape','badge/b_gallery','badge/b_live','badge/b_lvl5','badge/b_q25','badge/b_shop','badge/b_unit','badge/b_vault','badge/b_vault3','bg/b_archive','bg/b_capitol','bg/b_classic','bg/b_everglades','bg/b_launch','bg/b_newsroom','bg/b_vault','comp/c_bison','comp/c_bulldog','comp/c_cat','comp/c_eagle','comp/c_gator','comp/c_ghost','comp/c_manatee','comp/c_owl','comp/c_pigeon','comp/c_rover','escape/obj_cab','escape/obj_chest','escape/obj_clk','escape/obj_door','escape/obj_let','escape/obj_map','escape/room','frame/f_gold','frame/f_neon','frame/f_parch','frame/f_space','frame/f_stars','frame/f_vault','stage/live']);           // e.g. 'comp/c_eagle' once arena/comp/c_eagle.webp is uploaded
 const arenaArt = k => ARENA_ART_HAVE.has(k) ? ARENA_DIR+k+'.webp' : '';
 
 function arenaInitState(){
   S.look = Object.assign({frame:'', comp:'', title:'t_rookie', emote:'e_jump', bg:'b_classic'}, S.look||{});
   S.owned = S.owned||{}; S.daily = Object.assign({last:'', count:0, best:0}, S.daily||{}); S.esc = S.esc||{}; S.alive = Object.assign({played:0, podium:0, wins:0}, S.alive||{});
+  S.miss = S.miss||{}; S.goal = Object.assign({target:0, week:'', days:[], paid:''}, S.goal||{}); S.reading = Object.assign({font:false, auto:false}, S.reading||{});
   if(!S.avatar && S.vault && S.vault.av) S.avatar = S.vault.av;
 }
 function arenaPayload(){ arenaInitState(); return Object.fromEntries(ARENA_SYNC.map(k=>[k, S[k]??null])); }
@@ -6181,7 +6727,7 @@ function arenaDailyTick(){
   const bonus = S.daily.count%10===0?5 : S.daily.count%5===0?3 : 1;
   setTimeout(()=>award(bonus, `🔥 ${S.daily.count}-day study streak`), 600);
 }
-if(typeof onCorrect==='function'){ const _arenaOnCorrect=onCorrect; onCorrect=function(...a){ const r=_arenaOnCorrect.apply(this,a); try{ arenaDailyTick(); }catch(e){} return r; }; }
+if(typeof onCorrect==='function'){ const _arenaOnCorrect=onCorrect; onCorrect=function(...a){ const r=_arenaOnCorrect.apply(this,a); try{ arenaDailyTick(); }catch(e){} try{ if(typeof goalTick==='function') goalTick(); }catch(e){} return r; }; }
 
 /* --------------------------- avatar render -------------------------- */
 function fnv(str){ let h=2166136261>>>0; for(const ch of String(str)){ h^=ch.charCodeAt(0); h=Math.imul(h,16777619)>>>0; } return h; }
@@ -6228,6 +6774,7 @@ function celebrate(spec, look, line, sub){
 function classQuest(){ const c=activeClass(); const q=c&&c.settings&&c.settings.quest; if(!q||!q.goal) return null; const tot=c.questXP||0; return {...q, tot, pct:Math.min(100,Math.round(100*tot/q.goal))}; }
 function questMeter(q, big){ return `<div class="quest ${big?'big':''}"><div class="spread"><b>🗺️ Class Quest${q.name?': '+esc(q.name):''}</b><span class="small">${q.tot.toLocaleString()} / ${(+q.goal).toLocaleString()} XP</span></div>
   <span class="meter q"><i style="width:${q.pct}%"></i>${[25,50,75].map(p=>`<em style="left:${p}%" class="${q.pct>=p?'on':''}"></em>`).join('')}</span>${q.reward?`<div class="small">🎁 Class reward at 100%: <b>${esc(q.reward)}</b></div>`:''}</div>`; }
+const shopHidden = () => S.role==='student' && SESSION.type==='student' && !!(S.settings&&S.settings.hideShop);
 function lockerHTML(){
   arenaInitState(); const L=lvlInfo(S.xp||0), es=S.lang==='es', bg=SHOP_BY[S.look.bg]||SHOP_BY.b_classic, bgArt=arenaArt('bg/'+bg.id), q=classQuest(), ttl=SHOP_BY[S.look.title];
   const name=(S.join&&S.join.name)||S.student.name||'';
@@ -6236,17 +6783,18 @@ function lockerHTML(){
     <div class="lk-stage" id="lkStage">${S.avatar?myAva({kind:'full', size:190}):`<button class="lk-new" id="lkBuild"><span>🧑‍🎓</span><b>${es?'Crea tu avatar':'Build your avatar'}</b><span class="small">${es?'Aparecerá en el pizarrón cuando juegues':'It shows up on the smartboard when you play'}</span></button>`}</div>
     <div class="lk-info">
       <div class="lk-name">${esc(name)}</div>
-      ${ttl?`<span class="lk-title">${esc(ttl.name)}</span>`:''}
+      ${ttl?`<span class="lk-title">${esc(tA(ttl.name))}</span>`:''}
       <div class="lk-lvl"><span class="lk-badge">LV ${L.n}</span><span class="meter xp"><i style="width:${L.pct}%"></i></span><span class="small">${L.into}/${L.need} XP</span></div>
       <div class="row lk-chips"><span class="chip">🔥 <b>${S.daily.count||0}</b> ${es?'días seguidos':'day streak'}</span><span class="chip">${coin()} <b>${S.tokens}</b></span><span class="chip">🏅 <b>${nb.length}</b>/${BADGES.length}</span></div>
-      <div class="row lk-btns"><button class="btn" id="lkEdit">✏️ ${es?'Editar avatar':'Edit avatar'}</button><button class="btn gold" id="lkShop">🛍️ ${es?'Tienda':'Shop'}</button><button class="btn" id="lkBadges">🏅 ${es?'Insignias':'Badges'}</button></div>
+      <div class="row lk-btns"><button class="btn" id="lkEdit">✏️ ${es?'Editar avatar':'Edit avatar'}</button>${shopHidden()?'':`<button class="btn gold" id="lkShop">🛍️ ${es?'Tienda':'Shop'}</button>`}<button class="btn" id="lkBadges">🏅 ${es?'Insignias':'Badges'}</button><button class="btn ghost" id="lkRead" title="${es?'Opciones de lectura':'Reading settings'}">🔤 ${es?'Lectura':'Reading'}</button></div>
       ${q?questMeter(q):''}
     </div></section>`;
 }
 function bindLocker(m){
   const ed=()=>lvAvatarStudio(()=>render(), {title:'🧑‍🎓 Your Arena Avatar', btn:'Save my avatar'});
   const b=$('#lkBuild',m); if(b) b.onclick=ed; const e=$('#lkEdit',m); if(e) e.onclick=ed;
-  $('#lkShop',m).onclick=()=>shopModal(); $('#lkBadges',m).onclick=()=>badgesModal();
+  const sh=$('#lkShop',m); if(sh) sh.onclick=()=>shopModal(); $('#lkBadges',m).onclick=()=>badgesModal();
+  const rd=$('#lkRead',m); if(rd) rd.onclick=()=>readingModal();
   const st=$('#lkStage .ava-full',m); if(st){ st.style.cursor='pointer'; st.title='Tap for your victory move'; st.onclick=()=>playEmote(st,S.look.emote); }
 }
 
@@ -6260,31 +6808,31 @@ function shopModal(){
     if(it.kind==='frame') return `<div class="sh-prev">${myAva({size:84, look:{...S.look, frame:it.id, comp:''}})}</div>`;
     if(it.kind==='bg'){ const a=arenaArt('bg/'+it.id); return `<div class="sh-prev sh-bg ${it.css}" ${a?`style="background-image:url(${a})"`:''}></div>`; }
     if(it.kind==='emote') return `<div class="sh-prev"><button class="sh-try" data-try="${it.id}">${myAva({kind:'full', size:120, look:{...S.look, comp:''}})}</button></div>`;
-    return `<div class="sh-prev"><span class="lk-title">${esc(it.name)}</span></div>`;
+    return `<div class="sh-prev"><span class="lk-title">${esc(tA(it.name))}</span></div>`;
   }
   function draw(){
     const list=SHOP[SHOP_TAB].map(x=>SHOP_BY[x.id]);
     const slot={comp:'comp',frame:'frame',bg:'bg',emote:'emote',title:'title'}[SHOP_TAB];
-    $('#shopBox',mm).innerHTML=`<div class="spread"><h2 style="margin:0">🛍️ Arena Shop</h2><span class="chip big">${coin()} <b>${S.tokens}</b> tokens</span></div>
-      <p class="small">${SHOP_TAB==='emote'?'Tap a character to preview the move. ':''}Earn tokens by mastering questions, keeping your daily streak, recovering artifacts and escaping rooms. You choose exactly what you unlock — no random packs.</p>
-      <div class="tabs">${SHOP_TABS.map(([k,l])=>`<button class="${k===SHOP_TAB?'on':''}" data-tab="${k}">${l}</button>`).join('')}</div>
+    $('#shopBox',mm).innerHTML=`<div class="spread"><h2 style="margin:0">🛍️ ${tA('Arena Shop')}</h2><span class="chip big">${coin()} <b>${S.tokens}</b> ${tA('tokens')}</span></div>
+      <p class="small">${SHOP_TAB==='emote'?tA('Tap a character to preview the move. '):''}${tA('Earn tokens by mastering questions, keeping your daily streak, recovering artifacts and escaping rooms. You choose exactly what you unlock — no random packs.')}</p>
+      <div class="tabs">${SHOP_TABS.map(([k,l])=>`<button class="${k===SHOP_TAB?'on':''}" data-tab="${k}">${tA(l)}</button>`).join('')}</div>
       <div class="shop-grid">${list.map(it=>{ const own=ownedOrFree(it.id), on=S.look[slot]===it.id, locked=it.need&&!badgeOk(it.need);
-        return `<div class="sh-item ${on?'on':''}">${itemPreview(it)}<b>${it.icon?it.icon+' ':''}${esc(it.name)}</b>${it.blurb?`<span class="small">${esc(it.blurb)}</span>`:''}
-          ${on?`<button class="btn" data-unequip="${it.id}" ${['title','bg','emote'].includes(slot)?'disabled':''}>✅ Equipped</button>`
-            : own?`<button class="btn em" data-eq="${it.id}">Equip</button>`
-            : locked?`<button class="btn" disabled>🔒 ${esc(it.needTxt)}</button>`
+        return `<div class="sh-item ${on?'on':''}">${itemPreview(it)}<b>${it.icon?it.icon+' ':''}${esc(tA(it.name))}</b>${it.blurb?`<span class="small">${esc(tA(it.blurb))}</span>`:''}
+          ${on?`<button class="btn" data-unequip="${it.id}" ${['title','bg','emote'].includes(slot)?'disabled':''}>${tA('✅ Equipped')}</button>`
+            : own?`<button class="btn em" data-eq="${it.id}">${tA('Equip')}</button>`
+            : locked?`<button class="btn" disabled>🔒 ${esc(tA(it.needTxt))}</button>`
             : `<button class="btn gold" data-buy="${it.id}" ${S.tokens<it.price?'disabled':''}>${coin()} ${it.price}</button>`}</div>`; }).join('')}</div>`;
     $$('[data-tab]',mm).forEach(b=>b.onclick=()=>{ SHOP_TAB=b.dataset.tab; SFX.click(); draw(); });
     $$('[data-eq]',mm).forEach(b=>b.onclick=()=>{ S.look[slot]=b.dataset.eq; save(); SFX.click(); draw(); });
     $$('[data-unequip]',mm).forEach(b=>b.onclick=()=>{ if(['comp','frame'].includes(slot)){ S.look[slot]=''; save(); draw(); } });
-    $$('[data-buy]',mm).forEach(b=>b.onclick=()=>{ const it=SHOP_BY[b.dataset.buy]; if(S.tokens<it.price) return toast('Not enough tokens yet'); S.tokens-=it.price; S.owned[it.id]=Date.now(); S.look[slot]=it.id; save(); renderHUD(); SFX.coin(); confetti(40); toast(`🎉 Unlocked <b>${esc(it.name)}</b>`); draw(); });
+    $$('[data-buy]',mm).forEach(b=>b.onclick=()=>{ const it=SHOP_BY[b.dataset.buy]; if(S.tokens<it.price) return toast(tA('Not enough tokens yet')); S.tokens-=it.price; S.owned[it.id]=Date.now(); S.look[slot]=it.id; save(); renderHUD(); SFX.coin(); confetti(40); toast(`🎉 ${tA('Unlocked')} <b>${esc(tA(it.name))}</b>`); draw(); });
     $$('[data-try]',mm).forEach(b=>b.onclick=()=>playEmote(b.querySelector('.ava-full'), b.dataset.try));
   }
 }
 function badgesModal(){
-  modal(`<h2>🏅 Badges</h2><p class="small">Badges unlock automatically as you learn. Some also unlock titles and frames in the shop.</p>
+  modal(`<h2>🏅 ${tA('Badges')}</h2><p class="small">${tA('Badges unlock automatically as you learn. Some also unlock titles and frames in the shop.')}</p>
     <div class="badge-grid">${BADGES.map(b=>{ let ok=false; try{ ok=b.ok(); }catch(e){} const a=arenaArt('badge/'+b.id);
-      return `<div class="bdg ${ok?'on':''}"><span class="bdg-ico">${a?`<img src="${a}" alt="">`:b.icon}</span><b>${esc(b.name)}</b><span class="small">${esc(b.desc)}</span>${ok?'<span class="tag em">Earned</span>':'<span class="tag">Locked</span>'}</div>`; }).join('')}</div>`);
+      return `<div class="bdg ${ok?'on':''}"><span class="bdg-ico">${a?`<img src="${a}" alt="">`:b.icon}</span><b>${esc(tA(b.name))}</b><span class="small">${esc(tA(b.desc))}</span>${ok?`<span class="tag em">${tA('Earned')}</span>`:`<span class="tag">${tA('Locked')}</span>`}</div>`; }).join('')}</div>`);
 }
 
 /* ---------------------------- Class Quest --------------------------- */
@@ -6596,9 +7144,10 @@ function renderArenaLiveStudent(m){
   if(d.stage==='q'){
     m.innerHTML=`<div class="al-sbox">${head}<div class="small">${es?'Pregunta':'Question'} ${d.idx+1} / ${d.qids.length}</div>${q.st?`<div class="stim">${esc(q.st)}</div>`:''}<div class="al-sq">${esc(q.s)}</div>
       ${mine?`<div class="al-wait"><div class="al-sh big" style="background:${AL_COL[order.indexOf(mine.c)]}">${AL_SHAPE[order.indexOf(mine.c)]}</div><h3>${es?'¡Respuesta enviada!':'Answer locked in!'}</h3><p class="small">${es?'Espera a que tu maestro revele la respuesta.':'Wait for your teacher to reveal the answer.'}</p></div>`
-        :`<div class="al-sopts">${order.map((oi,k)=>`<button class="al-sopt" data-c="${oi}" style="--oc:${AL_COL[k]}"><span class="al-sh">${AL_SHAPE[k]}</span><span>${esc(q.o[oi])}</span></button>`).join('')}</div>`}</div>`;
+        :`<div class="al-sopts">${order.map((oi,k)=>`<button class="al-sopt" data-c="${oi}" style="--oc:${AL_COL[k]}"><span class="al-sh">${AL_SHAPE[k]}</span><span>${esc(q.o[oi])}</span></button>`).join('')}</div>${readBtnHTML()?`<div class="row" style="justify-content:center;margin-top:.6rem">${readBtnHTML()}</div>`:''}`}</div>`;
+    const rb=$('[data-read]',m); if(rb){ const say=()=>speak([q.st||'',q.s,...order.map((oi,k)=>q.o[oi])].filter(Boolean).join('. ')); rb.onclick=say; if(readingPrefs().auto && !A['rd'+d.idx]){ A['rd'+d.idx]=1; setTimeout(say,250); } }
     $$('[data-c]',m).forEach(b=>b.onclick=async()=>{ const ch=+b.dataset.c, ms=Date.now()-A.seenAt[d.idx], ok=ch===0; A.streak=ok?A.streak+1:0; const pts=alScore(d,ok,ms,A.streak);
-      A.answers[d.idx]={c:ch, ok, pts}; A.score+=pts; SFX.click();
+      A.answers[d.idx]={c:ch, ok, pts}; A.score+=pts; SFX.click(); stopSpeak(); if(!ok) recordMiss(q, ch);
       if(ok && !S.qstat[q.id]){ S.qstat[q.id]='first'; S.xp+=100; } else if(ok) S.xp+=25; save();
       if(ok) try{ arenaDailyTick(); }catch(e){}
       renderArenaLiveStudent(m);
@@ -6812,7 +7361,7 @@ async function gnSetup(m, cfg){
   function draw(){
     if(mode==='teams' && (!teams||teams.length!==nT)) auto();
     const P=gnPresent();
-    m.innerHTML=`${backBtn()}<div class="gn-hero" style="--gc:${cfg.color}"><div><span class="eyebrow">Game Night · smartboard</span><h1>${cfg.icon} ${esc(cfg.title)}</h1><p>${esc(cfg.blurb)}</p>
+    m.innerHTML=`${backBtn()}<div class="gn-hero" style="--gc:${cfg.color}"><div><span class="eyebrow">${tA('Game Night · smartboard')}</span><h1>${cfg.icon} ${esc(tA(cfg.title))}</h1><p>${esc(cfg.blurb)}</p>
         <ul class="gn-rules">${cfg.rules.map(r=>`<li>${r}</li>`).join('')}</ul></div><span class="tag gold">${esc(u.title)}</span></div>
       <div class="card">
         <div class="seg">${(cfg.kind==='players'?[['roster','🧑 Class players'],['quick','✍️ Type names']]:[['teams','👥 Teams from roster'],['quick','✍️ Quick team names']]).map(([k,l])=>`<button class="${mode===k?'on':''}" data-mode="${k}" ${k!=='quick'&&R.length<(cfg.kind==='players'?cfg.minPlayers:4)?'disabled title="Needs more students in your class roster"':''}>${l}</button>`).join('')}</div>
@@ -6823,7 +7372,7 @@ async function gnSetup(m, cfg){
         ${mode==='quick'?`<div class="field" style="margin-top:.6rem"><label>${cfg.kind==='players'?'Player names (one per line)':'Team names (one per line)'}</label><textarea id="gQ" style="min-height:120px">${esc(GN.names|| (cfg.kind==='players'?'Ava\nBen\nCarlos\nDiana\nEli\nFatima':'Team 1\nTeam 2\nTeam 3\nTeam 4'))}</textarea></div>`:''}
         ${GN.absent.size?`<div class="small" style="margin-top:.6rem">Absent today: ${[...GN.absent].map(byId).filter(Boolean).map(s=>`<button class="jp-chip ghost" data-back="${esc(s.id)}">↩ ${esc(gnFirst(s.name))}</button>`).join(' ')}</div>`:''}
         ${cfg.optsHTML?`<div class="grid g3" style="margin-top:.8rem">${cfg.optsHTML(opts)}</div>`:''}
-        <button class="btn gold big" id="gGo" style="margin-top:.9rem">▶ Start ${esc(cfg.title)}</button></div>`;
+        <button class="btn gold big" id="gGo" style="margin-top:.9rem">▶ ${tA('Start')} ${esc(tA(cfg.title))}</button></div>`;
     bindBack(m);
     $$('[data-mode]',m).forEach(b=>b.onclick=()=>{ mode=b.dataset.mode; sel=null; draw(); });
     const per=$('#gPer',m); if(per) per.onchange=()=>{ GN.period=per.value; teams=null; draw(); };
@@ -6860,11 +7409,11 @@ function gnAsk(u, q, o={}){
     const order=shuffle(q.o.map((_,k)=>k)); let elim=new Set(), iv=null, left=o.secs||0, done=false;
     const mm=modal(`<div id="gq"></div>`,{full:true, onClose:()=>{ clearInterval(iv); if(!done){ done=true; res({ok:false, skipped:true}); } }}); mm.classList.add('jblue');
     const z=$('#gq',mm);
-    z.innerHTML=`${o.who?`<div class="jp-upbar">${o.who}</div>`:''}<div class="spread" style="padding-right:3rem"><span class="tag gold">${esc(o.title||'Question')} · ${esc(q.bm)}</span>${left?`<span class="chip">⏱️ <b id="gT">${left}</b>s</span>`:''}</div>
+    z.innerHTML=`${o.who?`<div class="jp-upbar">${o.who}</div>`:''}<div class="spread" style="padding-right:3rem"><span class="tag gold">${esc(tA(o.title||'Question'))} · ${esc(q.bm)}</span>${left?`<span class="chip">⏱️ <b id="gT">${left}</b>s</span>`:''}</div>
       ${q.st?`<div class="stim" style="max-width:900px;margin:.6rem auto;color:var(--ink)">${esc(q.st)}</div>`:''}<div class="clue" style="font-size:clamp(1.3rem,2.6vw,2.2rem)">${esc(q.s)}</div>
       <div class="gn-opts">${order.map((oi,k)=>`<button class="gn-opt" data-a="${oi}" style="--oc:${AL_COL[k]}"><span class="al-sh">${LETTERS[k]}</span><span>${esc(q.o[oi])}</span></button>`).join('')}</div>
-      <p class="small" style="text-align:center;color:#CBD5E1;margin-top:.6rem">Tap the answer the ${o.solo?'player':'team'} gives.</p>
-      <div class="row" style="justify-content:center">${o.lifelines||''}<button class="btn ghost" id="gSkip" style="color:#fff">Skip question</button></div><div id="gFb"></div>`;
+      <p class="small" style="text-align:center;color:#CBD5E1;margin-top:.6rem">${tA(o.solo?'Tap the answer the player gives.':'Tap the answer the team gives.')}</p>
+      <div class="row" style="justify-content:center">${o.lifelines||''}<button class="btn ghost" id="gSkip" style="color:#fff">${tA('Skip question')}</button></div><div id="gFb"></div>`;
     if(left){ iv=setInterval(()=>{ left--; const e=$('#gT',z); if(e) e.textContent=Math.max(0,left); if(left<=5&&left>0) SFX.tick(); if(left<=0){ clearInterval(iv); SFX.buzz(); } },1000); }
     $('#gSkip',z).onclick=()=>{ done=true; clearInterval(iv); mm.close(); res({ok:false, skipped:true}); };
     if(o.onReady) o.onReady(z, {eliminate:k=>{ elim.add(k); const b=$(`[data-a="${k}"]`,z); if(b){ b.disabled=true; b.classList.add('gone'); } }, order});
@@ -6872,9 +7421,9 @@ function gnAsk(u, q, o={}){
       if(o.suspense){ $$('[data-a]',z).forEach(x=>x.disabled=true); b.classList.add('locked'); SFX.tick(); await new Promise(r=>setTimeout(r,o.suspense)); }
       const ok=a===0; done=true; $$('[data-a]',z).forEach(x=>{ x.disabled=true; const v=+x.dataset.a; if(v===0) x.classList.add('right'); else if(v===a) x.classList.add('wrong'); });
       ok?SFX.right():SFX.wrong();
-      const why=!ok&&q.w&&q.w[a-1]?`<p><b>Why it's tempting:</b> ${esc(q.w[a-1])}</p>`:'';
-      $('#gFb',z).innerHTML=`<div class="gn-verdict ${ok?'ok':'no'}">${gnImg(ok?'fx_check':'fx_wrong','gn-fx')}${ok?'Correct!':'Not quite'}</div>${!ok?`<div class="reteach" style="max-width:860px;margin:.6rem auto">${why}${q.r?`<p><b>${esc(q.r[0])}:</b> ${esc(q.r[1])}</p>`:''}</div>`:''}
-        <p style="text-align:center;margin-top:.6rem"><button class="btn gold big" id="gCont">${ok?(o.okLabel||'Continue'):'Continue'}</button></p>`;
+      const why=!ok&&q.w&&q.w[a-1]?`<p><b>${tA('Why it\'s tempting:')}</b> ${esc(q.w[a-1])}</p>`:'';
+      $('#gFb',z).innerHTML=`<div class="gn-verdict ${ok?'ok':'no'}">${gnImg(ok?'fx_check':'fx_wrong','gn-fx')}${tA(ok?'Correct!':'Not quite')}</div>${!ok?`<div class="reteach" style="max-width:860px;margin:.6rem auto">${why}${q.r?`<p><b>${esc(q.r[0])}:</b> ${esc(q.r[1])}</p>`:''}</div>`:''}
+        <p style="text-align:center;margin-top:.6rem"><button class="btn gold big" id="gCont">${ok?(o.okLabel||tA('Continue')):tA('Continue')}</button></p>`;
       $('#gSkip',z).remove();
       $('#gCont',z).onclick=()=>{ mm.close(); res({ok, choice:a}); };
     });
@@ -6884,16 +7433,16 @@ function gnAsk(u, q, o={}){
 /* ---------- podium ---------- */
 function gnPodium(cons, score, title, onClose){
   const ranked=cons.map((x,i)=>({...x,i,sc:score(x)})).sort((p,q)=>q.sc-p.sc), top=ranked.slice(0,3), order=[top[1],top[0],top[2]].filter(Boolean);
-  const mm=modal(`<div class="podium-wrap">${gnImg('fx_fireworks','pod-fw l')}${gnImg('fx_fireworks','pod-fw r')}<h1 class="pod-h">${gnImg('trophy','pod-trophy')||'🏆'} ${esc(gnLabel(top[0]))} ${title||'wins!'}</h1><div class="podium">${order.map(x=>{ const place=top.indexOf(x)+1;
+  const mm=modal(`<div class="podium-wrap">${gnImg('fx_fireworks','pod-fw l')}${gnImg('fx_fireworks','pod-fw r')}<h1 class="pod-h">${gnImg('trophy','pod-trophy')||'🏆'} ${esc(gnLabel(top[0]))} ${title||tA('wins!')}</h1><div class="podium">${order.map(x=>{ const place=top.indexOf(x)+1;
       return `<div class="pod p${place}" style="--tc:${x.col}"><div class="pod-avas">${x.members.length?x.members.slice(0,x.solo?1:4).map(s=>avaHTML(avaSpec(s),{kind:'full', size:x.solo?200:(place===1?130:110), look:s.look})).join(''):`<span class="ava-emoji" style="--s:120px;background:${x.col}">${x.mascot||'⭐'}</span>`}</div>
         <div class="pod-step"><span class="pod-n">${place}</span><b>${esc(gnLabel(x))}</b><span>${x.scLabel?x.scLabel(x):x.sc.toLocaleString()}</span></div></div>`; }).join('')}</div>
       ${ranked.length>3?`<div class="small" style="text-align:center;margin-top:1rem;color:#CBD5E1">${ranked.slice(3,12).map((x,k)=>`${k+4}. ${esc(gnLabel(x))}`).join(' · ')}</div>`:''}
-      <p style="text-align:center;margin-top:1rem"><button class="btn gold big" id="pdDone">Done</button></p></div>`,{full:true, onClose});
+      <p style="text-align:center;margin-top:1rem"><button class="btn gold big" id="pdDone">${tA('Done')}</button></p></div>`,{full:true, onClose});
   mm.classList.add('jblue'); SFX.fanfare(); confetti(140);
   setTimeout(()=>$$('.pod.p1 .ava-full',mm).forEach((el,k)=>setTimeout(()=>playEmote(el,((top[0].members[k]||{}).look||{}).emote),k*180)),900);
   $('#pdDone',mm).onclick=()=>mm.close();
 }
-const gnTopBar = (title, extra='') => `<div class="spread gn-top"><button class="back" data-back>${t('back')}</button><b class="gn-title">${title}</b><div class="row">${extra}<button class="btn" id="gEnd">🏁 End game</button></div></div>`;
+const gnTopBar = (title, extra='') => `<div class="spread gn-top"><button class="back" data-back>${t('back')}</button><b class="gn-title">${tAT(title)}</b><div class="row">${extra}<button class="btn" id="gEnd">${tA('🏁 End game')}</button></div></div>`;
 
 /* ======================== TERRITORY TAKEOVER ======================== */
 function renderFloor(m){
@@ -7200,5 +7749,419 @@ function squadGame(m, T){
   }
   function finish(){ gnPodium(T.map(x=>({...x, scLabel:y=>SQ_CAMPS[y.s]})), x=>x.s, 'conquers the Summit!', ()=>board()); }
 }
+
+/* =====================================================================
+   TEACHER TOOLS — assignments, trap analysis, reteach groups, grade
+   export (plain + Canvas), class-time controls, roster import,
+   per-student accommodations and PIN reset.
+   Everything lives on the classroom doc (c.settings) so students
+   receive it with the class; student data stays in student docs.
+   ===================================================================== */
+const AS_MODES = [
+  ['gauntlet','🧭 Mastery Gauntlet','Reach the mastery threshold in the unit'],
+  ['study','📘 Study Lab','Reach the mastery threshold in the unit'],
+  ['summit','🏔️ Summit of Mastery','Reach the mastery threshold in the unit'],
+  ['escape','🔐 Escape Room','Escape the room once'],
+  ['gallery','🏛️ Gallery Walk','Finish every station'],
+  ['vault','🗝️ Liberty Vault','Earn at least one Mastery Seal'] ];
+const asMode = k => AS_MODES.find(x=>x[0]===k) || AS_MODES[0];
+const todayISO = () => { const d=new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; };
+const fmtDue = iso => { if(!iso) return ''; const [y,m,d]=iso.split('-').map(Number); return new Date(y,m-1,d).toLocaleDateString(undefined,{weekday:'short', month:'short', day:'numeric'}); };
+function classAssigns(c){ c=c||activeClass(); return ((c&&c.settings&&c.settings.assign)||[]).filter(a=>a&&a.id); }
+
+/* Did a student (record with qstat/esc/galleryDone/vault) finish an assignment? */
+function asDone(a, rec){
+  const u=allUnits().find(x=>x.id===a.unit); if(!u) return false; rec=rec||{};
+  const thr=(activeClass()&&activeClass().settings.threshold)||85;
+  if(a.mode==='escape') return !!(((rec.esc||{})[u.id]||{}).runs);
+  if(a.mode==='gallery') return !!(u.gallery&&u.gallery.length) && (((rec.galleryDone||{})[u.id])||[]).length>=u.gallery.length;
+  if(a.mode==='vault'){ const v=rec.vault||{}; return Object.values(v.seals||{}).some(Boolean); }
+  return qstatUnitPct(rec.qstat||{}, u) >= thr;
+}
+const asLate = a => a.due && a.due < todayISO();
+
+/* ---------------------------- miss tracking ---------------------------- */
+function recordMiss(q, choice){
+  if(!q || !q.id || typeof choice!=='number' || choice<=0) return;
+  S.miss=S.miss||{}; const m=S.miss[q.id]=S.miss[q.id]||{}; m[choice]=(m[choice]||0)+1;
+  const keys=Object.keys(S.miss); if(keys.length>400) delete S.miss[keys[0]];   // keep the record small
+}
+
+/* --------------------------- dashboard tabs ---------------------------- */
+const TT_TABS = [['assign','📌 Assignments'],['groups','👥 Reteach groups']];
+function ttTabBody(tab, c){
+  const st=DASH.students, units=allUnits();
+  if(tab==='assign'){
+    const list=classAssigns(c).slice().sort((a,b)=>(a.due||'9').localeCompare(b.due||'9'));
+    return `<div class="tt-new"><b>New assignment</b>
+        <div class="grid g4" style="gap:.5rem;margin-top:.4rem">
+          <select id="asUnit">${units.filter(u=>u.qs.length).map(u=>`<option value="${u.id}">${esc(u.title)}</option>`).join('')}</select>
+          <select id="asMode">${AS_MODES.filter(([k])=>k!=='vault'||!c.course||courseGroupOf(c.course)==='ush'||!courseGroupOf(c.course)).map(([k,l])=>`<option value="${k}">${l}</option>`).join('')}</select>
+          <input type="date" id="asDue" value="${todayISO()}" min="${todayISO()}">
+          <button class="btn gold" id="asAdd">➕ Assign</button></div>
+        <p class="small" id="asHint" style="margin:.3rem 0 0">${esc(asMode('gauntlet')[2])}. Students see it at the top of their home screen.</p></div>
+      ${list.length?list.map(a=>{ const u=units.find(x=>x.id===a.unit); const done=st.filter(s=>asDone(a,s)), todo=st.filter(s=>!asDone(a,s)); const pct=st.length?Math.round(100*done.length/st.length):0;
+        return `<details class="tt-as ${asLate(a)?'late':''}"><summary><span class="tt-as-t"><b>${esc(asMode(a.mode)[1])}</b> · ${esc(u?u.title:'(unit removed)')}</span>
+          <span class="small">Due ${esc(fmtDue(a.due))}${asLate(a)?' · <b style="color:var(--crimson,#DC2626)">past due</b>':''}</span>
+          <span class="meter" style="width:120px"><i style="width:${pct}%"></i></span><b>${done.length}/${st.length}</b></summary>
+          <div class="grid g2" style="margin-top:.5rem"><div><div class="small"><b>✅ Done (${done.length})</b></div><div class="small">${done.map(s=>esc(s.name)).join(', ')||'—'}</div></div>
+          <div><div class="small"><b>⏳ Not yet (${todo.length})</b></div><div class="small">${todo.map(s=>esc(s.name)).join(', ')||'Everyone is done 🎉'}</div></div></div>
+          <div class="row" style="margin-top:.5rem"><button class="btn ghost" data-asdel="${esc(a.id)}">Remove assignment</button></div></details>`; }).join('')
+        :'<p class="muted" style="margin-top:.8rem">No assignments yet.</p>'}`;
+  }
+  if(tab==='groups'){
+    const hu=getUnit(DASH.unit||S.unit), bms=[...new Set(hu.qs.map(q=>q.bm))];
+    const groups={}; const notStarted=[];
+    st.forEach(s=>{ const q=s.qstat||{}; let worst=null, wp=101;
+      bms.forEach(b=>{ const it=hu.qs.filter(x=>x.bm===b); if(!it.some(x=>q[x.id])) return; const p=Math.round(100*it.reduce((a,x)=>a+(q[x.id]==='first'||q[x.id]==='mastered'?1:q[x.id]==='remediated'?.5:0),0)/it.length); if(p<wp){ wp=p; worst=b; } });
+      if(!worst) notStarted.push(s); else if(wp<80) (groups[worst]=groups[worst]||[]).push({s,p:wp}); });
+    const keys=Object.keys(groups).sort((a,b)=>groups[b].length-groups[a].length);
+    return `<div class="row" style="margin-bottom:.6rem"><select id="grUnit">${units.map(u=>`<option value="${u.id}" ${u.id===hu.id?'selected':''}>${esc(u.title)}</option>`).join('')}</select>
+        <span class="small">Each student is placed under the benchmark where they're weakest (below 80%).</span></div>
+      ${keys.length?`<div class="grid g2">${keys.map(b=>`<div class="card tt-grp"><div class="spread"><span class="tag gold" title="${esc(BENCHMARK_TEXT[b]||'')}">${esc(b)}</span><b>${groups[b].length} student${groups[b].length>1?'s':''}</b></div>
+          <p class="small" style="margin:.3rem 0">${esc((BENCHMARK_TEXT[b]||'').slice(0,140))}</p>
+          <div class="small">${groups[b].sort((x,y)=>x.p-y.p).map(g=>`${esc(g.s.name)} <span class="muted">(${g.p}%)</span>`).join(' · ')}</div>
+          <button class="btn" data-grset="${esc(b)}" style="margin-top:.5rem">🔁 Make a reteach set for this benchmark</button></div>`).join('')}</div>`
+        :'<p class="muted">Nobody is below 80% on any benchmark in this unit yet.</p>'}
+      ${notStarted.length?`<p class="small" style="margin-top:.8rem"><b>Haven't started this unit:</b> ${notStarted.map(s=>esc(s.name)).join(', ')}</p>`:''}`;
+  }
+  return '';
+}
+function bindTTTabs(m, c, redraw){
+  const as=$('#asAdd',m);
+  if(as){ const md=$('#asMode',m); md.onchange=()=>$('#asHint',m).textContent=asMode(md.value)[2]+'. Students see it at the top of their home screen.';
+    as.onclick=()=>{ const due=$('#asDue',m).value; if(!due) return toast('Pick a due date');
+      c.settings.assign=classAssigns(c).concat([{id:'a'+Date.now().toString(36), unit:$('#asUnit',m).value, mode:md.value, due, created:Date.now()}]); save(); toast('📌 Assigned'); redraw(); }; }
+  $$('[data-asdel]',m).forEach(b=>b.onclick=()=>{ c.settings.assign=classAssigns(c).filter(a=>a.id!==b.dataset.asdel); save(); redraw(); });
+  const gu=$('#grUnit',m); if(gu) gu.onchange=e=>{ DASH.unit=e.target.value; redraw(); };
+  $$('[data-grset]',m).forEach(b=>b.onclick=()=>{ const bm=b.dataset.grset, hu=getUnit(DASH.unit||S.unit);
+    const items=hu.qs.filter(q=>q.bm===bm).map(q=>({...q, id:q.id+'_g'+Date.now().toString(36)}));
+    const ru=newUnit(`Reteach: ${bm} (${new Date().toLocaleDateString()})`,'Teacher dashboard'); ru.icon='🔁'; ru.qs=items; ru.bms=[bm]; ru.vocab=(hu.vocab||[]).slice(0,6); S.custom.push(ru); save(); toast('🔁 Reteach set added — it appears in students\' unit list'); });
+}
+
+/* ---------------------- trap analysis (most-missed) -------------------- */
+function trapLine(q){
+  const agg={}; let tot=0;
+  DASH.students.forEach(s=>{ const m=(s.miss||{})[q.id]; if(m) Object.entries(m).forEach(([k,n])=>{ agg[k]=(agg[k]||0)+n; tot+=n; }); });
+  if(!tot) return '';
+  const [k,n]=Object.entries(agg).sort((a,b)=>b[1]-a[1])[0], i=+k, why=(q.w||[])[i-1]||'';
+  return `<div class="tt-trap">🪤 Top wrong answer (${Math.round(100*n/tot)}% of misses): <b>${esc(q.o[i]||'')}</b>${why?`<div class="small">${esc(why)}</div>`:''}</div>`;
+}
+
+/* ------------------------------ export -------------------------------- */
+const csvCell = v => { const s=String(v??''); return /[",\n]/.test(s)?`"${s.replace(/"/g,'""')}"`:s; };
+const csvRow = a => a.map(csvCell).join(',');
+function ttParseCSV(text){
+  const rows=[]; let row=[], cell='', q=false;
+  for(let i=0;i<text.length;i++){ const ch=text[i];
+    if(q){ if(ch==='"'){ if(text[i+1]==='"'){ cell+='"'; i++; } else q=false; } else cell+=ch; }
+    else if(ch==='"') q=true; else if(ch===','){ row.push(cell); cell=''; } else if(ch==='\n'||ch==='\r'){ if(ch==='\r'&&text[i+1]==='\n') i++; row.push(cell); rows.push(row); row=[]; cell=''; } else cell+=ch; }
+  if(cell||row.length){ row.push(cell); rows.push(row); }
+  return rows.filter(r=>r.some(x=>x.trim()));
+}
+function gradesCSV(){
+  const units=allUnits().filter(u=>u.qs.length), as=classAssigns();
+  const head=['Student','Period','Overall mastery %',...units.map(u=>u.title+' %'),...as.map(a=>`${asMode(a.mode)[1].replace(/^\S+\s/,'')} – ${(units.find(u=>u.id===a.unit)||{}).title||''} (due ${a.due})`),'Reteach loops','Last active'];
+  const rows=DASH.students.map(s=>[s.name, s.period||'', overallPct(s), ...units.map(u=>qstatUnitPct(s.qstat||{},u)), ...as.map(a=>asDone(a,s)?'Done':'Not yet'), s.loops||0, s.lastSeen?new Date(s.lastSeen).toLocaleDateString():'']);
+  return [head,...rows].map(csvRow).join('\n');
+}
+const nameKey = n => { n=(n||'').trim(); if(n.includes(',')){ const [last,first]=n.split(',').map(x=>x.trim()); n=first+' '+last; }
+  const p=n.split(/\s+/).filter(Boolean); return ((p[0]||'')+' '+((p[p.length-1]||'')[0]||'')).toLowerCase().replace(/[^a-zÀ-ɏ ]/g,''); };
+function exportModal(){
+  const units=allUnits().filter(u=>u.qs.length);
+  const mm=modal(`<h2>⬇️ Export grades</h2>
+    <div class="card"><h3 style="margin-top:0">Spreadsheet (all units)</h3><p class="small">One row per student: overall mastery, every unit, every assignment. Opens in Excel or Google Sheets.</p><button class="btn gold" id="exAll">⬇️ Download CSV</button></div>
+    <div class="card" style="margin-top:.8rem"><h3 style="margin-top:0">Canvas gradebook</h3>
+      <ol class="small" style="margin:.2rem 0 .6rem 1.1rem;padding:0;line-height:1.6"><li>In Canvas, open <b>Grades → Export → Export Entire Gradebook</b>.</li><li>Choose the unit to grade and upload that file here.</li><li>Download the filled file and import it back with <b>Grades → Import</b>. Canvas adds it as a new assignment out of 100.</li></ol>
+      <div class="grid g2" style="gap:.5rem"><select id="exUnit">${units.map(u=>`<option value="${u.id}">${esc(u.title)}</option>`).join('')}</select>
+        <label class="btn">📂 Upload Canvas export<input type="file" id="exCv" accept=".csv" hidden></label></div><div id="exOut" class="small" style="margin-top:.6rem"></div></div>`);
+  $('#exAll',mm).onclick=()=>download(`classroom_arena_grades_${todayISO()}.csv`, gradesCSV(), 'text/csv');
+  $('#exCv',mm).onchange=async e=>{ const f=e.target.files[0]; if(!f) return; const out=$('#exOut',mm);
+    try{ const rows=ttParseCSV(await f.text()); if(rows.length<2) throw new Error('That file looks empty.');
+      const H=rows[0].map(h=>h.trim()); const si=H.findIndex(h=>/^student$/i.test(h)); if(si<0) throw new Error('No "Student" column found. Use the file from Canvas → Grades → Export.');
+      const u=getUnit($('#exUnit',mm).value), col=`Classroom Arena: ${u.title.slice(0,60)}`;
+      const idx={}; DASH.students.forEach(s=>{ const k=nameKey(s.name); (idx[k]=idx[k]||[]).push(s); });
+      let matched=0, dup=0; const miss=[];
+      const outRows=[[...H, col]];
+      rows.slice(1).forEach((r,i)=>{ const nm=(r[si]||'').trim();
+        if(!nm || /points possible/i.test(nm) || /^\s*$/.test(nm)){ outRows.push([...r, /points possible/i.test(nm)?'100':'']); return; }
+        const hits=idx[nameKey(nm)]||[]; if(hits.length===1){ matched++; outRows.push([...r, qstatUnitPct(hits[0].qstat||{},u)]); } else { if(hits.length>1) dup++; else miss.push(nm); outRows.push([...r, '']); } });
+      download(`canvas_import_${u.id}_${todayISO()}.csv`, outRows.map(csvRow).join('\n'), 'text/csv');
+      out.innerHTML=`✅ Filled <b>${matched}</b> student${matched===1?'':'s'}.${dup?` ${dup} name${dup>1?'s':''} matched more than one student (left blank).`:''}${miss.length?`<br>Not found in Classroom Arena (left blank): ${miss.slice(0,12).map(esc).join(', ')}${miss.length>12?'…':''}`:''}<br>Students are matched by first name + last initial.`;
+    }catch(ex){ out.innerHTML=`<span style="color:#DC2626">⚠️ ${esc(ex.message)}</span>`; } };
+}
+
+/* ------------------------- class-time controls ------------------------ */
+function controlsCardHTML(c){
+  const st=c.settings, units=allUnits();
+  return `<div class="card" id="ctlCard"><b>🎛️ Class-time controls</b>
+    <div class="field" style="margin-top:.5rem"><label>Keep students on one unit</label><select id="ctLock"><option value="">Off (students choose)</option>${units.map(u=>`<option value="${u.id}" ${st.lockUnit===u.id?'selected':''}>${esc(u.title)}</option>`).join('')}</select></div>
+    <label class="row small" style="margin-top:.4rem;cursor:pointer"><input type="checkbox" id="ctArc" ${st.hideArcade?'checked':''}> Hide the arcade</label>
+    <label class="row small" style="cursor:pointer"><input type="checkbox" id="ctShop" ${st.hideShop?'checked':''}> Hide the avatar shop</label>
+    <p class="small muted" style="margin:.3rem 0 0">Students' screens update within a minute.</p></div>`;
+}
+function bindControls(m, c){
+  const lk=$('#ctLock',m); if(!lk) return;
+  const savec=msg=>{ save(); queueSync(); toast(msg); };
+  lk.onchange=()=>{ c.settings.lockUnit=lk.value; if(lk.value) S.unit=lk.value; savec(lk.value?'🔒 Students are kept on that unit':'🔓 Students can choose any unit'); };
+  $('#ctArc',m).onchange=e=>{ c.settings.hideArcade=e.target.checked; savec(e.target.checked?'Arcade hidden':'Arcade visible'); };
+  $('#ctShop',m).onchange=e=>{ c.settings.hideShop=e.target.checked; savec(e.target.checked?'Shop hidden':'Shop visible'); };
+}
+
+/* ---------------------------- roster import ---------------------------- */
+function rosterModal(c, after){
+  const mm=modal(`<h2>👥 Import your roster</h2>
+    <p class="small">Paste names (one per line) or upload a CSV. Accepted formats: <code>First Last</code>, <code>Last, First</code>, or columns named First / Last / Period. Students still join with the class code; their name is already waiting for them.</p>
+    <div class="grid g2" style="gap:.5rem"><div class="field"><label>Default period</label>${(c.periods||[]).length?`<select id="roP">${c.periods.map(p=>`<option>${esc(p)}</option>`).join('')}</select>`:'<input id="roP" maxlength="6" placeholder="e.g., 3">'}</div>
+      <div class="field"><label>…or a CSV file</label><label class="btn">📂 Choose CSV<input type="file" id="roF" accept=".csv,.txt" hidden></label></div></div>
+    <textarea id="roT" style="min-height:160px;width:100%" placeholder="Maria Gonzalez&#10;Jackson, Tyler&#10;Ava Chen"></textarea>
+    <div id="roPrev" class="small" style="margin:.5rem 0"></div><button class="btn gold big" id="roGo" disabled>Add students</button>`);
+  let people=[];
+  const parse=()=>{ const defP=($('#roP',mm).value||'').trim(), text=$('#roT',mm).value; people=[]; const rows=ttParseCSV(text);
+    if(!rows.length) return preview();
+    const H=rows[0].map(h=>h.trim().toLowerCase()); const fi=H.findIndex(h=>/^first/.test(h)), li=H.findIndex(h=>/^last/.test(h)), pi=H.findIndex(h=>/period|section|class/.test(h)), ni=H.findIndex(h=>/^(student|name|student name)$/.test(h));
+    const body=(fi>=0||ni>=0)?rows.slice(1):rows;
+    body.forEach(r=>{ let first='', last='';
+      if(fi>=0){ first=(r[fi]||'').trim(); last=li>=0?(r[li]||'').trim():''; }
+      else { let n=(ni>=0?r[ni]:r.length>=2&&!/\d/.test(r[1])&&r[0].trim()&&r[1].trim()&&!r[0].includes(' ')?`${r[1]} ${r[0]}`:r[0]||'').trim(); if(n.includes(',')){ const [l,f]=n.split(',').map(x=>x.trim()); n=f+' '+l; } const p=n.split(/\s+/); first=p[0]||''; last=p.slice(1).join(' '); }
+      first=first.replace(/[^\p{L}' -]/gu,'').trim(); if(!first) return;
+      const name=`${first[0].toUpperCase()+first.slice(1)} ${(last[0]||'').toUpperCase()}.`.replace(/ \.$/,'');
+      const period=(pi>=0&&(r[pi]||'').trim())||defP; people.push({name, period}); });
+    preview(); };
+  const preview=()=>{ const seen={}, dups=[]; people.forEach(p=>{ const k=p.name+'|'+p.period; if(seen[k]) dups.push(p.name); seen[k]=1; });
+    const existing=new Set(DASH.students.map(s=>s.id)); const fresh=people.filter(p=>!existing.has(studentId(p.name,p.period)));
+    $('#roPrev',mm).innerHTML=people.length?`Ready: <b>${fresh.length}</b> new student${fresh.length===1?'':'s'}${people.length-fresh.length?` (${people.length-fresh.length} already in class)`:''}. ${dups.length?`<br>⚠️ Same name and period twice: ${[...new Set(dups)].map(esc).join(', ')}. Add a middle initial in their first name to tell them apart.`:''}<br>${fresh.slice(0,8).map(p=>esc(p.name)+(p.period?` <span class="muted">P${esc(p.period)}</span>`:'')).join(' · ')}${fresh.length>8?' …':''}`:'';
+    $('#roGo',mm).disabled=!fresh.length; };
+  $('#roT',mm).oninput=parse; $('#roP',mm).onchange=parse;
+  $('#roF',mm).onchange=async e=>{ const f=e.target.files[0]; if(f){ $('#roT',mm).value=await f.text(); parse(); } };
+  $('#roGo',mm).onclick=async()=>{ const b=$('#roGo',mm); b.disabled=true; b.textContent='Adding…'; const existing=new Set(DASH.students.map(s=>s.id)); let n=0;
+    try{ for(const p of people){ const sid=studentId(p.name,p.period); if(existing.has(sid)) continue; existing.add(sid); await API.teacherPatch(c.id, sid, {name:p.name, period:p.period, qstat:{}, tokens:3, xp:0, roster:true}); n++; }
+      toast(`👥 Added ${n} student${n===1?'':'s'}`); mm.close(); await loadDash(true); after&&after(); }
+    catch(ex){ toast('⚠️ '+esc(ex.message)); b.disabled=false; b.textContent='Add students'; } };
+}
+
+/* -------------------- accommodations + PIN (per student) -------------------- */
+/* Accommodations live on the student's own record (not the class doc), so classmates can't see them. */
+const accOf = rec => Object.assign({time:1, read:false, font:false}, (rec&&rec.acc)||{});
+function studentToolsHTML(c, s){
+  const a=accOf(s);
+  return `<div class="card" style="margin-top:1rem"><h3 style="margin-top:0">♿ Accommodations</h3>
+    <div class="grid g3" style="gap:.5rem"><div class="field"><label>Time on timed questions</label><select id="acT">${[[1,'Standard'],[1.5,'1.5× time'],[2,'2× time'],[0,'No timer']].map(([v,l])=>`<option value="${v}" ${+a.time===v?'selected':''}>${l}</option>`).join('')}</select></div>
+    <label class="row small" style="cursor:pointer"><input type="checkbox" id="acR" ${a.read?'checked':''}> Read questions aloud automatically</label>
+    <label class="row small" style="cursor:pointer"><input type="checkbox" id="acF" ${a.font?'checked':''}> Easy-read text (larger, extra spacing)</label></div>
+    <p class="small muted" style="margin:.3rem 0 0">Applies on any device the student uses.</p></div>
+    <div class="card" style="margin-top:1rem"><h3 style="margin-top:0">🔑 Student PIN</h3>
+    <p class="small">${s.pinHash?'This student protects their progress with a 4-digit PIN. If they forget it, reset it and they will choose a new one the next time they join.':'This student hasn\'t set a PIN yet. They\'ll be asked to choose one the next time they join.'}</p>
+    ${s.pinHash?'<button class="btn" id="pinReset">Reset PIN</button>':''}</div>`;
+}
+function bindStudentTools(root, c, s){
+  const put=async()=>{ const acc={time:+$('#acT',root).value, read:$('#acR',root).checked, font:$('#acF',root).checked};
+    try{ await API.teacherPatch(c.id, s.id, {acc}); s.acc=acc; toast('✅ Accommodations saved'); }catch(ex){ toast('⚠️ '+esc(ex.message)); } };
+  ['#acT','#acR','#acF'].forEach(k=>{ const el=$(k,root); if(el) el.onchange=put; });
+  const pr=$('#pinReset',root); if(pr) pr.onclick=async()=>{ try{ await API.resetPin(c.id, s.id); s.pinHash=null; pr.replaceWith(Object.assign(document.createElement('b'),{textContent:'✅ PIN reset'})); }catch(ex){ toast('⚠️ '+esc(ex.message)); } };
+}
+
+/* =====================================================================
+   STUDENT TOOLS — read-aloud, easy-read text, extended time, assigned
+   work, next best step, weekly goal, live class-setting refresh,
+   and the PIN that keeps each student's record theirs.
+   ===================================================================== */
+const ES = () => S.lang==='es';
+
+/* ----------------------------- read aloud ----------------------------- */
+const canSpeak = () => typeof window!=='undefined' && 'speechSynthesis' in window && typeof SpeechSynthesisUtterance!=='undefined';
+function speak(text){
+  if(!canSpeak() || !text) return; try{ speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text); u.lang=ES()?'es-US':'en-US'; u.rate=.95;
+    const v=speechSynthesis.getVoices().find(x=>x.lang&&x.lang.toLowerCase().startsWith(ES()?'es':'en')); if(v) u.voice=v;
+    speechSynthesis.speak(u); }catch(e){}
+}
+function stopSpeak(){ try{ if(canSpeak()) speechSynthesis.cancel(); }catch(e){} }
+function questionSpeech(item, order){ return [item.st||'', item.s||'', ...order.map((oi,k)=>`${LETTERS[k]}. ${item.o[oi]}`)].filter(Boolean).join('. '); }
+const readBtnHTML = () => canSpeak()?`<button class="btn ghost rd-btn" data-read title="${ES()?'Leer en voz alta':'Read aloud'}">🔊 ${ES()?'Leer':'Read aloud'}</button>`:'';
+
+/* --------------------------- accommodations --------------------------- */
+function myAcc(){ if(SESSION.type!=='student'||!S.join) return {time:1, read:false, font:false}; return accOf({acc:S.acc}); }
+function readingPrefs(){ S.reading=Object.assign({font:false, auto:false}, S.reading||{}); const a=myAcc(); return {font:S.reading.font||a.font, auto:S.reading.auto||a.read, time:a.time}; }
+function applyReadingClass(){ const p=readingPrefs(); document.documentElement.classList.toggle('easyread', !!p.font); }
+function timerFor(base){ const t=readingPrefs().time; if(t===0) return 0; return Math.round(base*(t||1)); }
+function readingModal(){
+  const p=Object.assign({font:false, auto:false}, S.reading||{}), es=ES();
+  const mm=modal(`<h2>🔤 ${es?'Opciones de lectura':'Reading settings'}</h2>
+    <label class="row" style="cursor:pointer;margin:.4rem 0"><input type="checkbox" id="rfF" ${p.font?'checked':''}> ${es?'Texto fácil de leer (más grande y espaciado)':'Easy-read text (larger, with extra spacing)'}</label>
+    <label class="row" style="cursor:pointer;margin:.4rem 0"><input type="checkbox" id="rfA" ${p.auto?'checked':''} ${canSpeak()?'':'disabled'}> ${es?'Leer cada pregunta en voz alta automáticamente':'Read each question aloud automatically'}</label>
+    ${canSpeak()?'':`<p class="small muted">${es?'Este navegador no tiene lectura en voz alta.':'This browser doesn\'t support read-aloud.'}</p>`}
+    <p class="small muted">${es?'Tu maestro también puede activar estas opciones para ti.':'Your teacher can also turn these on for you.'}</p>`);
+  $('#rfF',mm).onchange=e=>{ S.reading=Object.assign({},S.reading,{font:e.target.checked}); save(); applyReadingClass(); };
+  $('#rfA',mm).onchange=e=>{ S.reading=Object.assign({},S.reading,{auto:e.target.checked}); save(); };
+}
+
+/* ------------------------------ assigned ------------------------------- */
+function myAssigns(){ if(SESSION.type!=='student'&&S.role!=='student') return []; const c=activeClass(); if(!c||typeof classAssigns!=='function') return [];
+  const me={qstat:S.qstat, esc:S.esc, galleryDone:S.galleryDone, vault:S.vault};
+  return classAssigns(c).filter(a=>allUnits().some(u=>u.id===a.unit)).map(a=>({...a, done:asDone(a,me)})).sort((x,y)=>(x.done-y.done)||(x.due||'9').localeCompare(y.due||'9')); }
+function assignedHTML(){
+  const list=myAssigns(); if(!list.length) return ''; const es=ES(), open=list.filter(a=>!a.done);
+  return `<section class="card as-card"><div class="spread"><h3 style="margin:0">📌 ${es?'Asignado por tu maestro':'Assigned by your teacher'}</h3><span class="small">${open.length?`${open.length} ${es?'pendiente(s)':'to do'}`:(es?'¡Todo listo! 🎉':'All done! 🎉')}</span></div>
+    <div class="as-list">${list.slice(0,5).map(a=>{ const u=allUnits().find(x=>x.id===a.unit), late=!a.done&&asLate(a), soon=!a.done&&!late&&a.due===todayISO();
+      return `<button class="as-item ${a.done?'done':''} ${late?'late':''}" data-asgo="${esc(a.id)}"><span class="as-ico">${a.done?'✅':asMode(a.mode)[1].split(' ')[0]}</span>
+        <span class="as-t"><span><b>${esc(asMode(a.mode)[1].replace(/^\S+\s/,''))}</b> · ${esc(u.title)}</span><span class="small">${a.done?(es?'Completado':'Done'):late?(es?'Atrasado · ':'Past due · ')+esc(fmtDue(a.due)):soon?(es?'Para hoy':'Due today'):(es?'Para el ':'Due ')+esc(fmtDue(a.due))}</span></span>
+        ${a.done?'':`<span class="as-go">▶</span>`}</button>`; }).join('')}</div></section>`;
+}
+
+/* --------------------------- next best step ---------------------------- */
+function nextStep(u){
+  const es=ES(), a=myAssigns().find(x=>!x.done);
+  if(a){ const au=allUnits().find(x=>x.id===a.unit); return {icon:'📌', go:a.mode, unit:a.unit, title:es?'Termina tu tarea':'Finish your assignment', why:`${asMode(a.mode)[1].replace(/^\S+\s/,'')} · ${au.title} · ${asLate(a)?(es?'atrasada':'past due'):(es?'para el ':'due ')+fmtDue(a.due)}`}; }
+  const due=typeof dueReviews==='function'?dueReviews(u).length:0;
+  if(due>0) return {icon:'🔁', go:'study', title:es?'Repasa antes de olvidar':'Review before you forget', why:es?`${due} repaso(s) pendientes en el Laboratorio de estudio`:`${due} review${due>1?'s':''} due in the Study Lab`};
+  const bms=[...new Set(u.qs.map(q=>q.bm))]; const tried=bms.map(b=>({b,p:bmPct(u,b),att:u.qs.some(q=>q.bm===b&&S.qstat[q.id])}));
+  if(!tried.some(x=>x.att)) return {icon:'🧭', go:'study', title:es?'Empieza esta unidad':'Start this unit', why:es?'Aprende el primer estándar en el Laboratorio de estudio':'Learn the first benchmark in the Study Lab'};
+  const weak=tried.filter(x=>x.att&&x.p<80).sort((x,y)=>x.p-y.p)[0];
+  if(weak) return {icon:'🎯', go:'study', title:es?`Refuerza ${weak.b}`:`Strengthen ${weak.b}`, why:`${(BENCHMARK_TEXT[weak.b]||'').slice(0,90)}${(BENCHMARK_TEXT[weak.b]||'').length>90?'…':''} · ${weak.p}%`};
+  const fresh=tried.find(x=>!x.att); if(fresh) return {icon:'🧭', go:'study', title:es?`Siguiente: ${fresh.b}`:`Next up: ${fresh.b}`, why:(BENCHMARK_TEXT[fresh.b]||'').slice(0,100)};
+  if(!(S.esc[u.id]&&S.esc[u.id].runs)) return {icon:'🔐', go:'escape', title:es?'¡Lo dominas! Pruébalo':'You\'ve got this unit — prove it', why:es?'Escapa de la sala con este tema':'Escape the Locked Archive for this unit'};
+  return {icon:'🏆', go:'gauntlet', title:es?'Unidad dominada':'Unit mastered', why:es?'Elige otra unidad o mejora tu tiempo de escape':'Pick another unit, or beat your escape time'};
+}
+
+/* ----------------------------- weekly goal ----------------------------- */
+function weekKey(d=new Date()){ const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())); const day=t.getUTCDay()||7; t.setUTCDate(t.getUTCDate()+4-day); const y0=new Date(Date.UTC(t.getUTCFullYear(),0,1)); return t.getUTCFullYear()+'-W'+String(Math.ceil(((t-y0)/86400000+1)/7)).padStart(2,'0'); }
+function goalState(){ S.goal=Object.assign({target:0, week:'', days:[], paid:''}, S.goal||{}); if(S.goal.week!==weekKey()){ S.goal.week=weekKey(); S.goal.days=[]; } return S.goal; }
+function goalTick(){ if(SESSION.type!=='student') return; const g=goalState(), d=dayKey(new Date()); if(g.days.includes(d)) return; g.days.push(d);
+  if(g.target && g.days.length>=g.target && g.paid!==g.week){ g.paid=g.week; setTimeout(()=>award(3, ES()?'Meta semanal cumplida':'Weekly goal reached'),900); } save(); }
+function goalHTML(){
+  const g=goalState(), es=ES();
+  if(!g.target) return `<div class="ns-goal"><b>🎯 ${es?'Ponte una meta semanal':'Set a weekly goal'}</b><span class="small">${es?'¿Cuántos días estudiarás esta semana?':'How many days will you study this week?'}</span>
+    <div class="row">${[2,3,4,5].map(n=>`<button class="btn" data-goal="${n}">${n} ${es?'días':'days'}</button>`).join('')}</div></div>`;
+  const n=g.days.length, done=n>=g.target;
+  return `<div class="ns-goal"><div class="spread"><b>🎯 ${es?'Meta semanal':'Weekly goal'}</b><button class="lnk small" data-goal="0">${es?'cambiar':'change'}</button></div>
+    <div class="goal-dots">${Array.from({length:g.target},(_,i)=>`<i class="${i<n?'on':''}"></i>`).join('')}</div>
+    <span class="small">${done?(es?`¡Meta cumplida! +3 fichas 🎉`:`Goal reached! +3 tokens 🎉`):(es?`${n} de ${g.target} días · +3 fichas al terminar`:`${n} of ${g.target} days · +3 tokens when you finish`)}</span></div>`;
+}
+
+/* ----------------------------- hub panels ------------------------------ */
+function studentPanelsHTML(u){
+  if(S.role!=='student') return '';
+  const ns=nextStep(u), es=ES();
+  return `${assignedHTML()}<div class="ns-row"><button class="ns-card" data-nsgo="${ns.go}" ${ns.unit?`data-nsunit="${esc(ns.unit)}"`:''}><span class="ns-ico">${ns.icon}</span><span class="ns-t"><span class="eyebrow">${es?'Tu siguiente paso':'Your next best step'}</span><b>${esc(ns.title)}</b><span class="small">${esc(ns.why)}</span></span><span class="ns-go">▶</span></button>${goalHTML()}</div>`;
+}
+function bindStudentPanels(m){
+  $$('[data-asgo]',m).forEach(b=>b.onclick=()=>{ const a=myAssigns().find(x=>x.id===b.dataset.asgo); if(!a) return; SFX.click(); S.unit=a.unit; save(); needProfile(()=>go(a.mode)); });
+  $$('[data-nsgo]',m).forEach(b=>b.onclick=()=>{ SFX.click(); if(b.dataset.nsunit){ S.unit=b.dataset.nsunit; save(); } needProfile(()=>go(b.dataset.nsgo)); });
+  $$('[data-goal]',m).forEach(b=>b.onclick=()=>{ const g=goalState(); g.target=+b.dataset.goal; if(g.target&&g.days.length>=g.target) g.paid=g.week; save(); render(); });
+}
+
+/* -------------------- live refresh of class settings -------------------- */
+let CLASS_POLL=null;
+function startClassPoll(){
+  clearInterval(CLASS_POLL); if(SESSION.type!=='student'||!S.join) return;
+  CLASS_POLL=setInterval(async()=>{
+    if(SESSION.type!=='student'||!S.join){ clearInterval(CLASS_POLL); return; }
+    try{ const fresh=await API.getClass(S.join.classId); const cur=activeClass(); if(!fresh||!cur) return;
+      try{ const me=await API.getStudent(S.join.classId, S.join.sid); if(me && JSON.stringify(me.acc||null)!==JSON.stringify(S.acc||null)){ S.acc=me.acc||null; save(); applyReadingClass(); } }catch(e){}
+      const sig=x=>JSON.stringify([x.settings||{}, (x.custom||[]).map(u=>u.id+':'+u.qs.length), x.units]);
+      if(sig(fresh)===sig(cur)) return;
+      const base=DEFAULT_STATE(); Object.assign(cur, {...fresh, settings:Object.assign(base.settings, fresh.settings||{}), custom:fresh.custom||[], assets:cur.assets||{}});
+      linkClass(); enforceClassRules(); applyReadingClass();
+      if(S.view==='hub' && S.role==='student') render(); else renderHUD();
+    }catch(e){}
+  }, 45000);
+}
+function enforceClassRules(){
+  const st=S.settings||{};
+  if(st.lockUnit && allUnits().some(u=>u.id===st.lockUnit) && S.unit!==st.lockUnit && S.role==='student' && SESSION.type==='student'){ S.unit=st.lockUnit; save(); }
+}
+const lockedUnit = () => { const l=S.settings&&S.settings.lockUnit; return (S.role==='student' && l && allUnits().some(u=>u.id===l)) ? l : ''; };
+
+/* ------------------------------ student PIN ------------------------------ */
+const pinHashOf = (sid, pin) => sha256Hex('arena-pin|'+sid+'|'+pin);
+function pinPad(title, sub, onDone, opts={}){
+  return new Promise(res=>{
+    const es=ES(); let entry='', first=null;
+    const mm=modal(`<div class="pin-box"><h2>${title}</h2><p class="small">${sub}</p><div class="pin-dots" id="pnD"></div><div class="err" id="pnE"></div>
+      <div class="esc-pad pin-pad">${[1,2,3,4,5,6,7,8,9,'⌫',0,'✓'].map(k=>`<button class="btn big" data-pk="${k}">${k}</button>`).join('')}</div>
+      ${opts.forgot?`<p class="small" style="margin-top:.6rem">${es?'¿Olvidaste tu PIN? Pide a tu maestro que lo restablezca.':'Forgot your PIN? Ask your teacher to reset it.'}</p>`:''}</div>`,{onClose:()=>res(null)});
+    const dots=()=>$('#pnD',mm).innerHTML=[0,1,2,3].map(i=>`<i class="${i<entry.length?'on':''}"></i>`).join('');
+    dots();
+    const submit=async()=>{ if(entry.length!==4) return;
+      if(opts.confirm){ if(first==null){ first=entry; entry=''; dots(); $('#pnE',mm).textContent=''; mm.querySelector('h2').textContent=es?'Escríbelo otra vez':'Type it again'; return; }
+        if(first!==entry){ first=null; entry=''; dots(); mm.querySelector('h2').textContent=title; $('#pnE',mm).textContent=es?'No coinciden. Inténtalo de nuevo.':'Those didn\'t match. Try again.'; return; } }
+      const r=await onDone(entry); if(r===true){ res(entry); mm.close(); } else { entry=''; dots(); $('#pnE',mm).textContent=r||(es?'PIN incorrecto':'Wrong PIN'); SFX.wrong&&SFX.wrong(); } };
+    $$('[data-pk]',mm).forEach(b=>b.onclick=()=>{ const k=b.dataset.pk; SFX.click&&SFX.click();
+      if(k==='⌫'){ entry=entry.slice(0,-1); return dots(); } if(k==='✓') return submit();
+      if(entry.length<4){ entry+=k; dots(); if(entry.length===4) setTimeout(submit,120); } });
+    const kd=e=>{ if(!document.body.contains(mm)){ document.removeEventListener('keydown',kd); return; } if(/^\d$/.test(e.key)&&entry.length<4){ entry+=e.key; dots(); if(entry.length===4) setTimeout(submit,120); } else if(e.key==='Backspace'){ entry=entry.slice(0,-1); dots(); } };
+    document.addEventListener('keydown',kd);
+  });
+}
+/* Resolve a student's record for this device, asking for or creating a PIN as needed.
+   Returns {prev} to continue, or null if the student backed out. */
+async function pinGate(c, j){
+  const es=ES(); let prev=null, denied=false;
+  try{ prev=await API.getStudent(c.id, j.sid); }catch(e){ if(e&&(e.code==='permission-denied'||/permission/i.test(e.message||''))) denied=true; else throw e; }
+  const me=await API.myUid();
+  // Locked to another device: verify the PIN
+  if(denied || (prev && prev.pinHash && prev.uid && prev.uid!==me)){
+    let got=null;
+    const ok=await pinPad(es?`Hola, ${esc(j.name)}`:`Welcome back, ${esc(j.name)}`, es?'Escribe tu PIN de 4 dígitos para abrir tu progreso.':'Enter your 4-digit PIN to open your progress.', async pin=>{
+      const h=pinHashOf(j.sid,pin);
+      if(prev && prev.pinHash && !denied){ if(h!==prev.pinHash) return false; }
+      try{ got=await API.claimStudent(c.id, j.sid, h); return true; }catch(e){ return false; } }, {forgot:true});
+    if(!ok) return null; return {prev:got||prev};
+  }
+  // New student, or one without a PIN yet: create one
+  if(!prev || !prev.pinHash){
+    const ok=await pinPad(es?'Crea tu PIN':'Create your PIN', es?'Elige 4 dígitos que recuerdes. Así nadie más puede abrir tu progreso, en ningún dispositivo.':'Pick 4 digits you\'ll remember. It keeps your progress yours on any device.', async pin=>{ j.pinHash=pinHashOf(j.sid,pin); return true; }, {confirm:true});
+    if(!ok) return null;
+  }
+  return {prev};
+}
+/* On a returning session: make sure this device can still open the record, and ask
+   students who joined before PINs existed to pick one. */
+async function resumePinCheck(){
+  if(SESSION.type!=='student'||!S.join) return; const j=S.join, es=ES();
+  let rec=null, denied=false;
+  try{ rec=await API.getStudent(j.classId, j.sid); }catch(e){ if(e&&(e.code==='permission-denied'||/permission/i.test(e.message||''))) denied=true; else return; }
+  if(denied){
+    const ok=await pinPad(es?`Hola, ${esc(j.name)}`:`Welcome back, ${esc(j.name)}`, es?'Escribe tu PIN para seguir guardando tu progreso en este dispositivo.':'Enter your PIN to keep saving your progress on this device.', async pin=>{
+      try{ await API.claimStudent(j.classId, j.sid, pinHashOf(j.sid,pin)); return true; }catch(e){ return false; } }, {forgot:true});
+    if(!ok){ toast(es?'Se necesita tu PIN para guardar tu progreso.':'Your PIN is needed to save progress.'); return leaveClass(); }
+    return;
+  }
+  if(rec && rec.acc!==undefined && JSON.stringify(rec.acc||null)!==JSON.stringify(S.acc||null)){ S.acc=rec.acc||null; applyReadingClass(); }
+  if(rec && !rec.pinHash && !S._pinAsked){ S._pinAsked=true;
+    let h=null;
+    const ok=await pinPad(es?'Protege tu progreso':'Protect your progress', es?'Nuevo: elige un PIN de 4 dígitos para que nadie más pueda abrir tu progreso.':'New: pick a 4-digit PIN so nobody else can open your progress.', async pin=>{ h=pinHashOf(j.sid,pin); return true; }, {confirm:true});
+    if(ok && h){ try{ await API.saveStudent(j.classId, j.sid, {pinHash:h}); toast(es?'🔑 PIN guardado':'🔑 PIN saved'); }catch(e){} }
+  }
+}
+
+/* ------------------------------ Spanish ------------------------------ */
+const AR_ES = {
+  // shop tabs + chrome
+  '🐾 Companions':'🐾 Compañeros','🖼️ Frames':'🖼️ Marcos','🌄 Backdrops':'🌄 Fondos','🎉 Victory moves':'🎉 Celebraciones','🏷️ Titles':'🏷️ Títulos',
+  'Arena Shop':'Tienda de la Arena','tokens':'fichas','Equip':'Usar','✅ Equipped':'✅ En uso','Not enough tokens yet':'Todavía no tienes suficientes fichas','Unlocked':'Desbloqueado',
+  'Tap a character to preview the move. ':'Toca un personaje para ver el movimiento. ',
+  'Earn tokens by mastering questions, keeping your daily streak, recovering artifacts and escaping rooms. You choose exactly what you unlock — no random packs.':'Gana fichas dominando preguntas, manteniendo tu racha diaria, recuperando artefactos y escapando de salas. Tú eliges exactamente qué desbloquear: sin sobres al azar.',
+  // companions
+  'Archie the Archive Owl':'Archie, el búho del archivo','Ink the Newsroom Cat':'Tinta, la gata de la redacción','Gus the Gator':'Gus, el caimán','Manny the Manatee':'Manny, el manatí','Liberty the Eagle':'Libertad, el águila','Big Plains Bison':'El gran bisonte de las llanuras','Cher Ami the Pigeon':'Cher Ami, la paloma','Rough Rider Bulldog':'Bulldog Rough Rider','Lunar Rover Bot':'Robot explorador lunar','The Archive Ghost':'El fantasma del archivo',
+  'Never forgets a date.':'Nunca olvida una fecha.','Sniffs out yellow journalism.':'Detecta el periodismo amarillista.','Florida born and raised.':'Nacido y criado en Florida.','Slow, steady, always learning.':'Lento, constante y siempre aprendiendo.','Soars over every benchmark.':'Vuela sobre cada estándar.','Survived the railroad era.':'Sobrevivió a la era del ferrocarril.','A real WWI hero that carried a message through enemy fire.':'Una heroína real de la Primera Guerra Mundial que llevó un mensaje bajo fuego enemigo.','Charges up San Juan Hill.':'Sube a la carga por la colina de San Juan.','Launched from Cape Canaveral.':'Lanzado desde Cabo Cañaveral.','Haunts the Liberty Vault after hours.':'Ronda la Bóveda de la Libertad de noche.',
+  // frames / backdrops / emotes / titles
+  'Parchment':'Pergamino','Gold Laurel':'Laurel dorado','Neon Arcade':'Arcade de neón','Stars & Stripes':'Barras y estrellas','Space Age':'Era espacial','Vault Seal':'Sello de la bóveda',
+  'Arena Classic':'Arena clásica','Capitol Steps':'Escalinata del Capitolio','Everglades Sunset':'Atardecer en los Everglades','1900s Newsroom':'Redacción de 1900','Launch Pad 39A':'Plataforma 39A','The Archive':'El archivo','The Liberty Vault':'La Bóveda de la Libertad',
+  'Victory Jump':'Salto de victoria','Spin':'Giro','Power Pose':'Pose de poder','Big Wave':'Gran saludo','Happy Dance':'Baile feliz','Rocket Launch':'Despegue',
+  'Rookie Historian':'Historiador novato','Primary Source Pro':'Experto en fuentes primarias','Myth Buster':'Cazamitos','Amendment Ace':'As de las enmiendas','Map Master':'Maestro de mapas','Chief Justice':'Presidente de la Corte','Unstoppable':'Imparable','Escape Artist':'Artista del escape','Podium Regular':'Habitual del podio','Arena Legend':'Leyenda de la Arena',
+  'Earn a Liberty Vault seal':'Gana un sello de la Bóveda de la Libertad','Earn all 3 Liberty Vault seals':'Gana los 3 sellos de la Bóveda de la Libertad','Reach a 7-day streak':'Alcanza una racha de 7 días','Escape a room':'Escapa de una sala','Finish top 3 in Arena Live':'Termina entre los 3 primeros en Arena en Vivo',
+  // badges
+  'Badges':'Insignias','Badges unlock automatically as you learn. Some also unlock titles and frames in the shop.':'Las insignias se desbloquean solas mientras aprendes. Algunas también desbloquean títulos y marcos en la tienda.','Earned':'Ganada','Locked':'Bloqueada',
+  'New Recruit':'Nuevo recluta','On a Roll':'En racha','Week Warrior':'Guerrero de la semana','Sharp Shooter':'Puntería perfecta','Unit Conqueror':'Conquistador de la unidad','Curator':'Curador','Vault Breaker':'Rompebóvedas','Master of the Vault':'Maestro de la bóveda','Podium Finish':'Al podio','Level 5':'Nivel 5','Collector':'Coleccionista',
+  'Build your Arena avatar':'Crea tu avatar de la Arena','Study 3 days in a row':'Estudia 3 días seguidos','Study 7 days in a row':'Estudia 7 días seguidos','Get 25 questions right on the first try':'Acierta 25 preguntas al primer intento','Reach 85% mastery in a unit':'Llega al 85% de dominio en una unidad','Finish a gallery walk':'Termina un recorrido de galería','Reach level 5':'Llega al nivel 5','Unlock 3 shop items':'Desbloquea 3 artículos de la tienda',
+  // game night
+  'Game Night · smartboard':'Noche de juegos · pizarra','Start':'Empezar','Question':'Pregunta','Skip question':'Saltar pregunta','Correct!':'¡Correcto!','Not quite':'Casi','Continue':'Continuar','Why it\'s tempting:':'Por qué confunde:','Done':'Listo','wins!':'¡gana!','🏁 End game':'🏁 Terminar juego',
+  'Tap the answer the player gives.':'Toca la respuesta que da el jugador.','Tap the answer the team gives.':'Toca la respuesta que da el equipo.',
+  'Territory Takeover':'Conquista de territorios','Rival Rebound':'Rebote rival','Treasure Chests':'Cofres del tesoro','Prize Ladder':'Escalera de premios','Four in a Row':'Cuatro en línea','Summit Squad':'Escuadrón de la cumbre','Category Clash':'Choque de categorías'
+};
+const tA = s => (typeof S!=='undefined' && S.lang==='es' && AR_ES[s]) || s;
+const tAT = s => { if(!(typeof S!=='undefined' && S.lang==='es')) return s; const m=String(s).match(/^(\S+)\s(.+)$/); return m&&AR_ES[m[2]] ? m[1]+' '+AR_ES[m[2]] : tA(s); };
 
 </script></body></html>

@@ -30,11 +30,15 @@ service cloud.firestore {
         allow read: if signedIn();
         allow write: if ownsClass(cid);
       }
-      // Student progress: a student can read/write a single record (their own, by name + period);
-      // only the teacher can list the roster or remove a student
+      // Student progress. Once a student sets a PIN, their record is locked to the device that
+      // set it: another device can open it only by proving the PIN (pinProof == pinHash).
+      // Only the teacher can list the roster, reset a PIN, or remove a student.
       match /students/{sid} {
-        allow get: if signedIn();
-        allow create, update: if signedIn();
+        function mine() { return resource.data.get('uid', null) == request.auth.uid; }
+        function unlocked() { return resource.data.get('pinHash', null) == null || resource.data.get('uid', null) == null; }
+        allow get: if ownsClass(cid) || (signedIn() && (resource == null || mine() || unlocked()));
+        allow create: if signedIn();
+        allow update: if ownsClass(cid) || (signedIn() && (mine() || unlocked() || request.resource.data.get('pinProof', '') == resource.data.pinHash));
         allow list, delete: if ownsClass(cid);
       }
       // Live teacher-paced sessions: everyone in the class can follow; only the teacher drives
